@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>USC242 HomePage</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Top menu bar */
+    .topnav {
+        background-color: #000;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        color: white;
+    }
+
+    /* Dropdown container */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropbtn {
+        background-color: #000;
+        color: white;
+        padding: 14px 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        min-width: 160px;
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #444;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .right-links {
+        margin-left: auto;
+    }
+
+    .right-links a {
+        color: white;
+        margin-left: 20px;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    .right-links a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+    <div class="dropdown">
+        <button class="dropbtn">Menu ▼</button>
+        <div class="dropdown-content">
+            <a href="page1.html">AboutMe</a>
+            <a href="page2.html">MyInterests</a>
+            <a href="page3.html">USC</a>
+        </div>
+    </div>
+
+    <div class="right-links">
+        <a href="login.html">Login</a>
+        <a href="logout.html">Logout</a>
+    </div>
+</div>
+
+<div align="center">John S. Stritzinger</div>
+<div align="center">Graduate Assistant - University of South Carolina</div>
+<div align="center">1800 Washington Street</div>
+<div align="center">Columbia, South Carolina 29201</div>
+
+</body>
+</html>
