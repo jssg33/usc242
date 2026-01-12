@@ -1,1 +1,110 @@
-somepage
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>USC242 HomePage</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Top menu bar */
+    .topnav {
+        background-color: #000;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        color: white;
+    }
+
+    /* Dropdown container */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropbtn {
+        background-color: #000;
+        color: white;
+        padding: 14px 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        min-width: 160px;
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #444;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .right-links {
+        margin-left: auto;
+    }
+
+    .right-links a {
+        color: white;
+        margin-left: 20px;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    .right-links a:hover {
+        text-decoration: underline;
+    }
+
+    .container
+    {
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+    height: 800px;
+    background-color: lightgrey;
+    }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+    <div class="dropdown">
+        <button class="dropbtn">Menu ▼</button>
+        <div class="dropdown-content">
+            <a href="index.html">Home</a>
+            <a href="page1.html">AboutMe</a>
+            <a href="page2.html">MyInterests</a>
+            <a href="page3.html">USC</a>
+        </div>
+    </div>
+
+    <div class="right-links">
+        <a href="login.html">Login</a>
+        <a href="logout.html">Logout</a>
+    </div>
+</div>
+<div class="container">    
+<div align="center"><h3>University of South Carolina</h3></div>
+<div align="center"><h3>Computer Science 242 - Web Applications</h3></div>
+<div align="center"><h4>John S. Stritzinger</h4></div>
+<div align="center"><h4>Graduate Assistant - University of South Carolina</h4></div>
+</div>
+</body>
+</html>
