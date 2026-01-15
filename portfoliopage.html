@@ -2,7 +2,33 @@
     <link rel="stylesheet" href="site.css"> 
 <head>
     <title>Portfolio Page</title>
+<style>
+* {
+  box-sizing: border-box;
+}
 
+/* Create two equal columns that floats next to each other */
+.column1 {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+    
+.column2 {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+    
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
 </head>    
 <body>
     <div class="topnav">
@@ -32,6 +58,17 @@
     <ul>
         <li><a href="./assignments/01-basic-html/index.html">Assignment1</li>
     </ul>
+
+<div class="row">
+  <div class="column1" style="background-color:#aaa;">
+    <h2>Column 1</h2>
+    <p>Some text..</p>
+  </div>
+  <div class="column2" style="background-color:#bbb;">
+    <h2>Column 2</h2>
+    <p>Some text..</p>
+  </div>
+</div>
 <div align="center"><span align="center"><img src="image2.png" width="400px" height="400px"><img src="image3.png" width="400px" height="400px"></span></div>
 </div>
     </body>
