@@ -105,6 +105,13 @@
       padding: 10px;
       height: 300px; /* Should be removed. Only for demonstration */
     }
+    /* Create two equal columns that floats next to each other */
+    .column1 {
+      float: left;
+      width: 400px;
+      padding: 20px;
+      height: 300px; /* Should be removed. Only for demonstration */
+    }
 
     /* Clear floats after the columns */
     .row:after {
