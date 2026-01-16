@@ -109,6 +109,7 @@
       float: left;
       width: 33%
       padding: 20px;
+      bottom-margin: 0px;
       border: 2px solid black;
     }
 
@@ -117,4 +118,5 @@
       content: "";
       display: table;
       clear: both;
+      padding: 0px;
     }
