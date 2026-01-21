@@ -130,7 +130,8 @@
 
     a
     {
-       color: black; 
+       color: #b3b3b3;
+       text-decoration: none;
     }
 
     p
@@ -139,4 +140,9 @@
     margin-right: 30px;
     max-height: 450px;
     overflow-y: auto;
+    }
+
+    li
+    {
+    margin-left: -5px;
     }
