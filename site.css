@@ -132,3 +132,11 @@
     {
        color: black; 
     }
+
+    p
+    {
+    margin-left: 30px;
+    margin-right: 30px;
+    max-height: 450px;
+    overflow-y: auto;
+    }
