@@ -73,9 +73,11 @@
     width: 85%;
     margin-top: 30px;
     margin: 0 auto;
-    height: 700px;
+    height: 85%;
     margin-bottom: 30px;
     background-color: lightgrey;
+    max-height: 850px;
+    overflow-y: auto;    
     }
 
     .footer
@@ -85,7 +87,7 @@
     color: white;
     text-align: center;
     position: absolute;
-    bottom: 5px;
+    bottom: 1px;
     width: 100%;
     }
 
