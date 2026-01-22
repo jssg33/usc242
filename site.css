@@ -94,7 +94,10 @@
 
     img
     {
-    padding: 30px;
+    padding: 15px;
+    border: 2px solid black;
+    margin-left: 5px;
+    margin-right: 5px;
     }
 
     * {
