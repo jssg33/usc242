@@ -89,8 +89,7 @@
     position: absolute;
     width: 100%;
     vertical-align: middle;
-    position: sticky; 
-    bottom: 1px;
+    bottom: 0px;
     }
 
     img
