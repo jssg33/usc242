@@ -3,6 +3,10 @@
         font-family: Calibri, sans-serif;
         background-color: #ffffe6;
         background-image: url("./images/carolinanight.jpg");
+        background-size: cover;       /* Scale image to cover entire area */
+        background-position: center;  /* Keep image centered */
+        background-repeat: no-repeat; /* Prevent tiling */
+        background-attachment: fixed; /* Keep image fixed during scroll (optional) */
     }
 
     /* Top menu bar */
