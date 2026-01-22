@@ -2,11 +2,7 @@
         margin: 0;
         font-family: Calibri, sans-serif;
         background-color: #ffffe6;
-        background-image: url("./images/carolinanight.jpg");
-        background-size: cover;       /* Scale image to cover entire area */
-        background-position: center;  /* Keep image centered */
-        background-repeat: no-repeat; /* Prevent tiling */
-        background-attachment: fixed; /* Keep image fixed during scroll (optional) */
+        width: 100%;
     }
 
     /* Top menu bar */
@@ -37,7 +33,7 @@
     .dropdown-content {
         display: none;
         position: absolute;
-        background-color: #d9d9d9;
+        background-color: #66ccff;
         min-width: 160px;
         z-index: 1;
     }
@@ -94,14 +90,16 @@
     position: absolute;
     width: 100%;
     vertical-align: middle;
-    position: sticky; 
-    bottom: 0;    
+    bottom: 0px;
     }
 
     img
     {
-    padding: 20px;
+    padding: 15px;
     border: 2px solid lightgrey;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
     }
 
     * {
@@ -113,14 +111,15 @@
       float: left;
       width: 50%;
       padding: 10px;
+      text-align: left;
       }
     /* Create two equal columns that floats next to each other */
     .column1 {
       float: left;
       width: 33%
       padding: 20px;
-      bottom-margin: 0px;
-      border: 2px solid black;
+      bottom-margin: 5px;
+      text-align: left;
     }
 
     /* Clear floats after the columns */

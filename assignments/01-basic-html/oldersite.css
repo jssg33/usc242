@@ -2,7 +2,6 @@
         margin: 0;
         font-family: Calibri, sans-serif;
         background-color: #ffffe6;
-        width: 100%;
     }
 
     /* Top menu bar */
@@ -33,7 +32,7 @@
     .dropdown-content {
         display: none;
         position: absolute;
-        background-color: #66ccff;
+        background-color: #d9d9d9;
         min-width: 160px;
         z-index: 1;
     }
@@ -88,18 +87,16 @@
     color: white;
     text-align: center;
     position: absolute;
+    bottom: 1px;
     width: 100%;
     vertical-align: middle;
-    bottom: 0px;
+    position: sticky; 
+    bottom: 0;
     }
 
     img
     {
-    padding: 15px;
-    border: 2px solid lightgrey;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-bottom: 5px;
+    padding: 20px;
     }
 
     * {
@@ -111,15 +108,14 @@
       float: left;
       width: 50%;
       padding: 10px;
-      text-align: left;
       }
     /* Create two equal columns that floats next to each other */
     .column1 {
       float: left;
       width: 33%
       padding: 20px;
-      bottom-margin: 5px;
-      text-align: left;
+      bottom-margin: 0px;
+      border: 2px solid black;
     }
 
     /* Clear floats after the columns */
