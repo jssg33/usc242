@@ -94,7 +94,8 @@
 
     img
     {
-    padding: 30px;
+    padding: 15px;
+    border: 2px solid lightgrey;
     }
 
     * {
