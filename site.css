@@ -90,7 +90,7 @@
     width: 100%;
     vertical-align: middle;
     position: sticky; 
-    bottom: 0;
+    bottom: 1px;
     }
 
     img
