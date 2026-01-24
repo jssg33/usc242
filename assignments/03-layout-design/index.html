@@ -1,141 +1,18 @@
-<html>
-  <head>
-    <title>PortiasLayout-Flexbox</title>
-<!--John S. Stritzinger
-    CSCE242
-    Spring 2026
-    January 21st, 2026
--->
-<link rel="stylesheet" href="site.css"> 
-<style>
-.tablecontainer
-{
-color: white;
-background-color: lightblue;
-text-align: center;
-margin: 0 auto;
-}
-table
-{
-text-align: center;
-font-size: 11pt;
-color: white;
-background-color: lightblue;
-max-width: 400px;
-margin: 0 auto;
-}
-tr
-{
-width: 85%;
-height: 25px;
-text-align: center;
-margin: 0 auto;
-}
-td
-{
-width:125px;
-height: 25px;
-}
-th
-{
-width: 125px;
-height: 25px;
-}
-ul
-{
-background-color: pink;
-color: white;
-display: block;
-list-style-type: disc; /* Default bullet */
-margin-block-start: 1em;
-margin-block-end: 1em;
-margin-inline-start: 0px;
-margin-inline-end: 0px;
-padding-inline-start: 40px; /* Key: Left padding for indent */    
-}
-li 
-{
-  align: left;
-  display: list-item;
-  text-align: -webkit-match-parent;
-  margin-left: -5px;
-}
-.column
-{
-width: 50%;
-height: 350px;
-text-align: center;
-margin: 0 auto;
-border: 2px black solid;
-}    
-.column1
-{
-width: 25%;
-height: 350px;
-text-align: center;
-margin: 0 auto;  
-}
-.column1 ul 
-{ 
-text-align: left; 
-}
-p
-{
-margin-bottom: 5px;
-line-height: calc(1em + 6px);  
-margin-left: 30px;
-margin-right: 30px;
-}
-H3
-{
-margin-left: 30px;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portia's Layout - Flexbox</title>
+    <link rel="stylesheet" href="../../site.css">
+    <link rel="stylesheet" href="pageoveride.css">
+    <link rel="stylesheet" href="layout.css">
+</head>
 
-a:visited {
-    color: black; 
-}
+<body>
 
-a
-{
-   color: black; 
-}
-body {
-  margin: 0;
-  padding: 0;
-}
-
-h2, p {
-  margin: 10px;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333333;
-}
-
-ul li {
-  float: left;
-}
-
-ul li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-ul li a:hover {
-  background-color: #111111;
-}
-
-</style>
-     </head>
-  <body>
-    <div class="topnav">
+<!-- EXISTING TOP MENU (unchanged) -->
+<div class="topnav">
     <div class="dropdown">
         <button class="dropbtn">Menu ▼</button>
         <div class="dropdown-content">
@@ -154,57 +31,129 @@ ul li a:hover {
         <a href="../../logout.html">Logout</a>
     </div>
 </div>
-<ul>
-  <li><a href="#home">Home</a></li>
-  <li><a href="#news">News</a></li>
-  <li><a href="#contact">Contact</a></li>
-  <li><a href="#about">About</a></li>
-</ul>
 
-<div class="container">    
-<div align="center"><h1>Portia's Layout Page</h1></div>
-<div align="center"><h2>Spring 26</h2></div>
-<HR>
-<div align="center">
-<div class="row">
-<div class="column1" style="background-color: pink;">
-<span align="center" ><H3>Quick Links</H3></span><HR>
-  <ol style="float: left; margin-left: -5px; text-align: left;">
-    <li><a href="https://www.sc.edu" target="_blank">SC Home Page</a></li>
-    <li><a href="https://sc.edu/athletics/" target="_blank">SC Athletics Home Page</a></li>
-    <li><a href="https://www.reuters.com" target="_blank">Reuters</a></li>    
-    <li><a href="https://www.bbc.com" target="_blank">BBC</a></li> 
-    <li><a href="https://www.bbc.com" target="_blank">BBC</a></li>
-    <li><a href="https://www.espn.com" target="_blank">ESPN</a></li>
-    <li><a href="https://gamecocksonline.com/sports/mbball/cumestats/">Team Stats</a></li>
-</ol>
-</div>
-<div class="column" style="background-color: #73000a;"><div align="center"><span align=center><img src="./images/miami1.jpg" width="47%" height="330px"><img src="./images/miami2.jpg" width="47%" height="330px"></span></div></div>
-<div class="column1" style="background-color: lightblue;">
-  <div class="tablecontainer">
-    <span style="align: left;"><H3>SiteMap</H3></span><HR>
-    <table>
-    <tr><th>Site Information</th><th>Page Link</th><th>Date Updated</th></tr>
-    <tr><td>About</td><td><a href="https://jssg33.github.io/usc242/about.html">About</a></td><td>01/15/2026</td></tr>
-    <tr><td>Interests</td><td><a href="https://jssg33.github.io/usc242/interests.html">Interests</a></td><td>01/15/2026</td></tr>
-    <tr><td>USCLife</td><td><a href="https://jssg33.github.io/usc242/usc.html">USC Life</a></td><td>01/15/2026</td></tr>
-    <tr><td>Portfolio</td><td><a href="https://jssg33.github.io/usc242/portfoliopage.html">ClassWork</a></td><td>01/15/2026</td></tr>
-    <tr><td>Vitae</td><td><a href="https://jssg33.github.io/usc242/vitae.html">Vitae</a></td><td>01/15/2026</td></tr>
-    </table>
+<!-- UPDATED FLEXBOX NAV BAR -->
+<nav class="main-nav">
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#staff">Staff</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+    </ul>
+</nav>
+
+<header>
+    <h4>Assignment 3 - Portia's Flexbox Layout</h4>
+    <h5>Spring 2026</h5>
+</header>
+<div class="mastercontainer">
+<!-- TOP SECTION: IMPORTANT TEXT + TASKS -->
+<section class="top-section">
+
+    <div class="important-text">
+        <h3>Very Important Text</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
     </div>
-</div>
-</div>
-</div>
-<div id="VeryImp">
-<H3>VeryImportantText</H3>
-<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</div>
-<HR>
-<BR><BR><BR>
-</div>
-</body>
-<footer><div class="footer">&copy2025&nbspCocky Consulting, Inc</div></footer>
-</html>
 
- 
+    <div class="tasks">
+
+        <div class="task-item">
+            <h3>Beach Volleyball</h3>
+            <a href="#"><img src="./images/titlepic1.png" alt="Beach Volleyball"></a>
+        </div>
+
+        <div class="task-item">
+            <h3>Surfing Lessons</h3>
+            <a href="#"><img src="./images/titlepic2.png" alt="Surfing Lessons"></a>
+        </div>
+
+        <div class="task-item">
+            <h3>Jet Ski Rental</h3>
+            <a href="#"><img src="./images/titlepic3.png" alt="Jet Ski Rental"></a>
+        </div>
+
+        <div class="task-item">
+            <h3>Sunset Cruise</h3>
+            <a href="#"><img src="./images/titlepic4.png" alt="Sunset Cruise"></a>
+        </div>
+
+    </div>
+        
+</section>
+
+
+<!-- IDEA SECTIONS -->
+    <section class="ideas">
+    <div class="idea left">
+        <HR color="blue">    
+        <div class="idea-text">
+            <h3>Idea One</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        </div>
+        <img src="https://dummyimage.com/200x200/cccccc/000000" alt="Idea 1">
+    <HR color="blue">
+    </div>
+
+    <div class="idea right">
+        <HR color="blue">    
+        <div class="idea-text">
+            <h3>Idea Two</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        </div>
+        <img src="https://dummyimage.com/200x200/aaaaaa/000000" alt="Idea 2">
+    <HR color="blue">
+    </div>
+    <div class="idea left">
+    <HR color="blue">    
+        <div class="idea-text">
+            <h3>Idea Three</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        </div>
+        <img src="https://dummyimage.com/200x200/bbbbbb/000000" alt="Idea 3">
+    <HR color="blue">    
+    </div>
+</section>
+
+<!-- BOTTOM SECTION: 3 FLEX COLUMNS -->
+<section class="middle-columns">
+
+    <!-- CENTER COLUMN: MIAMI IMAGES -->
+    <div class="mid-col">
+        <img src="./images/miami1.jpg" style="width:48%; border-radius:5px;">
+        <img src="./images/miami3.jpg" style="width:48%; border-radius:5px;">
+    </div>
+    <!-- LEFT COLUMN: QUICK LINKS -->
+    <div class="mid-col">
+        <h3>Quick Links</h3>
+        <hr>
+        <ul class="quick-links">
+            <li><a href="https://www.sc.edu" target="_blank">SC Home Page</a></li>
+            <li><a href="https://sc.edu/athletics/" target="_blank">SC Athletics</a></li>
+            <li><a href="https://www.reuters.com" target="_blank">Reuters</a></li>
+            <li><a href="https://www.bbc.com" target="_blank">BBC</a></li>
+            <li><a href="https://www.espn.com" target="_blank">ESPN</a></li>
+            <li><a href="https://gamecocksonline.com/sports/mbball/cumestats/">Team Stats</a></li>
+        </ul>
+    </div>
+    <!-- RIGHT COLUMN: SITEMAP TABLE -->
+    <div class="mid-col">
+        <h3>Site Map</h3>
+        <hr>
+        <table class="sitemap-table">
+            <tr><th>Site Information</th><th>Page Link</th><th>Date Updated</th></tr>
+            <tr><td>About</td><td><a href="../../about.html">About</a></td><td>01/15/2026</td></tr>
+            <tr><td>Interests</td><td><a href="../../interests.html">Interests</a></td><td>01/15/2026</td></tr>
+            <tr><td>USC Life</td><td><a href="../../usc.html">USC Life</a></td><td>01/15/2026</td></tr>
+            <tr><td>Portfolio</td><td><a href="../../portfoliopage.html">ClassWork</a></td><td>01/15/2026</td></tr>
+            <tr><td>Vitae</td><td><a href="../../vitae.html">Vitae</a></td><td>01/15/2026</td></tr>
+        </table>
+    </div>
+
+</section>
+</div>
+<footer>
+    <p>© 2025 Cocky Consulting, Inc.</p>
+</footer>
+</body>
+</html>
