@@ -60,6 +60,8 @@ nav.main-nav a:hover {
     display: flex;
     gap: 20px;
     padding: 20px;
+    max-width: 98%;
+    margin: 0 auto;
 }
 
 /* Important text = 30% */
