@@ -145,7 +145,7 @@ nav.main-nav a:hover {
 
 .ideacontainer
 {
-    max-width: 100%
+    max-width: 90%
 }
 
 
@@ -154,7 +154,7 @@ nav.main-nav a:hover {
     flex-direction: column;
     gap: 20px;
     padding: 20px;
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
     }
 
