@@ -145,7 +145,8 @@ nav.main-nav a:hover {
 
 .ideacontainer
 {
-    max-width: 90%
+    max-width: 90%;
+    margin: 0 auto;
 }
 
 
