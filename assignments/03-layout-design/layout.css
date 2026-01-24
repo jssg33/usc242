@@ -36,6 +36,10 @@ nav ul {
     justify-content: center;
 }
 
+nav li {
+    margin: 0;
+}
+
 nav a {
     display: block;
     padding: 15px 25px;
@@ -63,9 +67,6 @@ nav a:hover {
     background: white;
     padding: 20px;
     border-radius: 5px;
-    border: 2px solid black;
-    width: 50%;
-    max-height: 300px;
 }
 
 .tasks {
@@ -73,9 +74,6 @@ nav a:hover {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    max-width: 145px;
-    max-height: 300px;
-    border: 2px solid black;
 }
 
 .task-item {
@@ -92,27 +90,37 @@ nav a:hover {
 }
 
 /* ----------------------------- */
-/* IDEA SECTIONS (3 COLUMNS)    */
+/* IDEA SECTIONS (FULL-WIDTH)   */
 /* ----------------------------- */
 
 .ideas {
     display: flex;
+    flex-direction: column;
     gap: 20px;
     padding: 20px;
 }
 
 .idea {
-    flex: 1;
-    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
     padding: 20px;
     border-radius: 5px;
+    width: 100%;
+    gap: 20px;
 }
 
+/* Text area: max 70% width */
+.idea-text {
+    flex: 1;
+    max-width: 70%;
+}
+
+/* Image area: max 20% width */
 .idea img {
-    width: 200px;
-    height: 200px;
-    display: block;
-    margin-top: 15px;
+    max-width: 20%;
+    height: auto;
     border-radius: 5px;
 }
 
@@ -145,6 +153,19 @@ footer {
     .ideas {
         flex-direction: column;
     }
+
+    .idea {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .idea-text {
+        max-width: 100%;
+    }
+
+    .idea img {
+        max-width: 60%;
+    }
 }
 
 /* ----------------------------- */
@@ -162,6 +183,6 @@ footer {
     }
 
     .ideas {
-        flex-direction: row;
+        flex-direction: column;
     }
 }
