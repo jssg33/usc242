@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portia's Layout - Flexbox</title>
 
-    <!-- Your existing site CSS + the Flexbox template -->
-    <link rel="stylesheet" href="../../site.css">
-    <link rel="stylesheet" href="pageoverride.css">
-    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -54,30 +51,32 @@
 
     <div class="important-text">
         <h3>Very Important Text</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
     </div>
 
     <div class="tasks">
+
         <div class="task-item">
             <h3>Title 1</h3>
-            <img src="./images/titlepic1.png" width="200px" height="300px" alt="Task 1">
+            <a href="#"><img src="./images/titlepic1.png" alt="Title 1"></a>
         </div>
 
         <div class="task-item">
             <h3>Title 2</h3>
-            <img src="./images/titlepic2.png" width="200px" height="300px" alt="Task 2">
+            <a href="#"><img src="./images/titlepic2.png" alt="Title 2"></a>
         </div>
 
         <div class="task-item">
             <h3>Title 3</h3>
-            <img src="./images/titlepic3.png" width="200px" height="300px" alt="Task 3">
+            <a href="#"><img src="./images/titlepic3.png" alt="Title 3"></a>
         </div>
 
         <div class="task-item">
             <h3>Title 4</h3>
-            <img src="./images/titlepic4.png" width="200px" height="300px" alt="Task 4">
+            <a href="#"><img src="./images/titlepic4.png" alt="Title 4"></a>
         </div>
+
     </div>
 
 </section>
@@ -85,6 +84,11 @@
 <!-- MIDDLE SECTION: 3 FLEX COLUMNS -->
 <section class="middle-columns">
 
+    <!-- CENTER COLUMN: MIAMI IMAGES -->
+    <div class="mid-col">
+        <img src="./images/miami1.jpg" style="width:48%; border-radius:5px;">
+        <img src="./images/miami3.jpg" style="width:48%; border-radius:5px;">
+    </div>
     <!-- LEFT COLUMN: QUICK LINKS -->
     <div class="mid-col">
         <h3>Quick Links</h3>
@@ -98,13 +102,6 @@
             <li><a href="https://gamecocksonline.com/sports/mbball/cumestats/">Team Stats</a></li>
         </ul>
     </div>
-
-    <!-- CENTER COLUMN: MIAMI IMAGES -->
-    <div class="mid-col">
-        <img src="./images/miami1.jpg" style="width:48%; border-radius:5px;">
-        <img src="./images/miami3.jpg" style="width:48%; border-radius:5px;">
-    </div>
-
     <!-- RIGHT COLUMN: SITEMAP TABLE -->
     <div class="mid-col">
         <h3>Site Map</h3>
@@ -121,37 +118,34 @@
 
 </section>
 
+<!-- IDEA SECTIONS -->
 <section class="ideas">
 
-    <!-- IDEA 1: image left -->
     <div class="idea left">
-        <img src="https://dummyimage.com/200x200/cccccc/000000" alt="Idea 1">
         <div class="idea-text">
             <h3>Idea One</h3>
-            <p>Lorem ipsum dolor sit amet...</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
         </div>
+        <img src="https://dummyimage.com/200x200/cccccc/000000" alt="Idea 1">
     </div>
 
-    <!-- IDEA 2: image right -->
     <div class="idea right">
         <div class="idea-text">
             <h3>Idea Two</h3>
-            <p>Lorem ipsum dolor sit amet...</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
         </div>
         <img src="https://dummyimage.com/200x200/aaaaaa/000000" alt="Idea 2">
     </div>
 
-    <!-- IDEA 3: image left -->
     <div class="idea left">
-        <img src="https://dummyimage.com/200x200/bbbbbb/000000" alt="Idea 3">
         <div class="idea-text">
             <h3>Idea Three</h3>
-            <p>Lorem ipsum dolor sit amet...</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
         </div>
+        <img src="https://dummyimage.com/200x200/bbbbbb/000000" alt="Idea 3">
     </div>
 
 </section>
-
 
 <footer>
     <p>© 2025 Cocky Consulting, Inc.</p>
