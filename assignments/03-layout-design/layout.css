@@ -143,13 +143,6 @@ nav.main-nav a:hover {
 /* IDEA SECTIONS (FULL-WIDTH)   */
 /* ----------------------------- */
 
-.ideacontainer
-{
-    max-width: 90%;
-    margin: 0 auto;
-}
-
-
 .ideas {
     display: flex;
     flex-direction: column;
@@ -279,4 +272,14 @@ footer {
     .ideas {
         flex-direction: column;
     }
+}
+/* ----------------------------- */
+/* MASTER CONTAINER     */
+/* ----------------------------- */
+
+
+.mastercontainer
+{
+    max-width: 95%;
+    margin: 0 auto;
 }
