@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flexbox Layout Project</title>
-    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -16,27 +16,70 @@
     <ul>
         <li><a href="#">Home</a></li>
         <li><a href="#">About</a></li>
-        <li><a href="#">Gallery</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#">Staff</a></li>
+        <li><a href="#">Contact Us</a></li>
     </ul>
 </nav>
 
-<section class="content-area">
+<!-- TOP SECTION: 50% TEXT + 50% TASKS -->
+<section class="top-section">
 
-    <article>
-        <h2>Main Article</h2>
-        <img src="https://dummyimage.com/600x200/cccccc/000000" alt="Dummy Image">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae orci nec urna tincidunt
-            fermentum. Integer vel libero nec velit facilisis tincidunt.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula non erat
-            ullamcorper tincidunt.</p>
-    </article>
+    <div class="important-text">
+        <h2>Very Important Information</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo nec elit
+           tincidunt tincidunt. Sed vel urna id elit fermentum varius. Suspendisse potenti. 
+           Donec sit amet ligula vel justo gravida tincidunt.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed arcu non sem 
+           tincidunt tincidunt. Curabitur id sapien nec justo bibendum tincidunt.</p>
+    </div>
 
-    <aside>
-        <h3>Sidebar</h3>
-        <img src="https://dummyimage.com/300x200/aaaaaa/000000" alt="Dummy Image">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti.</p>
-    </aside>
+    <div class="tasks">
+        <div class="task-item">
+            <h3>Beach Volleyball</h3>
+            <img src="https://dummyimage.com/120x120/cccccc/000000" alt="Miami Beach Activity">
+        </div>
+
+        <div class="task-item">
+            <h3>Surfing Lessons</h3>
+            <img src="https://dummyimage.com/120x120/aaaaaa/000000" alt="Miami Beach Activity">
+        </div>
+
+        <div class="task-item">
+            <h3>Jet Ski Rental</h3>
+            <img src="https://dummyimage.com/120x120/bbbbbb/000000" alt="Miami Beach Activity">
+        </div>
+
+        <div class="task-item">
+            <h3>Sunset Cruise</h3>
+            <img src="https://dummyimage.com/120x120/dddddd/000000" alt="Miami Beach Activity">
+        </div>
+    </div>
+
+</section>
+
+<!-- IDEA SECTIONS (3 COLUMNS) -->
+<section class="ideas">
+
+    <div class="idea">
+        <h3>Idea One</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae orci nec urna 
+           tincidunt fermentum.</p>
+        <img src="https://dummyimage.com/200x200/cccccc/000000" alt="Idea Image">
+    </div>
+
+    <div class="idea">
+        <h3>Idea Two</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula non erat 
+           ullamcorper tincidunt.</p>
+        <img src="https://dummyimage.com/200x200/aaaaaa/000000" alt="Idea Image">
+    </div>
+
+    <div class="idea">
+        <h3>Idea Three</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. 
+           Integer vel libero nec velit facilisis tincidunt.</p>
+        <img src="https://dummyimage.com/200x200/bbbbbb/000000" alt="Idea Image">
+    </div>
 
 </section>
 
