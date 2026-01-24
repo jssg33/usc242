@@ -151,7 +151,6 @@ nav.main-nav a:hover {
     max-width: 1400px;
     margin: 0 auto;
     text-align: left;
-    margin-left: 30px;
 }
 
 .idea {
@@ -169,6 +168,7 @@ nav.main-nav a:hover {
 .idea-text {
     flex: 1;
     max-width: 70%;
+    margin-left: 30px;
 }
 
 /* Image area: max 20% width */
