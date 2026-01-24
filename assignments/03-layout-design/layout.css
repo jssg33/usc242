@@ -148,6 +148,10 @@ nav.main-nav a:hover {
     flex-direction: column;
     gap: 20px;
     padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: left;
+    margin-left: 30px;
 }
 
 .idea {
@@ -159,8 +163,6 @@ nav.main-nav a:hover {
     border-radius: 5px;
     width: 100%;
     gap: 20px;
-    max-width: 1400px;
-    margin: 0 auto;
 }
 
 /* Text area: max 70% width */
