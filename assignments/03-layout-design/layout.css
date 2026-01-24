@@ -1,11 +1,17 @@
-/* General Page Styling */
+/* ----------------------------- */
+/* GLOBAL PAGE STYLES           */
+/* ----------------------------- */
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: #f4f4f4;
 }
 
-/* Header */
+/* ----------------------------- */
+/* HEADER                       */
+/* ----------------------------- */
+
 header {
     background: #4a6fa5;
     color: white;
@@ -13,7 +19,10 @@ header {
     text-align: center;
 }
 
-/* Navigation */
+/* ----------------------------- */
+/* NAVIGATION BAR               */
+/* ----------------------------- */
+
 nav {
     background: #2d4b73;
 }
@@ -22,7 +31,10 @@ nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex; /* horizontal on large screens */
+
+    /* Default layout (desktop-ish) */
+    display: flex;
+    flex-direction: row;
     justify-content: center;
 }
 
@@ -35,15 +47,20 @@ nav a {
     padding: 15px 25px;
     color: white;
     text-decoration: none;
+    font-weight: bold;
 }
 
 nav a:hover {
     background: #1e3550;
 }
 
-/* Main Content Layout */
+/* ----------------------------- */
+/* MAIN CONTENT AREA            */
+/* ----------------------------- */
+
 .content-area {
     display: flex;
+    flex-direction: row;
     gap: 20px;
     padding: 20px;
 }
@@ -62,7 +79,10 @@ aside {
     border-radius: 5px;
 }
 
-/* Footer */
+/* ----------------------------- */
+/* FOOTER                       */
+/* ----------------------------- */
+
 footer {
     background: #4a6fa5;
     color: white;
@@ -71,10 +91,10 @@ footer {
 }
 
 /* ----------------------------- */
-/* RESPONSIVE LAYOUT (SMALLER)  */
+/* MOBILE LAYOUT (≤ 800px)      */
 /* ----------------------------- */
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
 
     /* Nav becomes vertical */
     nav ul {
@@ -87,3 +107,19 @@ footer {
         flex-direction: column;
     }
 }
+
+/* ----------------------------- */
+/* LARGE LAYOUT (≥ 1200px)      */
+/* ----------------------------- */
+
+@media (min-width: 1200px) {
+
+    nav ul {
+        flex-direction: row;
+    }
+
+    .content-area {
+        flex-direction: row;
+    }
+}
+
