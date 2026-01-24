@@ -1,0 +1,89 @@
+/* General Page Styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+/* Header */
+header {
+    background: #4a6fa5;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Navigation */
+nav {
+    background: #2d4b73;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* horizontal on large screens */
+    justify-content: center;
+}
+
+nav li {
+    margin: 0;
+}
+
+nav a {
+    display: block;
+    padding: 15px 25px;
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background: #1e3550;
+}
+
+/* Main Content Layout */
+.content-area {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+article {
+    flex: 3;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+aside {
+    flex: 1;
+    background: #e8e8e8;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* Footer */
+footer {
+    background: #4a6fa5;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+/* ----------------------------- */
+/* RESPONSIVE LAYOUT (SMALLER)  */
+/* ----------------------------- */
+
+@media (max-width: 768px) {
+
+    /* Nav becomes vertical */
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Content stacks vertically */
+    .content-area {
+        flex-direction: column;
+    }
+}
