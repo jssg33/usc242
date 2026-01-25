@@ -1,0 +1,258 @@
+/* John S. Stritzinger*/
+/*CSCE242*/
+/*Portias Restyled HomePage as a Variant of the Flex Box Design*/
+
+/* ----------------------------- */
+/* GLOBAL PAGE STYLES           */
+/* ----------------------------- */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+p {}
+
+/* ----------------------------- */
+/* HEADER                       */
+/* ----------------------------- */
+
+header {
+    background: #4a6fa5;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* ----------------------------- */
+/* MAIN NAVIGATION BAR          */
+/* ----------------------------- */
+
+nav.main-nav {
+    background: #2d4b73;
+}
+
+nav.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+nav.main-nav li {
+    margin: 0;
+}
+
+nav.main-nav a {
+    display: block;
+    padding: 15px 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav.main-nav a:hover {
+    background: #1e3550;
+}
+
+/* ----------------------------- */
+/* TASKS SECTION (NO IMPORTANT TEXT) */
+/* ----------------------------- */
+
+.top-section {
+    padding: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* Tasks container */
+.tasks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Each task item: 300px wide, max 150px high */
+.task-item {
+    width: 300px;
+    max-height: 150px;
+    background: #e8e8e8;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Title above image */
+.task-item h3 {
+    margin-bottom: 10px;
+}
+
+/* Images scale and crop to fit */
+.task-item a img,
+.task-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* ----------------------------- */
+/* MIDDLE 3-COLUMN SECTION      */
+/* ----------------------------- */
+
+.middle-columns {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.mid-col {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* Quick links list */
+.quick-links {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+/* Table styling */
+.sitemap-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.sitemap-table th,
+.sitemap-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+/* ----------------------------- */
+/* IDEA SECTIONS (FULL-WIDTH)   */
+/* ----------------------------- */
+
+.ideas {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.idea {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+    gap: 20px;
+}
+
+.idea-text {
+    flex: 1;
+    max-width: 70%;
+}
+
+.idea img {
+    max-width: 20%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.idea.left {
+    flex-direction: row-reverse;
+}
+
+.idea.right {
+    flex-direction: row;
+}
+
+/* ----------------------------- */
+/* FOOTER                       */
+/* ----------------------------- */
+
+footer {
+    background: #4a6fa5;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+/* ----------------------------- */
+/* MOBILE LAYOUT (≤ 800px)      */
+/* ----------------------------- */
+
+@media (max-width: 800px) {
+
+    nav.main-nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Tasks become full width */
+    .task-item {
+        width: 100%;
+        max-height: 150px;
+    }
+
+    .middle-columns {
+        flex-direction: column;
+    }
+
+    .idea {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .idea-text {
+        max-width: 100%;
+    }
+
+    .idea img {
+        max-width: 60%;
+        order: 2;
+    }
+}
+
+/* ----------------------------- */
+/* LARGE LAYOUT (≥ 1200px)      */
+/* ----------------------------- */
+
+@media (min-width: 1200px) {
+
+    nav.main-nav ul {
+        flex-direction: row;
+    }
+
+    .middle-columns {
+        flex-direction: row;
+    }
+
+    .ideas {
+        flex-direction: column;
+    }
+}
+
+/* ----------------------------- */
+/* MASTER CONTAINER             */
+/* ----------------------------- */
+
+.mastercontainer {
+    max-width: 98%;
+    margin: 0 auto;
+}
