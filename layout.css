@@ -78,9 +78,10 @@ nav.main-nav a:hover {
     max-height: 400px;
 }
 
-/* Tasks = 70% */
+/* Tasks = 65% */
 .tasks {
-    flex: 0 0 70%;
+    flex: 0 0 65%;
+    max-width: 1000px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -230,6 +231,7 @@ footer {
         width: 100%;
         flex-wrap: wrap;
         justify-content: center;
+        max-width: 900px;
     }
 
     .task-item {
