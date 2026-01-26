@@ -220,6 +220,8 @@ footer {
 
     .top-section {
         flex-direction: column;
+        max-width: 900px;
+        margin: 0 auto;
     }
 
     .important-text {
@@ -231,11 +233,12 @@ footer {
         width: 100%;
         flex-wrap: wrap;
         justify-content: center;
-        max-width: 750px;
+        max-width: 900px;
     }
 
     .task-item {
         width: 45%;
+        max-width: 280px;
     }
 
     .task-item a img {
@@ -258,7 +261,7 @@ footer {
     }
 
     .idea img {
-        max-width: 60%;
+        max-width: 40%;
         order: 2;
     }
 }
