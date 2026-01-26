@@ -208,10 +208,10 @@ footer {
 }
 
 /* ----------------------------- */
-/* MOBILE LAYOUT (≤ 800px)      */
+/* MOBILE LAYOUT (≤ 900px)      */
 /* ----------------------------- */
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
 
     nav.main-nav ul {
         flex-direction: column;
