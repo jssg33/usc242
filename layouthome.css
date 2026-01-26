@@ -276,7 +276,8 @@ footer {
     margin: 0 auto;
 }
 
-li
-{
-margin-left: -5px;
-}
+    li
+    {
+    margin-left: -5px;
+    text-decoration: none;    
+    }
