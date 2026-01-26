@@ -222,6 +222,11 @@ footer {
         height: 360px;
     }
 
+     .task-item img {
+        width: 300px;
+        height: 250px;
+    }
+
     .middle-columns {
         flex-direction: column;
     }
