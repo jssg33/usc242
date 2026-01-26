@@ -275,3 +275,8 @@ footer {
     max-width: 98%;
     margin: 0 auto;
 }
+
+li
+{
+margin-left: -5px;
+}
