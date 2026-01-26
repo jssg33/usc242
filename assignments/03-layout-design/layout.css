@@ -233,11 +233,12 @@ footer {
         width: 80%;
         flex-wrap: wrap;
         justify-content: center;
-        max-width: 700px;
+        max-width: 900px;
     }
 
     .task-item {
         width: 45%;
+        max-width: 280px;
     }
 
     .task-item a img {
