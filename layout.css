@@ -263,7 +263,15 @@ footer {
 
     .idea img {
         max-width: 40%;
+        height: 300px;
+        width: 300px;
         order: 2;
+    }
+
+    li
+    {
+    margin-left: -5px;
+    text-decoration: none;    
     }
 }
 
