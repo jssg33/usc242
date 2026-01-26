@@ -220,6 +220,8 @@ footer {
 
     .top-section {
         flex-direction: column;
+        max-width: 900px;
+        margin: 0 auto;
     }
 
     .important-text {
@@ -258,7 +260,7 @@ footer {
     }
 
     .idea img {
-        max-width: 60%;
+        max-width: 40%;
         order: 2;
     }
 }
