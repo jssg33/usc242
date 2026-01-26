@@ -208,10 +208,10 @@ footer {
 }
 
 /* ----------------------------- */
-/* MOBILE LAYOUT (≤ 900px)      */
+/* MOBILE LAYOUT (≤ 1000px)      */
 /* ----------------------------- */
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
 
     nav.main-nav ul {
         flex-direction: column;
@@ -238,7 +238,7 @@ footer {
 
     .task-item {
         width: 45%;
-        max-width: 280px;
+        max-width: 350px;
     }
 
     .task-item a img {
