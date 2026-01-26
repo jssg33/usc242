@@ -94,6 +94,7 @@ nav.main-nav a:hover {
     padding: 10px;
     border-radius: 5px;
     text-align: center;
+    max-width: 280px;
 }
 
 /* Title above image */
