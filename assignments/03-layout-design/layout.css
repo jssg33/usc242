@@ -229,8 +229,8 @@ footer {
         flex: none;
     }
 
-    .tasks {
-        width: 80%;
+.tasks {
+        width: 100%;
         flex-wrap: wrap;
         justify-content: center;
         max-width: 900px;
@@ -246,6 +246,7 @@ footer {
         height: auto;
     }
 
+  
     .middle-columns {
         flex-direction: column;
     }
