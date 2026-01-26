@@ -177,6 +177,8 @@ nav.main-nav a:hover {
 .idea-text {
     flex: 1;
     max-width: 70%;
+    align: left;
+    float: left;
 }
 
 /* Image area: max 20% width */
@@ -259,6 +261,8 @@ footer {
 
     .idea-text {
         max-width: 100%;
+        align: left;
+        float: left;
     }
 
     .idea img {
