@@ -178,6 +178,7 @@ nav.main-nav a:hover {
 .idea-text {
     flex: 1;
     max-width: 70%;
+    float: left;
 }
 
 .idea img {
