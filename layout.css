@@ -208,10 +208,10 @@ footer {
 }
 
 /* ----------------------------- */
-/* MOBILE LAYOUT (≤ 800px)      */
+/* MOBILE LAYOUT (≤ 900px)      */
 /* ----------------------------- */
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
 
     nav.main-nav ul {
         flex-direction: column;
@@ -231,7 +231,7 @@ footer {
         width: 100%;
         flex-wrap: wrap;
         justify-content: center;
-        max-width: 900px;
+        max-width: 750px;
     }
 
     .task-item {
@@ -250,6 +250,7 @@ footer {
     .idea {
         flex-direction: column;
         text-align: center;
+        max-width: 750px;
     }
 
     .idea-text {
