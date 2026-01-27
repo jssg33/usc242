@@ -250,6 +250,12 @@ footer {
         max-width: 40%;
         order: 2;
     }
+
+    li { 
+        align: left;
+        margin-left: -5px; 
+        text-decoration: none;
+       }
 }
 
 /* ----------------------------- */
