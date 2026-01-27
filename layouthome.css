@@ -248,17 +248,15 @@ footer {
         max-width: 40%;
         order: 2;
     }
-
-    li { 
-        margin-top: 5px;
-        margin-left: -1px; 
-        text-decoration: none;
-       }
+    li
+    {
+    magin-top: 20px;
+    margin-left: -1px;
+    text-decoration: none;    
+    }
 
     h2, h3, h4
     {
-        align: left;
-        float: left;
         margin-bottom: 15px;
     }
     
