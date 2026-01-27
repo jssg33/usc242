@@ -256,6 +256,11 @@ footer {
         margin-left: -5px; 
         text-decoration: none;
        }
+
+    H2
+    {
+        align: left;
+    }
 }
 
 /* ----------------------------- */
