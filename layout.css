@@ -254,15 +254,13 @@ footer {
 
     .idea {
         flex-direction: column;
-        text-align: center;
+        text-align: left;
         max-width: 980px;
         margin: 0 auto;
     }
 
     .idea-text {
         max-width: 100%;
-        align: left;
-        float: left;
     }
 
     .idea img {
