@@ -10,7 +10,7 @@ body {
 
 p
 {
-    
+   font-size: 10pt; 
 }
 /* ----------------------------- */
 /* HEADER                       */
@@ -272,7 +272,7 @@ footer {
 
     li
     {
-    magin-top: 2px;
+    magin-top: 20px;
     margin-left: -1px;
     text-decoration: none;    
     }
