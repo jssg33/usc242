@@ -257,9 +257,18 @@ footer {
         text-decoration: none;
        }
 
-    H2
+    h2, h3, h4
     {
         align: left;
+        float: left;
+    }
+    
+    img
+    {
+    max-width: 400px;
+    max-height: 400px;
+    min-height: 300px;
+    min-width: 300px;
     }
 }
 
