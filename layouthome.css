@@ -173,6 +173,7 @@ nav.main-nav a:hover {
     border-radius: 5px;
     width: 100%;
     gap: 20px;
+    vertical-align: top;
 }
 
 .idea-text {
@@ -180,6 +181,7 @@ nav.main-nav a:hover {
     max-width: 70%;
     float: left;
     align: left;
+    vertical-align: top;
 }
 
 .idea img {
