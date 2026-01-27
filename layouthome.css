@@ -15,7 +15,7 @@ p {}
 /* ----------------------------- */
 
 header {
-    background: #4a6fa5;
+    background: black;
     color: white;
     padding: 20px;
     text-align: center;
@@ -173,6 +173,7 @@ nav.main-nav a:hover {
     border-radius: 5px;
     width: 100%;
     gap: 20px;
+    vertical-align: top;
 }
 
 .idea-text {
@@ -180,6 +181,7 @@ nav.main-nav a:hover {
     max-width: 70%;
     float: left;
     align: left;
+    vertical-align: top;
 }
 
 .idea img {
@@ -201,7 +203,7 @@ nav.main-nav a:hover {
 /* ----------------------------- */
 
 footer {
-    background: #4a6fa5;
+    background: black;
     color: white;
     text-align: center;
     padding: 15px;
@@ -235,32 +237,28 @@ footer {
 
     .idea {
         flex-direction: column;
-        text-align: center;
+        text-align: left;
         max-width: 950px;
         margin: 0 auto;
     }
 
     .idea-text {
         max-width: 100%;
-        align: left;
-        float: left;
     }
 
     .idea img {
         max-width: 40%;
         order: 2;
     }
-
-    li { 
-        align: left;
-        margin-left: -5px; 
-        text-decoration: none;
-       }
+    li
+    {
+    magin-top: 20px;
+    margin-left: -1px;
+    text-decoration: none;    
+    }
 
     h2, h3, h4
     {
-        align: left;
-        float: left;
         margin-bottom: 15px;
     }
     

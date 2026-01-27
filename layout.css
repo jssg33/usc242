@@ -10,7 +10,7 @@ body {
 
 p
 {
-    
+   font-size: 10pt; 
 }
 /* ----------------------------- */
 /* HEADER                       */
@@ -203,7 +203,7 @@ nav.main-nav a:hover {
 /* ----------------------------- */
 
 footer {
-    background: #4a6fa5;
+    background: black;
     color: white;
     text-align: center;
     padding: 15px;
@@ -254,15 +254,13 @@ footer {
 
     .idea {
         flex-direction: column;
-        text-align: center;
+        text-align: left;
         max-width: 980px;
         margin: 0 auto;
     }
 
     .idea-text {
         max-width: 100%;
-        align: left;
-        float: left;
     }
 
     .idea img {
@@ -274,7 +272,8 @@ footer {
 
     li
     {
-    margin-left: -5px;
+    magin-top: 20px;
+    margin-left: -1px;
     text-decoration: none;    
     }
 }
