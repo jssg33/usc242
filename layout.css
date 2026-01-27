@@ -274,7 +274,8 @@ footer {
 
     li
     {
-    margin-left: -5px;
+    magin-top: 2px;
+    margin-left: -1px;
     text-decoration: none;    
     }
 }
