@@ -1,7 +1,15 @@
 <!DOCTYPE html>
-<html>
-<head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>USC242 HomePage</title>
+
+    <!-- Top menu bar -->
+    <link rel="stylesheet" href="site.css">
+
+    <!-- Inner flex layout -->
+    <link rel="stylesheet" href="layouthome.css">
 <style>
 * {
   box-sizing: border-box;
@@ -23,7 +31,37 @@
 }
 </style>
 </head>
+
 <body>
+
+<!-- TOP BLACK MENU (site.css) -->
+<div class="topnav">
+    <div class="dropdown">
+        <button class="dropbtn">Menu ▼</button>
+        <div class="dropdown-content">
+            <a href="index.html">Home</a>
+            <a href="242index.html">242 Home</a>
+            <a href="about.html">AboutMe</a>
+            <a href="interests.html">MyInterests</a>
+            <a href="usc.html">USC</a>
+            <a href="portfoliopage.html">Portfolio</a>
+            <a href="vitae.html">Vitae</a>
+        </div>
+    </div>
+
+    <div class="right-links">
+        <a href="login.html">Login</a>
+        <a href="logout.html">Logout</a>
+    </div>
+</div>
+
+<!-- EVERYTHING BELOW THIS POINT IS CONTROLLED BY layout.css -->
+
+<header>
+    <h1>SiteHome</h1>
+    <p>John S. Stritzinger</p>
+    <p>University of South Carolina</p>
+</header>
 
 <h2>Three Equal Columns</h2>
 
@@ -43,4 +81,5 @@
 </div>
 
 </body>
+<footer>&copy 2025, Cocky Consulting Inc.</footer>
 </html>
