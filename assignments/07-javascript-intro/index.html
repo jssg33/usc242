@@ -123,7 +123,7 @@ function calltextupdate()
 alert("setting text");
 const somevalue = document.getElementById("somedayid").value;
 const [year, month, day] = somevalue.split("-");
-const formatted = day + "/" + month + "/" + year;
+const formatted = month + "/" + day + "/" + year;
 const element = document.getElementById("outputtext");
 var somestring = "You Picked the Date: " + formatted;
 console.log("somestring", somestring);
@@ -143,10 +143,10 @@ alert("updating image framing");
 const element = document.getElementById("sunshineimage"); 
 element.style.border = "solid"; 
 element.style.borderWidth = "2px"; 
-element.style.borderTopColor = "blue"; 
-element.style.borderRightColor = "purple"; 
-element.style.borderBottomColor = "red"; 
-element.style.borderLeftColor = "green";
+element.style.borderTopColor = "red"; 
+element.style.borderRightColor = "green"; 
+element.style.borderBottomColor = "blue"; 
+element.style.borderLeftColor = "purple";
 }
     
 </script>
