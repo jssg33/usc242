@@ -124,7 +124,8 @@ alert("setting text");
 const somevalue = document.getElementById("somedayid").value;
 const element = document.getElementById("outputtext");
 var somestring = "Your Date is:" + somevalue;
-element.InnerHTML = somestring;
+console.log("somestring", somestring);
+element.innerHTML = somestring;
 }
 
 function callupdategeometry()
