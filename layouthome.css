@@ -275,6 +275,15 @@ footer {
       padding-left: 0;
       text-align: left;
     }
+    .project-item {
+        width: 100%;
+        height: 360px;
+    }
+
+    .project-item img {
+        width: 300px;
+        height: 250px;
+    }
 }
 
 /* ----------------------------- */
@@ -328,19 +337,6 @@ footer {
     overflow: hidden;
 }
 
-/* MOBILE VERSION (≤ 1000px) */
-@media (max-width: 1000px) {
-    .project-item {
-        width: 100%;
-        height: 360px;
-    }
-
-    .project-item img {
-        width: 300px;
-        height: 250px;
-    }
-}
-
 
 /* ----------------------------- */
 /* LARGE LAYOUT (≥ 1200px)      */
@@ -356,6 +352,10 @@ footer {
         flex-direction: row;
     }
 
+     .projectdetails {
+        flex-direction: row;
+    }
+    
     .ideas {
         flex-direction: column;
     }
