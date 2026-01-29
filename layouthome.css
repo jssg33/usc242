@@ -304,6 +304,17 @@ footer {
     margin-right: auto;
 }
 
+.projecttasks {
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+
 .project-item {
     margin-top: 5px;
     margin-bottom: 5px;
