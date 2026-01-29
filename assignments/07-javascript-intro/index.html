@@ -141,8 +141,12 @@ function callimageframer()
 {
 alert("updating image framing");
 const element = document.getElementById("sunshineimage"); 
-element.style.border = "2px solid"; 
-element.style.borderImage = "linear-gradient(90deg, blue, purple, red, green) 1";
+element.style.border = "solid"; 
+element.style.borderWidth = "2px"; 
+element.style.borderTopColor = "blue"; 
+element.style.borderRightColor = "purple"; 
+element.style.borderBottomColor = "red"; 
+element.style.borderLeftColor = "green";
 }
     
 </script>
