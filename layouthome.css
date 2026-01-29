@@ -281,7 +281,7 @@ footer {
 /* PROJECTS SECTION (same as tasks) */
 /* ----------------------------- */
 
-.projects {
+.projectdetails {
     display: flex;
     flex-wrap: wrap;
     background: white;
