@@ -118,8 +118,7 @@
 </section>    
 <script>
 
-function calltextupdate()
-{
+const calltextupdate = () => {
 alert("setting text");
 const somevalue = document.getElementById("somedayid").value;
 const [year, month, day] = somevalue.split("-");
@@ -130,14 +129,14 @@ console.log("somestring", somestring);
 element.innerHTML = somestring;
 }
 
-function callupdategeometry()
+const callupdategeometry = () => 
 {
 alert("updating geometry");
 const element = document.getElementById("sometriangle"); 
 element.style.visibility = "visible";
 }
 
-function callimageframer()
+const callimageframer = () => 
 {
 alert("updating image framing");
 const element = document.getElementById("sunshineimage"); 
