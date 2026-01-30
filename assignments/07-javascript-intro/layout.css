@@ -319,9 +319,9 @@ footer {
         flex-direction: column;
     }
 }
-/* ----------------------------- */
-/* MASTER CONTAINER     */
-/* ----------------------------- */
+/* -------------------------------------------------------- */
+/* MASTER CONTAINER & INCREMENTAL NONSTANDARD UPDATES     */
+/* --------------------------------------------------------- */
 
 
 .mastercontainer
@@ -334,4 +334,16 @@ li
 {
     margin-left: -5px;
     text-decoration: none;    
+}
+.assign7 .row {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.assign7 .column {
+    flex: 1;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
 }
