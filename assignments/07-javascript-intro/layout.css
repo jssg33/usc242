@@ -276,6 +276,25 @@ footer {
     margin-left: -1px;
     text-decoration: none;    
     }
+
+    .assign7 .row {
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .assign7 .column {
+        width: 100%;
+        padding: 15px;
+        text-align: center;
+    }
+
+    .assign7 img {
+        max-width: 80%;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+    }
 }
 
 /* ----------------------------- */
