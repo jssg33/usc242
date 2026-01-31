@@ -377,10 +377,12 @@ footer {
     .idea.left { 
                 flex-direction: row; 
                 margin-right: 30px;
+                width: 80%;
                 } 
     .idea.right { 
                 flex-direction: row-reverse; 
                 margin-right: 200px;
+                width: 80%;
                 }
 }
 
