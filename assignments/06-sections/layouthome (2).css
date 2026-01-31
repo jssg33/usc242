@@ -1,0 +1,400 @@
+/* ----------------------------- */
+/* GLOBAL PAGE STYLES           */
+/* ----------------------------- */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+p {}
+
+/* ----------------------------- */
+/* HEADER                       */
+/* ----------------------------- */
+
+header {
+    background: black;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* ----------------------------- */
+/* MAIN NAVIGATION BAR          */
+/* ----------------------------- */
+
+nav.main-nav {
+    background: #2d4b73;
+}
+
+nav.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+nav.main-nav li {
+    margin: 0;
+}
+
+nav.main-nav a {
+    display: block;
+    padding: 15px 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav.main-nav a:hover {
+    background: #1e3550;
+}
+
+/* ----------------------------- */
+/* TASKS SECTION (300×300 tasks, 150px images) */
+/* ----------------------------- */
+
+.top-section {
+    padding: 20px;
+    max-width: 1580px;
+    margin: 0 auto;
+    background: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.tasks {
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* Task box: fixed 300×300 */
+.task-item {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 300px;
+    height: 360px;
+    background: #e8e8e8;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Title area */
+.task-item h3 {
+    margin: 5px 0 10px 0;
+    height: 40px; /* optional: keeps titles aligned */
+    overflow: hidden;
+}
+
+/* Image: full width, fixed 150px height */
+.task-item a img,
+.task-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Remaining space for text */
+.task-item p {
+    flex: 1;
+    overflow: hidden;
+}
+
+/* ----------------------------- */
+/* MIDDLE 3-COLUMN SECTION      */
+/* ----------------------------- */
+
+.middle-columns {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1580px;
+    margin: 0 auto;
+}
+
+.mid-col {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.quick-links {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.sitemap-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.sitemap-table th,
+.sitemap-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+/* ----------------------------- */
+/* IDEA SECTIONS                */
+/* ----------------------------- */
+
+.ideas {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.idea {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+    gap: 20px;
+    vertical-align: top;
+}
+
+.idea-text {
+    flex: 1;
+    max-width: 70%;
+    float: left;
+    align: left;
+    vertical-align: top;
+}
+
+.idea img {
+    max-width: 20%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.idea.left {
+    flex-direction: row-reverse;
+}
+
+.idea.right {
+    flex-direction: row;
+}
+
+/* ----------------------------- */
+/* FOOTER                       */
+/* ----------------------------- */
+
+footer {
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+/* ----------------------------- */
+/* MOBILE LAYOUT (≤ 1000px)      */
+/* ----------------------------- */
+
+@media (max-width: 1000px) {
+
+    nav.main-nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Tasks become full width but stay 300px tall */
+    .task-item {
+        width: 100%;
+        height: 360px;
+    }
+
+     .task-item img {
+        width: 300px;
+        height: 250px;
+    }
+
+    .middle-columns {
+        flex-direction: column;
+    }
+
+    .idea {
+        flex-direction: column;
+        text-align: left;
+        max-width: 950px;
+        margin: 0 auto;
+    }
+
+    .idea-text {
+        max-width: 100%;
+    }
+
+    .idea img {
+        max-width: 40%;
+        order: 2;
+    }
+    li
+    {
+    magin-top: 20px;
+    margin-left: -1px;
+    text-decoration: none;    
+    }
+
+    h2, h3, h4
+    {
+        margin-bottom: 15px;
+    }
+    
+    img
+    {
+    max-width: 200px;
+    max-height: 200px;
+    min-height: 200px;
+    min-width: 200px;
+    }
+    ul, ol
+    {
+      margin-left: 0;
+      padding-left: 0;
+      text-align: left;
+    }
+    .project-item {
+        width: 100%;
+        height: 360px;
+    }
+
+    .project-item img {
+        width: 300px;
+        height: 250px;
+    }
+}
+
+/* ----------------------------- */
+/* PROJECTS SECTION (same as tasks) */
+/* ----------------------------- */
+
+.projectdetails {
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 20px;
+    max-width: 1580px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.projecttasks {
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+
+.project-item {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 300px;
+    height: 360px;
+    background: #e8e8e8;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.project-item h3 {
+    margin: 5px 0 10px 0;
+    height: 40px;
+    overflow: hidden;
+}
+
+.project-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.project-item p {
+    flex: 1;
+    overflow: hidden;
+}
+
+
+/* ----------------------------- */
+/* LARGE LAYOUT (≥ 1200px)      */
+/* ----------------------------- */
+
+@media (min-width: 1200px) {
+
+    nav.main-nav ul {
+        flex-direction: row;
+    }
+
+    .middle-columns {
+        flex-direction: row;
+    }
+
+     .projectdetails {
+        flex-direction: row;
+    }
+    
+    .ideas {
+        flex-direction: column;
+    }
+    .idea.left { 
+                flex-direction: row; 
+                margin-right: 30px;
+                } 
+    .idea.right { 
+                flex-direction: row-reverse; 
+                margin-right: 200px;
+                }
+}
+
+/* ----------------------------- */
+/* MASTER CONTAINER             */
+/* ----------------------------- */
+
+.mastercontainer {
+    max-width: 98%;
+    margin: 0 auto;
+}
+
+    li
+    {
+    margin-left: -5px;
+    text-decoration: none;    
+    }
