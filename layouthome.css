@@ -374,8 +374,14 @@ footer {
     .ideas {
         flex-direction: column;
     }
-    .idea.left { flex-direction: row; } 
-    .idea.right { flex-direction: row-reverse; }
+    .idea.left { 
+                flex-direction: row; 
+                margin-right: 30px;
+                } 
+    .idea.right { 
+                flex-direction: row-reverse; 
+                margin-right: 200px;
+                }
 }
 
 /* ----------------------------- */
