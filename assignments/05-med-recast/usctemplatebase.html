@@ -1,0 +1,234 @@
+<html>
+<head>
+<title>USC Medicine</title>
+<style>
+body
+{
+background-color: black;
+}
+li
+{
+ display: inline-block;
+ list-style-type: none;
+ padding: 8px;
+ color: white;
+ margin-left: -5px;
+ font-size: 11px;
+}
+
+ul li a { 
+color: white; 
+text-decoration: none; 
+} 
+ul li a:hover 
+{ 
+text-decoration: underline; 
+color: lightgrey;
+}
+
+.topmenu
+{
+height: 150px;
+vertical-align: middle;
+position: relative;
+margin-top: 1px;
+color: white;
+border: solid white 2px;
+}
+
+.lowermenu
+{
+background-color: #73000a;
+height: 70px;
+vertical-align: middle;
+position: relative;
+margin-top: 1px;
+border: solid white 2px;
+}
+
+#PageHeader
+{
+float: right;
+color: white;
+margin-right: 150px;
+font-size: 28pt;
+}
+#Logo
+{
+width: 320px;
+height: 65px;
+margin-left: 145px;
+}
+
+#topnav
+{
+margin-left: 145px;
+}
+
+#footeroptions
+{
+background-color: black;
+margin-left: 145px;
+color: white;
+margin-bottom: 1px;
+}
+
+.middlesec
+{
+background-color: white;
+height: 800px;
+width: 100%;
+margin-left: 1px;
+border: 2px lightgreen solid;
+}
+
+.bottomsec
+{
+background-color: #73000a;
+height: 400px;
+width: 100%;
+margin-left: 1px;
+border: 2px lightgreen solid;
+margin-bottom: 30px;
+position: relative;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+  border: 2px solid black;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  margin-left: 145px;
+}
+#college-list {
+  width: 45%;          /* fits within 45% of the screen */
+  columns: 3;          /* create 3 columns */
+  column-gap: 20px;    /* spacing between columns */
+  list-style: none;    /* remove bullets */
+  padding: 10px;       /* your requested 10px padding */
+  margin-top: 50px;
+  margin-left: 145px;
+}
+
+#
+listheader
+{
+  margin-top: 180px;
+  margin-left: 145px;
+
+}
+
+#college-list li {
+  break-inside: avoid; /* prevents items from splitting between columns */
+  margin-bottom: 8px;  /* spacing between items */
+}
+
+
+
+
+</style>
+</head>
+<body bgcolor="black">
+<div class="topmenu">
+<ul id="topnav">
+<li><a href="#">CALENDAR</a></li>
+<li><a href="#">MAP</a></li>
+<li><a href="#">DIRECTORY</a></li>
+<li><a href="#">APPLY</a></li>
+<li><a href="#">GIVE</a></li>
+<li><a href="#">GATEWAYS</a></li>
+<li><a href="#">STUDENTS</a></li>
+<li><a href="#">FACULTY &amp; STAFF</a></li>
+<li><a href="#">PARENTS &amp; FAMILIES</a></li>
+<li><a href="#">ALUMNI</a></li>
+</ul>
+<span><img id="Logo" src="uscmedicine.png"><H2 id="PageHeader">School of Medcine Columbia</H2></span>
+</div>
+<div class="lowermenu">
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<section class="middlesec">
+<div class="row">
+  <div class="column">
+    <h2>Column 1</h2>
+    <p>Some text..</p>
+  </div>
+  <div class="column">
+    <h2>Column 2</h2>
+    <p>Some text..</p>
+  </div>
+  <div class="column">
+    <h2>Column 3</h2>
+    <p>Some text..</p>
+  </div>
+</div>
+<div class="row">
+  <div class="column">
+    <h2>Column 4</h2>
+    <p>Some text..</p>
+  </div>
+  <div class="column">
+    <h2>Column 5</h2>
+    <p>Some text..</p>
+  </div>
+  <div class="column">
+    <h2>Column 6</h2>
+    <p>Some text..</p>
+  </div>
+</div>
+ </section>
+<section class="bottomsec">
+<div><span style="float: left"><img src="uscmedred.PNG" style="margin-left: 145px; margin-top: 30px; width: 300px height: 150px"/></span><span style="float: right"><img src="uscsocial.PNG" style="margin-right: 145px; margin-top: 30px; width: 300px height: 150px"></span></div>
+  <BR><BR>
+<ul id="college-list">
+  <li>Arts and Sciences</li><BR>
+  <li>Business</li><BR>
+  <li>Education</li><BR>
+  <li>Engineering and Computing</li><BR>
+  <li>The Graduate School</li><BR>
+  <li>Hospitality, Retail and Sport Management</li><BR>
+  <li>Information and Communications</li><BR>
+  <li>Law</li><BR>
+  <li>Medicine (Columbia)</li><BR>
+  <li>Medicine (Greenville)</li><BR>
+  <li>Music</li><BR>
+  <li>Nursing</li><BR>
+  <li>Pharmacy</li><BR>
+  <li>Public Health</li><BR>
+  <li>Social Work</li><BR>
+  <li>South Carolina Honors College</li><BR>
+  <li>Palmetto College</li><BR>
+</ul>
+
+
+</section>
+</body>
+<footer>
+<ul id="footeroptions">
+  <li><a href="#">&copy; UNIVERSITY OF SOUTH CAROLINA</a></li>
+  <li><a href="#">PRIVACY</a></li>
+  <li><a href="#">STUDENT CONSUMER INFORMATION</a></li>
+  <li><a href="#">TRANSPARENCY INITIATIVE</a></li>
+  <li><a href="#">CIVIL RIGHTS AND TITLE IX</a></li>
+  <li><a href="#">DIGITAL ACCESSIBILITY</a></li>
+  <li><a href="#">CONTACT</a></li>
+</ul>
+</footer>
+</html>
