@@ -388,37 +388,17 @@ footer {
         flex-direction: row;
     }
     
-    .ideas {
+     .ideas {
+        flex-direction: column;
+        max-width: 1590px;
+        margin: 0 auto;
+    }
+    .idea {
         flex-direction: column;
         max-width: 1580px;
-        border-radius: 5px;
-        gap: 20px;
-        padding: 20px;
         margin: 0 auto;
-        }
-
-      .idea {
-        flex-direction: column;
-        text-align: left;
-        max-width: 1580px;
-        margin: 0 auto;
-        }
-
-      
-    .idea.left { 
-                flex-direction: row; 
-                margin-right: 30px;
-                width: 1580px;
-                margin: 0 auto;
-                } 
-    
-    .idea.right { 
-                flex-direction: 
-                row-reverse; 
-                margin-right: 0; 
-                width: 1580px; 
-                margin: 0 auto;
-                }
+    }
+   
     #miami1
     {
     max-width: 95%;
