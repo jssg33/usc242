@@ -308,7 +308,7 @@ footer {
     .idea {
         flex-direction: column;
         text-align: left;
-        max-width: 950px;
+        max-width: 980px;
         margin: 0 auto;
     }
 
@@ -318,11 +318,14 @@ footer {
 
     .idea img {
         max-width: 40%;
+        height: 300px;
+        width: 300px;
         order: 2;
     }
+
     li
     {
-    magin-top: 20px;
+    margin-top: 20px;
     margin-left: -1px;
     text-decoration: none;    
     }
