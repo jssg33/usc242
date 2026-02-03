@@ -382,9 +382,14 @@ footer {
     
     .ideas {
         flex-direction: column;
-        max-width: 1490px;
+        max-width: 1580px;
         border-radius: 5px;
+        gap: 20px;
+        padding: 20px;
+        margin: 0 auto;
         }
+
+   
     .idea.left { 
                 flex-direction: row; 
                 margin-right: 30px;
