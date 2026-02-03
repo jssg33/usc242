@@ -395,10 +395,12 @@ footer {
                 margin-right: 30px;
                 width: 80%;
                 } 
+    
     .idea.right { 
-                flex-direction: row-reverse; 
-                margin-right: 600px;
-                width: 80%;
+                flex-direction: 
+                row-reverse; 
+                margin-right: 0; 
+                width: 80%; 
                 }
     #miami1
     {
