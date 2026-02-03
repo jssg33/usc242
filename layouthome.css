@@ -308,7 +308,13 @@ max-height: 200px;
     overflow: hidden;
 }
 
-
+  img
+    {
+    max-width: 200px;
+    max-height: 200px;
+    min-height: 200px;
+    min-width: 200px;
+    }
 
 /* ----------------------------- */
 /* MOBILE LAYOUT (≤ 1000px)      */
@@ -446,6 +452,8 @@ width: 200px;
 height: 200px;
 max-width: 200px;
 max-height: 200px;
+min-height: 200px;
+min-width: 200px;   
 }
 #secondimage
 {
@@ -453,6 +461,8 @@ width: 200px;
 height: 200px;
 max-width: 200px;
 max-height: 200px;
+min-height: 200px;
+min-width: 200px;   
 }
 #thirdimage
 {
@@ -460,9 +470,16 @@ width: 200px;
 height: 200px;
 max-width: 200px;
 max-height: 200px;
-   
+min-height: 200px;
+min-width: 200px;   
 }
-
+  img
+    {
+    max-width: 200px;
+    max-height: 200px;
+    min-height: 200px;
+    min-width: 200px;
+    }
 
     
 }
