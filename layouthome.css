@@ -364,7 +364,8 @@ max-height: 200px;
         margin-left: 30px;
         margin-top: 10px;
         margin-bottom: 10px;
-    }
+        border: 2px black solid;
+        }
 
     .idea-text {
         max-width: 100%;
@@ -444,7 +445,7 @@ max-height: 200px;
     
      .ideas {
         flex-direction: column;
-        max-width: 1580px;
+        max-width: 1570px;
         margin: 0 auto;
         gap: 20px;
     }
@@ -456,6 +457,7 @@ max-height: 200px;
         margin-bottom: 10px;
         background-color:  #e8e8e8;
         border: 2px black solid;
+        border-radius: 5px;
     }
    
     #miami1
