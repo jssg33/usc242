@@ -213,6 +213,26 @@ footer {
     padding: 15px;
 }
 
+/* SOME SPECIAL CSS */
+
+#firstimage
+{
+width: 200px;
+height: 200px;
+}
+#secondimage
+{
+width: 200px;
+height: 200px;
+}
+#thirdimage
+{
+width: 200px;
+height: 200px;
+}
+
+
+
 /* ----------------------------- */
 /* MOBILE LAYOUT (≤ 1000px)      */
 /* ----------------------------- */
