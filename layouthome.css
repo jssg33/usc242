@@ -315,16 +315,18 @@ max-height: 200px;
     max-height: 200px;
     min-height: 200px;
     min-width: 200px;
-    
+  
     }
-    #miami1
+     #miami1
     {
-    max-width: 95%;
+    min-width: 95%;
+    max-width: 98%;
     margin: 0 auto;
     }
     #miami3
     {
-    max-width: 95%;
+    min-width: 95%;
+    max-width: 98%;
     margin: 0 auto;
     }
 
@@ -414,11 +416,11 @@ max-height: 200px;
 
     #miami1
     {
-    max-width: 47%;
+    max-width: 48%;
     }
     #miami3
     {
-    max-width: 47%;
+    max-width: 48%;
     }
 }
 
@@ -469,12 +471,14 @@ max-height: 200px;
    
     #miami1
     {
-    max-width: 95%;
+    min-width: 95%;
+    max-width: 98%;
     margin: 0 auto;
     }
     #miami3
     {
-    max-width: 95%;
+    min-width: 95%;
+    max-width: 98%;
     margin: 0 auto;
     }
 #firstimage
