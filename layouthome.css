@@ -472,15 +472,6 @@ max-height: 200px;
         background-color:  #e6e6ff;
         border-radius: 5px;
     }
-    /* IDEA 1 & 3 → image left */
-    .idea.left {
-        flex-direction: row-reverse;
-    }
-
-    /* IDEA 2 → image right */
-    .idea.right {
-        flex-direction: row;
-    }
    
     #miami1
     {
