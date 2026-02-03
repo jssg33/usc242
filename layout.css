@@ -280,6 +280,17 @@ footer {
     margin-left: -1px;
     text-decoration: none;    
     }
+    #miami1
+    {
+    max-width: 42%;
+    margin: 0 auto;
+    }
+    #miami3
+    {
+    max-width: 42%;
+    margin: 0 auto;
+    }
+    
 }
 
 /* ----------------------------- */
@@ -302,6 +313,24 @@ footer {
 
     .ideas {
         flex-direction: column;
+        max-width: 1590px;
+        margin: 0 auto;
+    }
+    .idea {
+        flex-direction: column;
+        max-width: 1580px;
+        margin: 0 auto;
+    }
+   
+    #miami1
+    {
+    max-width: 95%;
+    margin: 0 auto;
+    }
+    #miami3
+    {
+    max-width: 95%;
+    margin: 0 auto;
     }
 }
 /* ----------------------------- */
