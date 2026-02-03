@@ -392,7 +392,14 @@ footer {
         margin: 0 auto;
         }
 
-   
+      .idea {
+        flex-direction: column;
+        text-align: left;
+        max-width: 1580px;
+        margin: 0 auto;
+        }
+
+      
     .idea.left { 
                 flex-direction: row; 
                 margin-right: 30px;
