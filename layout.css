@@ -164,18 +164,19 @@ nav.main-nav a:hover {
     max-width: 1570px;
     margin: 0 auto;
     border-radius: 5px;
+    background-color: white;
     }
 
 .idea {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #ffffff;
+    background-color: lightgrey;
     padding: 20px;
     border-radius: 5px;
-    width: 85%;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    width: 95%;
+    margin-top: 5px;
+    margin-bottom: 5px;
     gap: 20px;
 }
 
@@ -202,6 +203,11 @@ nav.main-nav a:hover {
 /* IDEA 2 → image right */
 .idea.right {
     flex-direction: row;
+}
+
+/* IDEA 2 → image right */
+.idea.right img {
+    margin-right: 100px;
 }
 
 /* ----------------------------- */
