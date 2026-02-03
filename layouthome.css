@@ -161,7 +161,7 @@ nav.main-nav a:hover {
     flex-direction: column;
     gap: 20px;
     padding: 20px;
-    max-width: 1600px;
+    max-width: 1580px;
     margin: 0 auto;
 }
 
@@ -335,7 +335,7 @@ footer {
     height: 360px;
     background: #e8e8e8;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 5px;   
     text-align: center;
     overflow: hidden;
     display: flex;
@@ -382,7 +382,9 @@ footer {
     
     .ideas {
         flex-direction: column;
-    }
+        max-width: 1490px;
+        border-radius: 5px;
+        }
     .idea.left { 
                 flex-direction: row; 
                 margin-right: 30px;
