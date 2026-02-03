@@ -393,14 +393,16 @@ footer {
     .idea.left { 
                 flex-direction: row; 
                 margin-right: 30px;
-                width: 80%;
+                width: 1580px;
+                margin: 0 auto;
                 } 
     
     .idea.right { 
                 flex-direction: 
                 row-reverse; 
                 margin-right: 0; 
-                width: 80%; 
+                width: 1580px; 
+                margin: 0 auto;
                 }
     #miami1
     {
