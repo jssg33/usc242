@@ -444,13 +444,18 @@ max-height: 200px;
     
      .ideas {
         flex-direction: column;
-        max-width: 1590px;
+        max-width: 1580px;
         margin: 0 auto;
+        gap: 20px;
     }
     .idea {
         flex-direction: column;
         max-width: 1580px;
         margin: 0 auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color:  #e8e8e8;
+        border: 2px black solid;
     }
    
     #miami1
