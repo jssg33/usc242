@@ -220,16 +220,23 @@ footer {
 {
 width: 200px;
 height: 200px;
+max-width: 200px;
+max-height: 200px;
 }
 #secondimage
 {
 width: 200px;
 height: 200px;
+max-width: 200px;
+max-height: 200px;
 }
 #thirdimage
 {
 width: 200px;
 height: 200px;
+max-width: 200px;
+max-height: 200px;
+    
 }
 
 
@@ -311,6 +318,28 @@ height: 200px;
     max-width: 42%;
     margin: 0 auto;
     }
+    #firstimage
+{
+width: 200px;
+height: 200px;
+max-width: 200px;
+max-height: 200px;
+}
+#secondimage
+{
+width: 200px;
+height: 200px;
+max-width: 200px;
+max-height: 200px;
+}
+#thirdimage
+{
+width: 200px;
+height: 200px;
+max-width: 200px;
+max-height: 200px;
+    
+}
     
 }
 
@@ -353,6 +382,28 @@ height: 200px;
     max-width: 95%;
     margin: 0 auto;
     }
+    #firstimage
+{
+width: 200px;
+height: 200px;
+max-width: 200px;
+max-height: 200px;
+}
+#secondimage
+{
+width: 200px;
+height: 200px;
+max-width: 200px;
+max-height: 200px;
+}
+#thirdimage
+{
+width: 200px;
+height: 200px;
+max-width: 200px;
+max-height: 200px;
+    
+}
 }
 /* ----------------------------- */
 /* MASTER CONTAINER     */
