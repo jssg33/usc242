@@ -416,11 +416,13 @@ max-height: 200px;
 
     #miami1
     {
-    max-width: 48%;
+    max-width: 46%;
+    min-width: 45%;        
     }
     #miami3
     {
-    max-width: 48%;
+    max-width: 46%;
+    min-width: 45%;        
     }
     mobile-pics
     {
