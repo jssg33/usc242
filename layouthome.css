@@ -285,6 +285,15 @@ footer {
         width: 300px;
         height: 250px;
     }
+
+    #miami1
+    {
+    max-width: 44%;
+    }
+    #miami3
+    {
+    max-width: 44%;
+    }
 }
 
 /* ----------------------------- */
