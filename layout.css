@@ -421,6 +421,8 @@ max-height: 200px;
 
     .top-section {
         flex-direction: row;
+        max-width: 1590px;
+        margin: 0 auto;
     }
 
     .middle-columns {
