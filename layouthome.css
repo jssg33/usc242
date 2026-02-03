@@ -390,9 +390,17 @@ footer {
                 } 
     .idea.right { 
                 flex-direction: row-reverse; 
-                margin-right: 200px;
+                margin-right: 600px;
                 width: 80%;
                 }
+    #miami1
+    {
+    max-width: 90%;
+    }
+    #miami3
+    {
+    max-width: 90%;
+    }
 }
 
 /* ----------------------------- */
