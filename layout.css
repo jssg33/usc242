@@ -370,7 +370,7 @@ max-height: 200px;
         flex-direction: column;
         background-color: #e6e6ff;
         text-align: left;
-        max-width: 980px;
+        max-width: 850px;
         margin: 0 auto;
         margin-top: 5px;
         margin-bottom: 5px;
@@ -378,6 +378,7 @@ max-height: 200px;
 
     .idea-text {
         max-width: 100%;
+        font-size: 9pt;
     }
 
     .idea img {
@@ -450,18 +451,18 @@ max-height: 200px;
 
     .ideas {
         flex-direction: column;
-        max-width: 1590px;
+        max-width: 1580px;
         margin: 0 auto;
         margin-top: 10px;
         background-color: white;
     }
     .idea {
         flex-direction: column;
-        max-width: 1580px;
+        max-width: 1500px;
         margin: 0 auto;
         margin-top: 5px;
         margin-bottom: 5px;
-        background-color: lightgrey;
+        background-color: #e6e6ff;
     }
    
     #miami1
