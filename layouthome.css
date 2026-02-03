@@ -387,6 +387,7 @@ max-height: 200px;
     .idea-text {
         margin-left: 30px;
         max-width: 100%;
+        font-size: 9pt;
     }
 
     .idea img {
