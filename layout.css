@@ -441,7 +441,7 @@ max-height: 200px;
 
     .top-section {
         flex-direction: row;
-        max-width: 1590px;
+        max-width: 1580px;
         margin: 0 auto;
     }
 
@@ -453,12 +453,14 @@ max-height: 200px;
         flex-direction: column;
         max-width: 1580px;
         margin: 0 auto;
-        margin-top: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
         background-color: white;
     }
     .idea {
         flex-direction: column;
-        max-width: 1500px;
+        min-width: 90%;
+        max-width: 95%;
         margin: 0 auto;
         margin-top: 5px;
         margin-bottom: 5px;
