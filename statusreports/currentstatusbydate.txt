@@ -4,4 +4,66 @@
 2/4/2026 - FIGMA MAKE LINKED TO NEW GITHUB REACT PROJECT FOR THE CLASS STUFF. ALL PAGES RENDERED NECESSARY TO COMPLETE THE PROJECT. ON TRACK FOR 2/8/2026.
 2/4/2026 - API - 29 ENDPOINTS AND TABLES SUPPORTED AS SEEN BELOW WITH 2 DTOS TO SUPPORT LEGACY CGUI SYSTEMS FOR TEST PURPOSES.
 
+// -------------------------
+// ROUTES
+// -------------------------
+
+// Users & Accounts (2)
+app.use("/users", require("./routes/userRoutes"));
+app.use("/usernotices", require("./routes/userNoticeRoutes"));
+
+// Companies & Branches (3)
+app.use("/companies", require("./routes/companyRoutes"));
+app.use("/branches", require("./routes/branchRoutes"));
+app.use("/instances", require("./routes/instanceRoutes"));
+
+// Logging & Security (5)
+app.use("/api/apilogs", require("./routes/apiLogRoutes"));
+app.use("/api/adminlogs", require("./routes/adminLogRoutes"));
+app.use("/downloadlogs", require("./routes/downloadLogRoutes"));
+app.use("/licenselogs", require("./routes/licenseLogRoutes"));
+app.use("/userlogs", require("./routes/userLogRoutes"));
+
+// Licensing (1)
+app.use("/licenses", require("./routes/licenseRoutes"));
+
+// Parks (1)
+app.use("/parks", require("./routes/parkRoutes"));
+
+// DTOs (2)
+app.use("/api/GCPARKS", require("./routes/gcParksRoutes"));
+app.use("/api/gcparks", require("./routes/gcParksRoutes")); // lowercase alias
+app.use("/api/CGCART", require("./routes/cgCartRoutes"));
+
+// Batch Processing (1)
+app.use("/api/batches", require("./routes/batchRoutes"));
+
+// Commerce / Sales (7)
+app.use("/products", require("./routes/productRoutes"));
+app.use("/reviews", require("./routes/reviewRoutes"));
+app.use("/salescatalogue", require("./routes/salesCatalogueRoutes"));
+app.use("/invoices", require("./routes/invoiceRoutes"));
+app.use("/invoicelineitems", require("./routes/invoiceLineItemRoutes"));
+app.use("/payments", require("./routes/paymentRoutes"));
+app.use("/refunds", require("./routes/refundRoutes"));
+
+// Cart System (3)
+app.use("/cart", require("./routes/cartRoutes"));
+app.use("/cartmaster", require("./routes/cartMasterRoutes"));
+app.use("/cartitems", require("./routes/cartItemRoutes"));
+
+// Reservations (1)
+app.use("/reservations", require("./routes/reservationRoutes"));
+
+// Cards (1)
+app.use("/cards", require("./routes/cardsRoutes"));
+
+// Scopes & Project Tasks (2) 
+app.use("/scopes", require("./routes/scopeRoutes")); 
+app.use("/projecttasks", require("./routes/projectTaskRoutes"));
+
+// -------------------------
+// TOTAL ROUTES: 29
+// -------------------------
+
   
