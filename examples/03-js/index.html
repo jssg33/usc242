@@ -4,11 +4,26 @@
     <title>242 Class</title>
 
     <style>
-      .column{width: 33%;}
       .container{postition: relative; width: 1600px; margin: 0 auto;}
 
+      * {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+  content: "";
+  display: table;
+  clear: both;
+</style>
       
-    </style>
   </head>
   <body>
 
