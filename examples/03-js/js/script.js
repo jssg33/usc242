@@ -8,3 +8,12 @@ button.onclick = showMessage();
 
 
 /*document.*/
+
+document.getElementById("txt-num-days").onchange = (e) -> {
+
+  const numEntered
+
+
+
+
+}
