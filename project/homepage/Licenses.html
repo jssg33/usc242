@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>License Manager</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container py-4">
+
+  <h2 class="mb-4 text-center">License Manager</h2>
+
+  <!-- ===================== LICENSE TABLE ===================== -->
+  <div class="card mb-4">
+    <div class="card-header bg-primary text-white">All Licenses</div>
+    <div class="card-body">
+      <table class="table table-bordered table-striped" id="licenseTable">
+        <thead class="table-dark">
+          <tr>
+            <th>License ID</th>
+            <th>Version</th>
+            <th>Install Date</th>
+            <th>End Date</th>
+            <th>Customer ID</th>
+            <th>Product ID</th>
+            <th>Description</th>
+            <th>Release Year</th>
+            <th>Select</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <button class="btn btn-secondary" onclick="loadLicenses()">Refresh</button>
+    </div>
+  </div>
+
+  <!-- ===================== INSERT FORM ===================== -->
+  <div class="card mb-4">
+    <div class="card-header bg-success text-white">Insert New License</div>
+    <div class="card-body">
+      <form id="insertForm">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">License ID</label>
+            <input type="text" class="form-control" name="licenseid" required>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Version</label>
+            <input type="text" class="form-control" name="version" required>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Install Date</label>
+            <input type="date" class="form-control" name="installdate" required>
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">End Date</label>
+            <input type="date" class="form-control" name="enddate" required>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Customer ID</label>
+            <input type="text" class="form-control" name="customerid" required>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Product ID</label>
+            <input type="text" class="form-control" name="productid" required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Description</label>
+            <input type="text" class="form-control" name="description" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Release Year</label>
+            <input type="text" class="form-control" name="releaseyear" required>
+          </div>
+        </div>
+
+        <button class="btn btn-success mt-3" type="submit">Insert License</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================== UPDATE FORM ===================== -->
+  <div class="card mb-4">
+    <div class="card-header bg-warning">Update Selected License</div>
+    <div class="card-body">
+      <form id="updateForm">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">License ID (read‑only)</label>
+            <input type="text" class="form-control" name="licenseid" readonly>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Version</label>
+            <input type="text" class="form-control" name="version" required>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Install Date</label>
+            <input type="date" class="form-control" name="installdate" required>
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">End Date</label>
+            <input type="date" class="form-control" name="enddate" required>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Customer ID</label>
+            <input type="text" class="form-control" name="customerid" required>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Product ID</label>
+            <input type="text" class="form-control" name="productid" required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Description</label>
+            <input type="text" class="form-control" name="description" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Release Year</label>
+            <input type="text" class="form-control" name="releaseyear" required>
+          </div>
+        </div>
+
+        <button class="btn btn-warning mt-3" type="submit">Update License</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const API = "https://api242.onrender.com/licenses";
+
+/* ===================== LOAD ALL LICENSES ===================== */
+async function loadLicenses() {
+  const res = await fetch(API);
+  const data = await res.json();
+
+  const tbody = document.querySelector("#licenseTable tbody");
+  tbody.innerHTML = "";
+
+  data.forEach(lic => {
+    const row = `
+      <tr>
+        <td>${lic.licenseid}</td>
+        <td>${lic.version}</td>
+        <td>${lic.installdate}</td>
+        <td>${lic.enddate}</td>
+        <td>${lic.customerid}</td>
+        <td>${lic.productid}</td>
+        <td>${lic.description}</td>
+        <td>${lic.releaseyear}</td>
+        <td><button class="btn btn-sm btn-primary" onclick='selectLicense(${JSON.stringify(lic)})'>Select</button></td>
+      </tr>
+    `;
+    tbody.insertAdjacentHTML("beforeend", row);
+  });
+}
+
+/* ===================== SELECT LICENSE FOR UPDATE ===================== */
+function selectLicense(lic) {
+  const form = document.querySelector("#updateForm");
+
+  Object.keys(lic).forEach(key => {
+    if (form[key]) form[key].value = lic[key];
+  });
+}
+
+/* ===================== INSERT LICENSE ===================== */
+document.querySelector("#insertForm").addEventListener("submit", async e => {
+  e.preventDefault();
+
+  const formData = Object.fromEntries(new FormData(e.target).entries());
+
+  const res = await fetch(API, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData)
+  });
+
+  alert("License inserted");
+  loadLicenses();
+});
+
+/* ===================== UPDATE LICENSE ===================== */
+document.querySelector("#updateForm").addEventListener("submit", async e => {
+  e.preventDefault();
+
+  const formData = Object.fromEntries(new FormData(e.target).entries());
+  const id = formData.licenseid;
+
+  const res = await fetch(`${API}/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData)
+  });
+
+  alert("License updated");
+  loadLicenses();
+});
+
+/* Load on startup */
+loadLicenses();
+</script>
+
+</body>
+</html>
