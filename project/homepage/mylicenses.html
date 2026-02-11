@@ -275,6 +275,7 @@ const API = "https://api242.onrender.com/licenses";
 /* ===================== LOAD ALL LICENSES ===================== */
 async function loadLicenses() {
   const res = await fetch(API);
+  console.log("all", res);
   const data = await res.json();
 
   const tbody = document.querySelector("#licenseTable tbody");
