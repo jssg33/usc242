@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Help Ticket</title>
+
+    <!-- Bootstrap CSS -->
+    <link 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+        rel="stylesheet"
+    >
+
+    <style>
+        body {
+            background-color: #000;
+            color: #0f0;
+        }
+        .form-control, .form-control:focus {
+            background-color: #111;
+            color: #0f0;
+            border: 1px solid #0f0;
+        }
+        .btn-custom {
+            background-color: #0f0;
+            color: #000;
+            font-weight: bold;
+        }
+        .btn-custom:hover {
+            background-color: #0c0;
+        }
+        label {
+            font-weight: bold;
+        }
+        .container {
+            max-width: 900px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2 class="text-center mb-4">User Help - Trouble Ticket</h2>
+
+    <form id="ticketForm">
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label>Ticket ID</label>
+                <input type="text" class="form-control" name="ticketid" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label>Employee ID</label>
+                <input type="number" class="form-control" name="emplid" required>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label>Description</label>
+            <textarea class="form-control" name="descr" rows="3" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label>Severity (1–5)</label>
+            <input type="number" class="form-control" name="severity" min="1" max="5" required>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label>User ID</label>
+                <input type="number" class="form-control" name="userid" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label>Email</label>
+                <input type="email" class="form-control" name="email" required>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label>Full Name</label>
+            <input type="text" class="form-control" name="fullname" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Best Contact Number</label>
+            <input type="text" class="form-control" name="bestcontactnumber" required>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label>Replied?</label>
+                <select class="form-control" name="replied">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label>Manager ID</label>
+                <input type="text" class="form-control" name="repliedmanagerid">
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label>Manager Phone</label>
+                <input type="text" class="form-control" name="repliedmanagerphone">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label>Manager Email</label>
+            <input type="email" class="form-control" name="repliedmanageremail">
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label>Ticket Date</label>
+                <input type="datetime-local" class="form-control" name="ticketdate" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label>Response Date</label>
+                <input type="datetime-local" class="form-control" name="responsedate">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label>Ticket Status</label>
+            <select class="form-control" name="ticketstatus">
+                <option value="Open">Open</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Closed">Closed</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-custom w-100">Submit Ticket</button>
+    </form>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.getElementById("ticketForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const formData = Object.fromEntries(new FormData(e.target).entries());
+
+    // Convert datetime-local to ISO format
+    if (formData.ticketdate) {
+        formData.ticketdate = new Date(formData.ticketdate).toISOString();
+    }
+    if (formData.responsedate) {
+        formData.responsedate = new Date(formData.responsedate).toISOString();
+    }
+
+    console.log("Submitting ticket:", formData);
+
+    try {
+        const response = await fetch("https://api242.onrender.com/userhelp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+        console.log("Server response:", result);
+        alert("Ticket submitted successfully!");
+    } catch (error) {
+        console.error("Error submitting ticket:", error);
+        alert("There was an error submitting the ticket.");
+    }
+});
+</script>
+
+</body>
+</html>
