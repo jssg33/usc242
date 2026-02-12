@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="dropmenu.css" />
+  <script src="./js/bikes.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <title>Transaction Detail Review</title>
+  <style>
+    .highlight {
+      background-color: #e0f3ff !important;
+    }
+    .selected {
+      border: 2px solid #198754;
+    }
+    .park-logo {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body onload="checkpll(); checkUserStatus(); displayProfilePicture(); initializeCartPage();">
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="nav-left">
+      <div class="dropdown">
+                  <button class="jsmenu"><img src="./images/jsmenu4.png"></button> 
+                  <div class="dropdown-content">
+                  <a href="index.html">Site Home</a>
+                  <a href="cartreview.html">MyCart</a>
+                  <a href="parks5.html">Review Park Options</a>
+                  <a href="parksreview5.html">Park Reviews</a>
+                  <a href="mybookings5.html">MyReservations</a>
+                  <a href="manager.html">Manager Utilities</a>
+            </div>
+      </div> 
+    <div class="logo">&nbsp&nbsp<H5>MyLinkv25 - Review Parks</H5></div>
+    </div>
+    <div class="nav-right">
+      <img src="./images/bluecircle.png" id="profilephototarget" alt="User" style="cursor:pointer;" onclick="window.location.href='profile.html'" />
+      <span id="H3UserBanner"></span>
+      <a href="login.html" id="loginBtn" class="btn secondary-btn" onclick="loginUser(event)">Login</a>
+      <a href="login.html" id="logoutBtn" class="btn secondary-btn" onclick="logoutUser(event)">Logout</a>
+              <a href="cartreview.html" id="cartBtn3"><img src="./images/cart4.png" width="40px" height="40px"></a>
+    </div>
+  </div>
+
+  <div align="center" id="banner"><span id="userGreeting">Welcome Guest</span></div>
+
+  <!-- Cart Summary and Items -->
+  <div class="container mt-5">
+    <div id="cart-summary" class="mb-4"></div>
+  <button onlick="setCartTotals();" style="width: 180px; font-size: 8pt;">RefreshTotals</button><BR><BR>
+  <div>
+  <HR>
+  <div align=center><h6 class="mb-2 text-muted"><H5>Cart Items</H5></div>
+  <HR>
+ <div class="row fw-semibold border-bottom pb-1 mb-1 text-muted small">
+  <div class="col-1 small">Start</div>
+  <div class="col-1 small">End</div>
+  <div class="col-3">Description</div>
+  <div class="col-1">Qty</div>
+  <div class="col-1">Price</div>
+  <div class="col-1">Subtotal</div>        <!-- NEW -->
+  <div class="col-1">State Tax</div>       <!-- NEW -->
+  <div class="col-1">Local Tax</div>       <!-- NEW -->
+  <div class="col-1">Total</div>
+</div>
+  <div id="cart-items"></div>
+</div>
+
+  <script>
+    const baseUrl = "https://parksapi-h8btdjefb3gpdxaf.westus3-01.azurewebsites.net";
+    const urlParams = new URLSearchParams(window.location.search);
+    const cartId = urlParams.get("cartid");
+
+ async function setCartTotals() {
+  try {
+    const cartId = urlParams.get("cartid");
+    const response = await fetch(`${baseUrl}/api/CartItem/cart/${cartId}`);
+    const items = await response.json();
+
+    let totalQty = 0;
+    let totalPrice = 0;
+
+    items.forEach(item => {
+      totalQty += item.itemqty ?? 0;
+      totalPrice += item.itemtotals ?? 0;
+    });
+
+    const cartUpdate = {
+      totalcartitems: totalQty,
+      transactiontotal: totalPrice
+    };
+
+    // Update the cart totals
+    const putRes = await fetch(`${baseUrl}/api/Cart/${cartId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(cartUpdate)
+    });
+
+    if (!putRes.ok) {
+      throw new Error(`PUT failed with status ${putRes.status}`);
+    }
+
+    // Now fetch the full updated cart
+    const cartRes = await fetch(`${baseUrl}/api/Cart/${cartId}`);
+    const cartData = await cartRes.json();
+
+    console.log(`✅ Cart ${cartId} updated: ${totalQty} items, $${totalPrice.toFixed(2)}`);
+    console.log("Full cart object:", cartData);
+
+    return cartData; // so you can use it elsewhere
+  } catch (err) {
+    console.error("❌ Failed to update cart totals:", err);
+  }
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    async function updateCartTotals(cartId) {
+      try {
+        const response = await fetch(`${baseUrl}/api/CartItem/cart/${cartId}`);
+        const items = await response.json();
+
+        let totalQty = 0;
+        let totalPrice = 0;
+
+        items.forEach(item => {
+          totalQty += item.itemqty ?? 0;
+          totalPrice += item.itemtotals ?? 0;
+        });
+
+        const cartUpdate = {
+          totalcartitems: totalQty,
+          transactiontotal: totalPrice
+        };
+
+        await fetch(`${baseUrl}/api/Cart/${cartId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(cartUpdate)
+        });
+
+        console.log(`✅ Cart ${cartId} updated: ${totalQty} items, $${totalPrice.toFixed(2)}`);
+        console.log(cartUpdate);
+      } catch (err) {
+        console.error("❌ Failed to update cart totals:", err);
+      }
+    }
+
+    async function loadCartSummary() {
+      const response = await fetch(`${baseUrl}/api/Cart/${cartId}`);
+      const cartarray = await response.json();
+      console.log(cartarray);
+      cart = cartarray[0];
+      const summaryHtml = `
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            Transaction Summary
+          </div>
+          <div class="card-body">
+            <p><strong>Cart ID:</strong> ${cart.cartId}</p>
+            <p><strong>Park Name:</strong> ${cart.parkname}</p>
+            <p><strong>Park ID:</strong> <a href="findpark.html?parkId=${cart.parkId}">${cart.parkId}</a></p>
+            <p><strong>User ID:</strong> ${cart.uid}</p>
+            <p><strong>Status:</strong> ${cart.isCheckedOut === 1 ? "Checked Out" : "Pending"}</p>
+         <p><strong>Payment ID:</strong><a href="reviewpayment5.html?id=${cart.paymentid}" target="_blank">${cart.paymentid || "N/A"}</a></p>
+            <p><strong>Total Items:</strong> ${cart.totalcartitems}</p>
+            <p><strong>Total Price:</strong> ${(Number(cart.transactiontotal) || 0).toFixed(2)}</p>
+            <p><strong>Trans Date:</strong> ${cart.dateAdded ? new Date(cart.dateAdded).toLocaleDateString() : "N/A"}</p>
+            <p><strong>Start Date:&nbsp</strong> ${cart.resStart.split('T')[0]}</p>
+            <p><strong>End Date:&nbsp&nbsp&nbsp</strong> ${cart.resEnd.split('T')[0]}</p>
+          </div>
+        </div>
+      `;
+      document.getElementById("cart-summary").innerHTML = summaryHtml;
+    }
+
+    async function loadCartItems() {
+      const response = await fetch(`${baseUrl}/api/Cartitem/cart/${cartId}`);
+      const items = await response.json();
+
+      const container = document.getElementById("cart-items");
+      container.innerHTML = "";
+
+      if (!items || items.length === 0) {
+        container.innerHTML = `
+          <div class="alert alert-info text-center" role="alert">
+            No items found in this cart.
+          </div>
+        `;
+        return;
+      }
+
+      items.forEach(item => {
+  const row = document.createElement("div");
+  row.className = "row mb-1 text-muted small";
+  row.innerHTML = `
+    <div class="col-1">${item.resStart ? item.resStart.split('T')[0] : ""}</div>
+    <div class="col-1">${item.resEnd ? item.resEnd.split('T')[0] : ""}</div>
+    <div class="col-3">
+      ${item.itemdescription || "N/A"}<br>
+      <span class="text-secondary">Adults: ${item.adults ?? 0}, Children: ${item.children ?? 0}</span>
+    </div>
+    <div class="col-1">${item.itemqty ?? 0}</div>
+    <div class="col-1">$${typeof item.itemextendedprice === "number" ? item.itemextendedprice.toFixed(2) : "0.00"}</div>
+    <div class="col-1">$${typeof item.itemsubtotal === "number" ? item.itemsubtotal.toFixed(2) : "0.00"}</div>   <!-- NEW -->
+    <div class="col-1">$${typeof item.statetaxtotal === "number" ? item.statetaxtotal.toFixed(2) : "0.00"}</div> <!-- NEW -->
+    <div class="col-1">$${typeof item.ustaxtotal === "number" ? item.ustaxtotal.toFixed(2) : "0.00"}</div> <!-- NEW -->
+    <div class="col-1">$${typeof item.itemtotals === "number" ? item.itemtotals.toFixed(2) : "0.00"}</div>
+  `;
+  container.appendChild(row);
+});
+    }
+
+    async function initializeCartPage() {
+      await loadCartSummary();
+      await loadCartItems();
+      await updateCartTotals(cartId);
+      //await updateCartTotals(cartId);
+    }
+  </script>
+</body>
+<footer class="footer"> &copy; Cocky Consulting 2025. <br> All rights reserved.<br>  <span align="center"><a href="sitemap.html" class="sitelink">SiteMap</a></span></footer>
+</html>
