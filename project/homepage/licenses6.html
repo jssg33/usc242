@@ -161,10 +161,87 @@
     © 2026 Greenville Associates Enterprise Software. All rights reserved.
 </footer>
 
-<!-- JAVASCRIPT (your original logic preserved) -->
-<script>
-/* your entire JS block stays exactly the same */
-</script>
+<!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+  $(document).ready(function () {
+    $.ajax({
+      url: "https://api242.onrender.com/parks",
+      method: "GET",
+      success: function (parks) {
+        console.log("✅ Parks data retrieved:", parks);
+
+        const container = $("#parks-container");
+        const stateFilter = $("#state-filter");
+
+        // Extract unique states
+        const uniqueStates = [...new Set(parks.map(p => p.state))].sort();
+        uniqueStates.forEach(state => {
+          stateFilter.append(`<option value="${state}">${state}</option>`);
+        });
+
+        // Function to render parks
+        function renderParks(filteredParks) {
+          container.empty();
+          filteredParks.forEach(function (park) {
+            const trailMapLink = park.trailmapurl
+              ? `<a href="${park.trailmapurl}" class="btn btn-primary btn-sm mt-2" target="_blank">Trail Map</a>`
+              : `<span class="text-muted">No trail map available</span>`;
+
+            const mapsLink = `https://www.google.com/maps?q=${park.latitude},${park.longitude}`;
+			const directionsLink = `https://www.google.com/maps/dir/?api=1&destination=${park.latitude},${park.longitude}`;
+            const pictureurl = `https://home.547bikes.info/picturewall.html?parkId=${park.parkId}`;
+            const card = `
+              <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm">
+                  <div class="card-body">
+                    <h5 class="card-title">${park.name}</h5>
+                    <p class="card-text"><strong>Region:</strong> ${park.region}</p>
+                    <p class="card-text"><strong>State:</strong> ${park.state}</p>
+                    <p class="card-text"><strong>Address:</strong> ${park.address}</p>
+                    <p class="card-text"><strong>Phone:</strong> ${park.phone}</p>
+                    <p class="card-text"><strong>Trail Length:</strong> ${park.trailLengthMiles} miles</p>
+                    <p class="card-text"><strong>Difficulty:</strong> ${park.difficulty}</p>
+                    <p class="card-text"><strong>Day Pass:</strong> $${typeof park.dayPassPriceUsd === "number" ? park.dayPassPriceUsd.toFixed(2) : "N/A"}</p>
+                    <p class="card-text"><strong>Description:</strong> ${park.description}</p>
+                    <p class="card-text"><strong>GPS:</strong> ${park.latitude}, ${park.longitude}</p>
+                    <p class="card-text"><strong>CapacityMax: </strong> ${park.maxvisitors} <strong>&nbsp&nbspCapacityCurrent: </strong>${park.currentvisitors}</p>
+                    <span>&nbsp&nbsp${trailMapLink}<br>
+                    <a href="book555.html?parkId=${park.parkId}" class="btn btn-success btn-sm mt-2 ms-2">Book This Park</a><br>
+                    <a href="${mapsLink}" class="btn btn-outline-secondary btn-sm mt-2 ms-2" target="_blank">Open in Google Maps</a>
+                    <a href="${directionsLink}" class="btn btn-outline-primary btn-sm mt-2 ms-2" target="_blank">Get Driving Directions</a>
+                    <br>
+                    <a href="reviews5.html?parkId=${park.parkId}" class="btn btn-outline-secondary btn-sm mt-2 ms-2" target="_blank">See Reviews Of This Park</a>
+					<a href="${pictureurl}" class="btn btn-outline-primary btn-sm mt-2 ms-2" target="_blank">View Park Pictures</a><br>
+					</span>
+                  </div>
+                </div>
+              </div>
+            `;
+            container.append(card);
+          });
+        }
+
+        // Initial render
+        renderParks(parks);
+
+        // Filter on dropdown change
+        stateFilter.on("change", function () {
+          const selectedState = $(this).val();
+          const filtered = selectedState === "all"
+            ? parks
+            : parks.filter(p => p.state === selectedState);
+          renderParks(filtered);
+        });
+      },
+      error: function (xhr, status, error) {
+        console.error("❌ Error fetching parks:", status, error);
+        $("#parks-container").html(`<div class="alert alert-danger">Error loading parks: ${error}</div>`);
+      }
+    });
+  });
+  </script>
 
 </body>
 </html>
