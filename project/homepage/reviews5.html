@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Park Reviews</title>
-
+  <title>Product Reviews</title>
   <link rel="stylesheet" href="./css/login.css" />
   <link rel="stylesheet" href="./css/dropmenu.css" />
+  <link rel="stylesheet" href="site.css"> 
+  <link rel="stylesheet" href="layout.css"> 
+  <link rel="stylesheet" href="greenville.css"> 
   <script src="./js/bikes.js"></script>
 
   <!-- Bootstrap CSS -->
@@ -245,19 +247,7 @@ const review = {
   parkGuid: someparkid
 };
 
-      /*  const review = {
-          parkId: Number(parkId),
-          userId: Number($("#userId").val()),
-          description: $("#description").val(),
-          stars: Number($("#stars").val()),
-          datePosted: new Date().toISOString(),
-          dateApproved: null,
-          dateDenied: null,
-          reasonDescription: null,
-          reviewManagerId: null
-        };*/
-
-        $.ajax({
+           $.ajax({
           url: "https://parksapi-h8btdjefb3gpdxaf.westus3-01.azurewebsites.net/api/ParkReview",
           method: "POST",
           contentType: "application/json",
@@ -279,7 +269,7 @@ const review = {
   </script>
 
   <footer class="footer text-center mt-4 mb-3">
-    &copy; Cocky Consulting 2025.<br>All rights reserved.<br>
+    &copy; Greenville Associates Consulting 2026, FusionCommerce, Inc.<br>All rights reserved.<br>
     <span><a href="sitemap.html" class="sitelink">SiteMap</a></span>
   </footer>
 </body>
