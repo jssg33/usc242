@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="login.css" />
-<link rel="stylesheet" href="dropmenu.css" />
+<link rel="stylesheet" href="./css/dropmenu.css" />
 <script src="./js/bikes.js"></script>
     <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -116,7 +116,7 @@ width: 400px;
       }
 
       $.ajax({
-        url: `https://parksapi-h8btdjefb3gpdxaf.westus3-01.azurewebsites.net/api/Payments/transactions/${paymentId}`,
+        url: `https://api242.onrender.com/Payments/transactions/${paymentId}`,
         method: "GET",
         success: function (payments) {
           if (!Array.isArray(payments) || payments.length === 0) {

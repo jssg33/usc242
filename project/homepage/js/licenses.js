@@ -273,7 +273,7 @@ function closeUserSession() {
   };
 
   // Step 4: Send POST request to close the session
-  fetch(`https://parksapi-h8btdjefb3gpdxaf.westus3-01.azurewebsites.net/api/Usersession/user/${uid}`, {
+  fetch(`https://api242.onrender.com/Usersession/user/${uid}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

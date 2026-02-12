@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="login.css" />
-  <link rel="stylesheet" href="dropmenu.css" />
+  <link rel="stylesheet" href="./css/dropmenu.css" />
 <script src="./js/bikes.js"></script>
 
   <title>Mountain Bike Parks - Grid View</title>
@@ -119,7 +119,7 @@ width: 400px;
   <script>
     $(document).ready(function () {
       $.ajax({
-        url: "https://parksapi-h8btdjefb3gpdxaf.westus3-01.azurewebsites.net/api/Parks",
+        url: "https://api242.onrender.com/Parks",
         method: "GET",
         success: function (parks) {
           const tableBody = $("#parks-table-body");

@@ -6,9 +6,9 @@
   <title>Product Reviews</title>
   <link rel="stylesheet" href="./css/login.css" />
   <link rel="stylesheet" href="./css/dropmenu.css" />
-  <link rel="stylesheet" href="site.css"> 
-  <link rel="stylesheet" href="layout.css"> 
-  <link rel="stylesheet" href="greenville.css"> 
+  <link rel="stylesheet" href="./css/site.css"> 
+  <link rel="stylesheet" href="./css/layout.css"> 
+  <link rel="stylesheet" href="./css/greenville.css"> 
   <script src="./js/bikes.js"></script>
 
   <!-- Bootstrap CSS -->
@@ -155,7 +155,7 @@
     
     
       // Load park info
-      $.get(`https://parksapi-h8btdjefb3gpdxaf.westus3-01.azurewebsites.net/api/Parks/${parkId}`, function (park) {
+      $.get(`https://api242.onrender.com/Parks/${parkId}`, function (park) {
         if (Array.isArray(park)) park = park[0];
         if (!park) {
           $("#park-details").html(`<div class="alert alert-warning">No park found for ID ${parkId}.</div>`);
@@ -199,7 +199,7 @@
 
       // Load reviews (scoped to the same ready block so parkId is available)
       function loadReviews() {
-        $.get("https://parksapi-h8btdjefb3gpdxaf.westus3-01.azurewebsites.net/api/ParkReview", function (reviews) {
+        $.get("https://api242.onrender.com/ParkReview", function (reviews) {
           const pId = Number(parkId);
           const filtered = (reviews || []).filter(r => Number(r.parkId) === pId);
 
@@ -253,7 +253,7 @@ const review = {
 };
 
            $.ajax({
-          url: "https://parksapi-h8btdjefb3gpdxaf.westus3-01.azurewebsites.net/api/ParkReview",
+          url: "https://api242.onrender.com/ParkReview",
           method: "POST",
           contentType: "application/json",
           data: JSON.stringify(review),

@@ -957,7 +957,7 @@ async function addSelectedToCart() {
     console.log('CartItem', cartItem);
 
     try {
-      const response = await fetch("https://parksapi-h8btdjefb3gpdxaf.westus3-01.azurewebsites.net/api/CartItem", {
+      const response = await fetch("https://api242.onrender.com/CartItem", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(cartItem)
