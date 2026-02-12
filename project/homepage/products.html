@@ -6,13 +6,37 @@
 <link rel="stylesheet" href="layout.css"> 
 <link rel="stylesheet" href="greenville.css"> 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<title>Greenville Associates Enterprise Software | Enterprise Products </title>
+<title>Greenville Associates Enterprise Software | Enterprise Products</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        th { cursor: pointer; }
-    </style>
+
+<style>
+    th { cursor: pointer; }
+
+    /* Prevent entire page from scrolling */
+    html, body {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    /* Main content scrolls normally */
+    .container {
+        height: calc(100% - 150px); /* adjust if header height changes */
+        overflow-y: auto;
+    }
+
+    /* Only the product table scrolls */
+    .product-table-wrapper {
+        max-height: 500px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+</style>
 </head>
+
 <body>
+
 <div class="container">
 <div class="topnav">
     <div class="dropdown">
@@ -51,19 +75,22 @@
         </button>
     </div>
 
-    <table class="table table-striped table-hover" id="productTable">
-        <thead class="table-dark">
-            <tr>
-                <th data-col="SKEWID">SKU</th>
-                <th data-col="description">Description</th>
-                <th data-col="qtyonhand">Qty</th>
-                <th data-col="listprice">Price</th>
-                <th data-col="vendorname">Vendor</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+    <!-- SCROLLABLE PRODUCT GRID -->
+    <div class="product-table-wrapper">
+        <table class="table table-striped table-hover" id="productTable">
+            <thead class="table-dark">
+                <tr>
+                    <th data-col="SKEWID">SKU</th>
+                    <th data-col="description">Description</th>
+                    <th data-col="qtyonhand">Qty</th>
+                    <th data-col="listprice">Price</th>
+                    <th data-col="vendorname">Vendor</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
 
 </div>
 
@@ -216,12 +243,11 @@ loadProducts();
 <div class="container2">
 <section class="middle-columns">
 
-    <!-- CENTER COLUMN: MIAMI IMAGES -->
     <div class="mid-col">
         <img src="./images/miami1.jpg" style="width:48%; border-radius:5px;">
         <img src="./images/miami3.jpg" style="width:48%; border-radius:5px;">
     </div>
-    <!-- LEFT COLUMN: QUICK LINKS -->
+
     <div class="mid-col">
         <h3>Quick Links</h3>
         <hr>
@@ -234,7 +260,7 @@ loadProducts();
             <li><a href="https://gamecocksonline.com/sports/mbball/cumestats/">Team Stats</a></li>
         </ul>
     </div>
-    <!-- RIGHT COLUMN: SITEMAP TABLE -->
+
     <div class="mid-col">
         <h3>Site Map</h3>
         <hr>
@@ -249,6 +275,7 @@ loadProducts();
     </div>
 
 </section>
+
 <section class="sales">
 <div class="cta" id="contact">
     <h2>Talk to Sales</h2>
@@ -256,23 +283,11 @@ loadProducts();
     <a href="mailto:sales@greenvilleassociates.com">Contact Sales</a>
 </div>
 </section>
+
 <footer>
     © 2026 Greenville Associates Enterprise Software. All rights reserved.
 </footer>
+
 </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
