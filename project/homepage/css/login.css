@@ -30,7 +30,7 @@ width: 100%;
 
   /* --- Navigation Bar --- */
   .navbar {
-      background-color: #1F3D7A;
+      background-color: darkgreen;
       padding: 10px 20px;
       display: flex;
       align-items: center;
