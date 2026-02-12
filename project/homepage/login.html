@@ -21,7 +21,7 @@
             border: 1px solid #ccc;
             margin: 0 auto;
             border: 2px solid black;
-            margin-top: 10px;
+            margin-top: 30px;
         }
         #error {
             color: red;
@@ -54,6 +54,7 @@
     </div>
 
     <div class="right-links">
+        <a href="home.html">Home</a>
         <a href="login.html">Login</a>
         <a href="logout.html">Logout</a>
     </div>
@@ -67,8 +68,7 @@
 
 
     <div class="login-box">
-        <div align="center"><h2>User Login</h2></div>
-        <form id="loginForm">
+            <form id="loginForm">
             <label>Email:</label><br>
             <input type="text" id="email" required><br><br>
 
@@ -80,7 +80,7 @@
 
         <p id="error"></p>
     </div>
-        <footer><div align="center">&copy2026 - Greenville Associates Consulting</div></footer>
+        <div align="center" class="footer">&copy2026 - Greenville Associates Consulting</div>
     </div>
     <script>
         document.getElementById("loginForm").addEventListener("submit", async (e) => {
