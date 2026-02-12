@@ -10,7 +10,7 @@ body {
     color: #1a1a1a; /* near-black text */
     /*background-color: black; */
     background-color: #f4f7f5;  soft gray-green background */
-
+    width: 100%;
 }
 
 header {
@@ -78,6 +78,9 @@ footer {
     padding: 20px;
     font-size: 0.9rem;
     color: #4b5563;
+    height: 50px;
+    margin-bottom: 0px;
+    position: relative;
 }
 #sales{ position: relative; margin: 0 auto; width: 85%; background-color: darkgreen;}
 .gacontainer{position: relative; margin: 0 auto; width: 85%;  border-radius: 5px; line-height: 1.6; text-align: center; background-color: black;}
