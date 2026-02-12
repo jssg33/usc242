@@ -96,5 +96,9 @@ text-align: left;
 }
 p
 {
+text-align: left;
+}
+span
+{
 text-align: center;
 }
