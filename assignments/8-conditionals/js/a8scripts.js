@@ -48,6 +48,20 @@ function getMessageForRange(minutes) {
     return "You're a bit late — but still worth showing up 📘";
   }
 
+  const mobileMenu = document.getElementById("mobilemenu");
+const hidingList = document.getElementById("hiding");
+
+mobileMenu.addEventListener("click", function () {
+  // Toggle visibility
+  const isOpen = hidingList.style.display === "block";
+
+  hidingList.style.display = isOpen ? "none" : "block";
+
+  // Toggle arrow rotation
+  mobileMenu.classList.toggle("open", !isOpen);
+});
+
+
   return "Class started a while ago… maybe review the notes later 🤷‍♂️";
 }
 
