@@ -12,6 +12,9 @@ h4 { color: black; }
 #selector { display: block; }
 #mobilemenu { display: none; color: white; background-color: black; }
 
+/* Center slider */
+#timeSlider { display: block; margin: 0 auto; }
+
 /* Mobile mode */
 @media (max-width: 1000px) {
 
@@ -29,4 +32,3 @@ h4 { color: black; }
 
   #hiding li { list-style: none; padding: 10px; border-bottom: 1px solid #ccc; color: teal; background-color: #222; width: 100%; }
 }
-
