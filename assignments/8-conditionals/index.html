@@ -26,6 +26,8 @@
   </ul>
   </div>
   <div id="conditionalquestion"></div>
+  <input type="range" min="0" max="60" value="60" id="timeSlider">
+  <p id="message"></p>
   </section>
     
   </body>
@@ -34,12 +36,75 @@
     function ex1()
     {
     Document.getElement.byId(conditionalquestion).innerHTML = "How many minutes until class?";
+    const somemins = getMinutesUntilNextClass();
+    const sometext = getClassCountdownMessage(somemins); 
+    const slider = document.getElementById("timeSlider");
+    const somemessage = document.getElementById("message");
+    somemessage.textContent = sometext;
+    slider.oninput = function() {
+    message.textContent = ;
+    };
+
+// Or automatically calculate based on real time:
+const minutes = getMinutesUntilNextClass();
+
+
     }
 
     function ex2()
     {
     Document.getElement.byId(conditionalquestion).innerHTML = "Countdown to class";
     }
+
+    function getMinutesUntilNextClass() 
+    {
+    const now = new Date();
+
+    // Class days: Tuesday (2) and Thursday (4)
+    const classDays = [2, 4];
+    const classHour = 8;
+    const classMinute = 30;
+
+    // Find next class day
+    let nextClass = new Date(now);
+    let day = now.getDay();
+
+    // Find the next Tuesday or Thursday
+    while (!classDays.includes(nextClass.getDay())) {
+      nextClass.setDate(nextClass.getDate() + 1);
+    }
+
+    // Set class time (8:30 AM)
+    nextClass.setHours(classHour, classMinute, 0, 0);
+
+    // If it's already past 8:30 AM on a class day, jump to the next one
+    if (nextClass <= now) {
+      nextClass.setDate(nextClass.getDate() + 2); // Tue→Thu or Thu→Tue
+    }
+
+    // Calculate minutes difference
+    const diffMs = nextClass - now;
+    const diffMinutes = Math.floor(diffMs / 60000);
+
+    return diffMinutes;
+    }
+
+  function getClassCountdownMessage(minutes) 
+  {
+    if (minutes > 45) {
+      return "Plenty of time — let's have bacon and eggs 🥓🍳";
+    } 
+    else if (minutes > 30) {
+      return "Still good — maybe grab a coffee on the way ☕";
+    } 
+    else if (minutes > 15) {
+      return "Better start getting ready — class is coming up 📚";
+    } 
+    else {
+      return "Hurry! You’re cutting it close ⏰";
+    }
+}
+
     
   </script>
   <footer>&copy2026 - Cocky Consulting, Inc. Assignment 8. All Rights Reserved</footer>
