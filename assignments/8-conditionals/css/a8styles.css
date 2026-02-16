@@ -33,7 +33,7 @@ H4{ color: black;}
   }
 
   #hiding {
-    display: none;
+    display: blocl;
     padding-left: 0;
     margin-top: 10px;
     background-color: teal;
