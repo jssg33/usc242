@@ -27,7 +27,8 @@ const getExercise2Message = () => {
   const diffMs = classTime - now;
   const diffMinutes = Math.floor(diffMs / 60000);
 
-  return getMessageForRange(diffMinutes);
+  // include minutes directly in the returned string
+  return `${getMessageForRange(diffMinutes)} (Minutes until class: ${diffMinutes})`;
 };
 
 const getMessageForRange = (minutes) => {
@@ -56,15 +57,13 @@ const ex1 = () => {
   const message = document.getElementById("message");
   const timeVar = document.getElementById("timevariable");
 
-  // NEW: show minutes above the message
-  timeVar.textContent = `Minutes until class: ${minutes}`;
+  slider.style.display = "block"; // show slider for Exercise 1
 
+  timeVar.textContent = `Minutes until class: ${minutes}`;
   message.textContent = text;
 
   slider.oninput = () => {
     const newMinutes = Number(slider.value);
-
-    // update both the time and the message
     timeVar.textContent = `Minutes until class: ${newMinutes}`;
     message.textContent = getClassCountdownMessage(newMinutes);
   };
@@ -75,7 +74,10 @@ const ex2 = () => {
   document.getElementById("conditionalquestion").innerHTML = "Countdown to class";
   document.getElementById("message").textContent = getExercise2Message();
 
-  // clear the time display when switching to Exercise 2
+  // hide slider for Exercise 2
+  document.getElementById("timeSlider").style.display = "none";
+
+  // clear the timevariable block
   document.getElementById("timevariable").textContent = "";
 };
 
