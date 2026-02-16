@@ -28,7 +28,7 @@ H4{ color: black;}
   }
 
   #mobilemenu .arrow {
-    float: right;
+    float: left;
     transition: transform 0.3s ease;
   }
 
@@ -36,14 +36,14 @@ H4{ color: black;}
     display: block;
     padding-left: 0;
     margin-top: 10px;
-    background-color: teal;
+    background-color: grey;
   }
 
   #hiding li {
     list-style: none;
     padding: 8px 0;
     border-bottom: 1px solid #ccc;
-    color: red;
+    color: teal;
   }
 
   /* Rotate arrow when open */
