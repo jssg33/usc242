@@ -34,68 +34,7 @@
 <footer>&copy;2026 - Cocky Consulting, Inc. Assignment 8. All Rights Reserved</footer>
 
 <script>
-/* ---------------- EXERCISE 1 ---------------- */
-function ex1() {
-  document.getElementById("conditionalquestion").innerHTML =
-    "How many minutes until class?";
 
-  const minutes = getMinutesUntilNextClass();
-  const text = getClassCountdownMessage(minutes);
-
-  const slider = document.getElementById("timeSlider");
-  const message = document.getElementById("message");
-
-  message.textContent = text;
-
-  slider.oninput = function () {
-    message.textContent = getClassCountdownMessage(Number(this.value));
-  };
-}
-
-/* ---------------- EXERCISE 2 ---------------- */
-function ex2() {
-  document.getElementById("conditionalquestion").innerHTML =
-    "Countdown to class";
-
-  const message = getExercise2Message(); document.getElementById("message").textContent = message;
-}
-
-/* ---------------- TIME CALCULATION ---------------- */
-function getMinutesUntilNextClass() {
-  const now = new Date();
-
-  const classDays = [2, 4]; // Tue = 2, Thu = 4
-  const classHour = 8;
-  const classMinute = 30;
-
-  let nextClass = new Date(now);
-
-  while (!classDays.includes(nextClass.getDay())) {
-    nextClass.setDate(nextClass.getDate() + 1);
-  }
-
-  nextClass.setHours(classHour, classMinute, 0, 0);
-
-  if (nextClass <= now) {
-    nextClass.setDate(nextClass.getDate() + 2);
-  }
-
-  const diffMs = nextClass - now;
-  return Math.floor(diffMs / 60000);
-}
-
-/* ---------------- MESSAGE LOGIC ---------------- */
-function getClassCountdownMessage(minutes) {
-  if (minutes > 45) {
-    return "Plenty of time — let's have bacon and eggs 🥓🍳";
-  } else if (minutes > 30) {
-    return "Still good — maybe grab a coffee on the way ☕";
-  } else if (minutes > 15) {
-    return "Better start getting ready — class is coming up 📚";
-  } else {
-    return "Hurry! You’re cutting it close ⏰";
-  }
-}
 </script>
 </body>
 </html>
