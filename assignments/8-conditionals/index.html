@@ -1,40 +1,49 @@
 <html>
+<!-John Stritzinger
+   CSCE242
+   Spring 2026
+  -->
 <head>
   <title>Assignment 8 Conditionals</title>
   <link rel="stylesheet" href="./css/a8styles.css">
-  <script src="./js/a8scripts.js"></script>
-
-  <style>
-
-  </style>
+  <script src="./js/a8scripts.js" defer></script>
 </head>
 
 <body>
 
 <div class="pagecontainer">
-<div id="topnavbar"><div id="mobilemenu"> 
-<span class="arrow">▼&nbsp&nbsp</span>
-<span id="SiteMenu">Menu</span>
 
-  <ul id="hiding"> 
-    <li onclick="ex1()">Exercise 1</li> 
-    <li onclick="ex2()">Exercise 2</li> 
-  </ul> 
-</div></div>
-<section id="secone">
-  <h1>Assignment 8</h1>
+  <div id="topnavbar">
+    <div id="mobilemenu">
+      <span class="arrow">▼&nbsp;&nbsp;</span>
+      <span id="SiteMenu">Menu</span>
 
- <div id="selector"> <span id="q1" onclick="ex1();">Exercise 1&nbsp|&nbsp</span><span id="q2" onclick="ex2();">Exercise 2</span></div>
- <div id="conditionalquestion"></div>
+      <ul id="hiding">
+        <li id="mobile-ex1">Exercise 1</li>
+        <li id="mobile-ex2">Exercise 2</li>
+      </ul>
+    </div>
+  </div>
 
-  <input type="range" min="0" max="60" value="60" id="timeSlider">
-  <p id="message"></p>
-</section>
+  <section id="secone">
+    <h1>Assignment 8</h1>
 
-<footer class="footer">&copy;2026 - Cocky Consulting, Inc. Assignment 8. All Rights Reserved</footer>
+    <div id="selector">
+      <span id="q1">Exercise 1&nbsp;|&nbsp;</span>
+      <span id="q2">Exercise 2</span>
+    </div>
+
+    <div id="conditionalquestion"></div>
+
+    <input type="range" min="0" max="60" value="60" id="timeSlider">
+    <p id="message"></p>
+  </section>
+
+  <footer class="footer">
+    &copy;2026 - Cocky Consulting, Inc. Assignment 8. All Rights Reserved
+  </footer>
+
 </div>
-<script>
 
-</script>
 </body>
 </html>
