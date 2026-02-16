@@ -5,19 +5,21 @@ const hidingList = document.getElementById("hiding");
 mobileMenu.addEventListener("click", () => {
   if (window.innerWidth < 1000) {
     const isOpen = hidingList.style.display === "block";
-
-    // Toggle visibility
     hidingList.style.display = isOpen ? "none" : "block";
-
-    // Rotate arrow
     mobileMenu.classList.toggle("open", !isOpen);
   }
 });
 
+/* ---------------- MENU ITEM LISTENERS ---------------- */
+document.getElementById("q1").addEventListener("click", () => ex1());
+document.getElementById("q2").addEventListener("click", () => ex2());
+
+document.querySelector("#hiding li:nth-child(1)").addEventListener("click", () => ex1());
+document.querySelector("#hiding li:nth-child(2)").addEventListener("click", () => ex2());
+
 /* ---------------- EXERCISE 2 ---------------- */
 const getExercise2Message = () => {
   const now = new Date();
-
   const classTime = new Date();
   classTime.setHours(8, 30, 0, 0);
 
