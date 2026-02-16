@@ -1,0 +1,100 @@
+<html>
+<head>
+  <title>Assignment 8 Conditionals</title>
+  <link rel="stylesheet" href="./css/a8styles.css">
+  <script src="./js/a8script.js"></script>
+
+  <style>
+    #secone { text-align: center; }
+    #hiding { display: none; }
+  </style>
+</head>
+
+<body>
+<section id="secone">
+  <h1>Assignment 8</h1>
+
+  <span id="selector">
+    <h4 id="q1" onclick="ex1();">Exercise 1</h4> |
+    <h4 id="q2" onclick="ex2();">Exercise 2</h4>
+  </span>
+
+  <div id="mobilemenu">
+    <ul id="hiding">
+      <li>Exercise 1</li>
+      <li>Exercise 2</li>
+    </ul>
+  </div>
+
+  <div id="conditionalquestion"></div>
+
+  <input type="range" min="0" max="60" value="60" id="timeSlider">
+  <p id="message"></p>
+</section>
+
+<footer>&copy;2026 - Cocky Consulting, Inc. Assignment 8. All Rights Reserved</footer>
+
+<script>
+/* ---------------- EXERCISE 1 ---------------- */
+function ex1() {
+  document.getElementById("conditionalquestion").innerHTML =
+    "How many minutes until class?";
+
+  const minutes = getMinutesUntilNextClass();
+  const text = getClassCountdownMessage(minutes);
+
+  const slider = document.getElementById("timeSlider");
+  const message = document.getElementById("message");
+
+  message.textContent = text;
+
+  slider.oninput = function () {
+    message.textContent = getClassCountdownMessage(Number(this.value));
+  };
+}
+
+/* ---------------- EXERCISE 2 ---------------- */
+function ex2() {
+  document.getElementById("conditionalquestion").innerHTML =
+    "Countdown to class";
+}
+
+/* ---------------- TIME CALCULATION ---------------- */
+function getMinutesUntilNextClass() {
+  const now = new Date();
+
+  const classDays = [2, 4]; // Tue = 2, Thu = 4
+  const classHour = 8;
+  const classMinute = 30;
+
+  let nextClass = new Date(now);
+
+  while (!classDays.includes(nextClass.getDay())) {
+    nextClass.setDate(nextClass.getDate() + 1);
+  }
+
+  nextClass.setHours(classHour, classMinute, 0, 0);
+
+  if (nextClass <= now) {
+    nextClass.setDate(nextClass.getDate() + 2);
+  }
+
+  const diffMs = nextClass - now;
+  return Math.floor(diffMs / 60000);
+}
+
+/* ---------------- MESSAGE LOGIC ---------------- */
+function getClassCountdownMessage(minutes) {
+  if (minutes > 45) {
+    return "Plenty of time — let's have bacon and eggs 🥓🍳";
+  } else if (minutes > 30) {
+    return "Still good — maybe grab a coffee on the way ☕";
+  } else if (minutes > 15) {
+    return "Better start getting ready — class is coming up 📚";
+  } else {
+    return "Hurry! You’re cutting it close ⏰";
+  }
+}
+</script>
+</body>
+</html>
