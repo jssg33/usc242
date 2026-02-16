@@ -54,11 +54,19 @@ const ex1 = () => {
 
   const slider = document.getElementById("timeSlider");
   const message = document.getElementById("message");
+  const timeVar = document.getElementById("timevariable");
+
+  // NEW: show minutes above the message
+  timeVar.textContent = `Minutes until class: ${minutes}`;
 
   message.textContent = text;
 
   slider.oninput = () => {
-    message.textContent = getClassCountdownMessage(Number(slider.value));
+    const newMinutes = Number(slider.value);
+
+    // update both the time and the message
+    timeVar.textContent = `Minutes until class: ${newMinutes}`;
+    message.textContent = getClassCountdownMessage(newMinutes);
   };
 };
 
@@ -66,6 +74,9 @@ const ex1 = () => {
 const ex2 = () => {
   document.getElementById("conditionalquestion").innerHTML = "Countdown to class";
   document.getElementById("message").textContent = getExercise2Message();
+
+  // clear the time display when switching to Exercise 2
+  document.getElementById("timevariable").textContent = "";
 };
 
 /* ---------------- TIME CALCULATION ---------------- */
