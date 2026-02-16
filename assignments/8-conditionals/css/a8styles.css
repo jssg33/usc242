@@ -32,8 +32,11 @@ H4{ color: black;}
     transition: transform 0.3s ease;
   }
 
+#mobilemenu .arrow { float: none; margin-right: 10px; transition: transform 0.3s ease; } 
+#mobilemenu.open .arrow { transform: rotate(180deg); }  
+
   #hiding {
-    display: block;
+    display: none;
     padding-left: 0;
     margin-top: 10px;
     background-color: grey;
