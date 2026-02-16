@@ -1,7 +1,7 @@
 /*Assignment 8 styles*/
-#secone { text-align: center; margin-bottom: 100px;}
+#secone { text-align: center; margin-bottom: 100px; margin-top: 100px;}
 #hiding { display: none; }
-.pagecontainer { position: relative; margin 0 auto; max-width=1600px; background-color: lightgrey;}
+.pagecontainer { position: relative; margin 0 auto; max-width=1600px; background-color: lightgrey; min-height: 500px; max-height: 500px;}
 body { background-color: purple;}
 H2{ color: green;}
 H4{ color: black;}
