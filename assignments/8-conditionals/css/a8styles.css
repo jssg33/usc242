@@ -2,10 +2,10 @@
 
 H2{ color: green;}
 H4{ color: black;}
-.footer { text-align: center; vertical-align: middle; color: white; background-color: black; margin: 0 auto;}
+.footer { text-align: center; vertical-align: middle; color: white; background-color: black; margin: 0 auto; min-height: 50px; max-height: 50px;}
 /* Start with desktop defaults */ 
 #selector { display: block; } 
-#mobilemenu { display: none; }
+#mobilemenu { display: none; color: white; background-color: black; min-height: 50px; max-height: 50px;}
 
 
 /* Mobile mode */
