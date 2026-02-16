@@ -1,14 +1,19 @@
+/* ---------------- MOBILE MENU ---------------- */
 const mobileMenu = document.getElementById("mobilemenu");
 const hidingList = document.getElementById("hiding");
 
-mobileMenu.onclick = function () {
-  // Toggle the list only when mobile mode is active
+mobileMenu.addEventListener("click", function () {
   if (window.innerWidth < 1000) {
-    hidingList.style.display =
-      hidingList.style.display === "block" ? "none" : "block";
-  }
-};
+    const isOpen = hidingList.style.display === "block";
 
+    hidingList.style.display = isOpen ? "none" : "block";
+
+    // Rotate arrow
+    mobileMenu.classList.toggle("open", !isOpen);
+  }
+});
+
+/* ---------------- EXERCISE 2 ---------------- */
 function getExercise2Message() {
   const now = new Date();
 
@@ -48,22 +53,9 @@ function getMessageForRange(minutes) {
     return "You're a bit late — but still worth showing up 📘";
   }
 
-  const mobileMenu = document.getElementById("mobilemenu");
-const hidingList = document.getElementById("hiding");
-
-mobileMenu.addEventListener("click", function () {
-  // Toggle visibility
-  const isOpen = hidingList.style.display === "block";
-
-  hidingList.style.display = isOpen ? "none" : "block";
-
-  // Toggle arrow rotation
-  mobileMenu.classList.toggle("open", !isOpen);
-});
-
-
   return "Class started a while ago… maybe review the notes later 🤷‍♂️";
 }
+
 /* ---------------- EXERCISE 1 ---------------- */
 function ex1() {
   document.getElementById("conditionalquestion").innerHTML =
@@ -87,7 +79,8 @@ function ex2() {
   document.getElementById("conditionalquestion").innerHTML =
     "Countdown to class";
 
-  const message = getExercise2Message(); document.getElementById("message").textContent = message;
+  const message = getExercise2Message();
+  document.getElementById("message").textContent = message;
 }
 
 /* ---------------- TIME CALCULATION ---------------- */
