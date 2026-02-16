@@ -21,13 +21,26 @@ document.getElementById("mobile-ex2").addEventListener("click", () => ex2());
 /* ---------------- EXERCISE 2 ---------------- */
 const getExercise2Message = () => {
   const now = new Date();
-  const classTime = new Date();
+
+  const classDays = [2, 4]; // Tue = 2, Thu = 4
+  const classTime = new Date(now);
+
+  // Find next class day
+  while (!classDays.includes(classTime.getDay())) {
+    classTime.setDate(classTime.getDate() + 1);
+  }
+
+  // Set class time to 8:30 AM
   classTime.setHours(8, 30, 0, 0);
+
+  // If class time today has already passed, jump to next class day
+  if (classTime <= now) {
+    classTime.setDate(classTime.getDate() + 2);
+  }
 
   const diffMs = classTime - now;
   const diffMinutes = Math.floor(diffMs / 60000);
 
-  // include minutes directly in the returned string
   return `${getMessageForRange(diffMinutes)} (Minutes until class: ${diffMinutes})`;
 };
 
