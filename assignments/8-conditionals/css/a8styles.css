@@ -1,58 +1,30 @@
-/*Assignment 8 styles*/
-#secone { text-align: center; margin-bottom: 100px; margin-top: 100px;}
+/* Assignment 8 styles */
+#secone { text-align: center; margin-bottom: 100px; margin-top: 100px; }
 #hiding { display: none; }
-.pagecontainer { position: relative; margin 0 auto; max-width=1600px; background-color: lightgrey; min-height: 500px; max-height: 500px;}
-body { background-color: purple;}
-H2{ color: green;}
-H4{ color: black;}
-.footer { text-align: center; vertical-align: middle; color: white; background-color: black; margin: 0 auto; min-height: 70px; max-height: 70px;}
-#topnavbar{ min-height: 70px; max-height: 70px; background-color: black; color: white;}
-/* Start with desktop defaults */ 
-#selector { display: block; } 
-#mobilemenu { display: none; color: white; background-color: black; min-height: 50px; max-height: 50px;}
+.pagecontainer { position: relative; margin: 0 auto; max-width: 1600px; background-color: lightgrey; min-height: 500px; max-height: 500px; }
+body { background-color: purple; }
+h2 { color: green; }
+h4 { color: black; }
+.footer { text-align: center; vertical-align: middle; color: white; background-color: black; margin: 0 auto; min-height: 70px; max-height: 70px; }
+#topnavbar { min-height: 70px; max-height: 70px; background-color: black; color: white; }
 
+/* Desktop defaults */
+#selector { display: block; }
+#mobilemenu { display: none; color: white; background-color: black; min-height: 50px; max-height: 50px; }
 
 /* Mobile mode */
 @media (max-width: 1000px) {
-  #selector {
-    display: none;
-  }
 
-  #mobilemenu {
-    display: block;
-    cursor: pointer;
-    padding: 10px;
-    font-size: 20px;
-    user-select: none;
-    text-align: left;
-  }
+  #selector { display: none; }
 
-  #mobilemenu .arrow {
-    float: left;
-    transition: transform 0.3s ease;
-  }
+  #mobilemenu { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 10px; font-size: 20px; user-select: none; text-align: left; background-color: black; color: white; }
 
-#mobilemenu .arrow { float: none; margin-right: 10px; transition: transform 0.3s ease; } 
-#mobilemenu.open .arrow { transform: rotate(180deg); }  
+  #mobilemenu .arrow { float: none; margin-right: 10px; transition: transform 0.3s ease; }
 
-  #hiding {
-    display: none;
-    padding-left: 0;
-    margin-top: 10px;
-    background-color: grey;
-  }
+  #mobilemenu.open .arrow { transform: rotate(180deg); }
 
-  #hiding li {
-    list-style: none;
-    padding: 8px 0;
-    border-bottom: 1px solid #ccc;
-    color: teal;
-  }
+  /* Hidden by default — JS toggles visibility */
+  #hiding { display: none; padding-left: 0; margin-top: 10px; background-color: grey; position: relative; z-index: 999; }
 
-  /* Rotate arrow when open */
-  #mobilemenu.open .arrow {
-    transform: rotate(180deg);
-  }
+  #hiding li { list-style: none; padding: 8px 0; border-bottom: 1px solid #ccc; color: teal; }
 }
-
-
