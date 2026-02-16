@@ -9,3 +9,45 @@ mobileMenu.onclick = function () {
   }
 };
 
+function getExercise2Message() {
+  const now = new Date();
+
+  // Today’s class time: 8:30 AM
+  const classTime = new Date();
+  classTime.setHours(8, 30, 0, 0);
+
+  // Minutes difference (can be negative)
+  const diffMs = classTime - now;
+  const diffMinutes = Math.floor(diffMs / 60000);
+
+  return getMessageForRange(diffMinutes);
+}
+
+function getMessageForRange(minutes) {
+  // Class is in the future
+  if (minutes > 15) {
+    return "Plenty of time — maybe grab a smoothie and chill 😎";
+  }
+  if (minutes > 10) {
+    return "You’re doing great — still a comfy buffer ⏳";
+  }
+  if (minutes > 5) {
+    return "Starting to get close — better get moving 🚶‍♂️💨";
+  }
+  if (minutes >= 0) {
+    return "Class is about to start — hustle mode activated 🏃‍♀️🔥";
+  }
+
+  // Class already started
+  const late = Math.abs(minutes);
+
+  if (late <= 5) {
+    return "Class just started — slip in quietly 😬";
+  }
+  if (late <= 15) {
+    return "You're a bit late — but still worth showing up 📘";
+  }
+
+  return "Class started a while ago… maybe review the notes later 🤷‍♂️";
+}
+
