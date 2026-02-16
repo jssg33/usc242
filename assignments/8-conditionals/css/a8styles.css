@@ -7,7 +7,8 @@ H4{ color: black;}
 #selector { display: block; } 
 #mobilemenu { display: none; }
 
-/* Mobile mode: under 1000px */
+
+/* Mobile mode */
 @media (max-width: 1000px) {
   #selector {
     display: none;
@@ -15,6 +16,33 @@ H4{ color: black;}
 
   #mobilemenu {
     display: block;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 20px;
+    user-select: none;
+  }
+
+  #mobilemenu .arrow {
+    float: right;
+    transition: transform 0.3s ease;
+  }
+
+  #hiding {
+    display: none;
+    padding-left: 0;
+    margin-top: 10px;
+  }
+
+  #hiding li {
+    list-style: none;
+    padding: 8px 0;
+    border-bottom: 1px solid #ccc;
+  }
+
+  /* Rotate arrow when open */
+  #mobilemenu.open .arrow {
+    transform: rotate(180deg);
   }
 }
+
 
