@@ -2,7 +2,7 @@
 
 H2{ color: green;}
 H4{ color: black;}
-.footer { text-align: center; vertical-align: middle; color: white; background-color: white;}
+.footer { text-align: center; vertical-align: middle; color: white; background-color: black; margin: 0 auto;}
 /* Start with desktop defaults */ 
 #selector { display: block; } 
 #mobilemenu { display: none; }
