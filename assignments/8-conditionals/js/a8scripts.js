@@ -1,8 +1,9 @@
 /* ---------------- MOBILE MENU ---------------- */
+const mobileMenuHeader = document.getElementById("mobilemenu-header");
 const mobileMenu = document.getElementById("mobilemenu");
 const hidingList = document.getElementById("hiding");
 
-mobileMenu.addEventListener("click", () => {
+mobileMenuHeader.addEventListener("click", () => {
   if (window.innerWidth < 1000) {
     const isOpen = hidingList.style.display === "block";
     hidingList.style.display = isOpen ? "none" : "block";
@@ -14,8 +15,8 @@ mobileMenu.addEventListener("click", () => {
 document.getElementById("q1").addEventListener("click", () => ex1());
 document.getElementById("q2").addEventListener("click", () => ex2());
 
-document.querySelector("#hiding li:nth-child(1)").addEventListener("click", () => ex1());
-document.querySelector("#hiding li:nth-child(2)").addEventListener("click", () => ex2());
+document.getElementById("mobile-ex1").addEventListener("click", () => ex1());
+document.getElementById("mobile-ex2").addEventListener("click", () => ex2());
 
 /* ---------------- EXERCISE 2 ---------------- */
 const getExercise2Message = () => {
