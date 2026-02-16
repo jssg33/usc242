@@ -5,8 +5,8 @@
 body { background-color: purple;}
 H2{ color: green;}
 H4{ color: black;}
-.footer { text-align: center; vertical-align: middle; color: white; background-color: black; margin: 0 auto; min-height: 50px; max-height: 50px;}
-#topnavbar{ min-height: 50px; max-height: 50px; background-color: black; color: white;}
+.footer { text-align: center; vertical-align: middle; color: white; background-color: black; margin: 0 auto; min-height: 70px; max-height: 70px;}
+#topnavbar{ min-height: 70px; max-height: 70px; background-color: black; color: white;}
 /* Start with desktop defaults */ 
 #selector { display: block; } 
 #mobilemenu { display: none; color: white; background-color: black; min-height: 50px; max-height: 50px;}
@@ -43,7 +43,7 @@ H4{ color: black;}
     list-style: none;
     padding: 8px 0;
     border-bottom: 1px solid #ccc;
-    color: white;
+    color: red;
   }
 
   /* Rotate arrow when open */
