@@ -465,3 +465,59 @@ header {
         flex-direction: column;
     }
 }
+
+/*SPECIFIC GREENVILLE TEMPLATE MODS */
+/* ========================= */
+/*   LOWER 3‑COLUMN SECTION  */
+/* ========================= */
+
+.middle-columns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;   /* restores original spacing */
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1600px;
+    width: 100%;
+    margin: 40px auto;                /* centers the entire section */
+    background: #ffffff;              /* restores white card background */
+    border-radius: 6px;
+    border: 1px solid #d1e7d9;        /* Greenville border */
+}
+
+/* Each column */
+.mid-col {
+    flex: 1;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid #d1e7d9;
+    min-height: 300px;                /* prevents collapsing */
+}
+
+/* Quick links list */
+.quick-links {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+/* Sitemap table */
+.sitemap-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.sitemap-table th,
+.sitemap-table td {
+    padding: 8px;
+    border-bottom: 1px solid #d1e7d9;
+    text-align: left;
+}
+
+/* Miami images */
+.mid-col img {
+    width: 48%;
+    border-radius: 5px;
+}
+
