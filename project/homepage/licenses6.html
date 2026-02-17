@@ -12,13 +12,11 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <style>
-.hero {
-    background: #0a2f1f;
-    color: white;
-    padding: 60px 20px;
-    text-align: center;
+body {
+    background: #e6e6e6 !important;   /* LIGHT GREY BACKGROUND */
 }
 
+/* CARD STYLING */
 .card {
     border: 1px solid #d1e7d9;
     border-radius: 6px;
@@ -29,6 +27,7 @@
     font-weight: bold;
 }
 
+/* FOOTER COLUMNS */
 .welcome-columns {
     display: flex;
     justify-content: space-between;
@@ -92,12 +91,6 @@
     <h1>Greenville Enterprise Software</h1>
     <span>Enterprise‑grade software solutions with flexible deployment and licensing for global organizations.</span>
 </header>
-
-<!-- HERO -->
-<section class="hero">
-    <h2>License Inventory</h2>
-    <p>Review all active and historical software licenses</p>
-</section>
 
 <!-- MAIN CONTENT -->
 <div class="container py-5">
@@ -173,27 +166,54 @@ $(document).ready(function () {
 
             function renderLicenses(list) {
                 container.empty();
+
                 list.forEach(function (lic) {
+
                     const card = `
                         <div class="col-md-6 col-lg-4">
                             <div class="card h-100 shadow-sm">
                                 <div class="card-body">
-                                    <h5 class="card-title">License: ${lic.licenseid}</h5>
+
+                                    <h5 class="card-title">${lic.licenseid}</h5>
+
                                     <p><strong>Version:</strong> ${lic.version}</p>
                                     <p><strong>Install Date:</strong> ${lic.installdate}</p>
                                     <p><strong>End Date:</strong> ${lic.enddate}</p>
-                                    <p><strong>ID:</strong> ${lic._id}</p>
-                                    <a href="mylicenses.html" class="btn btn-success btn-sm mt-2">View Details</a>
+
+                                    <p><strong>Record ID:</strong> ${lic._id}</p>
+
+                                    <div class="mt-3">
+
+                                        <a href="buynow.html?licenseid=${lic.licenseid}"
+                                           class="btn btn-success btn-sm mb-2">
+                                           Buy License
+                                        </a><br>
+
+                                        <a href="reviews.html?licenseid=${lic.licenseid}"
+                                           class="btn btn-outline-secondary btn-sm mb-2">
+                                           View Reviews
+                                        </a><br>
+
+                                        <a href="licensedetails.html?licenseid=${lic.licenseid}"
+                                           class="btn btn-primary btn-sm">
+                                           More Info
+                                        </a>
+
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     `;
+
                     container.append(card);
                 });
             }
 
+            // Initial render
             renderLicenses(licenses);
 
+            // Filter by version
             versionFilter.on("change", function () {
                 const selected = $(this).val();
                 const filtered = selected === "all"
@@ -202,9 +222,12 @@ $(document).ready(function () {
                 renderLicenses(filtered);
             });
         },
+
         error: function (xhr, status, error) {
             console.error("❌ Error fetching licenses:", status, error);
-            $("#licenses-container").html(`<div class="alert alert-danger">Error loading licenses: ${error}</div>`);
+            $("#licenses-container").html(
+                `<div class="alert alert-danger">Error loading licenses: ${error}</div>`
+            );
         }
     });
 });
@@ -212,4 +235,3 @@ $(document).ready(function () {
 
 </body>
 </html>
-
