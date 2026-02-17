@@ -299,6 +299,8 @@ header {
     transform: translateY(-3px);
 }
 
+.features, .griddata { margin-left: 10px; margin-right: 10px; }
+
 /* GRIDDATA */
 .griddata-table {
     background: #ffffff;
