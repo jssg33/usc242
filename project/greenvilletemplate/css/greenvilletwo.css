@@ -527,3 +527,20 @@ header {
     margin-bottom: 8px;
 }
 
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: #000000;
+    border: 1px solid #1f3b2d;
+    min-width: 220px;     /* wider, prevents crunching */
+    width: auto;          /* expands to fit text */
+    white-space: nowrap;  /* prevents wrapping */
+    z-index: 9999;
+}
+/* Prevent dropdown from being treated as a flex child */
+.dropdown {
+    display: block;       /* removes flex behavior */
+    flex-shrink: 0;       /* prevents collapsing */
+    position: relative;
+}
+
