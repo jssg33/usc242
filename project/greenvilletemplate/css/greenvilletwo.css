@@ -408,66 +408,6 @@ header {
     border-radius: 5px;
     text-align: center;
 }
-/* ----------------------------------
-   MOBILE (≤ 1000px)
----------------------------------- */
-@media (max-width: 1000px) {
-
-    nav.main-nav ul {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .top-section {
-        flex-direction: column;
-    }
-
-    .tasks {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .task-item {
-        width: 45%;
-    }
-
-    .middle-columns {
-        flex-direction: column;
-    }
-
-    .idea {
-        flex-direction: column;
-        text-align: left;
-    }
-
-    .idea img {
-        max-width: 40%;
-        height: 300px;
-    }
-}
-
-/* ----------------------------------
-   LARGE (≥ 1200px)
----------------------------------- */
-@media (min-width: 1200px) {
-
-    nav.main-nav ul {
-        flex-direction: row;
-    }
-
-    .top-section {
-        flex-direction: row;
-    }
-
-    .middle-columns {
-        flex-direction: row;
-    }
-
-    .ideas {
-        flex-direction: column;
-    }
-}
-
 /*SPECIFIC GREENVILLE TEMPLATE MODS */
 /* ========================= */
 /*   LOWER 3‑COLUMN SECTION  */
@@ -544,5 +484,69 @@ header {
     display: block;       /* removes flex behavior */
     flex-shrink: 0;       /* prevents collapsing */
     position: relative;
+}
+
+
+/* ----------------------------------
+   MOBILE (≤ 1000px)
+---------------------------------- */
+@media (max-width: 1000px) {
+
+    nav.main-nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .top-section {
+        flex-direction: column;
+    }
+
+    .tasks {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .task-item {
+        width: 45%;
+    }
+    
+   .mid-col { width: 100% !important; margin-bottom: 20px; } }
+
+   
+    .middle-columns {
+        flex-direction: column;
+    }
+
+    .idea {
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .idea img {
+        max-width: 40%;
+        height: 300px;
+    }
+}
+
+/* ----------------------------------
+   LARGE (≥ 1200px)
+---------------------------------- */
+@media (min-width: 1200px) {
+
+    nav.main-nav ul {
+        flex-direction: row;
+    }
+
+    .top-section {
+        flex-direction: row;
+    }
+
+    .middle-columns {
+        flex-direction: row;
+    }
+
+    .ideas {
+        flex-direction: column;
+    }
 }
 
