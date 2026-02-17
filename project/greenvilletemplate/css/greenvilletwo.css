@@ -350,6 +350,7 @@ header {
     padding: 20px;
     max-width: 1600px;
     margin: 0 auto;
+    justify-content: center;
 }
 
 .mid-col {
@@ -357,6 +358,11 @@ header {
     background: white;
     padding: 20px;
     border-radius: 5px;
+}
+
+.middle-columns ul 
+{ 
+   margin: 0 auto; display: flex; justify-content: center; 
 }
 
 /* IDEAS */
