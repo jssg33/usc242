@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Software Licenses | Greenville Enterprise Software</title>
+<title>Products | Greenville Enterprise Software</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="./css/site.css">
@@ -13,10 +13,9 @@
 
 <style>
 body {
-    background: #e6e6e6 !important;   /* LIGHT GREY BACKGROUND */
+    background: #e6e6e6 !important;
 }
 
-/* CARD STYLING */
 .card {
     border: 1px solid #d1e7d9;
     border-radius: 6px;
@@ -27,7 +26,6 @@ body {
     font-weight: bold;
 }
 
-/* FOOTER COLUMNS */
 .welcome-columns {
     display: flex;
     justify-content: space-between;
@@ -95,12 +93,7 @@ body {
 <!-- MAIN CONTENT -->
 <div class="container py-5">
 
-    <div class="mb-3">
-        <label for="version-filter" class="form-label"><strong>Filter by Version:</strong></label>
-        <select id="version-filter" class="form-select">
-            <option value="all">All Versions</option>
-        </select>
-    </div>
+    <h3 class="mb-4">Available Products</h3>
 
     <div id="licenses-container" class="row g-4"></div>
 </div>
@@ -150,51 +143,45 @@ body {
 <script>
 $(document).ready(function () {
     $.ajax({
-        url: "https://api242.onrender.com/licenses",
+        url: "https://api242.onrender.com/products",
         method: "GET",
-        success: function (licenses) {
-            console.log("✅ Licenses retrieved:", licenses);
+        success: function (products) {
+            console.log("✅ Products retrieved:", products);
 
             const container = $("#licenses-container");
-            const versionFilter = $("#version-filter");
 
-            // Extract unique versions
-            const uniqueVersions = [...new Set(licenses.map(l => l.version))].sort();
-            uniqueVersions.forEach(v => {
-                versionFilter.append(`<option value="${v}">${v}</option>`);
-            });
-
-            function renderLicenses(list) {
+            function renderProducts(list) {
                 container.empty();
 
-                list.forEach(function (lic) {
+                list.forEach(function (p) {
 
                     const card = `
                         <div class="col-md-6 col-lg-4">
                             <div class="card h-100 shadow-sm">
                                 <div class="card-body">
 
-                                    <h5 class="card-title">${lic.licenseid}</h5>
+                                    <h5 class="card-title">${p.SKEWID}</h5>
 
-                                    <p><strong>Version:</strong> ${lic.version}</p>
-                                    <p><strong>Install Date:</strong> ${lic.installdate}</p>
-                                    <p><strong>End Date:</strong> ${lic.enddate}</p>
+                                    <p><strong>Description:</strong> ${p.description}</p>
+                                    <p><strong>Qty On Hand:</strong> ${p.qtyonhand}</p>
+                                    <p><strong>List Price:</strong> $${p.listprice}</p>
+                                    <p><strong>Vendor:</strong> ${p.vendorname}</p>
 
-                                    <p><strong>Record ID:</strong> ${lic._id}</p>
+                                    <p><strong>Record ID:</strong> ${p._id}</p>
 
                                     <div class="mt-3">
 
-                                        <a href="buynow.html?licenseid=${lic.licenseid}"
+                                        <a href="book555.html?ProductId=${p.SKEWID}"
                                            class="btn btn-success btn-sm mb-2">
-                                           Buy License
+                                           Buy Product
                                         </a><br>
 
-                                        <a href="reviews.html?licenseid=${lic.licenseid}"
+                                        <a href="reviews.html?skewid=${p.SKEWID}"
                                            class="btn btn-outline-secondary btn-sm mb-2">
                                            View Reviews
                                         </a><br>
 
-                                        <a href="licensedetails.html?licenseid=${lic.licenseid}"
+                                        <a href="productdetails.html?skewid=${p.SKEWID}"
                                            class="btn btn-primary btn-sm">
                                            More Info
                                         </a>
@@ -210,23 +197,13 @@ $(document).ready(function () {
                 });
             }
 
-            // Initial render
-            renderLicenses(licenses);
-
-            // Filter by version
-            versionFilter.on("change", function () {
-                const selected = $(this).val();
-                const filtered = selected === "all"
-                    ? licenses
-                    : licenses.filter(l => l.version === selected);
-                renderLicenses(filtered);
-            });
+            renderProducts(products);
         },
 
         error: function (xhr, status, error) {
-            console.error("❌ Error fetching licenses:", status, error);
+            console.error("❌ Error fetching products:", status, error);
             $("#licenses-container").html(
-                `<div class="alert alert-danger">Error loading licenses: ${error}</div>`
+                `<div class="alert alert-danger">Error loading products: ${error}</div>`
             );
         }
     });
@@ -235,3 +212,4 @@ $(document).ready(function () {
 
 </body>
 </html>
+
