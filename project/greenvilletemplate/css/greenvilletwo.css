@@ -496,12 +496,6 @@ header {
     min-height: 300px;                /* prevents collapsing */
 }
 
-/* Quick links list */
-.quick-links {
-    list-style: disc;
-    padding-left: 20px;
-}
-
 /* Sitemap table */
 .sitemap-table {
     width: 100%;
@@ -519,5 +513,17 @@ header {
 .mid-col img {
     width: 48%;
     border-radius: 5px;
+}
+
+/* Restore vertical list layout for Quick Links */
+.quick-links {
+    display: block;        /* ensures UL is not flex */
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.quick-links li {
+    display: list-item;    /* forces vertical stacking */
+    margin-bottom: 8px;
 }
 
