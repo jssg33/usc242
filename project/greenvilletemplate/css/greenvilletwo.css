@@ -135,6 +135,15 @@ nav.main-nav a:hover,
     color: white !important;
 }
 
+/* Compress Material UI text buttons */
+.right-links md-text-button {
+    --md-text-button-container-padding-horizontal: 2px;
+    --md-text-button-container-padding-vertical: 0px;
+    --md-text-button-label-text-size: 14px;
+    --md-text-button-container-height: 32px;
+}
+
+
 /* Link defaults */
 a {
     color: #4ade80;
