@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Mountain Bike Parks | Greenville Enterprise Software</title>
+<title>Software Licenses | Greenville Enterprise Software</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="./css/site.css">
@@ -12,7 +12,6 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <style>
-/* HERO SECTION */
 .hero {
     background: #0a2f1f;
     color: white;
@@ -20,7 +19,6 @@
     text-align: center;
 }
 
-/* PARK CARDS */
 .card {
     border: 1px solid #d1e7d9;
     border-radius: 6px;
@@ -31,7 +29,6 @@
     font-weight: bold;
 }
 
-/* FOOTER COLUMNS */
 .welcome-columns {
     display: flex;
     justify-content: space-between;
@@ -46,11 +43,6 @@
     border: 1px solid #d1e7d9;
     border-radius: 6px;
     padding: 25px;
-}
-
-.welcome-images img {
-    width: 48%;
-    border-radius: 5px;
 }
 
 .sitemap-table {
@@ -103,21 +95,21 @@
 
 <!-- HERO -->
 <section class="hero">
-    <h2>License Inventory Options</h2>
-    <p>Review Existing Licenses and Information</p>
+    <h2>License Inventory</h2>
+    <p>Review all active and historical software licenses</p>
 </section>
 
 <!-- MAIN CONTENT -->
 <div class="container py-5">
 
     <div class="mb-3">
-        <label for="state-filter" class="form-label"><strong>Filter by State:</strong></label>
-        <select id="state-filter" class="form-select">
-            <option value="all">All States</option>
+        <label for="version-filter" class="form-label"><strong>Filter by Version:</strong></label>
+        <select id="version-filter" class="form-select">
+            <option value="all">All Versions</option>
         </select>
     </div>
 
-    <div id="parks-container" class="row g-4"></div>
+    <div id="licenses-container" class="row g-4"></div>
 </div>
 
 <!-- FOOTER COLUMNS -->
@@ -149,99 +141,75 @@
             <tr><td>Licenses</td><td><a href="mylicenses.html">MyLicenses</a></td><td>01/15/2026</td></tr>
             <tr><td>Usage</td><td><a href="mylicenselogs.html">MyLicenseLogs</a></td><td>01/15/2026</td></tr>
             <tr><td>Types</td><td><a href="licenseinfo.html">LicenseInfo</a></td><td>01/15/2026</td></tr>
-            <tr><td>Cart</td><td><a href="mycart.html">MyCart</a></td><td>01/15/2026</td></tr>
-            <tr><td>TypeReviews</td><td><a href="reviews.html">Reviews</a></td><td>01/15/2026</td></tr>
+            <tr><td>Cart</td><td><a href="mycart.html">MyCart</a></td></tr>
+            <tr><td>TypeReviews</td><td><a href="reviews.html">Reviews</a></td></tr>
         </table>
     </div>
 
 </section>
 
-<!-- FOOTER -->
 <footer>
     © 2026 Greenville Associates Enterprise Software. All rights reserved.
 </footer>
 
-<!-- Bootstrap JS Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script>
-  $(document).ready(function () {
+<script>
+$(document).ready(function () {
     $.ajax({
-      url: "https://api242.onrender.com/parks",
-      method: "GET",
-      success: function (parks) {
-        console.log("✅ Parks data retrieved:", parks);
+        url: "https://api242.onrender.com/licenses",
+        method: "GET",
+        success: function (licenses) {
+            console.log("✅ Licenses retrieved:", licenses);
 
-        const container = $("#parks-container");
-        const stateFilter = $("#state-filter");
+            const container = $("#licenses-container");
+            const versionFilter = $("#version-filter");
 
-        // Extract unique states
-        const uniqueStates = [...new Set(parks.map(p => p.state))].sort();
-        uniqueStates.forEach(state => {
-          stateFilter.append(`<option value="${state}">${state}</option>`);
-        });
+            // Extract unique versions
+            const uniqueVersions = [...new Set(licenses.map(l => l.version))].sort();
+            uniqueVersions.forEach(v => {
+                versionFilter.append(`<option value="${v}">${v}</option>`);
+            });
 
-        // Function to render parks
-        function renderParks(filteredParks) {
-          container.empty();
-          filteredParks.forEach(function (park) {
-            const trailMapLink = park.trailmapurl
-              ? `<a href="${park.trailmapurl}" class="btn btn-primary btn-sm mt-2" target="_blank">Trail Map</a>`
-              : `<span class="text-muted">No trail map available</span>`;
+            function renderLicenses(list) {
+                container.empty();
+                list.forEach(function (lic) {
+                    const card = `
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">License: ${lic.licenseid}</h5>
+                                    <p><strong>Version:</strong> ${lic.version}</p>
+                                    <p><strong>Install Date:</strong> ${lic.installdate}</p>
+                                    <p><strong>End Date:</strong> ${lic.enddate}</p>
+                                    <p><strong>ID:</strong> ${lic._id}</p>
+                                    <a href="mylicenses.html" class="btn btn-success btn-sm mt-2">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    container.append(card);
+                });
+            }
 
-            const mapsLink = `https://www.google.com/maps?q=${park.latitude},${park.longitude}`;
-			const directionsLink = `https://www.google.com/maps/dir/?api=1&destination=${park.latitude},${park.longitude}`;
-            const pictureurl = `https://home.547bikes.info/picturewall.html?parkId=${park.parkId}`;
-            const card = `
-              <div class="col-md-6 col-lg-4">
-                <div class="card h-100 shadow-sm">
-                  <div class="card-body">
-                    <h5 class="card-title">${park.name}</h5>
-                    <p class="card-text"><strong>Region:</strong> ${park.region}</p>
-                    <p class="card-text"><strong>State:</strong> ${park.state}</p>
-                    <p class="card-text"><strong>Address:</strong> ${park.address}</p>
-                    <p class="card-text"><strong>Phone:</strong> ${park.phone}</p>
-                    <p class="card-text"><strong>Trail Length:</strong> ${park.trailLengthMiles} miles</p>
-                    <p class="card-text"><strong>Difficulty:</strong> ${park.difficulty}</p>
-                    <p class="card-text"><strong>Day Pass:</strong> $${typeof park.dayPassPriceUsd === "number" ? park.dayPassPriceUsd.toFixed(2) : "N/A"}</p>
-                    <p class="card-text"><strong>Description:</strong> ${park.description}</p>
-                    <p class="card-text"><strong>GPS:</strong> ${park.latitude}, ${park.longitude}</p>
-                    <p class="card-text"><strong>CapacityMax: </strong> ${park.maxvisitors} <strong>&nbsp&nbspCapacityCurrent: </strong>${park.currentvisitors}</p>
-                    <span>&nbsp&nbsp${trailMapLink}<br>
-                    <a href="book555.html?parkId=${park.parkId}" class="btn btn-success btn-sm mt-2 ms-2">Book This Park</a><br>
-                    <a href="${mapsLink}" class="btn btn-outline-secondary btn-sm mt-2 ms-2" target="_blank">Open in Google Maps</a>
-                    <a href="${directionsLink}" class="btn btn-outline-primary btn-sm mt-2 ms-2" target="_blank">Get Driving Directions</a>
-                    <br>
-                    <a href="reviews5.html?parkId=${park.parkId}" class="btn btn-outline-secondary btn-sm mt-2 ms-2" target="_blank">See Reviews Of This Park</a>
-					<a href="${pictureurl}" class="btn btn-outline-primary btn-sm mt-2 ms-2" target="_blank">View Park Pictures</a><br>
-					</span>
-                  </div>
-                </div>
-              </div>
-            `;
-            container.append(card);
-          });
+            renderLicenses(licenses);
+
+            versionFilter.on("change", function () {
+                const selected = $(this).val();
+                const filtered = selected === "all"
+                    ? licenses
+                    : licenses.filter(l => l.version === selected);
+                renderLicenses(filtered);
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error("❌ Error fetching licenses:", status, error);
+            $("#licenses-container").html(`<div class="alert alert-danger">Error loading licenses: ${error}</div>`);
         }
-
-        // Initial render
-        renderParks(parks);
-
-        // Filter on dropdown change
-        stateFilter.on("change", function () {
-          const selectedState = $(this).val();
-          const filtered = selectedState === "all"
-            ? parks
-            : parks.filter(p => p.state === selectedState);
-          renderParks(filtered);
-        });
-      },
-      error: function (xhr, status, error) {
-        console.error("❌ Error fetching parks:", status, error);
-        $("#parks-container").html(`<div class="alert alert-danger">Error loading parks: ${error}</div>`);
-      }
     });
-  });
-  </script>
+});
+</script>
 
 </body>
 </html>
+
