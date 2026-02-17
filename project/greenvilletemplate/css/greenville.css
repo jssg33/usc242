@@ -157,3 +157,7 @@ text-align: center;
     border-bottom: 1px solid #d1e7d9;
     text-align: left;
 }
+
+.right-links .material-icons {
+  color: white; /* or #ccc for light grey */
+}
