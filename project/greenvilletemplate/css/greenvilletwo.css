@@ -131,7 +131,7 @@ nav.main-nav a:hover,
     align-items: center;
     width: 130px;
     padding: 5px;
-    max-width: 250px;
+    max-width: 45%;
 }
 
 .right-links .material-icons {
