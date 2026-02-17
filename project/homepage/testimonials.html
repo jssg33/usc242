@@ -82,7 +82,7 @@
   <script>
     async function loadTestimonials() {
       try {
-        const response = await fetch("https://api242.onrender.com/testimonials");
+        const response = await fetch("https://api242.onrender.com/api/testimonials");
         const data = await response.json();
 
         const tbody = document.getElementById("testimonial-body");
