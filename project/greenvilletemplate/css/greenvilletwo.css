@@ -129,10 +129,13 @@ nav.main-nav a:hover,
     display: flex;
     gap: 5px;
     align-items: center;
+    width: 130px;
+    max-width: 150px;
 }
 
 .right-links .material-icons {
     color: white !important;
+    font-size: 15px !important;
 }
 
 /* Compress Material UI text buttons */
@@ -140,7 +143,11 @@ nav.main-nav a:hover,
     --md-text-button-container-padding-horizontal: 2px;
     --md-text-button-container-padding-vertical: 0px;
     --md-text-button-label-text-size: 14px;
-    --md-text-button-container-height: 32px;
+    --md-text-button-container-height: 25px;
+}
+
+.right-links .material-icons {
+
 }
 
 
@@ -301,6 +308,7 @@ header {
     padding: 20px;
     text-align: center;
     transition: 0.2s ease-in-out;
+    color: black;
 }
 
 .feature-card:hover {
