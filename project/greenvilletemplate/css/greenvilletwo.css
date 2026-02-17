@@ -130,7 +130,8 @@ nav.main-nav a:hover,
     gap: 5px;
     align-items: center;
     width: 130px;
-    max-width: 150px;
+    padding: 5px;
+    max-width: 250px;
 }
 
 .right-links .material-icons {
@@ -145,11 +146,6 @@ nav.main-nav a:hover,
     --md-text-button-label-text-size: 14px;
     --md-text-button-container-height: 25px;
 }
-
-.right-links .material-icons {
-
-}
-
 
 /* Link defaults */
 a {
