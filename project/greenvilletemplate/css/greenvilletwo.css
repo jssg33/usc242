@@ -457,17 +457,19 @@ header {
     border-radius: 5px;
 }
 
-/* Restore vertical list layout for Quick Links */
 .quick-links {
-    display: block;        /* ensures UL is not flex */
+    display: block !important;        /* UL becomes a normal block */
+    flex-direction: column !important;
     list-style: disc;
     padding-left: 20px;
+    margin: 0;
 }
 
 .quick-links li {
-    display: list-item;    /* forces vertical stacking */
+    display: list-item !important;    /* forces vertical stacking */
     margin-bottom: 8px;
 }
+
 
 .dropdown-content {
     display: none;
