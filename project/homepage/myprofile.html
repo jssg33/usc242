@@ -235,6 +235,7 @@
     <!-- Close Container -->
 </div>
 
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -251,8 +252,13 @@
 
         // Load profile
         async function loadProfile() {
+            console.log("GET URL:", `${API_BASE}/users/${uid}`);
+
             const res = await fetch(`${API_BASE}/users/${uid}`);
             const data = await res.json();
+
+            console.log("GET Response:", data);
+
             window.profileData = data;
             renderProfile(data);
         }
@@ -282,6 +288,7 @@
         // Open modal with existing values
         document.getElementById("editBtn").onclick = () => {
             const form = document.getElementById("updateForm");
+
             Object.keys(window.profileData).forEach(key => {
                 if (form[key]) form[key].value = window.profileData[key] || "";
             });
@@ -294,11 +301,22 @@
             const form = document.getElementById("updateForm");
             const formData = Object.fromEntries(new FormData(form).entries());
 
-            await fetch(`${API_BASE}/users/${uid}`, {
+            console.log("PUT URL:", `${API_BASE}/users/${uid}`);
+            console.log("PUT Payload:", formData);
+
+            const res = await fetch(`${API_BASE}/users/${uid}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)
             });
+
+            console.log("PUT Response Status:", res.status);
+
+            if (!res.ok) {
+                console.error("PUT failed:", await res.text());
+                alert("Error saving profile");
+                return;
+            }
 
             loadProfile();
             bootstrap.Modal.getInstance(document.getElementById("updateModal")).hide();
@@ -308,6 +326,7 @@
 
         loadProfile();
     </script>
+
 <footer>&copy2026 Greenville Associates Solutions, Inc</footer>
 </body>
 </html>
