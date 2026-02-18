@@ -194,7 +194,8 @@ text-align: center;
 
 //SOME BOOTSTRAP GRID FORMATTING FOR GREEN AND BLACK
 
-<style>
+/* GREENVILLE SPECIFIC BOOTSTRAP STUFF */
+
     /* Black header with green text */
     .table-header-green {
         background-color: #000 !important;
@@ -224,5 +225,66 @@ text-align: center;
     #reviewTable {
         width: 100% !important;
     }
-</style>
+
+    /* Black header with bright green text */
+    .table-header-green {
+        background-color: #000 !important;
+        color: #00c853 !important;
+        font-weight: 600;
+    }
+
+    /* Table hover highlight */
+    #licenseTable tbody tr:hover {
+        background-color: #e8f5e9 !important;
+    }
+
+    /* Add License button */
+    .custom-add-btn {
+        background-color: #00c853 !important;
+        border-color: #00c853 !important;
+        color: #000 !important;
+        font-weight: 600;
+        margin-right: 8px;
+    }
+
+    .custom-add-btn:hover {
+        background-color: #009624 !important;
+        border-color: #009624 !important;
+        color: white !important;
+    }
+
+    /* Update button (yellow replaced with green/black theme) */
+    .custom-update-btn {
+        background-color: #1b5e20 !important; /* dark green */
+        border-color: #1b5e20 !important;
+        color: #00e676 !important; /* neon green text */
+        font-weight: 600;
+    }
+
+    .custom-update-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .custom-update-btn:hover:not(:disabled) {
+        background-color: #2e7d32 !important;
+        border-color: #2e7d32 !important;
+        color: white !important;
+    }
+
+    /* Refresh button */
+    .custom-refresh-btn {
+        background-color: #004d40 !important;
+        border-color: #004d40 !important;
+        color: #00e676 !important;
+        font-weight: 600;
+    }
+
+    .custom-refresh-btn:hover {
+        background-color: #00695c !important;
+        border-color: #00695c !important;
+        color: white !important;
+    }
+
+
 
