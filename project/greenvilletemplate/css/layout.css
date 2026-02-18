@@ -68,6 +68,8 @@ nav.main-nav a:hover {
     margin: 0 auto;
     background: white;
     border-radius: 5px;
+    min-height: 400px;
+    max-height: 800px;
 }
 
 /* Important text = 30% */
