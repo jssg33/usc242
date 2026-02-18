@@ -11,228 +11,204 @@
 <script src="./js/mylicenses.js"></script>    
 <title>Greenville Associates Enterprise Software | Enterprise Licensing - My Licenses</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-</style>
-
-
 </head>
+
 <body>
 <div class="container2">
-<div class="topnav">
-    <div class="dropdown">
-        <button class="dropbtn">Menu ▼</button>
-        <div class="dropdown-content">
-            <a href="login.html">Login</a>
-            <a href="logout.html">Logout</a>
-            <a href="welcome.html">Welcome</a>
-            <a href="products.html">All Products</a>
-            <a href="licensetypes.html">LicenseTypes</a>
-            <a href="mylicenselogs.html">LicenseLogs</a>
-            <a href="mylicenses.html">MyLicenses</a>
-            <a href="mycart.html?uid=1">MyCart</a>
-            <a href="reviews.html">AllReviews</a>
-            <a href="Help.html">Help</a>
-        </div>
-    </div>
 
-    <div class="right-links" style="display:flex; gap:6px; align-items:center; color: white;">
-
-      <md-text-button href="index.html">
-          <span class="material-icons"style="color:white;">home</span>
-       </md-text-button>
-  
-      <md-text-button href="userhelp.html">
-          <span class="material-icons" style="color:white;">help_outline</span>
-      </md-text-button>
-  
-      <md-text-button href="usernotices.html">
-          <span class="material-icons" style="color:white;" >notifications</span>
-      </md-text-button>
-  
-      <md-text-button href="login.html">
-          <span class="material-icons" style="color:white;">login</span>
-      </md-text-button>
-  
-      <md-text-button href="logout.html">
-          <span class="material-icons" style="color:white;">logout</span>
-      </md-text-button>
-  
-  </div>
-</div>
+<!-- NAV + HEADER OMITTED FOR BREVITY (unchanged) -->
 
 <header>
     <h1>Greenville Enterprise Software</h1>
     <span>Enterprise‑grade software solutions with flexible deployment and licensing for global organizations.</span>
 </header>
 
-<nav>
-  <ul class="menu">
-      <li><a href="#products">Products</a></li>
-
-      <li class="dropdown">
-          <a href="#deployment">Deployment ▾</a>
-          <ul class="dropdown-content">
-              <li><a href="#onprem">On‑Premise</a></li>
-              <li><a href="#cloud">Cloud</a></li>
-              <li><a href="#hybrid">Hybrid</a></li>
-          </ul>
-      </li>
-
-      <li class="dropdown">
-          <a href="#licensing">Licensing ▾</a>
-          <ul class="dropdown-content">
-              <li><a href="#utility">Utility Hours</a></li>
-              <li><a href="#namedusers">Named Users</a></li>
-              <li><a href="#buel">Business Unit Enterprise</a></li>
-              <li><a href="#enterprise">Enterprise License Types</a></li>
-          </ul>
-      </li>
-
-      <!-- ⭐ NEW PRICING MENU -->
-      <li class="dropdown">
-          <a href="#pricing">Pricing ▾</a>
-          <ul class="dropdown-content">
-              <li><a href="#pricing">All Licenses</a></li>
-              <li><a href="#pricing-enterprise">Enterprise</a></li>
-              <li><a href="#pricing-cloud">Cloud</a></li>
-              <li><a href="#pricing-onprem">On‑Premise</a></li>
-              <li><a href="#pricing-utility">Utility Model</a></li>
-          </ul>
-      </li>
-
-      <li><a href="#contact">Contact Sales</a></li>
-  </ul>
-</nav>
-
+<!-- ===================== LICENSE TABLE ===================== -->
 <section class="top-section">
- 
-  <!-- ===================== LICENSE TABLE ===================== -->
-  <div class="card mb-4">
-    <div class="card-header bg-primary text-white">All Licenses</div>
-    <div class="card-body">
-      <table class="table table-bordered table-striped" id="licenseTable">
-        <thead class="table-dark">
-          <tr>
-            <th>License ID</th>
-            <th>Version</th>
-            <th>Install Date</th>
-            <th>End Date</th>
-            <th>Customer ID</th>
-            <th>Product ID</th>
-            <th>Description</th>
-            <th>Release Year</th>
-            <th>Select</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-      <button class="btn btn-secondary" onclick="loadLicenses()">Refresh</button>
-    </div>
-  </div>
 
-  <!-- ===================== INSERT FORM ===================== -->
-  <div class="card mb-4">
-    <div class="card-header bg-success text-white">Insert New License</div>
-    <div class="card-body">
-      <form id="insertForm">
-        <div class="row g-3">
-          <div class="col-md-4">
-            <label class="form-label">License ID</label>
-            <input type="text" class="form-control" name="licenseid" required>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">Version</label>
-            <input type="text" class="form-control" name="version" required>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">Install Date</label>
-            <input type="date" class="form-control" name="installdate" required>
-          </div>
+<div class="card mb-4">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <span>All Licenses</span>
 
-          <div class="col-md-4">
-            <label class="form-label">End Date</label>
-            <input type="date" class="form-control" name="enddate" required>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">Customer ID</label>
-            <input type="text" class="form-control" name="customerid" required>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">Product ID</label>
-            <input type="text" class="form-control" name="productid" required>
-          </div>
+        <div>
+            <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#insertModal">
+                Add License
+            </button>
 
-          <div class="col-md-6">
-            <label class="form-label">Description</label>
-            <input type="text" class="form-control" name="description" required>
-          </div>
-          <div class="col-md-6">
-            <label class="form-label">Release Year</label>
-            <input type="text" class="form-control" name="releaseyear" required>
-          </div>
+            <button class="btn btn-warning btn-sm" id="openUpdateModalBtn" disabled data-bs-toggle="modal" data-bs-target="#updateModal">
+                Update Selected
+            </button>
         </div>
-
-        <button class="btn btn-success mt-3" type="submit">Insert License</button>
-      </form>
     </div>
-  </div>
 
-  <!-- ===================== UPDATE FORM ===================== -->
-  <div class="card mb-4">
-    <div class="card-header bg-warning">Update Selected License</div>
     <div class="card-body">
-      <form id="updateForm">
-        <div class="row g-3">
-          <div class="col-md-4">
-            <label class="form-label">License ID (read‑only)</label>
-            <input type="text" class="form-control" name="licenseid" readonly>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">Version</label>
-            <input type="text" class="form-control" name="version" required>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">Install Date</label>
-            <input type="date" class="form-control" name="installdate" required>
-          </div>
+        <table class="table table-bordered table-striped" id="licenseTable">
+            <thead class="table-dark">
+                <tr>
+                    <th>License ID</th>
+                    <th>Version</th>
+                    <th>Install Date</th>
+                    <th>End Date</th>
+                    <th>Customer ID</th>
+                    <th>Product ID</th>
+                    <th>Description</th>
+                    <th>Release Year</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
 
-          <div class="col-md-4">
-            <label class="form-label">End Date</label>
-            <input type="date" class="form-control" name="enddate" required>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">Customer ID</label>
-            <input type="text" class="form-control" name="customerid" required>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">Product ID</label>
-            <input type="text" class="form-control" name="productid" required>
-          </div>
-
-          <div class="col-md-6">
-            <label class="form-label">Description</label>
-            <input type="text" class="form-control" name="description" required>
-          </div>
-          <div class="col-md-6">
-            <label class="form-label">Release Year</label>
-            <input type="text" class="form-control" name="releaseyear" required>
-          </div>
-        </div>
-
-        <button class="btn btn-warning mt-3" type="submit">Update License</button>
-      </form>
+        <button class="btn btn-secondary" onclick="loadLicenses()">Refresh</button>
     </div>
-  </div>
+</div>
 
 </section>
-<section class="middle-columns">
 
-    <!-- CENTER COLUMN: MIAMI IMAGES -->
+<!-- ========================================================= -->
+<!-- ===================== INSERT MODAL ======================= -->
+<!-- ========================================================= -->
+
+<div class="modal fade" id="insertModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">Insert New License</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="insertForm">
+          <div class="row g-3">
+
+            <div class="col-md-4">
+              <label class="form-label">License ID</label>
+              <input type="text" class="form-control" name="licenseid" required>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">Version</label>
+              <input type="text" class="form-control" name="version" required>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">Install Date</label>
+              <input type="date" class="form-control" name="installdate" required>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">End Date</label>
+              <input type="date" class="form-control" name="enddate" required>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">Customer ID</label>
+              <input type="text" class="form-control" name="customerid" required>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">Product ID</label>
+              <input type="text" class="form-control" name="productid" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Description</label>
+              <input type="text" class="form-control" name="description" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Release Year</label>
+              <input type="text" class="form-control" name="releaseyear" required>
+            </div>
+
+          </div>
+
+          <button class="btn btn-success mt-3" type="submit">Insert License</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================= -->
+<!-- ===================== UPDATE MODAL ======================= -->
+<!-- ========================================================= -->
+
+<div class="modal fade" id="updateModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title">Update Selected License</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="updateForm">
+          <div class="row g-3">
+
+            <div class="col-md-4">
+              <label class="form-label">License ID (read‑only)</label>
+              <input type="text" class="form-control" name="licenseid" readonly>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">Version</label>
+              <input type="text" class="form-control" name="version" required>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">Install Date</label>
+              <input type="date" class="form-control" name="installdate" required>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">End Date</label>
+              <input type="date" class="form-control" name="enddate" required>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">Customer ID</label>
+              <input type="text" class="form-control" name="customerid" required>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">Product ID</label>
+              <input type="text" class="form-control" name="productid" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Description</label>
+              <input type="text" class="form-control" name="description" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Release Year</label>
+              <input type="text" class="form-control" name="releaseyear" required>
+            </div>
+
+          </div>
+
+          <button class="btn btn-warning mt-3" type="submit">Update License</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================= -->
+<!-- REST OF YOUR PAGE (unchanged) -->
+<!-- ========================================================= -->
+
+<section class="middle-columns">
     <div class="mid-col">
         <img src="./images/miami1.jpg" style="width:48%; border-radius:5px;">
         <img src="./images/miami3.jpg" style="width:48%; border-radius:5px;">
     </div>
-    <!-- LEFT COLUMN: QUICK LINKS -->
+
     <div class="mid-col">
         <h3>Quick Links</h3>
         <hr>
@@ -245,7 +221,7 @@
             <li><a href="https://gamecocksonline.com/sports/mbball/cumestats/">Team Stats</a></li>
         </ul>
     </div>
-    <!-- RIGHT COLUMN: SITEMAP TABLE -->
+
     <div class="mid-col">
         <h3>Site Map</h3>
         <hr>
@@ -258,34 +234,40 @@
             <tr><td>TypeReviews</td><td><a href="reviews.html">Reviews</a></td><td>01/15/2026</td></tr>
         </table>
     </div>
-
 </section>
+
 <section class="sales">
 <div class="cta" id="contact">
     <h2>Talk to Sales</h2>
-    <span>Contact our enterprise sales team to discuss licensing, pricing, and deployment options.</span><BR>
+    <span>Contact our enterprise sales team to discuss licensing, pricing, and deployment options.</span><br>
     <a href="contacts.html">Contact Sales</a>
 </div>
 </section>
+
 <footer class="footer" style="text-align: center;">
     © 2026 Greenville Associates Enterprise Software. All rights reserved.
 </footer>
-</div>    
-<script>
 
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// Enable update button only when a row is selected
+document.addEventListener("click", function(e) {
+    if (e.target.classList.contains("select-license")) {
+        document.getElementById("openUpdateModalBtn").disabled = false;
+    }
+});
 </script>
+
 </body>
 </html>
+🎉 What’s Next?
+If you want, I can also:
 
-
-
-
-
-
-
-
-
-
-
-
-
+✔ Update your mylicenses.js so it automatically fills the update modal
+✔ Add animations or better styling for the modals
+✔ Add delete confirmation modal
+✔ Add toast notifications for insert/update success
+Just tell me what direction you want to take this.
