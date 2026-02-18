@@ -6,31 +6,10 @@
     <title>USC242 HomePage</title>
 
     <!-- Top menu bar -->
-    <link rel="stylesheet" href="site.css">
-
+    <link rel="stylesheet" href="./css/site.css">
     <!-- Inner flex layout -->
-    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="./css/layout.css">
 <style>
-* {
-  box-sizing: border-box;
-}
-
-/* Create three equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 33.33%;
-  padding: 10px;
-  height: 300px;
-  vertical-align: top;
-  text-align: center;
-  }
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
 </style>
 </head>
 
@@ -58,7 +37,7 @@
 <!-- EVERYTHING BELOW THIS POINT IS CONTROLLED BY layout.css -->
 
 <header>
-    <h1>Assignment7</h1>
+    <h1>Assignment9</h1>
     <p>Introduction To Javascript</p>
 </header>
 
@@ -66,17 +45,16 @@
 <BR><BR>
 <div class="row">
   <div class="column" style="background-color:#aaa; border: 2px solid black;" onclick="callupdategeometry();">
-    <h2>Geometry</h2>
-    <p id="outputtarget"><img id="sometriangle" src="./images/triangle.png" style="visibility: hidden;"></p>
+    <h2>Tank1</h2>
+    <p id="outputtarget"><img id="tank1" src="./images/fishtank.jpeg" width="300px" height="300px"></p>
     </div>
   <div class="column" style="background-color:#bbb; border: 2px solid black;">
-    <h2>Select a Date:</h2>
-    <input type="date" id="somedayid" name="somedayname" onchange="calltextupdate();">
-    <p id="outputtext"></p>
-   </div>
+    <h2>Tank2</h2>
+    <p><img id="tank2" src="./images/fishtank.jpeg" width="300px" height="300px"></p>
+  </div>
   <div class="column" style="background-color:#ccc; border: 2px solid black;" onclick="callimageframer();">
-    <h2>Frame Image</h2>
-    <p><img id="sunshineimage" src="./images/sunshine.png"</p>
+    <h2>Tank3</h2>
+    <p><img id="tank3" src="./images/fishtank.jpeg" width="300px" height="300px"></p>
   </div>
 </div>
 </section>
