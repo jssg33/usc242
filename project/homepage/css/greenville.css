@@ -156,3 +156,35 @@ text-align: center;
     border-bottom: 1px solid #d1e7d9;
     text-align: left;
 }
+
+/* ================================
+   RIGHT‑SIDE MATERIAL ICON BUTTONS
+   ================================ */
+.right-links {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Force Material Web Components to use white */
+.right-links md-text-button {
+    --md-sys-color-primary: #ffffff;
+    color: #ffffff;
+}
+
+/* Material Icons: white + 18px */
+.right-links .material-icons {
+    color: #ffffff;
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+    line-height: 18px;
+}
+
+.main-content
+{
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 60px;
+    max-width: 1580px;
+}
