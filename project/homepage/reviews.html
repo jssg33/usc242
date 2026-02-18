@@ -111,28 +111,31 @@
     </div>
 <section class="top-section">
 
-    <!-- HEADER BAR WITH ADD BUTTON -->
-    <div class="d-flex justify-content-start align-items-center mb-3">
+    <!-- FULL-WIDTH HEADER BAR -->
+    <div class="mb-3 w-100 text-start">
         <button class="btn btn-success custom-add-btn" data-bs-toggle="modal" data-bs-target="#addModal">
             Add Review
         </button>
     </div>
 
     <!-- FULL-WIDTH TABLE -->
-    <table class="table table-hover review-table w-100" id="reviewTable">
-        <thead class="table-header-green">
-            <tr>
-                <th data-col="uid">Author</th>
-                <th data-col="rating">Rating</th>
-                <th data-col="title">Title</th>
-                <th data-col="review">Review</th>
-                <th data-col="verifiedPurchase">Verified</th>
-                <th data-col="dateWritten">Date Written</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+    <div class="table-responsive w-100">
+        <table class="table table-hover review-table w-100" id="reviewTable">
+            <thead class="table-header-green">
+                <tr>
+                    <th data-col="uid">Author</th>
+                    <th data-col="rating">Rating</th>
+                    <th data-col="title">Title</th>
+                    <th data-col="review">Review</th>
+                    <th data-col="verifiedPurchase">Verified</th>
+                    <th data-col="dateWritten">Date Written</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
 
 <!-- ADD REVIEW MODAL -->
 <div class="modal fade" id="addModal" tabindex="-1">
