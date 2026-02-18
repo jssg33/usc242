@@ -189,3 +189,5 @@ text-align: center;
     margin-bottom: 60px;
     max-width: 1580px;
 }
+
+.material-icons { color: white !important; }
