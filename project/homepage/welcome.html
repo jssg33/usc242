@@ -126,12 +126,31 @@
     </div>
 
    <section class="top-section">   
-<!-- HERO SECTION -->
-<section class="hero" style="background-color: white; color: black;">
-    <h2 style="text-align: center;">Latest Product Releases</h2>
-    <span>Your central hub for software licensing, product access, and enterprise resources.</span>
-</section>
-</section>
+   <div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-12">
+            <table id="releaseTable" class="table table-striped table-bordered table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th data-col="vendor">Vendor</th>
+                        <th data-col="majorCodeBase">Major Code</th>
+                        <th data-col="majorCodeDescription">Major Description</th>
+                        <th data-col="minorCodeVariant">Minor Code</th>
+                        <th data-col="minorCodeDescription">Minor Description</th>
+                        <th data-col="releaseDate">Release Date</th>
+                        <th data-col="updates">Updates (JSON)</th>
+                        <th style="width: 120px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+   </div>
+
+   
+   
+   </section>
 <!-- THREE COLUMN SECTION -->
 <section class="welcome-columns">
 
@@ -186,5 +205,79 @@
 </footer>
 
 </div>
+   <script>
+const API_RELEASES = "https://api242.onrender.com/api/releases";
+let releases = [];
+let sortDirection = 1;
+
+// Load releases
+async function loadReleases() {
+    const res = await fetch(API_RELEASES);
+    releases = await res.json();
+    renderReleaseTable(releases);
+}
+
+function renderReleaseTable(data) {
+    const tbody = document.querySelector("#releaseTable tbody");
+    tbody.innerHTML = "";
+
+    data.forEach(r => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${r.vendor}</td>
+                <td>${r.majorCodeBase}</td>
+                <td>${r.majorCodeDescription}</td>
+                <td>${r.minorCodeVariant}</td>
+                <td>${r.minorCodeDescription}</td>
+                <td>${new Date(r.releaseDate).toLocaleDateString()}</td>
+                <td><pre class="m-0">${JSON.stringify(r.updates, null, 2)}</pre></td>
+                <td>
+                    <button class="btn btn-sm btn-warning" onclick='openReleaseUpdateModal(${JSON.stringify(r)})'>
+                        Update
+                    </button>
+                </td>
+            </tr>
+        `;
+    });
+}
+
+// Sorting
+document.querySelectorAll("#releaseTable th[data-col]").forEach(th => {
+    th.addEventListener("click", () => {
+        const col = th.dataset.col;
+        sortDirection *= -1;
+        releases.sort((a, b) => (a[col] > b[col] ? 1 : -1) * sortDirection);
+        renderReleaseTable(releases);
+    });
+});
+
+// Open update modal
+function openReleaseUpdateModal(release) {
+    const form = document.querySelector("#updateReleaseForm");
+    for (let key in release) {
+        if (form[key]) form[key].value = release[key];
+    }
+    new bootstrap.Modal(document.getElementById("updateReleaseModal")).show();
+}
+
+// Update release
+async function updateRelease() {
+    const form = document.querySelector("#updateReleaseForm");
+    const data = Object.fromEntries(new FormData(form));
+    const id = data._id;
+
+    await fetch(`${API_RELEASES}/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    });
+
+    loadReleases();
+    bootstrap.Modal.getInstance(document.getElementById("updateReleaseModal")).hide();
+}
+
+loadReleases();
+</script>
+
 </body>
 </html>
