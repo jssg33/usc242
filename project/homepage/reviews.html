@@ -110,14 +110,17 @@
         <hr>
     </div>
 <section class="top-section">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
+
+    <!-- HEADER BAR WITH ADD BUTTON -->
+    <div class="d-flex justify-content-start align-items-center mb-3">
+        <button class="btn btn-success custom-add-btn" data-bs-toggle="modal" data-bs-target="#addModal">
             Add Review
         </button>
     </div>
 
-    <table class="table table-striped table-hover" id="reviewTable">
-        <thead class="table-dark">
+    <!-- FULL-WIDTH TABLE -->
+    <table class="table table-hover review-table w-100" id="reviewTable">
+        <thead class="table-header-green">
             <tr>
                 <th data-col="uid">Author</th>
                 <th data-col="rating">Rating</th>
@@ -130,9 +133,6 @@
         </thead>
         <tbody></tbody>
     </table>
-
-
-
 
 <!-- ADD REVIEW MODAL -->
 <div class="modal fade" id="addModal" tabindex="-1">
