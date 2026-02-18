@@ -61,6 +61,7 @@ nav.main-nav a:hover {
 /* ----------------------------- */
 
 .top-section {
+    margin-top: 40px;
     display: flex;
     gap: 20px;
     padding: 20px;
@@ -71,6 +72,7 @@ nav.main-nav a:hover {
     margin: 0 auto;
     background: white;
     border-radius: 5px;
+    margin-bottom: 80px;
 }
 
 /* Important text = 30% */
