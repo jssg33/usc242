@@ -59,7 +59,7 @@
   <div align="center" id="banner"><span id="userGreeting">Welcome Guest</span></div>
 
   <!-- Cart Summary and Items -->
-  <div class="container mt-5">
+  <div class="container2 mt-5">
     <div id="cart-summary" class="mb-4"></div>
   <button onlick="setCartTotals();" style="width: 180px; font-size: 8pt;">RefreshTotals</button><BR><BR>
   <div>
@@ -199,11 +199,11 @@
       const response = await fetch(`${baseUrl}/api/Cartitem/cart/${cartId}`);
       const items = await response.json();
 
-      const container = document.getElementById("cart-items");
-      container.innerHTML = "";
+      const container2 = document.getElementById("cart-items");
+      container2.innerHTML = "";
 
       if (!items || items.length === 0) {
-        container.innerHTML = `
+        container2.innerHTML = `
           <div class="alert alert-info text-center" role="alert">
             No items found in this cart.
           </div>
@@ -228,7 +228,7 @@
     <div class="col-1">$${typeof item.ustaxtotal === "number" ? item.ustaxtotal.toFixed(2) : "0.00"}</div> <!-- NEW -->
     <div class="col-1">$${typeof item.itemtotals === "number" ? item.itemtotals.toFixed(2) : "0.00"}</div>
   `;
-  container.appendChild(row);
+  container2.appendChild(row);
 });
     }
 

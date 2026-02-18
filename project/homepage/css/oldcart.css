@@ -43,7 +43,7 @@ button { width: 150px; height: 60px; }
 
 body { font-family: Arial, sans-serif; padding: 20px; }
 h1 { text-align: center; }
-.container { width: 1500px; }
+.container2 { width: 1500px; }
   
 #catalogue { min-width: 80%; max-width: 30%; font-size: 9pt; height: 300px; }
 #someselected { min-width: 80%; max-width: 450px; font-size: 9pt;  height: 300px;}
@@ -89,8 +89,8 @@ h1 { text-align: center; }
   width: 10%;   /* Adults & Children columns */
   text-align: center;
 }
-/* Master container spans full width */
-/* Master container spans full width and centers content */
+/* Master container2 spans full width */
+/* Master container2 spans full width and centers content */
 .master-row {
   display: flex;
   /*justify-content: center;   center horizontally */

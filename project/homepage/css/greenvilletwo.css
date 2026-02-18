@@ -44,7 +44,7 @@ button { width: 150px; height: 60px; }
 
 body { font-family: Arial, sans-serif; padding: 20px; }
 h1 { text-align: center; }
-.container { width: 1500px; }
+.container2 { width: 1500px; }
   
 #catalogue { min-width: 80%; max-width: 30%; font-size: 9pt; height: 300px; }
 #someselected { min-width: 80%; max-width: 450px; font-size: 9pt;  height: 300px;}
@@ -90,8 +90,8 @@ h1 { text-align: center; }
   width: 10%;   /* Adults & Children columns */
   text-align: center;
 }
-/* Master container spans full width */
-/* Master container spans full width and centers content */
+/* Master container2 spans full width */
+/* Master container2 spans full width and centers content */
 .master-row {
   display: flex;
   /*justify-content: center;   center horizontally */
@@ -386,7 +386,7 @@ left:20px;
       align-items: center;
   }
   
-  .features .container {
+  .features .container2 {
       display: flex;
       flex-wrap: wrap;
       gap: 15px;
@@ -490,7 +490,7 @@ left:20px;
         margin-left: 15px;
       }
   
-      .panel-container {
+      .panel-container2 {
         display: flex;
         flex-direction: row;
         gap: 15px;
@@ -521,7 +521,7 @@ left:20px;
         align-items: center;
       }
   
-      .features .container {
+      .features .container2 {
         display: flex;
         flex-wrap: wrap;
         gap: 15px;
@@ -978,7 +978,7 @@ width: 100%;
   padding-top: 20px;  /* Moves login up slightly */
 }
 
-.login-container {
+.login-container2 {
   position: relative;
   z-index: 2;
   background: rgba(255, 255, 255, 0.9);
@@ -991,7 +991,7 @@ width: 100%;
   max-height: 320px;
   backdrop-filter: blur(10px);
   animation: fadeIn 1s ease-in-out;
-  transform: translateY(-10%); /* Moves login container up */
+  transform: translateY(-10%); /* Moves login container2 up */
   font-size: 11pt; 
 }
 
@@ -1301,10 +1301,10 @@ nav.main-nav a:hover,
 
 /* Compress Material UI text buttons */
 .right-links md-text-button {
-    --md-text-button-container-padding-horizontal: 2px;
-    --md-text-button-container-padding-vertical: 0px;
+    --md-text-button-container2-padding-horizontal: 2px;
+    --md-text-button-container2-padding-vertical: 0px;
     --md-text-button-label-text-size: 14px;
-    --md-text-button-container-height: 25px;
+    --md-text-button-container2-height: 25px;
 }
 
 /* Link defaults */
@@ -1321,9 +1321,9 @@ a:visited {
     color: #4ade80;
 }
 /* ----------------------------------
-   MAIN CONTAINERS
+   MAIN container2S
 ---------------------------------- */
-.container {
+.container2 {
     position: relative;
     width: 90%;
     margin: 30px auto;
@@ -1335,7 +1335,7 @@ a:visited {
     border: 1px solid #d1e7d9;
 }
 
-.gacontainer,
+.gacontainer2,
 .container2 {
     position: relative;
     margin: 0 auto;

@@ -51,11 +51,11 @@
 </header>
 
 <!-- MAIN CONTENT -->
-<div class="container py-5">
+<div class="container2 py-5">
 
     <h3 class="mb-4">Available Products</h3>
 
-    <div id="licenses-container" class="row g-4"></div>
+    <div id="licenses-container2" class="row g-4"></div>
 </div>
 
 <!-- FOOTER COLUMNS -->
@@ -108,10 +108,10 @@ $(document).ready(function () {
         success: function (products) {
             console.log("✅ Products retrieved:", products);
 
-            const container = $("#licenses-container");
+            const container2 = $("#licenses-container2");
 
             function renderProducts(list) {
-                container.empty();
+                container2.empty();
 
                 list.forEach(function (p) {
 
@@ -153,7 +153,7 @@ $(document).ready(function () {
                         </div>
                     `;
 
-                    container.append(card);
+                    container2.append(card);
                 });
             }
 
@@ -162,7 +162,7 @@ $(document).ready(function () {
 
         error: function (xhr, status, error) {
             console.error("❌ Error fetching products:", status, error);
-            $("#licenses-container").html(
+            $("#licenses-container2").html(
                 `<div class="alert alert-danger">Error loading products: ${error}</div>`
             );
         }

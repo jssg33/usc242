@@ -77,7 +77,7 @@ width: 100%;
   padding-top: 20px;  /* Moves login up slightly */
 }
 
-.login-container {
+.login-container2 {
   position: relative;
   z-index: 2;
   background: rgba(255, 255, 255, 0.9);
@@ -90,7 +90,7 @@ width: 100%;
   max-height: 320px;
   backdrop-filter: blur(10px);
   animation: fadeIn 1s ease-in-out;
-  transform: translateY(-10%); /* Moves login container up */
+  transform: translateY(-10%); /* Moves login container2 up */
   font-size: 11pt; 
 }
 
