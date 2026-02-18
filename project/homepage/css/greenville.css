@@ -191,3 +191,38 @@ text-align: center;
 }
 
 .material-icons { color: white !important; }
+
+//SOME BOOTSTRAP GRID FORMATTING FOR GREEN AND BLACK
+
+<style>
+    /* Black header with green text */
+    .table-header-green {
+        background-color: #000 !important;
+        color: #00c853 !important; /* bright green */
+    }
+
+    /* Table hover row highlight */
+    .review-table tbody tr:hover {
+        background-color: #e8f5e9 !important; /* pale green */
+    }
+
+    /* Add Review button styling */
+    .custom-add-btn {
+        background-color: #00c853 !important;
+        border-color: #00c853 !important;
+        color: #000 !important;
+        font-weight: 600;
+    }
+
+    .custom-add-btn:hover {
+        background-color: #009624 !important;
+        border-color: #009624 !important;
+        color: white !important;
+    }
+
+    /* Make table truly full width */
+    #reviewTable {
+        width: 100% !important;
+    }
+</style>
+
