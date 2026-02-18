@@ -117,43 +117,47 @@
 
 <!-- ===================== LICENSE TABLE ===================== -->
 <section class="top-section">
-    
-<div class="card mb-12">
-    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-        <span>All Licenses</span>
 
-        <div>
-            <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#insertModal">
-                Add License
-            </button>
+    <!-- BUTTON BAR ABOVE THE GRID -->
+    <div class="mb-3 w-100 text-start">
+        <button class="btn btn-success custom-add-btn" data-bs-toggle="modal" data-bs-target="#insertModal">
+            Add License
+        </button>
 
-            <button class="btn btn-warning btn-sm" id="openUpdateModalBtn" disabled data-bs-toggle="modal" data-bs-target="#updateModal">
-                Update Selected
+        <button class="btn btn-warning custom-update-btn" id="openUpdateModalBtn" disabled
+                data-bs-toggle="modal" data-bs-target="#updateModal">
+            Update Selected
+        </button>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header table-header-green">
+            <span>All Licenses</span>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-bordered table-hover w-100" id="licenseTable">
+                <thead class="table-header-green">
+                    <tr>
+                        <th>License ID</th>
+                        <th>Version</th>
+                        <th>Install Date</th>
+                        <th>End Date</th>
+                        <th>Customer ID</th>
+                        <th>Product ID</th>
+                        <th>Description</th>
+                        <th>Release Year</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <button class="btn btn-secondary custom-refresh-btn" onclick="loadLicenses()">
+                Refresh
             </button>
         </div>
     </div>
-
-    <div class="card-body">
-        <table class="table table-bordered table-striped" id="licenseTable">
-            <thead class="table-dark">
-                <tr>
-                    <th>License ID</th>
-                    <th>Version</th>
-                    <th>Install Date</th>
-                    <th>End Date</th>
-                    <th>Customer ID</th>
-                    <th>Product ID</th>
-                    <th>Description</th>
-                    <th>Release Year</th>
-                    <th>Select</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-
-        <button class="btn btn-secondary" onclick="loadLicenses()">Refresh</button>
-    </div>
-</div>
 
 </section>
 
