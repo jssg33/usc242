@@ -73,6 +73,7 @@ nav.main-nav a:hover {
     background: white;
     border-radius: 5px;
     margin-bottom: 80px;
+    overflow-y: auto;
 }
 
 /* Important text = 30% */
