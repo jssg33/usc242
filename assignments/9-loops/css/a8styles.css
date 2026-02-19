@@ -6,7 +6,7 @@ body { background-color: purple; }
 h2 { color: green; }
 h4 { color: black; }
 .footer { display: flex; justify-content: center; align-items: center; text-align: center; color: white; background-color: black; min-height: 70px; max-height: 70px; }
-#topnavbar { min-height: 70px; max-height: 70px; background-color: black; color: white; }
+#topnavbar { min-height: 40px; max-height: 42px; background-color: black; color: white; vertical-align: middle;}
 
 /* Desktop defaults */
 #selector { display: block; }
