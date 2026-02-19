@@ -330,6 +330,7 @@ footer {
     .ideas {
         flex-direction: column;
     }
+
 }
 /* -------------------------------------------------------- */
 /* MASTER CONTAINER & INCREMENTAL NONSTANDARD UPDATES     */
@@ -347,13 +348,13 @@ li
     margin-left: -5px;
     text-decoration: none;    
 }
-.assign7 .row {
+.assign9 .row {
     display: flex;
     gap: 20px;
     padding: 20px;
 }
 
-.assign7 .column {
+.assign9 .column {
     flex: 1;
     padding: 20px;
     border-radius: 5px;
