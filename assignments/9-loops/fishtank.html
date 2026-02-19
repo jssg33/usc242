@@ -146,40 +146,49 @@
 </section>
 
 <script>
-// Function to create bubbles inside a specific tank container
+// Color sets for each tank
+const bubbleColors = {
+  1: { bg: 'rgba(255, 182, 193, 0.55)', glow: 'rgba(255, 105, 180, 0.7)' },   // pink / hot pink glow
+  2: { bg: 'rgba(144, 238, 144, 0.55)', glow: 'rgba(50, 205, 50, 0.6)'   },   // light green / lime glow
+  3: { bg: 'rgba(173, 216, 230, 0.55)', glow: 'rgba(100, 149, 237, 0.7)' }    // light blue / cornflower glow
+};
+
 function addBubblesToTank(tankElement, bubbleCount = 12) {
+  const tankNumber = tankElement.dataset.tank;
+  const colors = bubbleColors[tankNumber] || { bg: 'rgba(255,255,255,0.4)', glow: 'rgba(255,255,255,0.5)' };
+
   for (let i = 0; i < bubbleCount; i++) {
     const bubble = document.createElement('div');
     bubble.classList.add('bubble');
 
-    // Randomize bubble properties
-    const size = Math.random() * 20 + 8;          // 8–28px
-    const left = Math.random() * 90 + 5;          // 5–95%
-    const duration = Math.random() * 8 + 6;       // 6–14 seconds
-    const delay = Math.random() * 6;              // 0–6s delay
+    const size = Math.random() * 20 + 8;        // 8–28 px
+    const left = Math.random() * 90 + 5;        // spread across width
+    const duration = Math.random() * 8 + 6;     // 6–14 seconds
+    const delay = Math.random() * 6;
 
     bubble.style.width = `${size}px`;
     bubble.style.height = `${size}px`;
     bubble.style.left = `${left}%`;
+    bubble.style.background = colors.bg;
+    bubble.style.boxShadow = `0 0 12px ${colors.glow}, inset 0 2px 6px rgba(255,255,255,0.4)`;
     bubble.style.animationDuration = `${duration}s`;
     bubble.style.animationDelay = `${delay}s`;
 
     tankElement.appendChild(bubble);
 
-    // Optional: remove bubble after animation to prevent DOM buildup
+    // Remove and respawn one bubble to keep it going forever
     bubble.addEventListener('animationend', () => {
       bubble.remove();
-      // Re-create one new bubble to keep the effect going forever
       addBubblesToTank(tankElement, 1);
     });
   }
 }
 
-// Find all tank wrappers and add bubbles when page loads
+// Initialize bubbles when page loads
 document.addEventListener('DOMContentLoaded', () => {
   const tanks = document.querySelectorAll('.tank-wrapper');
   tanks.forEach(tank => {
-    addBubblesToTank(tank, 12);   // 12 bubbles per tank – feels lively but not overcrowded
+    addBubblesToTank(tank, 12);   // start with 12 bubbles per tank
   });
 });
 </script>
