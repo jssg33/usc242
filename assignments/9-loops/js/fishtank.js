@@ -1,9 +1,10 @@
 // Colors per tank
 const bubbleColors = {
-  1: { bg: 'rgba(255, 182, 193, 0.55)', glow: 'rgba(255, 105, 180, 0.7)' },    // pink
-  2: { bg: 'rgba(144, 238, 144, 0.55)', glow: 'rgba(50, 205, 50, 0.6)'   },    // light green
-  3: { bg: 'rgba(173, 216, 230, 0.55)', glow: 'rgba(100, 149, 237, 0.7)' }     // light blue
+  1: { bg: 'rgba(255, 182, 193, 0.75)', glow: 'rgba(255, 105, 180, 0.9)' },
+  2: { bg: 'rgba(144, 238, 144, 0.75)', glow: 'rgba(50, 205, 50, 0.85)' },
+  3: { bg: 'rgba(173, 216, 230, 0.75)', glow: 'rgba(100, 149, 237, 0.9)' }
 };
+
 
 function addBubblesToTank(tankElement, bubbleCount = 12) {
   const tankNumber = tankElement.dataset.tank;
@@ -18,11 +19,10 @@ function addBubblesToTank(tankElement, bubbleCount = 12) {
     const left = 10 + Math.random() * (100 - 20);  // 10% to 90%
     const duration = Math.random() * 8 + 7;        // 7–15 seconds
     const delay = Math.random() * 5;
-
     bubble.style.width = `${size}px`;
     bubble.style.height = `${size}px`;
     bubble.style.left = `${left}%`;
-    bubble.style.bottom = '15px';                 // start 15px above bottom (partially visible) of tank
+    bubble.style.bottom = '10px';
     bubble.style.background = colors.bg;
     bubble.style.boxShadow = `0 0 12px ${colors.glow}, inset 0 2px 6px rgba(255,255,255,0.4)`;
     bubble.style.animationDuration = `${duration}s`;
