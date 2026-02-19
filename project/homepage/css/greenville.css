@@ -286,5 +286,17 @@ text-align: center;
         color: white !important;
     }
 
+//RECOMMENDED STYLING OF MATERIAL UI ICONS - BASE IS TO SIZE FOR TEXT
+    md-text-button.icon-only { 
+        --md-text-button-container-height: 32px; 
+        --md-text-button-container-shape: 4px; 
+        padding: 0; min-width: 32px; 
+    } 
+    
+    md-text-button.icon-only .material-icons 
+    { 
+        font-size: 20px; 
+        line-height: 1; 
+    }
 
 
