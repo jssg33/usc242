@@ -269,7 +269,17 @@ footer {
         width: 300px;
         order: 2;
     }
+    .column
+    {
+        text-align: center;
+    }
 
+    .column.img
+    {
+        text-align: center;
+    }
+
+    
     li
     {
     magin-top: 20px;
