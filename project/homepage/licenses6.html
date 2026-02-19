@@ -13,13 +13,11 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="./js/licenses.js"></script>
 <script src="./js/cart.js"></script>
-<style>
-
-</style>
 </head>
 
 <body onload="checkpll(); checkUserStatus(); displayProfilePicture();">
 <div class="container2">
+
 <!-- TOP NAV -->
 <div class="topnav">
     <div class="dropdown">
@@ -39,36 +37,29 @@
         </div>
     </div>
 
-   <div class="right-links" style="display:flex; gap:6px; align-items:center; color: white;">
-
-  <md-text-button class="icon-only" href="index.html" aria-label="Home" title="Home">
-    <span class="material-icons" style="color:white;">home</span>
-  </md-text-button>
-
-  <md-text-button class="icon-only" href="userhelp.html" aria-label="Help" title="Help">
-    <span class="material-icons" style="color:white;">help_outline</span>
-  </md-text-button>
-
-  <md-text-button class="icon-only" href="usernotices.html" aria-label="Notifications" title="Notifications">
-    <span class="material-icons" style="color:white;">notifications</span>
-  </md-text-button>
-
-  <md-text-button class="icon-only" href="login.html" aria-label="Login" title="Login">
-    <span class="material-icons" style="color:white;">login</span>
-  </md-text-button>
-
-  <md-text-button class="icon-only" href="logout.html" aria-label="Logout" title="Logout">
-    <span class="material-icons" style="color:white;">logout</span>
-  </md-text-button>
-
-   <md-text-button class="icon-only" href="myprofile.html" aria-label="My Profile" title="My Profile">
-    <span class="material-icons" style="color:white;">person</span>
-  </md-text-button>
-
-   <md-text-button class="icon-only" href="mycart.html" aria-label="My Cart" title="My Cart">
-    <span class="material-icons" style="color:white;">shopping_cart</span>
-  </md-text-button>
-</div>
+    <div class="right-links" style="display:flex; gap:6px; align-items:center; color: white;">
+        <md-text-button class="icon-only" href="index.html" aria-label="Home" title="Home">
+            <span class="material-icons" style="color:white;">home</span>
+        </md-text-button>
+        <md-text-button class="icon-only" href="userhelp.html" aria-label="Help" title="Help">
+            <span class="material-icons" style="color:white;">help_outline</span>
+        </md-text-button>
+        <md-text-button class="icon-only" href="usernotices.html" aria-label="Notifications" title="Notifications">
+            <span class="material-icons" style="color:white;">notifications</span>
+        </md-text-button>
+        <md-text-button class="icon-only" href="login.html" aria-label="Login" title="Login">
+            <span class="material-icons" style="color:white;">login</span>
+        </md-text-button>
+        <md-text-button class="icon-only" href="logout.html" aria-label="Logout" title="Logout">
+            <span class="material-icons" style="color:white;">logout</span>
+        </md-text-button>
+        <md-text-button class="icon-only" href="myprofile.html" aria-label="My Profile" title="My Profile">
+            <span class="material-icons" style="color:white;">person</span>
+        </md-text-button>
+        <md-text-button class="icon-only" href="mycart.html" aria-label="My Cart" title="My Cart">
+            <span class="material-icons" style="color:white;">shopping_cart</span>
+        </md-text-button>
+    </div>
 </div>
 
 <header>
@@ -79,7 +70,6 @@
 <nav>
     <ul class="menu">
         <li><a href="#products">Products</a></li>
-
         <li class="dropdown">
             <a href="#deployment">Deployment ▾</a>
             <ul class="dropdown-content">
@@ -88,7 +78,6 @@
                 <li><a href="#hybrid">Hybrid</a></li>
             </ul>
         </li>
-
         <li class="dropdown">
             <a href="#licensing">Licensing ▾</a>
             <ul class="dropdown-content">
@@ -98,8 +87,6 @@
                 <li><a href="#enterprise">Enterprise License Types</a></li>
             </ul>
         </li>
-
-        <!-- ⭐ NEW PRICING MENU -->
         <li class="dropdown">
             <a href="#pricing">Pricing ▾</a>
             <ul class="dropdown-content">
@@ -110,24 +97,24 @@
                 <li><a href="#pricing-utility">Utility Model</a></li>
             </ul>
         </li>
-
         <li><a href="#contact">Contact Sales</a></li>
     </ul>
 </nav>
-    <div class="pageheader">
-        <hr>
-        <span align="center"><h4>Shop Available Products</h4></span>
-        <hr>
-    </div>
-        
+
+<div class="pageheader">
+    <hr>
+    <span align="center"><h4>Shop Available Products</h4></span>
+    <hr>
+</div>
+
 <section class="top-section">
     <div class="containerstuff">
-    <div id="licenses-container" class="row g-4"></div>
+        <div id="licenses-container" class="row g-4"></div>
     </div>
 </section>
+
 <!-- FOOTER COLUMNS -->
 <section class="welcome-columns">
-
     <div class="welcome-card welcome-images">
         <img src="./images/miami1.jpg">
         <img src="./images/miami3.jpg">
@@ -158,7 +145,6 @@
             <tr><td>TypeReviews</td><td><a href="reviews.html">Reviews</a></td></tr>
         </table>
     </div>
-
 </section>
 
 <footer>
@@ -173,54 +159,49 @@ $(document).ready(function () {
         url: "https://api242.onrender.com/products",
         method: "GET",
         success: function (products) {
-            console.log("✅ Products retrieved:", products);
+            console.log("Products retrieved:", products);
 
-            const container2 = $("#licenses-container2");
+            const container = $("#licenses-container");
 
             function renderProducts(list) {
-                container2.empty();
+                container.empty();
+
+                if (list.length === 0) {
+                    container.html('<div class="col-12"><div class="alert alert-info">No products available at this time.</div></div>');
+                    return;
+                }
 
                 list.forEach(function (p) {
-
                     const card = `
                         <div class="col-md-6 col-lg-4">
                             <div class="card h-100 shadow-sm">
                                 <div class="card-body">
-
-                                    <h5 class="card-title">${p.SKEWID}</h5>
-
-                                    <p><strong>Description:</strong> ${p.description}</p>
-                                    <p><strong>Qty On Hand:</strong> ${p.qtyonhand}</p>
-                                    <p><strong>List Price:</strong> $${p.listprice}</p>
-                                    <p><strong>Vendor:</strong> ${p.vendorname}</p>
-
-                                    <p><strong>Record ID:</strong> ${p._id}</p>
+                                    <h5 class="card-title">${p.SKEWID || 'No SKU'}</h5>
+                                    <p><strong>Description:</strong> ${p.description || 'No description available'}</p>
+                                    <p><strong>Qty On Hand:</strong> ${p.qtyonhand ?? 'N/A'}</p>
+                                    <p><strong>List Price:</strong> $${Number(p.listprice || 0).toFixed(2)}</p>
+                                    <p><strong>Vendor:</strong> ${p.vendorname || 'Unknown'}</p>
+                                    <p><strong>Record ID:</strong> ${p._id || '—'}</p>
 
                                     <div class="mt-3">
-
-                                        <a href="book555.html?ProductId=${p.SKEWID}"
+                                        <a href="book555.html?ProductId=${p.SKEWID || ''}" 
                                            class="btn btn-success btn-sm mb-2">
-                                           Buy Product
+                                            Buy Product
                                         </a><br>
-
-                                        <a href="reviews.html?skewid=${p.SKEWID}"
+                                        <a href="reviews.html?skewid=${p.SKEWID || ''}" 
                                            class="btn btn-outline-secondary btn-sm mb-2">
-                                           View Reviews
+                                            View Reviews
                                         </a><br>
-
-                                        <a href="productdetails.html?skewid=${p.SKEWID}"
+                                        <a href="productdetails.html?skewid=${p.SKEWID || ''}" 
                                            class="btn btn-primary btn-sm">
-                                           More Info
+                                            More Info
                                         </a>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     `;
-
-                    containerstuff.append(card);
+                    container.append(card);
                 });
             }
 
@@ -228,15 +209,15 @@ $(document).ready(function () {
         },
 
         error: function (xhr, status, error) {
-            console.error("❌ Error fetching products:", status, error);
-            $("#licenses-container2").html(
-                `<div class="alert alert-danger">Error loading products: ${error}</div>`
+            console.error("Error fetching products:", status, error);
+            $("#licenses-container").html(
+                `<div class="col-12"><div class="alert alert-danger">Failed to load products: ${error}</div></div>`
             );
         }
     });
 });
 </script>
+
 </div>
 </body>
 </html>
-
