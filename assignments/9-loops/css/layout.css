@@ -284,24 +284,24 @@ footer {
     
     li
     {
-    magin-top: 20px;
+    margin-top: 20px;
     margin-left: -1px;
     text-decoration: none;    
     }
 
-    .assign7 .row {
+    .assign9 .row {
         flex-direction: column;
         gap: 15px;
         padding: 10px;
     }
 
-    .assign7 .column {
+    .assign9 .column {
         width: 100%;
         padding: 15px;
         text-align: center;
     }
 
-    .assign7 img {
+    .assign9 img {
         max-width: 80%;
         height: auto;
         margin: 0 auto;

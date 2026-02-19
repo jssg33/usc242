@@ -1,5 +1,7 @@
  .assign9 {
       max-width: 1200px;
+      height: 550px;
+      max-height: 550px;
       margin: 0 auto;
       padding: 20px;
     }

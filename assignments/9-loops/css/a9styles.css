@@ -31,4 +31,6 @@ footer { text-align: center; color: white; background-color: black; min-height: 
   #hiding { display: none; padding-left: 0; margin-top: 0; background-color: grey; position: relative; z-index: 999; width: 100%; }
 
   #hiding li { list-style: none; padding: 10px; border-bottom: 1px solid #ccc; color: teal; background-color: #222; width: 100%; }
+
+  .assign9 {flex-direction: column;}
 }
