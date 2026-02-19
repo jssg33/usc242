@@ -25,7 +25,7 @@
       background-color: #145214; /* header green */
       color: #fff;
     }
-  </style>
+</style>
 </head>
 <body>
 <div class="container2">
@@ -70,18 +70,15 @@
     <span class="material-icons" style="color:white;">logout</span>
   </md-text-button>
 
-  <!-- New: User Profile -->
   <md-text-button href="myprofile.html" aria-label="My Profile" title="My Profile">
-<!-- You can use 'account_circle' if you like that look better -->
     <span class="material-icons" style="color:white;">person</span>
   </md-text-button>
 
-  <!-- New: Cart Review -->
   <md-text-button href="mycart.html" aria-label="My Cart" title="My Cart">
     <span class="material-icons" style="color:white;">shopping_cart</span>
   </md-text-button>
 </div>
- </div>
+</div>
 
 <header>
     <h1>Greenville Enterprise Software</h1>
@@ -111,7 +108,6 @@
           </ul>
       </li>
 
-      <!-- ⭐ NEW PRICING MENU -->
       <li class="dropdown">
           <a href="#pricing">Pricing ▾</a>
           <ul class="dropdown-content">
@@ -127,14 +123,20 @@
   </ul>
 </nav>
 
-    <div class="pageheader">
-        <hr>
-        <span align="center"><h4>Testimonials</h4></span>
-        <hr>
-    </div>
+<div class="pageheader">
+    <hr>
+    <span align="center"><h4>Testimonials</h4></span>
+    <hr>
+</div>
 
- 
-  <section class="top-section">
+<!-- ADD TESTIMONIAL BUTTON -->
+<div style="text-align:right; margin:10px 20px;">
+  <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#testimonialModal">
+    + Add Testimonial
+  </button>
+</div>
+
+<section class="top-section">
 
     <table class="table table-striped-green table-bordered text-center align-middle">
       <thead>
@@ -147,48 +149,134 @@
         </tr>
       </thead>
       <tbody id="testimonial-body">
-        <!-- Rows will be inserted here -->
       </tbody>
     </table>
-  </div>
 </section>
-  <script>
-    async function loadTestimonials() {
-      try {
-        const response = await fetch("https://api242.onrender.com/api/testimonials");
-        const data = await response.json();
 
-        const tbody = document.getElementById("testimonial-body");
+<script>
+async function loadTestimonials() {
+  try {
+    const response = await fetch("https://api242.onrender.com/api/testimonials");
+    const data = await response.json();
 
-        data.forEach(item => {
-          const row = document.createElement("tr");
+    const tbody = document.getElementById("testimonial-body");
+    tbody.innerHTML = "";
 
-          row.innerHTML = `
-            <td>${item.authorName}</td>
-            <td>${item.productName}</td>
-            <td>${item.description}</td>
-            <td>${item.month}</td>
-            <td>${item.year}</td>
-          `;
+    data.forEach(item => {
+      const row = document.createElement("tr");
 
-          tbody.appendChild(row);
-        });
+      row.innerHTML = `
+        <td>${item.authorName}</td>
+        <td>${item.productName}</td>
+        <td>${item.description}</td>
+        <td>${item.month}</td>
+        <td>${item.year}</td>
+      `;
 
-      } catch (error) {
-        console.error("Error fetching testimonials:", error);
-      }
+      tbody.appendChild(row);
+    });
+
+  } catch (error) {
+    console.error("Error fetching testimonials:", error);
+  }
+}
+
+loadTestimonials();
+</script>
+
+<!-- MODAL FORM -->
+<div class="modal fade" id="testimonialModal" tabindex="-1" aria-labelledby="testimonialModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="testimonialModalLabel">Add New Testimonial</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="testimonialForm">
+          <div class="mb-3">
+            <label class="form-label">Author Name</label>
+            <input type="text" class="form-control" id="authorName" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Product Name</label>
+            <input type="text" class="form-control" id="productName" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" id="description" rows="3" required></textarea>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Month</label>
+              <input type="text" class="form-control" id="month" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Year</label>
+              <input type="number" class="form-control" id="year" required>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" onclick="submitTestimonial()">Save</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+async function submitTestimonial() {
+  const newTestimonial = {
+    authorName: document.getElementById("authorName").value,
+    productName: document.getElementById("productName").value,
+    description: document.getElementById("description").value,
+    month: document.getElementById("month").value,
+    year: document.getElementById("year").value
+  };
+
+  try {
+    const response = await fetch("https://api242.onrender.com/api/testimonials", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newTestimonial)
+    });
+
+    if (!response.ok) {
+      alert("Error saving testimonial.");
+      return;
     }
 
+    const modal = bootstrap.Modal.getInstance(document.getElementById("testimonialModal"));
+    modal.hide();
+
+    document.getElementById("testimonialForm").reset();
+
     loadTestimonials();
-  </script>
+
+  } catch (error) {
+    console.error("Error submitting testimonial:", error);
+  }
+}
+</script>
+
 <section class="middle-columns">
 
-    <!-- CENTER COLUMN: MIAMI IMAGES -->
     <div class="mid-col">
         <img src="./images/miami1.jpg" style="width:48%; border-radius:5px;">
         <img src="./images/miami3.jpg" style="width:48%; border-radius:5px;">
     </div>
-    <!-- LEFT COLUMN: QUICK LINKS -->
+
     <div class="mid-col">
         <h3>Quick Links</h3>
         <hr>
@@ -201,7 +289,7 @@
             <li><a href="https://gamecocksonline.com/sports/mbball/cumestats/">Team Stats</a></li>
         </ul>
     </div>
-    <!-- RIGHT COLUMN: SITEMAP TABLE -->
+
     <div class="mid-col">
         <h3>Site Map</h3>
         <hr>
@@ -216,17 +304,21 @@
     </div>
 
 </section>
+
 <section class="sales">
 <div class="cta" id="contact">
     <h2>Talk to Sales</h2>
-    <span>Contact our enterprise sales team to discuss licensing, pricing, and deployment options.</span><BR>
+    <span>Contact our enterprise sales team to discuss licensing, pricing, and deployment options.</span><br>
     <a href="contacts.html">Contact Sales</a>
 </div>
 </section>
+
 <footer>
     © 2026 Greenville Associates Enterprise Software. All rights reserved.
 </footer>
+
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
