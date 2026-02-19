@@ -272,11 +272,13 @@ footer {
     .column
     {
         text-align: center;
+        margin: 0 auto;
     }
 
     .column.img
     {
         text-align: center;
+        margin: 0 auto;
     }
 
     
