@@ -348,8 +348,11 @@ li
     margin-left: -5px;
     text-decoration: none;    
 }
+/* Assignment 9 layout */
 .assign9 .row {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     gap: 20px;
     padding: 20px;
 }
@@ -359,4 +362,6 @@ li
     padding: 20px;
     border-radius: 5px;
     text-align: center;
+    position: relative;
 }
+
