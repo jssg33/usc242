@@ -38,6 +38,21 @@
     transition: 0.2s ease-in-out;
 }
 
+#refreshBtn {
+    background-color: lightgreen;      /* Bootstrap success green */
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: 0.2s ease-in-out;
+}
+#refreshBtn:hover {
+    background-color: #146c43;      /* darker green */
+    transform: translateY(-1px);
+}
+
+    
 #editBtn:hover {
     background-color: #146c43;      /* darker green */
     transform: translateY(-1px);
@@ -83,7 +98,7 @@
 <div class="action-bar mb-6">
     <button class="btn" id="editBtn">Edit Contacts</button>
     <button class="btn btn-blue" id="editSocialBtn">Edit Social</button>
-    <button class="btn btn-black" id="refreshBtn">Refresh</button>
+    <button class="btn btn-red" id="refreshBtn">Refresh</button>
 </div>
 
 
