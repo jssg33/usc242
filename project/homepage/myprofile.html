@@ -381,6 +381,41 @@ document.getElementById("saveBtn").onclick = async () => {
     bootstrap.Modal.getInstance(document.getElementById("updateModal")).hide();
 };
 
+document.getElementById("saveSocialBtn").onclick = async () => {
+    const form = document.getElementById("socialForm");
+    const socialData = Object.fromEntries(new FormData(form).entries());
+
+    const updated = {
+        ...window.profileData,
+        ...socialData
+    };
+
+    const res = await fetch(`${API_BASE}/users/${uid}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updated)
+    });
+
+    if (!res.ok) {
+        alert("Error saving social media");
+        return;
+    }
+
+    loadProfile();
+    bootstrap.Modal.getInstance(document.getElementById("socialModal")).hide();
+};
+
+document.getElementById("editSocialBtn").onclick = () => {
+    const form = document.getElementById("socialForm");
+
+    ["linkedin", "twitter", "facebook", "instagram"].forEach(key => {
+        form[key].value = window.profileData[key] || "";
+    });
+
+    new bootstrap.Modal(document.getElementById("socialModal")).show();
+};
+    
+
 document.getElementById("refreshBtn").onclick = loadProfile;
 
 loadProfile();
