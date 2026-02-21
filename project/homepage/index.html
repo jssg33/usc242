@@ -811,14 +811,18 @@ theme.spacing(2); // `${4 * 2}px` = '8px'
       });
 
       function showSlide(i) {
-        index = i;
-        const slide = slideItems[index];
+  index = i;
+  const slide = slideItems[index];
 
-        iframe.src = slide.dataset.url;     // load PNG into iframe
-        currentLink = slide.dataset.link;   // store website link
+  iframe.src = slide.dataset.url;
+  currentLink = slide.dataset.link;
 
-        slidesContainer.style.transform = `translateX(-${index * 300}px)`;
-      }
+  slidesContainer.style.transform = `translateX(-${index * 190}px)`; // match min-width + gap
+
+  slideItems.forEach(s => s.classList.remove('active'));
+  slide.classList.add('active');
+}
+
 
       nextBtn.onclick = () => {
         showSlide((index + 1) % slideItems.length);
@@ -841,6 +845,7 @@ theme.spacing(2); // `${4 * 2}px` = '8px'
 
 </body>
 </html>
+
 
 
 
