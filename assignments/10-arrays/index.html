@@ -2,31 +2,58 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <html lang="en">
 <!--
-	Assignment 9
-	Images Rendered From Microsoft Designer
-	Annimation Sequences From CSCE102
-	Menus from Assignment 8
-	Mobile Layout from Portias FlexBox Assignment
-	Site.css has various CSS from W3 schools, and legacy environments which has been customized over2+ years.
+    Assignment 10
+    Mobile Layout from Portias FlexBox Assignment
 -->
 
 <head>
     <meta charset="UTF-8">
     <title>USC242 HomePage</title>
-	<link rel="stylesheet" href="./css/a10styles.css"> 
-	<script src="./js/a10.js"></script>
+    <link rel="stylesheet" href="./css/a10styles.css"> 
+    <script src="./js/a10.js" defer></script>
+
 <style>
-   
-  </style>
+/* Optional inline styles for layout */
+#mood-buttons button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#song-list a {
+    display: block;
+    margin: 8px 0;
+    font-size: 20px;
+    color: #0077cc;
+    text-decoration: none;
+}
+
+#song-list a:hover {
+    text-decoration: underline;
+}
+
+#video-container {
+    margin-top: 20px;
+    display: none;
+}
+</style>
+
 </head>
 <body>
 <div class="pagecontainer">
 
   <div id="topnavbar" style="background-color: black;">
     <div id="mobilemenu"> 
-       <div id="mobilemenu-header"><span id="SiteMenu" style="font-size: 11pt;"><a href="lab8v2.html" target="_blank">LegacyAnimation</a></span>
-       <span id="navright" style="float: right; vertical-align: top; font-size: 11pt;"><a href="../../index.html">Site Home</a></span></div>
-      </div>
+       <div id="mobilemenu-header">
+           <span id="SiteMenu" style="font-size: 11pt;">
+               <a href="lab8v2.html" target="_blank">LegacyAnimation</a>
+           </span>
+           <span id="navright" style="float: right; vertical-align: top; font-size: 11pt;">
+               <a href="../../index.html">Site Home</a>
+           </span>
+       </div>
+    </div>
   </div>
 
 <!-- EVERYTHING BELOW THIS POINT IS CONTROLLED BY layout.css -->
@@ -36,35 +63,23 @@
     <p>Arrays</p>
 </header>
 
-<section class="assign9">
-  <br><br>
+<section class="assign10">
 
-  <div class="row">
-    <!-- Tank 1 -->
-    <div class="column" style="background-color:#aaa;" onclick="callupdategeometry();">
-      <h2>Tank 1(Pink)</h2>
-      <div class="tank-wrapper">
-        <img id="tank1" src="./images/fishtank.jpeg" alt="Tank 1">
-        <!-- Bubbles will be added here via JS -->
-      </div>
+    <h2>Select a Mood</h2>
+
+    <div id="mood-buttons">
+        <button onclick="showSongs('happy')">Happy</button>
+        <button onclick="showSongs('sad')">Sad</button>
     </div>
 
-    <!-- Tank 2 -->
-    <div class="column" style="background-color:#bbb;">
-      <h2>Tank 2(Green)</h2>
-      <div class="tank-wrapper">
-        <img id="tank2" src="./images/fishtank.jpeg" alt="Tank 2">
-      </div>
+    <h2 id="mood-title"></h2>
+
+    <div id="song-list"></div>
+
+    <div id="video-container">
+        <iframe id="video-frame" width="560" height="315" frameborder="0" allowfullscreen></iframe>
     </div>
 
-    <!-- Tank 3 -->
-    <div class="column" style="background-color:#ccc;" onclick="callimageframer();">
-      <h2>Tank 3(Blue)</h2>
-      <div class="tank-wrapper">
-        <img id="tank3" src="./images/fishtank.jpeg" alt="Tank 3">
-      </div>
-    </div>
-  </div>
 </section>
 
 <footer>
