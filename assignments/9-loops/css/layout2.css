@@ -192,7 +192,6 @@ footer {
 @media (max-width: 1000px) {
   
     html, body { height: 100%; } 
-    .pagecontainer { min-height: 100%; display: flex; flex-direction: column; } 
     nav.main-nav ul {
         flex-direction: column;
         text-align: center;
@@ -250,8 +249,11 @@ footer {
     .assign9 img {
         max-width: 80%;
     }
-  
-    
+      .pagecontainer { 
+                        max-height: 90%; 
+                      overflow-y: auto; 
+                      display: flex; 
+                      flex-direction: column; } 
     footer { margin-top: auto; }
 }
 
