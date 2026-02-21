@@ -208,6 +208,22 @@ footer {
     text-align: center;
     padding: 15px;
 }
+/* Assignment 9 — override old float layout */
+.assign9 .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.assign9 .column {
+    float: none !important;   /* override site.css */
+    width: auto !important;   /* override site.css */
+    flex: 1;                  /* allow flexbox sizing */
+    padding: 20px;
+    text-align: center;
+}
+
 
 /* ----------------------------- */
 /* MOBILE LAYOUT (≤ 1000px)      */
