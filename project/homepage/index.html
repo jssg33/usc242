@@ -16,61 +16,53 @@
 				 margin-bottom: var(--space-2); /* becomes 16px */ 
 				gap: 4px;
 				}
-	<style>
   .sales-slider {
     position: relative;
     width: 600px;
-    height: 300px;
-    margin: 20px auto;
+    height: 100px;
+    margin: 10px auto;
     overflow: hidden;
-    border: 2px solid #ccc;
-    border-radius: 6px;
   }
 
   .slider-window {
     width: 100%;
-    height: 100%;
+    height: 100px;
     overflow: hidden;
   }
 
   .slides {
     display: flex;
-    width: 100%;
-    height: 100%;
     transition: transform 0.4s ease;
   }
 
   .slide {
-    min-width: 600px;
-    height: 300px;
+    min-width: 100px;
+    height: 100px;
     cursor: pointer;
+    padding: 2px;
   }
 
   .slide img {
-    width: 600px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 
   .prev, .next {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 35%;
     background: rgba(0,0,0,0.4);
     color: white;
     border: none;
-    padding: 10px 14px;
+    padding: 6px 10px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 18px;
   }
 
-  .prev { left: 10px; }
-  .next { right: 10px; }
-
-  .prev:hover, .next:hover {
-    background: rgba(0,0,0,0.7);
-  }
+  .prev { left: 0; }
+  .next { right: 0; }
 </style>
+
 </head>
 <body>
 <div class="container2">
@@ -179,36 +171,48 @@
 <BR><BR>
 	<div align="center" style="text-align:center;"><iframe id="centercourt" width="80%" height="600" style="border:0;"></iframe></div>
 
-    <section class="sales-slider">
+<!-- Slider below -->
+<section class="sales-slider">
   <div class="slider-window">
     <div class="slides">
 
-      <div class="slide" data-url="https://www.chase.com">
-  <img src="./images/slide1.png" alt="Slide 1">
-</div>
-
-<div class="slide" data-url="https://www.citigroup.com">
-  <img src="./images/slide2.png" alt="Slide 2">
-</div>
-
-<div class="slide" data-url="https://www.wellsfargo.com">
-  <img src="./images/slide3.png" alt="Slide 3">
-</div>
-
-<div class="slide" data-url="https://www.usbank.com">
-  <img src="./images/slide4.png" alt="Slide 4">
-</div>
-
-<div class="slide" data-url="https://www.rbc.com">
-  <img src="./images/slide5.png" alt="Slide 5">
-</div>
-
-<div class="slide" data-url="https://www.hsbc.com">
-  <img src="./images/slide6.png" alt="Slide 6">
-</div>
-
-
+      <div class="slide"
+           data-img="./images/slide1.png"
+           data-link="https://example.com/page1">
+        <img src="./images/slide1.png" alt="Slide 1">
       </div>
+
+      <div class="slide"
+           data-img="./images/slide2.png"
+           data-link="https://example.com/page2">
+        <img src="./images/slide2.png" alt="Slide 2">
+      </div>
+
+      <div class="slide"
+           data-img="./images/slide3.png"
+           data-link="https://example.com/page3">
+        <img src="./images/slide3.png" alt="Slide 3">
+      </div>
+
+      <div class="slide"
+           data-img="./images/slide4.png"
+           data-link="https://example.com/page4">
+        <img src="./images/slide4.png" alt="Slide 4">
+      </div>
+
+      <div class="slide"
+           data-img="./images/slide5.png"
+           data-link="https://example.com/page5">
+        <img src="./images/slide5.png" alt="Slide 5">
+      </div>
+
+      <div class="slide"
+           data-img="./images/slide6.png"
+           data-link="https://example.com/page6">
+        <img src="./images/slide6.png" alt="Slide 6">
+      </div>
+
+    </div>
   </div>
 
   <button class="prev">❮</button>
@@ -217,8 +221,6 @@
 
 
 
-
-	
 	
 	<!-- GRID DATA SECTION -->
     <div id="griddata" class="griddata">
@@ -708,48 +710,52 @@
   // Inject CSS variables into :root
 theme.spacing(2); // `${4 * 2}px` = '8px'
 
-  const slides = document.querySelector('.slides');
+  const slidesContainer = document.querySelector('.slides');
   const slideItems = document.querySelectorAll('.slide');
-  const slideCount = slideItems.length;
-  let index = 0;
-
   const iframe = document.getElementById('centercourt');
 
-  // Load the first slide automatically on page load
-  iframe.src = slideItems[0].dataset.url;
+  let index = 0;
+  let currentLink = slideItems[0].dataset.link;
 
-  function updateIframe() {
-    const url = slideItems[index].dataset.url;
-    iframe.src = url;
+  // Load first image into iframe
+  iframe.src = slideItems[0].dataset.img;
+
+  // When iframe is clicked → go to the current slide's link
+  iframe.addEventListener('click', () => {
+    window.location.href = currentLink;   // or window.open(currentLink, '_blank');
+  });
+
+  function showSlide(i) {
+    index = i;
+    const slide = slideItems[index];
+    const img = slide.dataset.img;
+    currentLink = slide.dataset.link;
+
+    iframe.src = img;
+    slidesContainer.style.transform = `translateX(-${index * 100}px)`;
   }
 
-  // Slide navigation
   document.querySelector('.next').onclick = () => {
-    index = (index + 1) % slideCount;
-    slides.style.transform = `translateX(-${index * 600}px)`;
-    updateIframe();
+    showSlide((index + 1) % slideItems.length);
   };
 
   document.querySelector('.prev').onclick = () => {
-    index = (index - 1 + slideCount) % slideCount;
-    slides.style.transform = `translateX(-${index * 600}px)`;
-    updateIframe();
+    showSlide((index - 1 + slideItems.length) % slideItems.length);
   };
 
-  // Click slide → load URL into iframe
   slideItems.forEach((slide, i) => {
     slide.addEventListener('click', () => {
-      index = i;
-      slides.style.transform = `translateX(-${index * 600}px)`;
-      updateIframe();
+      showSlide(i);
     });
   });
 </script>
 
 
+
 	
 </body>
 </html>
+
 
 
 
