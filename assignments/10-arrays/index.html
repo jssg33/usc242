@@ -45,6 +45,29 @@
     margin-top: 20px;
     display: none; /* hidden until song selected */
 }
+    .container {
+display: grid;
+grid-template-columns: 1fr 2fr; /* First column is half the width of the second */
+height: 100vh; /* Full viewport height */
+gap: 10px; /* Optional spacing between columns */
+}
+
+.column-1 img {
+width: 100%;
+height: 100%; /* Fill the column */
+object-fit: cover; /* Maintain aspect ratio */
+}
+
+.column-2 {
+display: grid;
+grid-template-rows: repeat(2, 1fr); /* Two equal rows */
+}
+
+.column-2 img {
+width: 100%;
+height: 100%; /* Fill each row */
+object-fit: cover; /* Maintain aspect ratio */
+}
 </style>
 
 </head>
@@ -87,11 +110,22 @@
     <!-- SONG LIST (hidden until mood selected) -->
     <div id="song-list"></div>
 
+   
+<div class="container">
+<div class="column-1">
+<img src="./images/image1.jpg" alt="Image 1">
+<ol class="happy"><li id="happy1">Song1</li><li id="happy2">Song2</li></ol>
+
+</div>
+<div class="column-2">
+<img src="./images/image2.jpg" alt="Image 2">
+<ol class="sad"><li id="sad1">Song1</li><li id="sad2">Song2</li></ol>
+</div>
+</div>
     <!-- VIDEO PLAYER (hidden until song selected) -->
     <div id="video-container">
         <iframe id="video-frame" width="560" height="315" frameborder="0" allowfullscreen></iframe>
-    </div>
-
+    </div> 
 </section>
 
 <footer>
