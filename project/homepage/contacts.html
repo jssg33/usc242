@@ -11,7 +11,29 @@
 <title>Greenville Associates Enterprise Software | UserContacts</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        
+     .top-section {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+#contactForm {
+    width: 100%;
+    max-width: 800px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 30px;
+}
+
+#contactForm .mb-3 {
+    text-align: left;
+}
+
+#contactForm button {
+    grid-column: span 2; /* button spans both columns */
+    justify-self: center;
+}
+
     </style>
 </head>
 <body>
