@@ -19,10 +19,10 @@ const sad = {
 };
 
 // ------------------------------
-// Handle Dropdown Selection
+// Handle Dropdown Selection (Arrow Function)
 // ------------------------------
 
-function showSongsFromDropdown() {
+const showSongsFromDropdown = () => {
     const dropdown = document.getElementById("mood-dropdown");
     const selectedMood = dropdown.value;
 
@@ -36,9 +36,7 @@ function showSongsFromDropdown() {
     videoContainer.style.display = "none";
     moodTitle.textContent = "";
 
-    if (selectedMood === "") {
-        return; // No mood selected
-    }
+    if (selectedMood === "") return;
 
     // Pick correct array
     const songs = selectedMood === "happy" ? happy : sad;
@@ -47,26 +45,26 @@ function showSongsFromDropdown() {
     moodTitle.textContent = selectedMood === "happy" ? "Happy Songs" : "Sad Songs";
 
     // Build song list
-    for (let song in songs) {
+    Object.keys(songs).forEach(song => {
         const link = document.createElement("a");
         link.href = "#";
         link.textContent = song;
         link.onclick = () => loadVideo(songs[song]);
         songListDiv.appendChild(link);
-    }
+    });
 
     // Show the list
     songListDiv.style.display = "block";
-}
+};
 
 // ------------------------------
-// Load Video into Iframe
+// Load Video into Iframe (Arrow Function)
 // ------------------------------
 
-function loadVideo(url) {
+const loadVideo = (url) => {
     const frame = document.getElementById("video-frame");
     const videoContainer = document.getElementById("video-container");
 
     frame.src = url;
     videoContainer.style.display = "block";
-}
+};
