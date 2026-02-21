@@ -1,1 +1,75 @@
-Assignment 10.
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
+<!--
+	Assignment 9
+	Images Rendered From Microsoft Designer
+	Annimation Sequences From CSCE102
+	Menus from Assignment 8
+	Mobile Layout from Portias FlexBox Assignment
+	Site.css has various CSS from W3 schools, and legacy environments which has been customized over2+ years.
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>USC242 HomePage</title>
+	<link rel="stylesheet" href="./css/a10styles.css"> 
+	<script src="./js/a10.js"></script>
+<style>
+   
+  </style>
+</head>
+<body>
+<div class="pagecontainer">
+
+  <div id="topnavbar" style="background-color: black;">
+    <div id="mobilemenu"> 
+       <div id="mobilemenu-header"><span id="SiteMenu" style="font-size: 11pt;"><a href="lab8v2.html" target="_blank">LegacyAnimation</a></span>
+       <span id="navright" style="float: right; vertical-align: top; font-size: 11pt;"><a href="../../index.html">Site Home</a></span></div>
+      </div>
+  </div>
+
+<!-- EVERYTHING BELOW THIS POINT IS CONTROLLED BY layout.css -->
+
+<header>
+    <h1>Assignment10</h1>
+    <p>Arrays</p>
+</header>
+
+<section class="assign9">
+  <br><br>
+
+  <div class="row">
+    <!-- Tank 1 -->
+    <div class="column" style="background-color:#aaa;" onclick="callupdategeometry();">
+      <h2>Tank 1(Pink)</h2>
+      <div class="tank-wrapper">
+        <img id="tank1" src="./images/fishtank.jpeg" alt="Tank 1">
+        <!-- Bubbles will be added here via JS -->
+      </div>
+    </div>
+
+    <!-- Tank 2 -->
+    <div class="column" style="background-color:#bbb;">
+      <h2>Tank 2(Green)</h2>
+      <div class="tank-wrapper">
+        <img id="tank2" src="./images/fishtank.jpeg" alt="Tank 2">
+      </div>
+    </div>
+
+    <!-- Tank 3 -->
+    <div class="column" style="background-color:#ccc;" onclick="callimageframer();">
+      <h2>Tank 3(Blue)</h2>
+      <div class="tank-wrapper">
+        <img id="tank3" src="./images/fishtank.jpeg" alt="Tank 3">
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy;2026 - Cocky Consulting, Inc. Assignment 10. All Rights Reserved
+</footer>
+</div>
+</body>
+</html>
