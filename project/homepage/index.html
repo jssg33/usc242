@@ -698,33 +698,50 @@
 
   // Inject CSS variables into :root
 theme.spacing(2); // `${4 * 2}px` = '8px'
-	<script>
+
   const slides = document.querySelector('.slides');
   const slideItems = document.querySelectorAll('.slide');
   const slideCount = slideItems.length;
   let index = 0;
 
+  const iframe = document.getElementById('centercourt');
+
+  // Load the first slide automatically on page load
+  iframe.src = slideItems[0].dataset.url;
+
+  function updateIframe() {
+    const url = slideItems[index].dataset.url;
+    iframe.src = url;
+  }
+
   // Slide navigation
   document.querySelector('.next').onclick = () => {
     index = (index + 1) % slideCount;
     slides.style.transform = `translateX(-${index * 600}px)`;
+    updateIframe();
   };
 
   document.querySelector('.prev').onclick = () => {
     index = (index - 1 + slideCount) % slideCount;
     slides.style.transform = `translateX(-${index * 600}px)`;
+    updateIframe();
   };
 
   // Click slide → load URL into iframe
-  slideItems.forEach(slide => {
+  slideItems.forEach((slide, i) => {
     slide.addEventListener('click', () => {
-      const url = slide.getAttribute('data-url');
-      document.getElementById('centercourt').src = url;
+      index = i;
+      slides.style.transform = `translateX(-${index * 600}px)`;
+      updateIframe();
     });
   });
 </script>
+
+
+	
 </body>
 </html>
+
 
 
 
