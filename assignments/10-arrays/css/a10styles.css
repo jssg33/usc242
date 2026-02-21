@@ -12,6 +12,10 @@ body {
     background: #f4f4f4;
 }
 
+topnavbar { color: white };
+topnavbar:visited {color: white};
+
+
 /* ------------------------------------------------------ */
 /* HEADER                                                 */
 /* ------------------------------------------------------ */
