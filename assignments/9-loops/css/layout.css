@@ -374,11 +374,9 @@ li
     padding: 20px;
 }
 
+/* Assignment 9 — override old float layout */
 .assign9 .column {
+    float: none !important;
+    width: 100% !important;
     flex: 1;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-    position: relative;
 }
-
