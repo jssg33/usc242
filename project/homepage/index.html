@@ -16,6 +16,60 @@
 				 margin-bottom: var(--space-2); /* becomes 16px */ 
 				gap: 4px;
 				}
+	<style>
+  .sales-slider {
+    position: relative;
+    width: 600px;
+    height: 300px;
+    margin: 20px auto;
+    overflow: hidden;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+  }
+
+  .slider-window {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s ease;
+  }
+
+  .slide {
+    min-width: 600px;
+    height: 300px;
+    cursor: pointer;
+  }
+
+  .slide img {
+    width: 600px;
+    height: 300px;
+    object-fit: cover;
+  }
+
+  .prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.4);
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  .prev { left: 10px; }
+  .next { right: 10px; }
+
+  .prev:hover, .next:hover {
+    background: rgba(0,0,0,0.7);
+  }
 </style>
 </head>
 <body>
@@ -123,7 +177,41 @@
 <!-- ========================= -->
 <section class="main-content">
 <BR><BR>
-    <!-- GRID DATA SECTION -->
+	<iframe id="centercourt" width="100%" height="600" style="border:0;"></iframe>
+
+    <section class="sales-slider">
+  <div class="slider-window">
+    <div class="slides">
+
+      <!-- Slide 1 -->
+      <div class="slide" data-url="https://example.com/page1">
+        <img src="slide1.jpg" alt="Sale 1">
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide" data-url="https://example.com/page2">
+        <img src="slide2.jpg" alt="Sale 2">
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide" data-url="https://example.com/page3">
+        <img src="slide3.jpg" alt="Sale 3">
+      </div>
+
+      <!-- Add up to 6 slides -->
+    </div>
+  </div>
+
+  <button class="prev">❮</button>
+  <button class="next">❯</button>
+</section>
+
+
+
+
+	
+	
+	<!-- GRID DATA SECTION -->
     <div id="griddata" class="griddata">
         <h4>FusionShell Open Current Releases</h4><BR>
 
@@ -610,10 +698,34 @@
 
   // Inject CSS variables into :root
 theme.spacing(2); // `${4 * 2}px` = '8px'
-</script>
+	<script>
+  const slides = document.querySelector('.slides');
+  const slideItems = document.querySelectorAll('.slide');
+  const slideCount = slideItems.length;
+  let index = 0;
 
+  // Slide navigation
+  document.querySelector('.next').onclick = () => {
+    index = (index + 1) % slideCount;
+    slides.style.transform = `translateX(-${index * 600}px)`;
+  };
+
+  document.querySelector('.prev').onclick = () => {
+    index = (index - 1 + slideCount) % slideCount;
+    slides.style.transform = `translateX(-${index * 600}px)`;
+  };
+
+  // Click slide → load URL into iframe
+  slideItems.forEach(slide => {
+    slide.addEventListener('click', () => {
+      const url = slide.getAttribute('data-url');
+      document.getElementById('centercourt').src = url;
+    });
+  });
+</script>
 </body>
 </html>
+
 
 
 
