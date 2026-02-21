@@ -14,8 +14,8 @@ body {
 
 topnavbar { color: white; }
 topnavbar:visited {color: white;}
-a {color: white;}
-a:visited{ color: white; font-size: 12pt;}
+a {color: white; text_decoration: none;}
+a:visited{ color: white; font-size: 12pt; text_decoration: none;}
 mobilemenu:visited {color: white; font-size: 12pt;}
 
 
