@@ -14,6 +14,9 @@ body {
 
 topnavbar { color: white; }
 topnavbar:visited {color: white;}
+a {color: white;}
+a:visited{ color: white; font-size: 12pt;}
+mobilemenu:visited {color: white; font-size: 12pt;}
 
 
 /* ------------------------------------------------------ */
