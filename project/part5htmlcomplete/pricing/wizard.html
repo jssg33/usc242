@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Pricing Wizard</title>
+<head>
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script type="module" src="https://esm.run/@material/web/all.js"></script>
+<link rel="stylesheet" href="../css/site.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/greenville.css">   
+<title>Greenville Associates Enterprise Software | Enterprise Licensing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        th { cursor: pointer; }
+  body { font-family: Arial, sans-serif; padding: 20px; }
+  label { display: block; margin-top: 15px; font-weight: bold; }
+  select { width: 300px; padding: 6px; margin-top: 5px; }
+  .result-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 6px;
+  }
+  .buy-btn {
+    background: #0078ff;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+    </style>
+</head>
+<body>
+<div class="container2">
+<div class="topnav">
+    <div class="dropdown">
+        <button class="dropbtn">Menu ▼</button>
+        <div class="dropdown-content">
+            <a href="login.html">Login</a>
+            <a href="logout.html">Logout</a>
+            <a href="welcome.html">Welcome</a>
+            <a href="products.html">All Products</a>
+            <a href="licensetypes.html">LicenseTypes</a>
+            <a href="mylicenselogs.html">LicenseLogs</a>
+            <a href="mylicenses.html">MyLicenses</a>
+            <a href="mycart.html?uid=1">MyCart</a>
+            <a href="reviews.html">AllReviews</a>
+            <a href="help.html">Help</a>
+        </div>
+    </div>
+
+   <div class="right-links" style="display:flex; gap:6px; align-items:center; color: white;">
+
+  <md-text-button class="icon-only" href="index.html" aria-label="Home" title="Home">
+    <span class="material-icons" style="color:white;">home</span>
+  </md-text-button>
+
+  <md-text-button class="icon-only" href="userhelp.html" aria-label="Help" title="Help">
+    <span class="material-icons" style="color:white;">help_outline</span>
+  </md-text-button>
+
+  <md-text-button class="icon-only" href="usernotices.html" aria-label="Notifications" title="Notifications">
+    <span class="material-icons" style="color:white;">notifications</span>
+  </md-text-button>
+
+  <md-text-button class="icon-only" href="login.html" aria-label="Login" title="Login">
+    <span class="material-icons" style="color:white;">login</span>
+  </md-text-button>
+
+  <md-text-button class="icon-only" href="logout.html" aria-label="Logout" title="Logout">
+    <span class="material-icons" style="color:white;">logout</span>
+  </md-text-button>
+
+   <md-text-button class="icon-only" href="myprofile.html" aria-label="My Profile" title="My Profile">
+    <span class="material-icons" style="color:white;">person</span>
+  </md-text-button>
+
+   <md-text-button class="icon-only" href="mycart.html" aria-label="My Cart" title="My Cart">
+    <span class="material-icons" style="color:white;">shopping_cart</span>
+  </md-text-button>
+</div>
+</div>
+
+<header>
+    <h1>Greenville Enterprise Software</h1>
+    <span>Enterprise‑grade software solutions with flexible deployment and licensing for global organizations.</span>
+</header>
+
+<nav>
+    <ul class="menu">
+        <li><a href="licenses6.html">Products</a></li>
+
+        <li class="dropdown">
+            <a href="#deployment">Deployment ▾</a>
+            <ul class="dropdown-content">
+                <li><a href="#onprem">On‑Premise</a></li>
+                <li><a href="#cloud">Cloud</a></li>
+                <li><a href="#hybrid">Hybrid</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="#licensing">Licensing ▾</a>
+            <ul class="dropdown-content">
+                <li><a href="#utility">Utility Hours</a></li>
+                <li><a href="#namedusers">Named Users</a></li>
+                <li><a href="#buel">Business Unit Enterprise</a></li>
+                <li><a href="#enterprise">Enterprise License Types</a></li>
+            </ul>
+        </li>
+
+        <!-- ⭐ NEW PRICING MENU -->
+        <li class="dropdown">
+            <a href="#pricing">Pricing ▾</a>
+            <ul class="dropdown-content">
+                <li><a href="#pricing">All Licenses</a></li>
+                <li><a href="#pricing-enterprise">Enterprise</a></li>
+                <li><a href="#pricing-cloud">Cloud</a></li>
+                <li><a href="#pricing-onprem">On‑Premise</a></li>
+                <li><a href="#pricing-utility">Utility Model</a></li>
+            </ul>
+        </li>
+
+        <li><a href="contacts.html">Contact Sales</a></li>
+    </ul>
+</nav>
+    <div class="pageheader">
+        <hr>
+        <span align="center"><h4> Pricing Wizard</h4></span>
+        <hr>
+    </div>
+
+<div style="margin-left: 30px;">
+<label>Product Type</label>
+<select id="productType">
+  <option value="">-- Select Product --</option>
+  <option value="core">Core Platform Suite</option>
+  <option value="data">Data & Analytics</option>
+  <option value="security">Security & Compliance</option>
+  <option value="dev">Developer Enablement</option>
+</select>
+
+<label>Deployment Type</label>
+<select id="deploymentType">
+  <option value="">-- Select Deployment --</option>
+  <option value="premise">On‑Premise</option>
+  <option value="cloud">Cloud</option>
+  <option value="hybrid">Hybrid</option>
+</select>
+
+<label>License Type</label>
+<select id="licenseType">
+  <option value="">-- Select License Type --</option>
+  <option value="enterprise">Enterprise Licenses</option>
+  <option value="cloudLic">Cloud Licenses</option>
+  <option value="premiseLic">On‑Premise Licenses</option>
+  <option value="utility">Utility Model</option>
+</select>
+</div>
+
+<div id="results"></div>
+</div>
+<script>
+// ---------------------------
+// PRICING DATA MODEL
+// ---------------------------
+const pricing = {
+  enterprise: [
+    {
+      name: "Enterprise Site License – Unlimited",
+      price: "$49,999",
+      features: [
+        "Unlimited users",
+        "All features included",
+        "24/7 Priority support",
+        "Dedicated account manager",
+        "Custom integrations",
+        "SLA guarantee",
+        "On-site training available"
+      ]
+    },
+    {
+      name: "Enterprise Site License – 500 Users",
+      price: "$29,999",
+      features: [
+        "Up to 500 users",
+        "All features included",
+        "24/7 Priority support",
+        "Dedicated account manager",
+        "Custom integrations",
+        "SLA guarantee"
+      ]
+    },
+    {
+      name: "Enterprise Site License – 100 Users",
+      price: "$14,999",
+      features: [
+        "Up to 100 users",
+        "All features included",
+        "Priority support",
+        "Account manager",
+        "Standard integrations"
+      ]
+    }
+  ],
+
+  cloudLic: [
+    {
+      name: "Cloud Premium – Business",
+      price: "$199 per month",
+      features: [
+        "Up to 50 users",
+        "Cloud infrastructure",
+        "Automatic updates",
+        "99.9% uptime SLA",
+        "Advanced analytics",
+        "API access",
+        "Email support"
+      ]
+    },
+    {
+      name: "Cloud Standard – Team",
+      price: "$99 per month",
+      features: [
+        "Up to 20 users",
+        "Cloud infrastructure",
+        "Automatic updates",
+        "99.5% uptime SLA",
+        "Basic analytics",
+        "Email support"
+      ]
+    },
+    {
+      name: "Cloud Starter – Individual",
+      price: "$29 per month",
+      features: [
+        "Up to 5 users",
+        "Cloud infrastructure",
+        "Automatic updates",
+        "Basic features",
+        "Community support"
+      ]
+    }
+  ],
+
+  premiseLic: [
+    {
+      name: "On‑Premise Enterprise",
+      price: "$24,999 perpetual",
+      features: [
+        "Unlimited users",
+        "Self-hosted solution",
+        "Complete data control",
+        "Custom configuration",
+        "Priority support",
+        "1 year of updates",
+        "Installation assistance"
+      ]
+    },
+    {
+      name: "On‑Premise Business",
+      price: "$9,999 perpetual",
+      features: [
+        "Up to 100 users",
+        "Self-hosted solution",
+        "Complete data control",
+        "Standard configuration",
+        "Email support",
+        "1 year of updates"
+      ]
+    },
+    {
+      name: "On‑Premise Team",
+      price: "$4,999 perpetual",
+      features: [
+        "Up to 25 users",
+        "Self-hosted solution",
+        "Data control",
+        "Basic support",
+        "6 months of updates"
+      ]
+    }
+  ],
+
+  utility: [
+    {
+      name: "100 Hours / Month",
+      price: "$300 per month",
+      features: [
+        "100 compute hours",
+        "$3 per hour",
+        "Roll over unused hours",
+        "Priority processing",
+        "Advanced features",
+        "Email support"
+      ]
+    },
+    {
+      name: "50 Hours / Month",
+      price: "$150 per month",
+      features: [
+        "50 compute hours",
+        "$3 per hour",
+        "Standard processing",
+        "Core features",
+        "Email support"
+      ]
+    },
+    {
+      name: "20 Hours / Month",
+      price: "$60 per month",
+      features: [
+        "20 compute hours",
+        "$3 per hour",
+        "Standard processing",
+        "Core features",
+        "Community support"
+      ]
+    }
+  ]
+};
+
+// ---------------------------
+// EVENT HANDLERS
+// ---------------------------
+document.querySelectorAll("select").forEach(sel => {
+  sel.addEventListener("change", updateResults);
+});
+
+function updateResults() {
+  const product = document.getElementById("productType").value;
+  const deploy = document.getElementById("deploymentType").value;
+  const license = document.getElementById("licenseType").value;
+
+  const resultsDiv = document.getElementById("results");
+  resultsDiv.innerHTML = "";
+
+  if (!product || !deploy || !license) {
+    resultsDiv.innerHTML = "<p>Please select all options.</p>";
+    return;
+  }
+
+  const items = pricing[license];
+  if (!items) {
+    resultsDiv.innerHTML = "<p>No pricing available.</p>";
+    return;
+  }
+
+  items.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "result-card";
+
+    card.innerHTML = `
+      <h3>${item.name}</h3>
+      <strong>${item.price}</strong>
+      <ul>${item.features.map(f => `<li>${f}</li>`).join("")}</ul>
+      <button class="buy-btn">Buy</button>
+    `;
+
+    resultsDiv.appendChild(card);
+  });
+}
+</script>
+
+</body>
+</html>
