@@ -15,11 +15,18 @@
 
 <style>
 /* Optional inline styles for layout */
-#mood-buttons button {
-    padding: 10px 20px;
-    margin: 10px;
+#mood-select {
+    margin: 20px 0;
+}
+
+#mood-select select {
+    padding: 10px;
     font-size: 18px;
-    cursor: pointer;
+}
+
+#song-list {
+    margin-top: 20px;
+    display: none; /* hidden until mood selected */
 }
 
 #song-list a {
@@ -36,7 +43,7 @@
 
 #video-container {
     margin-top: 20px;
-    display: none;
+    display: none; /* hidden until song selected */
 }
 </style>
 
@@ -57,8 +64,6 @@
     </div>
   </div>
 
-<!-- EVERYTHING BELOW THIS POINT IS CONTROLLED BY layout.css -->
-
 <header>
     <h1>Assignment10</h1>
     <p>Arrays</p>
@@ -68,15 +73,21 @@
 
     <h2>Select a Mood</h2>
 
-    <div id="mood-buttons">
-        <button onclick="showSongs('happy')">Happy</button>
-        <button onclick="showSongs('sad')">Sad</button>
+    <!-- DROPDOWN MENU -->
+    <div id="mood-select">
+        <select id="mood-dropdown" onchange="showSongsFromDropdown()">
+            <option value="">-- Choose a Mood --</option>
+            <option value="happy">Happy</option>
+            <option value="sad">Sad</option>
+        </select>
     </div>
 
     <h2 id="mood-title"></h2>
 
+    <!-- SONG LIST (hidden until mood selected) -->
     <div id="song-list"></div>
 
+    <!-- VIDEO PLAYER (hidden until song selected) -->
     <div id="video-container">
         <iframe id="video-frame" width="560" height="315" frameborder="0" allowfullscreen></iframe>
     </div>
