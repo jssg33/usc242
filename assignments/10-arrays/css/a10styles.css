@@ -374,7 +374,14 @@ height: 500px;
 /* ------------------------------------------------------ */
 
 @media (min-width: 1200px) {
+    body{width: 100%;}
     nav.main-nav ul { flex-direction: row; }
+    .pagecontainer { 
+                        max-height: 90%; 
+                      overflow-y: auto; 
+                      display: flex; 
+                      flex-direction: row; } 
     .top-section { flex-direction: row; }
     .middle-columns { flex-direction: row; }
+    footer {margin-top: auto;}
 }
