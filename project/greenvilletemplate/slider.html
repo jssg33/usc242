@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>CenterCourt Slider Test</title>
+  <style>
+    /* Big display iframe wrapper just for centering */
+    #centercourt {
+      display: block;
+      margin: 20px auto;
+    }
+
+    /* Thumbnail slider */
+    .sales-slider {
+      position: relative;
+      width: 999px;
+      height: 133px;
+      margin: 10px auto;
+      overflow: hidden;
+    }
+
+    .slider-window {
+      width: 999px;
+      height: 133px;
+      overflow: hidden;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.4s ease;
+    }
+
+    .slide {
+      min-width: 300px;
+      height: 133px;
+      cursor: pointer;
+      padding: 2px;
+      box-sizing: border-box;
+    }
+
+    .slide img {
+      width: 300px;
+      height: 133px;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+    }
+
+    .prev, .next {
+      position: absolute;
+      top: 40%;
+      background: rgba(0,0,0,0.4);
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 18px;
+      z-index: 2;
+    }
+
+    .prev { left: 0; }
+    .next { right: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- Big display -->
+  <iframe id="centercourt" width="999" height="300" style="border:0;"></iframe>
+
+  <!-- Thumbnails -->
+  <section class="sales-slider">
+    <div class="slider-window">
+      <div class="slides">
+
+        <div class="slide"
+             data-url="./images/slide1.png"
+             data-link="https://example.com/page1">
+          <img src="./images/slide1.png" alt="Slide 1">
+        </div>
+
+        <div class="slide"
+             data-url="./images/slide2.png"
+             data-link="https://example.com/page2">
+          <img src="./images/slide2.png" alt="Slide 2">
+        </div>
+
+        <div class="slide"
+             data-url="./images/slide3.png"
+             data-link="https://example.com/page3">
+          <img src="./images/slide3.png" alt="Slide 3">
+        </div>
+
+        <div class="slide"
+             data-url="./images/slide4.png"
+             data-link="https://example.com/page4">
+          <img src="./images/slide4.png" alt="Slide 4">
+        </div>
+
+        <div class="slide"
+             data-url="./images/slide5.png"
+             data-link="https://example.com/page5">
+          <img src="./images/slide5.png" alt="Slide 5">
+        </div>
+
+        <div class="slide"
+             data-url="./images/slide6.png"
+             data-link="https://example.com/page6">
+          <img src="./images/slide6.png" alt="Slide 6">
+        </div>
+
+      </div>
+    </div>
+
+    <button class="prev">❮</button>
+    <button class="next">❯</button>
+  </section>
+
+  <script>
+    // Make sure elements exist
+    const slidesContainer = document.querySelector('.slides');
+    const slideItems = document.querySelectorAll('.slide');
+    const iframe = document.getElementById('centercourt');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+
+    if (slidesContainer && slideItems.length && iframe && prevBtn && nextBtn) {
+      let index = 0;
+      let currentLink = slideItems[0].dataset.link;
+
+      // Load first image into iframe
+      iframe.src = slideItems[0].dataset.url;
+
+      // Clicking the iframe goes to the website for the current slide
+      iframe.addEventListener('click', () => {
+        window.location.href = currentLink; // or window.open(currentLink, '_blank');
+      });
+
+      function showSlide(i) {
+        index = i;
+        const slide = slideItems[index];
+
+        iframe.src = slide.dataset.url;     // load PNG into iframe
+        currentLink = slide.dataset.link;   // store website link
+
+        slidesContainer.style.transform = `translateX(-${index * 300}px)`;
+      }
+
+      nextBtn.onclick = () => {
+        showSlide((index + 1) % slideItems.length);
+      };
+
+      prevBtn.onclick = () => {
+        showSlide((index - 1 + slideItems.length) % slideItems.length);
+      };
+
+      slideItems.forEach((slide, i) => {
+        slide.addEventListener('click', () => {
+          showSlide(i);
+        });
+      });
+    } else {
+      console.warn('Slider elements not found – check HTML structure and class names.');
+    }
+  </script>
+
+</body>
+</html>
