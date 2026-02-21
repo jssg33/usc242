@@ -249,6 +249,20 @@ footer {
     .assign9 img {
         max-width: 80%;
     }
+    .assign10 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .column11,
+    .column12 {
+        width: 100% !important;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+    
       .pagecontainer { 
                         max-height: 90%; 
                       overflow-y: auto; 
