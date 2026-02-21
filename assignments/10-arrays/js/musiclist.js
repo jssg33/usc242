@@ -49,6 +49,7 @@ const showSongsFromDropdown = () => {
         const link = document.createElement("a");
         link.href = "#";
         link.textContent = song;
+        link.style.color = "#ffffff";
         link.onclick = () => loadVideo(songs[song]);
         songListDiv.appendChild(link);
     });
