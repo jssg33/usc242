@@ -514,6 +514,12 @@ max-width: 200px;
 max-height: 200px;
     
 }
+.middle-columns {
+        flex-direction: row;
+}
+footer{ max-height: 50px;
+        position: relative;
+      }
 }
 /* ----------------------------- */
 /* MASTER container2     */
