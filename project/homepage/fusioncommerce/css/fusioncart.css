@@ -1,22 +1,26 @@
-/* ===========================
-   GLOBAL COLORS
-   =========================== */
+/* ============================================================
+   GLOBAL COLORS & VARIABLES
+   ============================================================ */
    :root {
     --kelly-green: #4CBB17;
     --kelly-green-dark: #3a9e12;
     --kelly-green-light: #6fe640;
     --kelly-green-pale: #d9f7c7;
+  
     --text-dark: #111;
     --text-light: #fff;
+  
     --panel-gray: #e6e6e6;
+    --panel-light: #f9f9f9;
   }
   
-  /* ===========================
-     RESET / BASE
-     =========================== */
+  /* ============================================================
+     BASE / RESET
+     ============================================================ */
   html, body {
     height: 100%;
     margin: 0;
+    padding: 0;
   }
   
   body {
@@ -31,9 +35,9 @@
     flex: 1;
   }
   
-  /* ===========================
+  /* ============================================================
      NAVIGATION BAR
-     =========================== */
+     ============================================================ */
   .navbar {
     background: #000;
     color: var(--text-light);
@@ -59,31 +63,16 @@
     text-decoration: underline;
   }
   
-  .navbar .nav-right img {
+  .navbar img {
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    margin-right: 10px;
     object-fit: cover;
   }
   
-  /* Login/Logout Buttons */
-  #loginBtn, #logoutBtn {
-    background-color: var(--kelly-green-dark);
-    color: #fff;
-    border: 1px solid var(--kelly-green);
-    padding: 8px 14px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  #loginBtn:hover, #logoutBtn:hover {
-    background-color: var(--kelly-green);
-  }
-  
-  /* ===========================
-     DROPDOWN MENU (MERGED)
-     =========================== */
+  /* ============================================================
+     DROPDOWN MENU
+     ============================================================ */
   .dropdown {
     position: relative;
     display: inline-block;
@@ -120,18 +109,19 @@
   .dropdown-content a {
     color: var(--text-light);
     padding: 10px 14px;
-    text-decoration: none;
     display: block;
+    text-decoration: none;
   }
   
   .dropdown-content a:hover {
-    background-color: var(--kelly-green-dark);
+    background: var(--kelly-green-dark);
   }
   
-  /* ===========================
+  /* ============================================================
      FOOTER
-     =========================== */
-  footer, .footer {
+     ============================================================ */
+  footer,
+  .footer {
     background: #000;
     color: var(--text-light);
     text-align: center;
@@ -141,34 +131,162 @@
     margin-top: auto;
   }
   
-  /* ===========================
-     PANELS & LAYOUT
-     =========================== */
-  .panel-container2 {
+  /* ============================================================
+     TOP PANELS (PRODUCT + CARTMASTER)
+     ============================================================ */
+  .top-panels {
     display: flex;
-    gap: 15px;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .product-panel,
+  .cartmaster-panel {
+    flex: 1;
+    background: var(--panel-gray);
+    border: 2px solid var(--kelly-green-dark);
+    border-radius: 6px;
+    padding: 15px;
+  }
+  
+  /* ============================================================
+     PRODUCT OPTIONS PANEL
+     ============================================================ */
+  #interiorpanel {
+    background: var(--kelly-green-light);
+    border: 2px solid var(--kelly-green-dark);
+    padding: 15px;
+    border-radius: 6px;
     margin: 20px;
   }
   
-  .left-panel {
-    width: 20%;
-    background: #fff;
-    border: 2px solid var(--kelly-green-dark);
-    padding: 10px;
-    overflow-y: auto;
+  .master-row {
+    display: flex;
+    gap: 20px;
   }
   
-  .right-panel {
-    width: 80%;
-    padding: 10px;
-    min-height: 800px;
+  .left-column,
+  .right-column {
+    flex: 1;
+    background: var(--panel-light);
+    border: 2px solid var(--kelly-green-dark);
+    padding: 15px;
+    border-radius: 6px;
+  }
+  
+  /* ============================================================
+     SALES GRID (PRODUCTS / ACTIONS / SELECTED)
+     ============================================================ */
+  #salesgrid {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .columnproducts,
+  .columnactions,
+  .columnselected {
+    flex: 1;
     background: var(--panel-gray);
     border: 2px solid var(--kelly-green-dark);
+    border-radius: 6px;
+    padding: 15px;
   }
   
-  /* ===========================
-     FEATURE BOXES
-     =========================== */
+  /* ============================================================
+     TABLES
+     ============================================================ */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table th {
+    background: var(--kelly-green-dark);
+    color: #fff;
+    padding: 6px;
+  }
+  
+  table td {
+    border: 1px solid var(--kelly-green-dark);
+    padding: 6px;
+    background: #fff;
+  }
+  
+  /* ============================================================
+     INPUTS & SELECTS
+     ============================================================ */
+  select,
+  input[type="date"],
+  input[type="number"],
+  input[type="text"] {
+    border: 2px solid var(--kelly-green-dark);
+    border-radius: 4px;
+    padding: 4px;
+    background: #fff;
+  }
+  
+  select:focus,
+  input:focus {
+    outline: none;
+    border-color: var(--kelly-green);
+  }
+  
+  /* ============================================================
+     BUTTONS
+     ============================================================ */
+  button,
+  .btn {
+    background: var(--kelly-green);
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  button:hover,
+  .btn:hover {
+    background: var(--kelly-green-dark);
+  }
+  
+  .secondary-btn {
+    background: var(--kelly-green-dark);
+  }
+  
+  .secondary-btn:hover {
+    background: var(--kelly-green);
+  }
+  
+  /* ============================================================
+     MODAL
+     ============================================================ */
+  #productOptionsModal,
+  #reservationModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: var(--kelly-green-light);
+    border: 3px solid var(--kelly-green-dark);
+    padding: 20px;
+    border-radius: 8px;
+    width: 350px;
+  }
+  
+  /* ============================================================
+     FEATURE BOXES (FROM ORIGINAL)
+     ============================================================ */
   .features {
     padding: 40px 15px;
     background: #fff;
@@ -183,7 +301,10 @@
     justify-content: center;
   }
   
-  .feature, .feature2, .feature3, .feature4 {
+  .feature,
+  .feature2,
+  .feature3,
+  .feature4 {
     width: 250px;
     padding: 20px;
     border-radius: 10px;
@@ -205,133 +326,9 @@
     color: #fff;
   }
   
-  .feature a,
-  .feature2 a,
-  .feature3 a,
-  .feature4 a {
-    color: inherit;
-    text-decoration: none;
-  }
-  
-  /* ===========================
-     TABLES
-     =========================== */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  table th {
-    background: var(--kelly-green-dark);
-    color: #fff;
-    padding: 6px;
-  }
-  
-  table td {
-    border: 1px solid var(--kelly-green-dark);
-    padding: 6px;
-    background: #fff;
-  }
-  
-  /* ===========================
-     INPUTS & SELECTS
-     =========================== */
-  select,
-  input[type="date"],
-  input[type="number"] {
-    border: 2px solid var(--kelly-green-dark);
-    border-radius: 4px;
-    padding: 4px;
-    background: #fff;
-  }
-  
-  select:focus,
-  input:focus {
-    outline: none;
-    border-color: var(--kelly-green);
-  }
-  
-  /* ===========================
-     BUTTONS
-     =========================== */
-  button {
-    background: var(--kelly-green);
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  
-  button:hover {
-    background: var(--kelly-green-dark);
-  }
-  
-  /* Special Buttons */
-  #reviewreservations {
-    width: 250px;
-    height: 60px;
-    font-size: 13px;
-  }
-  
-  #add-card-button {
-    width: 90px;
-    height: 40px;
-    font-size: 13px;
-  }
-  
-  /* ===========================
-     MODAL
-     =========================== */
-  #reservationModal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
-    display: none;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modal-content {
-    background: var(--kelly-green-light);
-    border: 3px solid var(--kelly-green-dark);
-    padding: 20px;
-    border-radius: 8px;
-    width: 350px;
-  }
-  
-  /* ===========================
-     HERO SECTION
-     =========================== */
-  .hero {
-    position: relative;
-    height: 200px;
-    background: url('https://source.unsplash.com/1600x800/?nature,green') center/cover no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-  }
-  
-  .hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-  }
-  
-  .hero-content {
-    position: relative;
-    z-index: 2;
-  }
-  
-  /* ===========================
+  /* ============================================================
      SCROLLABLE FEATURE LIST
-     =========================== */
+     ============================================================ */
   .features-scroll {
     max-height: 600px;
     overflow-y: auto;
@@ -341,100 +338,17 @@
     gap: 20px;
   }
   
-
-  //SOME BOOTSTRAP GRID FORMATTING FOR GREEN AND BLACK
-
-/* GREENVILLE SPECIFIC BOOTSTRAP STUFF */
-
-    /* Black header with green text */
-    .table-header-green {
-        background-color: #000 !important;
-        color: #00c853 !important; /* bright green */
-    }
-
-    /* Table hover row highlight */
-    .review-table tbody tr:hover {
-        background-color: #e8f5e9 !important; /* pale green */
-    }
-
-    /* Add Review button styling */
-    .custom-add-btn {
-        background-color: #00c853 !important;
-        border-color: #00c853 !important;
-        color: #000 !important;
-        font-weight: 600;
-    }
-
-    .custom-add-btn:hover {
-        background-color: #009624 !important;
-        border-color: #009624 !important;
-        color: white !important;
-    }
-
-    /* Make table truly full width */
-    #reviewTable {
-        width: 100% !important;
-    }
-
-    /* Black header with bright green text */
-    .table-header-green {
-        background-color: #000 !important;
-        color: #00c853 !important;
-        font-weight: 600;
-    }
-
-    /* Table hover highlight */
-    #licenseTable tbody tr:hover {
-        background-color: #e8f5e9 !important;
-    }
-
-    /* Add License button */
-    .custom-add-btn {
-        background-color: #00c853 !important;
-        border-color: #00c853 !important;
-        color: #000 !important;
-        font-weight: 600;
-        margin-right: 8px;
-    }
-
-    .custom-add-btn:hover {
-        background-color: #009624 !important;
-        border-color: #009624 !important;
-        color: white !important;
-    }
-
-    /* Update button (yellow replaced with green/black theme) */
-    .custom-update-btn {
-        background-color: #1b5e20 !important; /* dark green */
-        border-color: #1b5e20 !important;
-        color: #00e676 !important; /* neon green text */
-        font-weight: 600;
-    }
-
-    .custom-update-btn:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
-
-    .custom-update-btn:hover:not(:disabled) {
-        background-color: #2e7d32 !important;
-        border-color: #2e7d32 !important;
-        color: white !important;
-    }
-
-    /* Refresh button */
-    .custom-refresh-btn {
-        background-color: #004d40 !important;
-        border-color: #004d40 !important;
-        color: #00e676 !important;
-        font-weight: 600;
-    }
-
-    .custom-refresh-btn:hover {
-        background-color: #00695c !important;
-        border-color: #00695c !important;
-        color: white !important;
-    }
+  /* ============================================================
+     BANNER
+     ============================================================ */
+  #banner {
+    background: var(--kelly-green-dark);
+    color: #fff;
+    padding: 10px;
+    font-size: 1.2rem;
+    border-bottom: 3px solid var(--kelly-green);
+  }
+  
 
 //RECOMMENDED STYLING OF MATERIAL UI ICONS - BASE IS TO SIZE FOR TEXT
      md-text-button.icon-only { 
