@@ -11,7 +11,6 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
   <link rel="stylesheet" href="./css/fusioncart.css" />
-  <!-- Your new JS files -->
   <script src="./js/products.js"></script>
   <script src="./js/cart.js"></script>
 
@@ -25,6 +24,17 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      color: white;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-left .logo {
+      white-space: nowrap;
+      font-size: 18px;
+      font-weight: 600;
       color: white;
     }
   </style>
@@ -44,7 +54,7 @@
           <a href="myprofile.html">MyProfile</a>
         </div>
       </div> 
-      <div class="logo">&nbsp&nbsp;<h5>FusionCommerce – Complete Payment</h5></div>
+      <div class="logo">&nbsp;&nbsp;<h5>FusionCommerce – Complete Payment</h5></div>
     </div>
     <div class="nav-right">
       <span id="H3UserBanner"></span>
@@ -202,313 +212,318 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    const API = "https://api242.onrender.com";
+<script>
+  const API = "https://api242.onrender.com";
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const uid = urlParams.get("uid") || localStorage.getItem("uid") || "1";
-    const amount = parseFloat(urlParams.get("amount") || "0.00");
-    const cartId = urlParams.get("cartId");
+  const urlParams = new URLSearchParams(window.location.search);
+  const uid = localStorage.getItem("uid") || urlParams.get("uid") || "1";
+  const amount = parseFloat(urlParams.get("amount") || "0.00");
+  const cartIdsParam = urlParams.get("cartIds") || "";
+  const cartIds = cartIdsParam.split(",").filter(x => x);
 
-    document.getElementById("card-uid").value = uid;
+  document.getElementById("card-uid").value = uid;
 
-    function generateTransactionId() {
-      const letters = Array.from({ length: 3 }, () =>
-        String.fromCharCode(65 + Math.floor(Math.random() * 26))
-      ).join("");
-      const digits = Math.floor(100000000 + Math.random() * 900000000).toString();
-      return letters + digits;
-    }
+  // Ensure page height
+  document.body.style.minHeight = "800px";
 
-    async function fetchCards(uid) {
-      const res = await fetch(`${API}/cards?uid=${uid}`);
+  function generateTransactionId() {
+    const letters = Array.from({ length: 3 }, () =>
+      String.fromCharCode(65 + Math.floor(Math.random() * 26))
+    ).join("");
+    const digits = Math.floor(100000000 + Math.random() * 900000000).toString();
+    return letters + digits;
+  }
+
+  // Pull ALL cards, filter by uid
+  async function fetchCards(uid) {
+    try {
+      const res = await fetch(`${API}/cards`);
       if (!res.ok) return [];
-      return res.json();
+
+      const allCards = await res.json();
+      return allCards.filter(c => String(c.uid) === String(uid));
+    } catch (err) {
+      console.error("Error fetching cards:", err);
+      return [];
+    }
+  }
+
+  function renderCards(cards) {
+    const tbody = document.getElementById("card-table-body");
+    const noCardMsg = document.getElementById("no-card-message");
+    tbody.innerHTML = "";
+
+    if (!cards || cards.length === 0) {
+      noCardMsg.textContent = "No credit card on file. Please add one to proceed.";
+      return;
     }
 
-    function renderCards(cards) {
-      const tbody = document.getElementById("card-table-body");
-      const noCardMsg = document.getElementById("no-card-message");
-      tbody.innerHTML = "";
+    noCardMsg.textContent = "";
 
-      if (!cards || cards.length === 0) {
-        noCardMsg.textContent = "No credit card on file. Please add one to proceed.";
-        return;
-      }
-
-      noCardMsg.textContent = "";
-
-      cards.forEach(card => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${card.cardType}</td>
-          <td>${card.cardVendor}</td>
-          <td>${card.cardLast4}</td>
-          <td>${card.cardExpDate}</td>
-          <td>${card.billingZip}</td>
-          <td>
-            <button class="btn btn-primary btn-sm" onclick='simulatePayment(${JSON.stringify(card)})'>
-              Pay $${amount.toFixed(2)}
-            </button>
-            <button class="btn btn-warning btn-sm ms-2" onclick='openUpdateModal(${JSON.stringify(card)})'>
-              Update Card
-            </button>
-          </td>
-        `;
-        tbody.appendChild(row);
-      });
-    }
-
-    async function refreshCards() {
-      const cards = await fetchCards(uid);
-      renderCards(cards);
-    }
-
-    refreshCards();
-
-    async function simulatePayment(card) {
-      if (!cartId) {
-        alert("Missing cart information.");
-        return;
-      }
-
-      if (!confirm(`Confirm payment of $${amount.toFixed(2)} using card ending in ${card.cardLast4}?`)) return;
-
-      try {
-        // Load cart items
-        const itemsRes = await fetch(`${API}/cartitems/cart/${cartId}`);
-        if (!itemsRes.ok) throw new Error("Failed to load cart items");
-        const items = await itemsRes.json();
-
-        if (!items || items.length === 0) {
-          alert("No items found in this cart.");
-          return;
-        }
-
-        const isReservation = items.some(i => i.resStart && i.resEnd);
-        const paymentType = isReservation ? "Reservation" : "Invoice";
-
-        const transactionId = generateTransactionId();
-
-        // 1️⃣ Create Payment
-        const paymentData = {
-          paymentId: 0,
-          cartid: cartId,
-          bookingId: 0,
-          paymentMethod: "Credit Card",
-          cardType: card.cardType,
-          cardLast4: card.cardLast4,
-          cardExpDate: card.cardExpDate,
-          amountPaid: amount,
-          amountRefunded: 0,
-          paymentDate: new Date().toISOString(),
-          transactionId: transactionId,
-          refundTransactionid: "",
-          useridasstring: uid.toString(),
-          transtype: "Payment",
-          fullname: card.fullname || ""
-        };
-
-        await fetch(`${API}/payments`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(paymentData)
-        });
-
-        // 2️⃣ Create Reservation or Invoice
-        if (paymentType === "Reservation") {
-          const first = items[0];
-          const reservation = {
-            bookingId: 0,
-            uid: uid,
-            billingTelephoneNumber: card.cardbtn || "",
-            creditCardType: card.cardType,
-            creditCardLast4: card.cardLast4,
-            creditCardExpDate: card.cardExpDate,
-            quantityAdults: 0,
-            quantityChildren: 0,
-            customerBillingName: card.fullname || "",
-            totalAmount: amount,
-            transactionId: transactionId,
-            parkId: 0,
-            parkName: "",
-            cartid: cartId.toString(),
-            reservationtype: "Reservation",
-            reservationstatus: "Active",
-            reversetransactionid: "",
-            cancellationrefund: 0,
-            cartDetailsJson: "",
-            totalcartitems: items.length,
-            reference: "",
-            subReference: "",
-            adults: 0,
-            children: 0,
-            resStart: first.resStart,
-            resEnd: first.resEnd,
-            tentsites: 0,
-            parkGuid: "",
-            numDays: 0,
-            possource: "FusionCommerce",
-            userid: parseInt(uid) || 0,
-            emailnoticeaddress: "",
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString()
-          };
-
-          await fetch(`${API}/reservations`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(reservation)
-          });
-
-          document.getElementById("payment-status").innerHTML = `
-            <p class="fw-bold text-success">✅ Payment of $${amount.toFixed(2)} processed.</p>
-            <p>Transaction ID: <strong>${transactionId}</strong></p>
-            <p>Type: Reservation</p>
-          `;
-          alert("Reservation completed successfully.");
-          window.location.href = "mypurchases5.html";
-
-        } else {
-          const invoice = {
-            invoiceId: 0,
-            customerId: uid,
-            accountId: "",
-            subAccountId: "",
-            billToAddress1: "",
-            billToAddress2: "",
-            billToCity: "",
-            billToState: "",
-            billToPostalZip: "",
-            billToCountry: "",
-            shipToAddress1: "",
-            shipToAddress2: "",
-            shipToCity: "",
-            shipToState: "",
-            shipToPostalZip: "",
-            shipToCountry: "",
-            subtotal: amount,
-            taxTotal: 0,
-            discountTotal: 0,
-            grandTotal: amount,
-            invoiceDate: new Date().toISOString(),
-            dueDate: new Date().toISOString(),
-            status: "paid",
-            notes: "",
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-            cartId: cartId
-          };
-
-          await fetch(`${API}/invoices`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(invoice)
-          });
-
-          document.getElementById("payment-status").innerHTML = `
-            <p class="fw-bold text-success">✅ Payment of $${amount.toFixed(2)} processed.</p>
-            <p>Transaction ID: <strong>${transactionId}</strong></p>
-            <p>Type: Invoice</p>
-          `;
-          alert("Invoice created successfully.");
-          window.location.href = "myinvoices.html";
-        }
-
-      } catch (err) {
-        console.error("Error during payment:", err);
-        document.getElementById("payment-status").innerHTML = `
-          <p class="text-danger">❌ Payment failed. Please try again.</p>
-        `;
-      }
-    }
-
-    document.getElementById("add-card-form").addEventListener("submit", async function (e) {
-      e.preventDefault();
-
-      const newCard = {
-        cardId: 0,
-        uid: uid,
-        cardType: document.getElementById("cardType").value,
-        cardVendor: document.getElementById("cardVendor").value,
-        cardLast4: document.getElementById("cardLast4").value,
-        cardExpDate: document.getElementById("cardExpDate").value,
-        billingZip: document.getElementById("billingZip").value,
-        cardbtn: document.getElementById("cardbtn").value,
-        fullname: document.getElementById("fullname").value,
-        isActive: 1
-      };
-
-      try {
-        const response = await fetch(`${API}/cards`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newCard)
-        });
-
-        if (!response.ok) throw new Error("Card submission failed");
-
-        const modal = bootstrap.Modal.getInstance(document.getElementById("addCardModal"));
-        modal.hide();
-
-        await refreshCards();
-      } catch (err) {
-        console.error("Error adding card:", err);
-        alert("Failed to add card. Please try again.");
-      }
+    cards.forEach(card => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${card.cardType}</td>
+        <td>${card.cardVendor}</td>
+        <td>${card.cardLast4}</td>
+        <td>${card.cardExpDate}</td>
+        <td>${card.billingZip}</td>
+        <td>
+          <button class="btn btn-primary btn-sm" onclick='simulatePayment(${JSON.stringify(card)})'>
+            Pay $${amount.toFixed(2)}
+          </button>
+          <button class="btn btn-warning btn-sm ms-2" onclick='openUpdateModal(${JSON.stringify(card)})'>
+            Update Card
+          </button>
+        </td>
+      `;
+      tbody.appendChild(row);
     });
+  }
 
-    function openUpdateModal(card) {
-      document.getElementById("update-cardId").value = card.cardId;
-      document.getElementById("update-cardType").value = card.cardType || "";
-      document.getElementById("update-cardVendor").value = card.cardVendor || "";
-      document.getElementById("update-cardLast4").value = card.cardLast4 || "";
-      document.getElementById("update-cardExpDate").value = card.cardExpDate || "";
-      document.getElementById("update-billingZip").value = card.billingZip || "";
-      document.getElementById("update-cardbtn").value = card.cardbtn || "";
-      document.getElementById("update-fullname").value = card.fullname || "";
+  async function refreshCards() {
+    const cards = await fetchCards(uid);
+    renderCards(cards);
+  }
 
-      const modal = new bootstrap.Modal(document.getElementById("updateCardModal"));
-      modal.show();
+  refreshCards();
+
+  async function simulatePayment(card) {
+    if (!cartIds || cartIds.length === 0) {
+      alert("Missing cart information.");
+      return;
     }
 
-    document.getElementById("update-card-form").addEventListener("submit", async function (e) {
-      e.preventDefault();
+    if (!confirm(`Confirm payment of $${amount.toFixed(2)} using card ending in ${card.cardLast4}?`)) return;
 
-      const cardId = document.getElementById("update-cardId").value;
-      const updatedCard = {
-        cardId: parseInt(cardId),
-        uid: uid,
-        cardType: document.getElementById("update-cardType").value,
-        cardVendor: document.getElementById("update-cardVendor").value,
-        cardLast4: document.getElementById("update-cardLast4").value,
-        cardExpDate: document.getElementById("update-cardExpDate").value,
-        billingZip: document.getElementById("update-billingZip").value,
-        cardbtn: document.getElementById("update-cardbtn").value,
-        fullname: document.getElementById("update-fullname").value,
-        isActive: 1
+    try {
+      const transactionId = generateTransactionId();
+      let allItems = [];
+
+      // 1️⃣ Create Payment
+      const paymentData = {
+        paymentId: 0,
+        cartid: null,
+        bookingId: 0,
+        paymentMethod: "Credit Card",
+        cardType: card.cardType,
+        cardLast4: card.cardLast4,
+        cardExpDate: card.cardExpDate,
+        amountPaid: amount,
+        amountRefunded: 0,
+        paymentDate: new Date().toISOString(),
+        transactionId: transactionId,
+        refundTransactionid: "",
+        useridasstring: uid.toString(),
+        transtype: "Payment",
+        fullname: card.fullname || ""
       };
 
-      try {
-        const response = await fetch(`${API}/cards/${cardId}`, {
+      await fetch(`${API}/payments`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(paymentData)
+      });
+
+      // 2️⃣ Load all cart items + update each cart with transactionId
+      for (const id of cartIds) {
+        const itemsRes = await fetch(`${API}/cartitems/cart/${id}`);
+        if (!itemsRes.ok) throw new Error(`Failed to load cart items for cart ${id}`);
+
+        const items = await itemsRes.json();
+        allItems.push(...items);
+
+        // Update cart with transactionId
+        await fetch(`${API}/carts/${id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(updatedCard)
+          body: JSON.stringify({ transactionId })
         });
-
-        if (!response.ok) throw new Error("Update failed");
-
-        const modal = bootstrap.Modal.getInstance(document.getElementById("updateCardModal"));
-        modal.hide();
-
-        await refreshCards();
-        alert("Card updated successfully!");
-      } catch (err) {
-        console.error("Error updating card:", err);
-        alert("Failed to update card. Please try again.");
       }
-    });
-  </script>
+
+      if (allItems.length === 0) {
+        alert("No items found in the selected carts.");
+        return;
+      }
+
+      // 3️⃣ Create ONE Invoice
+      const nowIso = new Date().toISOString();
+      const invoicePayload = {
+        invoiceId: 0,
+        customerId: uid,
+        accountId: "",
+        subAccountId: "",
+        billToAddress1: "",
+        billToAddress2: "",
+        billToCity: "",
+        billToState: "",
+        billToPostalZip: "",
+        billToCountry: "",
+        shipToAddress1: "",
+        shipToAddress2: "",
+        shipToCity: "",
+        shipToState: "",
+        shipToPostalZip: "",
+        shipToCountry: "",
+        subtotal: amount,
+        taxTotal: 0,
+        discountTotal: 0,
+        grandTotal: amount,
+        invoiceDate: nowIso,
+        dueDate: nowIso,
+        status: "paid",
+        notes: "",
+        createdAt: nowIso,
+        updatedAt: nowIso,
+        cartId: null,
+        transactionId: transactionId
+      };
+
+      const invoiceRes = await fetch(`${API}/invoices`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(invoicePayload)
+      });
+
+      if (!invoiceRes.ok) throw new Error("Failed to create invoice");
+      const createdInvoice = await invoiceRes.json();
+      const invoiceId = createdInvoice.invoiceId;
+
+      // 4️⃣ Create Invoice Line Items
+      for (const item of allItems) {
+        const qty = item.itemqty || 1;
+        const lineTotal = item.itemtotals || 0;
+        const unitPrice = item.unitPrice || (qty ? lineTotal / qty : 0);
+
+        const lineItem = {
+          invoiceId: invoiceId,
+          productId: item.productId || item.productid || "",
+          description: item.itemDescription || item.itemType || "",
+          quantity: qty,
+          listCost: unitPrice,
+          unitCost: unitPrice,
+          discountAmount: 0,
+          taxAmount: 0,
+          lineSubtotal: lineTotal,
+          lineTotal: lineTotal,
+          createdAt: nowIso,
+          updatedAt: nowIso
+        };
+
+        await fetch(`${API}/invoice-line-items`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(lineItem)
+        });
+      }
+
+      document.getElementById("payment-status").innerHTML = `
+        <p class="fw-bold text-success">✅ Payment of $${amount.toFixed(2)} processed.</p>
+        <p>Transaction ID: <strong>${transactionId}</strong></p>
+        <p>Invoice created with ${allItems.length} line item(s).</p>
+      `;
+
+      alert("Payment and invoice created successfully.");
+      window.location.href = "myinvoices.html";
+
+    } catch (err) {
+      console.error("Error during payment:", err);
+      document.getElementById("payment-status").innerHTML = `
+        <p class="text-danger">❌ Payment failed. Please try again.</p>
+      `;
+    }
+  }
+
+  // Add Card
+  document.getElementById("add-card-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const newCard = {
+      cardId: 0,
+      uid: uid,
+      cardType: document.getElementById("cardType").value,
+      cardVendor: document.getElementById("cardVendor").value,
+      cardLast4: document.getElementById("cardLast4").value,
+      cardExpDate: document.getElementById("cardExpDate").value,
+      billingZip: document.getElementById("billingZip").value,
+      cardbtn: document.getElementById("cardbtn").value,
+      fullname: document.getElementById("fullname").value,
+      isActive: 1
+    };
+
+    try {
+      const response = await fetch(`${API}/cards`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newCard)
+      });
+
+      if (!response.ok) throw new Error("Card submission failed");
+
+      const modal = bootstrap.Modal.getInstance(document.getElementById("addCardModal"));
+      modal.hide();
+
+      await refreshCards();
+    } catch (err) {
+      console.error("Error adding card:", err);
+      alert("Failed to add card. Please try again.");
+    }
+  });
+
+  // Update Card Modal
+  function openUpdateModal(card) {
+    document.getElementById("update-cardId").value = card.cardId;
+    document.getElementById("update-cardType").value = card.cardType || "";
+    document.getElementById("update-cardVendor").value = card.cardVendor || "";
+    document.getElementById("update-cardLast4").value = card.cardLast4 || "";
+    document.getElementById("update-cardExpDate").value = card.cardExpDate || "";
+    document.getElementById("update-billingZip").value = card.billingZip || "";
+    document.getElementById("update-cardbtn").value = card.cardbtn || "";
+    document.getElementById("update-fullname").value = card.fullname || "";
+
+    const modal = new bootstrap.Modal(document.getElementById("updateCardModal"));
+    modal.show();
+  }
+
+  document.getElementById("update-card-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const cardId = document.getElementById("update-cardId").value;
+    const updatedCard = {
+      cardId: parseInt(cardId),
+      uid: uid,
+      cardType: document.getElementById("update-cardType").value,
+      cardVendor: document.getElementById("update-cardVendor").value,
+      cardLast4: document.getElementById("update-cardLast4").value,
+      cardExpDate: document.getElementById("update-cardExpDate").value,
+      billingZip: document.getElementById("update-billingZip").value,
+      cardbtn: document.getElementById("update-cardbtn").value,
+      fullname: document.getElementById("update-fullname").value,
+      isActive: 1
+    };
+
+    try {
+      const response = await fetch(`${API}/cards/${cardId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedCard)
+      });
+
+      if (!response.ok) throw new Error("Update failed");
+
+      const modal = bootstrap.Modal.getInstance(document.getElementById("updateCardModal"));
+      modal.hide();
+
+      await refreshCards();
+      alert("Card updated successfully!");
+    } catch (err) {
+      console.error("Error updating card:", err);
+      alert("Failed to update card. Please try again.");
+    }
+  });
+</script>
+
 </body>
 </html>
+
 
