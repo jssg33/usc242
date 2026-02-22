@@ -61,30 +61,36 @@ width: 400px;
   
 
 <body onload="checkpll(); checkUserStatus(); displayProfilePicture();">
-    <!-- Navigation Bar -->
-    <div class="navbar">
-      <div class="nav-left">
-            <div class="dropdown">
-                  <button class="jsmenu"><img src="./images/jsmenu4.png"></button> 
-                  <div class="dropdown-content">
-                  <a href="index.html">Site Home</a>
-                  <a href="cartreview.html">MyCart</a>
-                  <a href="parks5.html">Review Park Options</a>
-                  <a href="parksreview5.html">Park Reviews</a>
-                  <a href="mybookings5.html">MyReservations</a>
-                  <a href="manager.html">Manager Utilities</a>
-            </div>
-    </div> 
-      <div class="logo">&nbsp&nbsp<H5>MyLinkv25</H5></div>
-      </div>
-      <div class="nav-right">
-        <img src="./images/bluecircle.png" id="profilephototarget" alt="User" style="cursor:pointer;" onclick="window.location.href='profile.html'" />
-        <span id="H3UserBanner"></span>
-        <a href="login.html" id="loginBtn" class="btn secondary-btn" onclick="loginUser(event)">Login</a>
-        <a href="login.html" id="logoutBtn" class="btn secondary-btn" onclick="logoutUser(event)">Logout</a>
-                <a href="cartreview.html" id="cartBtn3"><img src="./images/cart4.png" width="40px" height="40px"></a>
+  <!-- ========================= -->
+  <!-- NAVIGATION BAR -->
+  <!-- ========================= -->
+  <div class="navbar">
+    <div class="nav-left">
+      <div class="dropdown">
+        <button class="jsmenu"><img src="./images/greenmenu5.png"></button>
+        <div class="dropdown-content">
+          <a href="index.html">Home</a>
+          <a href="login.html">Login</a>
+          <a href="logout.html">Logout</a>
+          <a href="welcome.html">Welcome</a>
+          <a href="products.html">Products</a>
+          <a href="mycart.html">My Cart</a>
+          <a href="myprofile.html">My Profile</a>
+          <a href="admin/products.html">Admin Products</a>
+          <a href="admin/templates.html">Admin Templates</a>
+        </div>
+        <div class="logo">&nbsp;&nbsp;FusionCommerce – Product Review</div>
       </div>
     </div>
+
+    <div class="nav-right">
+      <img src="./images/blackcircle.png" id="profilephototarget" alt="User" onclick="window.location.href='myprofile.html'" />
+      <span id="H3UserBanner"></span>
+      <a href="login.html" id="loginBtn" class="btn secondary-btn">Login</a>
+      <a href="logout.html" id="logoutBtn" class="btn secondary-btn">Logout</a>
+      <a href="cartreview.html" id="cartBtn3"><img src="./images/cart4.png" width="40" height="40"></a>
+    </div>
+  </div>
   <div align="center" id="banner"><span id="userGreeting">Welcome Guest</span></div>
   <div class="container py-5">
       <div id="cart-items" class="row g-4 mb-4"></div>
