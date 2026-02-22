@@ -1,4 +1,15 @@
-  
+
+const params = new URLSearchParams(window.location.search);
+const urlTenant = params.get("tenantId");
+/*if (urlTenant) 
+{
+  localStorage.setItem("tenant", urlTenant);
+}
+else
+{
+   localStorage.setItem("tenant", "GACOM");
+}
+*/
   // ===============================
 // products.js (Multi-tenant UI + Product Loader)
 // ===============================
