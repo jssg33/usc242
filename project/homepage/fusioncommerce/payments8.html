@@ -2,217 +2,299 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>FusionCommerce – Payment</title>
-
+  <title>FusionCommerce – Payment Summary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- jQuery -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script type="module" src="https://esm.run/@material/web/all.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-  <!-- FusionCommerce Styles -->
   <link rel="stylesheet" href="./css/fusioncart.css" />
-  <link rel="stylesheet" href="./css/site.css" />
-  <link rel="stylesheet" href="./css/layout.css" />
-  <link rel="stylesheet" href="./css/greenville.css" />
-
-  <style>
-    #banner {
-      background-color: #198754;
-      height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-    }
-    .summary-card {
-      max-width: 600px;
-      margin: auto;
-    }
-  </style>
+  <!-- Your new JS files -->
+  <script src="./js/products.js"></script>
+  <script src="./js/cart.js"></script>
 </head>
+<body onload="
+  loadCompanyDetails();
+  loadProductSummary();
+  loadCartMaster();
+  checkpll();
+  checkUserStatus();
+  displayProfilePicture();
+">
 
-<body onload="checkpll(); checkUserStatus(); displayProfilePicture(); initializePaymentPage();">
-
-<!-- NAVIGATION BAR -->
-<div class="navbar">
-  <div class="nav-left">
-    <div class="dropdown">
-      <button class="jsmenu"><img src="./images/greenmenu5.png"></button>
-      <div class="dropdown-content">
-        <a href="index.html">Home</a>
-        <a href="purchase555.html">Buy Now</a>
-        <a href="cartreview.html">My Carts</a>
-        <a href="mypurchases5.html">My Purchases</a>
-        <a href="myinvoices.html">My Invoices</a>
-        <a href="myprofile.html">My Profile</a>
+  <!-- ========================= -->
+  <!-- NAVIGATION BAR -->
+  <!-- ========================= -->
+  <div class="navbar">
+    <div class="nav-left">
+      <div class="dropdown">
+        <button class="jsmenu"><img src="./images/greenmenu5.png"></button>
+        <div class="dropdown-content">
+            <a href="index.html">Home</a>
+			      <a href="login.html">Login</a>
+            <a href="logout.html">Logout</a>
+            <a href="welcome.html">Welcome</a>
+            <a href="licenses6.html">BuyNow</a>
+            <a href="reviews.html">AllReviews</a>
+            <a href="mylicenselogs.html">MyLicenseLogs</a>
+            <a href="mylicenses.html">MyLicenses</a>
+            <a href="./pricing/wizard.html">PricingWizard</a>
+            <a href="mycart.html?uid=1">MyCart</a>
+            <a href="myprofile.html">MyProfile</a>
+            <a href="testimonials.html">AdminTestimonials</a>
+            <a href="products.html">AdminProducts</a>
+            <a href="licensetypes.html">AdminLicenseTypes</a>
+	          <a href="template.html">AdminPageTemplate</a>
+        </div>
+        <div class="logo">&nbsp;&nbsp;FusionCommerce – Product Review</div>
       </div>
-      <div class="logo">&nbsp;&nbsp;FusionCommerce – Payment</div>
+    </div>
+
+    <div class="nav-right">
+      <img src="./images/blackcircle.png" id="profilephototarget" alt="User" onclick="window.location.href='myprofile.html'" />
+      <span id="H3UserBanner"></span>
+      <div class="right-links" style="display:flex; gap:6px; align-items:center; color: white;">
+
+        <md-text-button class="icon-only" href="index.html" aria-label="Home" title="Home">
+          <span class="material-icons" style="color:white;">home</span>
+        </md-text-button>
+      
+        <md-text-button class="icon-only" href="userhelp.html" aria-label="Help" title="Help">
+          <span class="material-icons" style="color:white;">help_outline</span>
+        </md-text-button>
+      
+        <md-text-button class="icon-only" href="usernotices.html" aria-label="Notifications" title="Notifications">
+          <span class="material-icons" style="color:white;">notifications</span>
+        </md-text-button>
+      
+        <md-text-button class="icon-only" href="login.html" aria-label="Login" title="Login">
+          <span class="material-icons" style="color:white;">login</span>
+        </md-text-button>
+      
+        <md-text-button class="icon-only" href="logout.html" aria-label="Logout" title="Logout">
+          <span class="material-icons" style="color:white;">logout</span>
+        </md-text-button>
+      
+         <md-text-button class="icon-only" href="myprofile.html" aria-label="My Profile" title="My Profile">
+          <span class="material-icons" style="color:white;">person</span>
+        </md-text-button>
+      
+         <md-text-button class="icon-only" href="mycart.html" aria-label="My Cart" title="My Cart">
+          <span class="material-icons" style="color:white;">shopping_cart</span>
+        </md-text-button>
+      </div>
     </div>
   </div>
 
-  <div class="nav-right">
-    <img src="./images/blackcircle.png" id="profilephototarget" alt="User"
-         onclick="window.location.href='myprofile.html'" />
-    <span id="H3UserBanner"></span>
-    <a href="login.html" id="loginBtn" class="btn secondary-btn">Login</a>
-    <a href="logout.html" id="logoutBtn" class="btn secondary-btn">Logout</a>
-    <a href="cartreview.html" id="cartBtn3">
-      <img src="./images/cart4.png" width="40" height="40">
-    </a>
-  </div>
-</div>
+  <div class="container mt-4">
+    <h2>Payment Summary</h2>
+    <div id="summary" class="mb-3"></div>
 
-<div id="banner"><span id="userGreeting">Welcome Guest</span></div>
+    <div class="accordion" id="cartAccordion"></div>
 
-<!-- MAIN CONTENT -->
-<div class="container mt-5">
+    <h3 class="mt-4">Select a Payment Method</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Card Type</th>
+          <th>Vendor</th>
+          <th>Last 4</th>
+          <th>Expiration</th>
+          <th>Zip</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="cardTable"></tbody>
+    </table>
 
-  <div class="card shadow summary-card">
-    <div class="card-header bg-success text-white fw-bold">
-      Payment Summary
-    </div>
-    <div class="card-body">
-
-      <p><strong>Payment Type:</strong> <span id="paymentType"></span></p>
-      <p><strong>Number of Items:</strong> <span id="itemCount"></span></p>
-      <p><strong>Total Amount:</strong> $<span id="totalAmount"></span></p>
-
-      <button id="payNowBtn" class="btn btn-success w-100 mt-3">
-        Pay Now
-      </button>
-
-    </div>
+    <div id="status" class="mt-3"></div>
   </div>
 
-</div>
+  <script>
+    const API = "https://api242.onrender.com";
+    const params = new URLSearchParams(window.location.search);
+    const cartIds = params.getAll("cartId");
+    const uid = localStorage.getItem("uid") || "1";
 
-<footer class="footer text-center mt-5">
-  &copy; Cocky Consulting 2025.<br>
-  All rights reserved.<br>
-  <a href="sitemap.html" class="sitelink">SiteMap</a>
-</footer>
+    async function loadCartData() {
+      let allItems = [];
+      let cartSummaries = [];
 
-<script>
-const API = "https://api242.onrender.com";
+      for (const cartId of cartIds) {
+        const res = await fetch(`${API}/cartitems/cart/${cartId}`);
+        const items = await res.json();
 
-async function initializePaymentPage() {
-  const params = new URLSearchParams(window.location.search);
-  const cartId = params.get("cartId");
-  const uid = localStorage.getItem("uid");
+        const total = items.reduce((sum, i) => sum + (i.itemtotals || 0), 0);
+        const isReservation = items.some(i => i.resStart && i.resEnd);
 
-  if (!cartId || !uid) {
-    alert("Missing cart or user information.");
-    return;
-  }
+        cartSummaries.push({ cartId, total, isReservation, items });
+        allItems.push(...items);
+      }
 
-  // Load cart items
-  const res = await fetch(`${API}/cartitems/cart/${cartId}`);
-  const items = await res.json();
+      const grandTotal = cartSummaries.reduce((sum, c) => sum + c.total, 0);
+      const totalItems = allItems.length;
 
-  if (!items || items.length === 0) {
-    alert("No items found in this cart.");
-    return;
-  }
+      document.getElementById("summary").innerHTML = `
+        <p><strong>Total Amount:</strong> $${grandTotal.toFixed(2)}</p>
+        <p><strong>Total Carts:</strong> ${cartSummaries.length}</p>
+        <p><strong>Total Items:</strong> ${totalItems}</p>
+      `;
 
-  // Determine payment type
-  const isReservation = items.some(i => i.resStart && i.resEnd);
+      renderAccordion(cartSummaries);
+      loadCards(grandTotal, cartSummaries);
+    }
 
-  const paymentType = isReservation ? "Reservation" : "Invoice";
-  const totalAmount = items.reduce((sum, i) => sum + (i.itemtotals || 0), 0);
-  const itemCount = items.length;
+    function renderAccordion(carts) {
+      const acc = document.getElementById("cartAccordion");
+      acc.innerHTML = "";
 
-  // Display summary
-  document.getElementById("paymentType").textContent = paymentType;
-  document.getElementById("itemCount").textContent = itemCount;
-  document.getElementById("totalAmount").textContent = totalAmount.toFixed(2);
+      carts.forEach((c, index) => {
+        const type = c.isReservation ? "Reservation" : "Invoice";
 
-  // Pay Now handler
-  document.getElementById("payNowBtn").onclick = () =>
-    processPayment(uid, cartId, items, paymentType, totalAmount);
-}
+        let rows = c.items.map(i => `
+          <tr>
+            <td>${i.itemDescription || i.itemType}</td>
+            <td>${i.itemqty || 1}</td>
+            <td>$${(i.itemtotals || 0).toFixed(2)}</td>
+          </tr>
+        `).join("");
 
-async function processPayment(uid, cartId, items, paymentType, totalAmount) {
-  if (!confirm(`Confirm payment of $${totalAmount.toFixed(2)}?`)) return;
+        acc.innerHTML += `
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading${index}">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}">
+                Cart ${c.cartId} — $${c.total.toFixed(2)} — ${type}
+              </button>
+            </h2>
+            <div id="collapse${index}" class="accordion-collapse collapse" data-bs-parent="#cartAccordion">
+              <div class="accordion-body">
+                <table class="table table-sm table-bordered">
+                  <thead>
+                    <tr><th>Item</th><th>Qty</th><th>Total</th></tr>
+                  </thead>
+                  <tbody>${rows}</tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
 
-  // 1️⃣ Create Payment
-  const payment = {
-    paymentId: 0,
-    cartid: cartId,
-    bookingId: 0,
-    paymentMethod: "Card",
-    cardType: "Card",
-    cardLast4: "0000",
-    cardExpDate: "",
-    amountPaid: totalAmount,
-    amountRefunded: 0,
-    paymentDate: new Date().toISOString(),
-    transactionId: "TXN" + Math.floor(Math.random() * 999999),
-    refundTransactionid: "",
-    useridasstring: uid.toString(),
-    transtype: "Payment",
-    fullname: ""
-  };
+    async function loadCards(totalAmount, cartSummaries) {
+      const res = await fetch(`${API}/cards?uid=${uid}`);
+      const cards = await res.json();
+      const tbody = document.getElementById("cardTable");
+      tbody.innerHTML = "";
 
-  await fetch(`${API}/payments`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payment)
-  });
+      cards.forEach(card => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${card.cardType}</td>
+            <td>${card.cardVendor}</td>
+            <td>${card.cardLast4}</td>
+            <td>${card.cardExpDate}</td>
+            <td>${card.billingZip}</td>
+            <td>
+              <button class="btn btn-primary btn-sm" onclick='pay(${JSON.stringify(card)}, ${totalAmount}, ${JSON.stringify(cartSummaries)})'>
+                Pay $${totalAmount.toFixed(2)}
+              </button>
+            </td>
+          </tr>
+        `;
+      });
+    }
 
-  // 2️⃣ Create Reservation or Invoice
-  if (paymentType === "Reservation") {
-    const reservation = {
-      bookingId: 0,
-      uid: uid,
-      totalAmount: totalAmount,
-      transactionId: payment.transactionId,
-      cartid: cartId,
-      reservationtype: "Reservation",
-      reservationstatus: "Completed",
-      resStart: items[0].resStart,
-      resEnd: items[0].resEnd,
-      createdAt: new Date().toISOString()
-    };
+    function generateTransactionId() {
+      const letters = Array.from({ length: 3 }, () => String.fromCharCode(65 + Math.floor(Math.random() * 26))).join("");
+      const digits = Math.floor(100000000 + Math.random() * 900000000);
+      return letters + digits;
+    }
 
-    await fetch(`${API}/reservations`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(reservation)
-    });
+    async function pay(card, totalAmount, cartSummaries) {
+      const transactionId = generateTransactionId();
 
-    alert("Reservation completed successfully.");
-    window.location.href = "mypurchases5.html";
+      const payment = {
+        paymentId: 0,
+        cartid: null,
+        bookingId: 0,
+        paymentMethod: "Credit Card",
+        cardType: card.cardType,
+        cardLast4: card.cardLast4,
+        cardExpDate: card.cardExpDate,
+        amountPaid: totalAmount,
+        amountRefunded: 0,
+        paymentDate: new Date().toISOString(),
+        transactionId,
+        refundTransactionid: "",
+        useridasstring: uid,
+        transtype: "Payment",
+        fullname: card.fullname || ""
+      };
 
-  } else {
-    const invoice = {
-      invoiceId: 0,
-      customerId: uid,
-      subtotal: totalAmount,
-      taxTotal: 0,
-      discountTotal: 0,
-      grandTotal: totalAmount,
-      invoiceDate: new Date().toISOString(),
-      dueDate: new Date().toISOString(),
-      status: "paid",
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      cartId: cartId
-    };
+      await fetch(`${API}/payments`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payment)
+      });
 
-    await fetch(`${API}/invoices`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(invoice)
-    });
+      let createdReservation = false;
 
-    alert("Invoice created successfully.");
-    window.location.href = "myinvoices.html";
-  }
-}
-</script>
+      for (const cart of cartSummaries) {
+        if (cart.isReservation) {
+          createdReservation = true;
+          const first = cart.items[0];
 
+          const reservation = {
+            bookingId: 0,
+            uid,
+            totalAmount: cart.total,
+            transactionId,
+            cartid: cart.cartId,
+            reservationtype: "Reservation",
+            reservationstatus: "Completed",
+            resStart: first.resStart,
+            resEnd: first.resEnd,
+            createdAt: new Date().toISOString()
+          };
+
+          await fetch(`${API}/reservations`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(reservation)
+          });
+        } else {
+          const invoice = {
+            invoiceId: 0,
+            customerId: uid,
+            subtotal: cart.total,
+            taxTotal: 0,
+            discountTotal: 0,
+            grandTotal: cart.total,
+            invoiceDate: new Date().toISOString(),
+            dueDate: new Date().toISOString(),
+            status: "paid",
+            cartId: cart.cartId,
+            transactionId
+          };
+
+          await fetch(`${API}/invoices`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(invoice)
+          });
+        }
+      }
+
+      if (createdReservation) window.location.href = "mypurchases5.html";
+      else window.location.href = "myinvoices.html";
+    }
+
+    loadCartData();
+  </script>
 </body>
+<footer class="footer">
+    &copy; Greenville Associates Consulting, Inc.<br>
+    All rights reserved.<br>
+    <a href="sitemap.html" class="sitelink">SiteMap</a>
+  </footer>
 </html>
