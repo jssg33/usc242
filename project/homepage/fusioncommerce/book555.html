@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script type="module" src="https://esm.run/@material/web/all.js"></script>
+  <link rel="stylesheet" href="./css/site.css" />
+  <link rel="stylesheet" href="./css/layout.css" />
+  <link rel="stylesheet" href="./css/greenville.css" />
+  <script src="./js/licenses.js"></script>
+  <script src="./js/cart.js"></script>
+  <title>Mountain Bike Parks</title>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style></style>
+</head>
+<body onload="openReservationModal(); checkpll(); checkUserStatus(); displayProfilePicture(); loadParkSummary();">
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="nav-left">
+      <div class="dropdown">
+        <button class="jsmenu"><img src="./images/greenmenu5.png"></button> 
+        <div class="dropdown-content">
+           	<a href="index.html">Home</a>
+			      <a href="login.html">Login</a>
+            <a href="logout.html">Logout</a>
+            <a href="welcome.html">Welcome</a>
+            <a href="licenses6.html">BuyNow</a>
+            <a href="reviews.html">AllReviews</a>
+            <a href="mylicenselogs.html">MyLicenseLogs</a>
+            <a href="mylicenses.html">MyLicenses</a>
+            <a href="./pricing/wizard.html">PricingWizard</a>
+            <a href="mycart.html?uid=1">MyCart</a>
+            <a href="myprofile.html">MyProfile</a>
+            <a href="testimonials.html">AdminTestimonials</a>
+            <a href="products.html">AdminProducts</a>
+            <a href="licensetypes.html">AdminLicenseTypes</a>
+	   <a href="template.html">AdminPageTemplate</a>
+        </div>
+       <div class="logo">&nbsp;&nbsp;GEM.LM - Review Parks</div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <img src="./images/bluecircle.png" id="profilephototarget" alt="User" style="cursor:pointer;" onclick="window.location.href='profile.html'" />
+      <span id="H3UserBanner"></span>
+      <a href="login.html" id="loginBtn" class="btn secondary-btn" onclick="loginUser(event)">Login</a>
+      <a href="login.html" id="logoutBtn" class="btn secondary-btn" onclick="logoutUser(event)">Logout</a>
+              <a href="cartreview.html" id="cartBtn3"><img src="./images/cart4.png" width="40px" height="40px"></a>
+    </div>
+  </div>
+
+  <div align="center" id="banner"><span id="userGreeting">Welcome Guest</span></div><BR><BR>
+
+
+ <div class="row2">
+   <div class="parkinfo" style="background-color:#aaa;">
+     <h3>ParkInfo</h3>
+     <hr>
+     <div style="display: flex; align-items: center; gap: 10px;">
+  <span><strong>Current Park ID:</strong> <span id="currentParkId"></span><span id="currentParkName"></span></span>&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp
+  <label for="parkSelector">Change Park:</label>
+  <select id="parkSelector" onchange="changePark()" 
+          style="max-width: 200px; font-size: 0.85rem; padding: 2px 8px;">
+    <option value="">Select a Park</option>
+  </select>
+  </div><HR>
+<div id="park-details"></div>
+   </div>
+
+   <div class="cartinfo" style="background-color: #D3D3D3;">
+     <h3>User Actions History</h3>
+     <hr>
+     <div id="cartMasterCard" style="border:1px solid #999; background-color:#eee; max-height:320px; overflow-y:auto; display:none;">
+       <div style="background-color:#ccc; padding:5px; text-align:center;">
+         Your Cart Master Summary For User: <span id="masterowner"></span>
+       </div>
+       <div style="padding:10px;">
+         <p>
+           Loyalty ID: <span id="loyaltyid"></span><br>
+           Carts Count: <span id="cmCartsCount"></span><br>
+           Active Carts: <span id="cmCartsActive"></span><br>
+           Cancelled Carts: <span id="cmCartsCancelled"></span><br>
+           Active List: <span id="cmCartsActiveList" style="max-height:100px;"></span>
+         </p>
+         <br>
+         <div>
+           <button id="newcartbutton" onclick="createNewCart()">Add New Cart</button>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <hr>
+
+ <div id="productstuff">
+   <div id="interiorpanel">
+     <h4>Reservation Details</h4>
+        <div class="master-row">
+
+              <!-- LEFT COLUMN -->
+              <div class="left-column">
+              <h5 style="color: blue;">Reservation Basics</h5>
+
+              <div class="date-block">
+                <label for="globalStartDate" style="font-size: 8pt;">Start:</label>
+                <input type="date" id="globalStartDate">
+
+                <label for="globalEndDate" style="font-size: 8pt;">End:</label>
+                <input type="date" id="globalEndDate">
+              </div>
+
+            <div class="shell-block">
+              <label for="globalAdults" style="font-size: 8pt;">Adults:</label>
+              <input type="number" id="globalAdults" style="width: 50px;">
+
+              <label for="globalChildren" style="margin-left: 10px; font-size: 8pt;">Children:</label>
+              <input type="number" id="globalChildren" style="width: 50px;">
+
+              <label for="globalTentSites" style="margin-left: 10px; font-size: 8pt;">TentSites:</label>
+              <input type="number" id="globalTentSites" style="width: 50px;">
+            </div>
+            </div>
+
+  <!-- RIGHT COLUMN -->
+  <div class="right-column">
+    <h5 style="color: blue;">Interests:</h5>
+
+    <div class="interests-block">
+      <label><input type="checkbox" name="activities" value="dirtbikes"> Dirtbikes</label>
+      <label><input type="checkbox" name="activities" value="mountain_biking" checked> Mountain Biking</label>
+      <label><input type="checkbox" name="activities" value="tentcamping"> Tent Camping</label>
+      <label><input type="checkbox" name="activities" value="cabins"> Cabins</label>
+      <label><input type="checkbox" name="activities" value="skiing"> Skiing</label>
+      <label><input type="checkbox" name="activities" value="rafting"> Rafting</label>
+      <label><input type="checkbox" name="activities" value="other"> Other Actions</label>
+    </div>
+  </div>
+</div>
+</div>
+     <div class="row" id="salesgrid">
+       <div class="columnproducts" style="background-color:#D3D3D3;">
+         <h3>Products</h3>
+         <hr>
+         <select id="catalogue" multiple style="width: 90%; margin-left: 20px;"></select>
+       </div>
+       <div class="columnactions" style="background-color: #D3D3D3;">
+         <h3>Actions</h3><hr>
+         <button onclick="moveToSelected()">Add Item(s)</button><br><br>
+         <button onclick="moveToCatalogue()">Remove Item(s)</button><br><br>
+         <button onclick="addSelectedToCart()">Save Item(s)</button><br>
+       </div>
+        <div class="columnselected" style="background-color: #D3D3D3;">
+         <h3>Selected</h3>
+         <hr>
+         <table id="selected">
+          <thead>
+          <tr>
+          <th style="width:160px;">Description</th>
+          <th style="width:90px;">Price</th>
+          <th style="width:60px;">Adults</th>
+          <th style="width:60px;">Children</th>
+          <th style="width:90px;">Subtotal</th>
+          <th style="width:90px;">State Tax (6%)</th>
+          <th style="width:90px;">Local Tax (1.5%)</th>
+          <th style="width:60px;">Line Total</th>
+          </tr>
+          </thead>
+          <tbody></tbody>
+          </table>
+       </div>
+      
+     </div>
+   </div>
+
+ <hr>
+
+<!-- Modal -->
+<div id="reservationModal">
+  <div class="modal-content">
+    <h3>Reservation Basics</h3>
+  <div class="number-row"><label>Adults:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label> <input type="number" id="modalAdults" value="1" > <button type="button" onclick="dec('modalAdults')">−</button><button type="button" onclick="inc('modalAdults')">+</button></div>
+<br>
+<div class="number-row">
+  <label>Children:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label><input type="number" id="modalChildren" value="0" ><button type="button" onclick="dec('modalChildren')">−</button><button type="button" onclick="inc('modalChildren')">+</button></div>
+<br>
+
+<div class="number-row"><label>Tent Sites:&nbsp&nbsp&nbsp&nbsp</label><input type="number" id="modalTentSites" value="0"><button type="button" onclick="dec('modalTentSites')">−</button><button type="button" onclick="inc('modalTentSites')">+</button></div>
+<br>
+
+    <div style="font-size: 8pt;"><label id="startdate" style="float: left;font-size: 8pt;">Start Date:<input type="date" id="modalStartDate"></label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<label id="enddate" style="float:  left;font-size: 8pt;">End Date:&nbsp&nbsp&nbsp<input type="date" id="modalEndDate"></label></div>
+    <br><br>
+    <button onclick="submitModalDetails()" style="width: 100px;">Submit</button>
+    <button onclick="closeReservationModal()" style="width: 100px; margin-left: 10px;">Close</button>
+  </div>
+</div>
+
+
+
+<!-- ================== SCRIPT PART 1: Globals & Utilities ================== -->
+<script>
+
+</script>
+</body>
+<footer class="footer"> &copy; Greenville Associates Consulting, Inc. <br> All rights reserved.<br>  <span align="center"><a href="sitemap.html" class="sitelink">SiteMap</a></span></footer>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
