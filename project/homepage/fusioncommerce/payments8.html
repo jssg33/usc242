@@ -2,257 +2,217 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Payment Page</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>FusionCommerce – Payment</title>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <script type="module" src="https://esm.run/@material/web/all.js"></script>
-   <!-- Bootstrap CSS -->
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-   <!-- jQuery -->
-   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
- 
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <!-- FusionCommerce Styles -->
   <link rel="stylesheet" href="./css/fusioncart.css" />
-  <!-- Your new JS files -->
-  <script src="./js/products.js"></script>
-  <script src="./js/cart.js"></script>
+  <link rel="stylesheet" href="./css/site.css" />
+  <link rel="stylesheet" href="./css/layout.css" />
+  <link rel="stylesheet" href="./css/greenville.css" />
 
   <style>
-    .table-striped tbody tr:nth-of-type(odd) {
-      background-color: #f9f9f9;
+    #banner {
+      background-color: #198754;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+    .summary-card {
+      max-width: 600px;
+      margin: auto;
     }
   </style>
 </head>
-<body onload="checkpll(); checkUserStatus(); displayProfilePicture(); updateCartTotals();">
-  <!-- Navigation Bar -->
-  <div class="navbar">
-    <div class="nav-left">
-      <div class="dropdown">
-        <button class="jsmenu"><img src="./images/greenmenu5.png"></button> 
-        <div class="dropdown-content">
-          	<a href="index.html">Home</a>
-			      <a href="login.html">Login</a>
-            <a href="logout.html">Logout</a>
-            <a href="welcome.html">Welcome</a>
-            <a href="licenses6.html">BuyNow</a>
-            <a href="reviews.html">AllReviews</a>
-            <a href="mylicenselogs.html">MyLicenseLogs</a>
-            <a href="mylicenses.html">MyLicenses</a>
-            <a href="./pricing/wizard.html">PricingWizard</a>
-            <a href="mycart.html?uid=1">MyCart</a>
-            <a href="myprofile.html">MyProfile</a>
-            <a href="testimonials.html">AdminTestimonials</a>
-            <a href="products.html">AdminProducts</a>
-            <a href="licensetypes.html">AdminLicenseTypes</a>
-	   <a href="template.html">AdminPageTemplate</a>
-        </div>
-      </div> 
-    <div class="logo">&nbsp&nbsp<H5>GEM.LM - Review Parks</H5></div>
-    </div>
-    <div class="nav-right">
-      <img src="./images/blackcircle.png" id="profilephototarget" alt="User" onclick="window.location.href='myprofile.html'" />
-      <span id="H3UserBanner"></span>
-      <div class="right-links" style="display:flex; gap:6px; align-items:center; color: white;">
 
-        <md-text-button class="icon-only" href="index.html" aria-label="Home" title="Home">
-          <span class="material-icons" style="color:white;">home</span>
-        </md-text-button>
-      
-        <md-text-button class="icon-only" href="userhelp.html" aria-label="Help" title="Help">
-          <span class="material-icons" style="color:white;">help_outline</span>
-        </md-text-button>
-      
-        <md-text-button class="icon-only" href="usernotices.html" aria-label="Notifications" title="Notifications">
-          <span class="material-icons" style="color:white;">notifications</span>
-        </md-text-button>
-      
-        <md-text-button class="icon-only" href="login.html" aria-label="Login" title="Login">
-          <span class="material-icons" style="color:white;">login</span>
-        </md-text-button>
-      
-        <md-text-button class="icon-only" href="logout.html" aria-label="Logout" title="Logout">
-          <span class="material-icons" style="color:white;">logout</span>
-        </md-text-button>
-      
-         <md-text-button class="icon-only" href="myprofile.html" aria-label="My Profile" title="My Profile">
-          <span class="material-icons" style="color:white;">person</span>
-        </md-text-button>
-      
-         <md-text-button class="icon-only" href="mycart.html" aria-label="My Cart" title="My Cart">
-          <span class="material-icons" style="color:white;">shopping_cart</span>
-        </md-text-button>
+<body onload="checkpll(); checkUserStatus(); displayProfilePicture(); initializePaymentPage();">
+
+<!-- NAVIGATION BAR -->
+<div class="navbar">
+  <div class="nav-left">
+    <div class="dropdown">
+      <button class="jsmenu"><img src="./images/greenmenu5.png"></button>
+      <div class="dropdown-content">
+        <a href="index.html">Home</a>
+        <a href="purchase555.html">Buy Now</a>
+        <a href="cartreview.html">My Carts</a>
+        <a href="mypurchases5.html">My Purchases</a>
+        <a href="myinvoices.html">My Invoices</a>
+        <a href="myprofile.html">My Profile</a>
       </div>
+      <div class="logo">&nbsp;&nbsp;FusionCommerce – Payment</div>
     </div>
   </div>
 
-  <div align="center" id="banner"><span id="userGreeting">Welcome Guest</span></div>
-<div class="container2">
-  <h2 class="mb-4">Your Cart Summary</h2>
-  <table class="table table-bordered table-striped">
-    <thead class="table-dark">
-      <tr>
-      <th>CartID</th>
-      <th>UserID</th>
-      <th>Park Name</th>
-      <th>ParkID</th>
-      <th>Item</th>
-      <th>Description</th>
-      <th>TotalItems</th>
-      <th>Total Price</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th>Adults</th>
-      <th>Jrs.</th>
-      <th>Bookinginfo</th>
-      </tr>
-    </thead>
-    <tbody id="cart-table-body"></tbody>
-    <tfoot>
-      <tr>
-        <td colspan="4" class="text-end fw-bold">Total Amount:</td>
-        <td id="total-amount" class="fw-bold">$0.00</td>
-      </tr>
-    </tfoot>
-  </table>
-
-  <button id="pay-button" class="btn btn-success">Pay Now</button>
+  <div class="nav-right">
+    <img src="./images/blackcircle.png" id="profilephototarget" alt="User"
+         onclick="window.location.href='myprofile.html'" />
+    <span id="H3UserBanner"></span>
+    <a href="login.html" id="loginBtn" class="btn secondary-btn">Login</a>
+    <a href="logout.html" id="logoutBtn" class="btn secondary-btn">Logout</a>
+    <a href="cartreview.html" id="cartBtn3">
+      <img src="./images/cart4.png" width="40" height="40">
+    </a>
+  </div>
 </div>
 
- <script>
-  const baseUrl = "https://parksapi-h8btdjefb3gpdxaf.westus3-01.azurewebsites.net";
-  const cartApi = `${baseUrl}/api/Cart/user`;
-  const paymentApi = `${baseUrl}/api/Payment`;
+<div id="banner"><span id="userGreeting">Welcome Guest</span></div>
 
-  // Get uid from localStorage or default to "1"
-  let uid = localStorage.getItem("uid");
-  if (!uid || uid.trim() === "") {
-    uid = "1";
+<!-- MAIN CONTENT -->
+<div class="container mt-5">
+
+  <div class="card shadow summary-card">
+    <div class="card-header bg-success text-white fw-bold">
+      Payment Summary
+    </div>
+    <div class="card-body">
+
+      <p><strong>Payment Type:</strong> <span id="paymentType"></span></p>
+      <p><strong>Number of Items:</strong> <span id="itemCount"></span></p>
+      <p><strong>Total Amount:</strong> $<span id="totalAmount"></span></p>
+
+      <button id="payNowBtn" class="btn btn-success w-100 mt-3">
+        Pay Now
+      </button>
+
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer text-center mt-5">
+  &copy; Cocky Consulting 2025.<br>
+  All rights reserved.<br>
+  <a href="sitemap.html" class="sitelink">SiteMap</a>
+</footer>
+
+<script>
+const API = "https://api242.onrender.com";
+
+async function initializePaymentPage() {
+  const params = new URLSearchParams(window.location.search);
+  const cartId = params.get("cartId");
+  const uid = localStorage.getItem("uid");
+
+  if (!cartId || !uid) {
+    alert("Missing cart or user information.");
+    return;
   }
 
-  // Extract all cartId values from the URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const cartIds = urlParams.getAll("cartId").map(id => parseInt(id));
+  // Load cart items
+  const res = await fetch(`${API}/cartitems/cart/${cartId}`);
+  const items = await res.json();
 
-function wait(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  if (!items || items.length === 0) {
+    alert("No items found in this cart.");
+    return;
+  }
+
+  // Determine payment type
+  const isReservation = items.some(i => i.resStart && i.resEnd);
+
+  const paymentType = isReservation ? "Reservation" : "Invoice";
+  const totalAmount = items.reduce((sum, i) => sum + (i.itemtotals || 0), 0);
+  const itemCount = items.length;
+
+  // Display summary
+  document.getElementById("paymentType").textContent = paymentType;
+  document.getElementById("itemCount").textContent = itemCount;
+  document.getElementById("totalAmount").textContent = totalAmount.toFixed(2);
+
+  // Pay Now handler
+  document.getElementById("payNowBtn").onclick = () =>
+    processPayment(uid, cartId, items, paymentType, totalAmount);
 }
-  
-  async function fetchCartItems(uid) {
-    const url = `${cartApi}/${uid}`;
-    console.log("Fetching all cart items for user:", url);
-      const response = await fetch(url);
-    await wait(3000);
-    const items = await response.json();
-    console.log("Full cart items:", items);
-    return items;
-  }
 
- function renderCart(items) {
-  const tbody = document.getElementById("cart-table-body");
-  let total = 0;
+async function processPayment(uid, cartId, items, paymentType, totalAmount) {
+  if (!confirm(`Confirm payment of $${totalAmount.toFixed(2)}?`)) return;
 
-  // Filter items to only those matching cartIds from URL
-  const filteredItems = items.filter(item => cartIds.includes(item.cartId));
-  console.log('filtered_data', filteredItems);
- 
-  filteredItems.forEach(item => {
-    const unitPrice = parseFloat(item.unitPrice) || 0;
-    const quantity = parseInt(item.quantity) || 0;
-    const totalPrice = parseFloat(item.totalPrice) || unitPrice * quantity;
-
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${item.cartId || "N/A"}</td>
-      <td>${item.uid || uid}</td>
-      <td>${item.parkname || "N/A"}</td>
-      <td>${item.parkId || 11}</td>
-      <td>${item.itemType || "Day Pass"}</td>
-      <td>${item.itemDescription || "No description"}</td>
-      <td>${item.totalcartitems}</td>
-      <td>$${item.transactiontotal}</td>
-      <td>${item.resStart.split('T')[0] || "N/A"}</td>
-      <td>${item.resEnd.split('T')[0] || "N/A"}</td>
-      <td>${item.adults || 0}</td>
-      <td>${item.children || 0}</td>
-      <td>${item.bookinginfo || 0}</td>
-    `;
-    tbody.appendChild(row);
-    total += item.transactiontotal;
-  });
-
-  if (total === 0) {
-    total = 0.01; // Minimum billing for record keeping
-  }
-
-  document.getElementById("total-amount").textContent = `$${total.toFixed(2)}`;
-
-  document.getElementById("pay-button").onclick = () => {
-    if (confirm(`Your total is $${total.toFixed(2)}. Are you ready to proceed?`)) {
-      const parkIds = filteredItems.map(item => item.parkId || 11);
-      const parkNames = filteredItems.map(item => encodeURIComponent(item.parkname || "N/A"));
-      const resStarts = filteredItems.map(item => item.resStart || "");
-      const resEnds = filteredItems.map(item => item.resEnd || "");
-      const adults = filteredItems.map(item => item.adults ?? 1);
-      const children = filteredItems.map(item => item.children ?? 0);
-
-      const paymentUrl = `paynow2.html?uid=${uid}&amount=${total.toFixed(2)}&cartIds=${cartIds.join(",")}&parkIds=${parkIds.join(",")}&parkNames=${parkNames.join(",")}&startDate=${resStarts.join(",")}&endDate=${resEnds.join(",")}&adults=${adults.join(",")}&children=${children.join(",")}`;
-
-      window.location.href = paymentUrl;
-    }
+  // 1️⃣ Create Payment
+  const payment = {
+    paymentId: 0,
+    cartid: cartId,
+    bookingId: 0,
+    paymentMethod: "Card",
+    cardType: "Card",
+    cardLast4: "0000",
+    cardExpDate: "",
+    amountPaid: totalAmount,
+    amountRefunded: 0,
+    paymentDate: new Date().toISOString(),
+    transactionId: "TXN" + Math.floor(Math.random() * 999999),
+    refundTransactionid: "",
+    useridasstring: uid.toString(),
+    transtype: "Payment",
+    fullname: ""
   };
-}
 
-
-  fetchCartItems(uid).then(renderCart).catch(err => {
-    console.error("Error fetching cart items:", err);
-    alert("Failed to load cart data.");
+  await fetch(`${API}/payments`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payment)
   });
 
- async function updateCartTotals() {
-    // Get the full query string from the current URL
-    const urlParams = new URLSearchParams(window.location.search);
+  // 2️⃣ Create Reservation or Invoice
+  if (paymentType === "Reservation") {
+    const reservation = {
+      bookingId: 0,
+      uid: uid,
+      totalAmount: totalAmount,
+      transactionId: payment.transactionId,
+      cartid: cartId,
+      reservationtype: "Reservation",
+      reservationstatus: "Completed",
+      resStart: items[0].resStart,
+      resEnd: items[0].resEnd,
+      createdAt: new Date().toISOString()
+    };
 
-  // Extract the cartId value
-  const cartId = urlParams.get("cartId");
-   
-      try {
-        const response = await fetch(`${baseUrl}/api/CartItem/cart/${cartId}`);
-        const items = await response.json();
+    await fetch(`${API}/reservations`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(reservation)
+    });
 
-        let totalQty = 0;
-        let totalPrice = 0;
-        let totalAdults = 0;
-        let totalChildren = 0;
+    alert("Reservation completed successfully.");
+    window.location.href = "mypurchases5.html";
 
-        items.forEach(item => {
-          totalQty += item.itemqty ?? 0;
-          totalPrice += item.itemtotals ?? 0;
-          //totalAdults += item.adults ?? 0;
-          //totalChildren += item.children ?? 0;
-        });
+  } else {
+    const invoice = {
+      invoiceId: 0,
+      customerId: uid,
+      subtotal: totalAmount,
+      taxTotal: 0,
+      discountTotal: 0,
+      grandTotal: totalAmount,
+      invoiceDate: new Date().toISOString(),
+      dueDate: new Date().toISOString(),
+      status: "paid",
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      cartId: cartId
+    };
 
-        const cartUpdate = {
-          totalcartitems: totalQty,
-          transactiontotal: totalPrice,
-         };
+    await fetch(`${API}/invoices`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(invoice)
+    });
 
-        await fetch(`${baseUrl}/api/Cart/${cartId}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(cartUpdate)
-        });
-
-        console.log(`✅ Cart ${cartId} updated: ${totalQty} items, $${totalPrice.toFixed(2)}`);
-        console.log(cartUpdate);
-      } catch (err) {
-        console.error("❌ Failed to update cart totals:", err);
-      }
-    }
-
-   
+    alert("Invoice created successfully.");
+    window.location.href = "myinvoices.html";
+  }
+}
 </script>
 
-
 </body>
- <footer class="footer"> &copy; Cocky Consulting 2025. <br> All rights reserved.<br>  <span align="center"><a href="sitemap.html" class="sitelink">SiteMap</a></span></footer>
 </html>
