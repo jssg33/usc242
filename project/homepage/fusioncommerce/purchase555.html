@@ -213,6 +213,29 @@
       <button onclick="closeProductOptionsModal()">Close</button>
     </div>
   </div>
+  <script>
+ document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const urlTenant = params.get("tenantId");
+    const currentTenant = localStorage.getItem("tenant");
+
+    // If SSO already set a tenant, DO NOT overwrite it
+    if (!currentTenant || currentTenant.trim() === "") {
+      if (urlTenant) {
+        localStorage.setItem("tenant", urlTenant);
+      } else {
+        localStorage.setItem("tenant", "GACOM"); // fallback
+      }
+    }
+
+    // Store SKUID if present
+    const urlSku = params.get("SKUID");
+    if (urlSku) {
+      localStorage.setItem("selectedSku", urlSku);
+    }
+  });
+
+  </script>
 
 </body>
 

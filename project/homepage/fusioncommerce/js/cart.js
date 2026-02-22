@@ -178,10 +178,11 @@ function moveToSelected() {
     const description = option.text.split(",")[0];
     const price = parseFloat(option.dataset.price || "0.00");
     const skewid = option.dataset.skewid || "";
+    const vendor = option.dataset.vendor || "Unknown";
 
     const row = document.createElement("tr");
     row.dataset.skewid = skewid;
-    row.dataset.vendor = option.dataset.vendor || "Unknown";
+    row.dataset.vendor = vendor;
 
     row.innerHTML = `
       <td>${description}</td>
@@ -241,6 +242,59 @@ function moveToCatalogue() {
     catalogue.appendChild(option);
     row.remove();
   });
+}
+
+// -----------------------------
+// Auto-add SKU to Selected table (from URL)
+// -----------------------------
+function autoAddSkuToSelected(product) {
+  const selectedTable = document
+    .getElementById("selected")
+    .querySelector("tbody");
+
+  if (!selectedTable) return;
+
+  // Prevent duplicates
+  const existing = Array.from(selectedTable.querySelectorAll("tr"))
+    .find(r => r.dataset.skewid === product.SKEWID);
+
+  if (existing) return;
+
+  const price = parseFloat(product.listprice || 0);
+  const description = product.description || "Unnamed Product";
+  const vendor = product.vendorname || product.vendorid || "Unknown";
+
+  const row = document.createElement("tr");
+  row.dataset.skewid = product.SKEWID;
+  row.dataset.vendor = vendor;
+
+  row.innerHTML = `
+    <td>${description}</td>
+    <td>$${price.toFixed(2)}</td>
+    <td><input type="number" class="qty" value="1" min="1"></td>
+    <td class="subtotal">$0.00</td>
+    <td class="state-tax">$0.00</td>
+    <td class="local-tax">$0.00</td>
+    <td class="line-total">$0.00</td>
+  `;
+
+  selectedTable.appendChild(row);
+
+  function recalc() {
+    const qty = parseInt(row.querySelector(".qty").value) || 1;
+    const subtotal = qty * price;
+    const stateTax = subtotal * 0.06;
+    const localTax = subtotal * 0.015;
+    const lineTotal = subtotal + stateTax + localTax;
+
+    row.querySelector(".subtotal").textContent = `$${subtotal.toFixed(2)}`;
+    row.querySelector(".state-tax").textContent = `$${stateTax.toFixed(2)}`;
+    row.querySelector(".local-tax").textContent = `$${localTax.toFixed(2)}`;
+    row.querySelector(".line-total").textContent = `$${lineTotal.toFixed(2)}`;
+  }
+
+  recalc();
+  row.querySelector(".qty").addEventListener("input", recalc);
 }
 
 // -----------------------------
@@ -345,76 +399,75 @@ async function addSelectedToCart() {
 // Update cart totals
 // -----------------------------
 async function setCartTotals() {
-    try {
-      const res = await fetch(`${cartItemApi}/cart/${cartId}`);
-      if (!res.ok) throw new Error(`CartItem HTTP ${res.status}`);
-  
-      const items = await res.json();
-  
-      let totalQty = 0;
-      let totalPrice = 0;
-  
-      items.forEach(item => {
-        totalQty += item.itemqty ?? 0;
-        totalPrice += item.itemtotals ?? 0;
-      });
-  
-      let description = "";
-      if (totalQty === 1) description = "Single Item";
-      else if (totalQty === 2) description = "Two Items";
-      else description = "Multiple Items";
-  
-      const cartUpdate = {
-        totalcartitems: totalQty,
-        transactiontotal: totalPrice,
-        itemDescription: description
-      };
-  
-      await fetch(`${cartApi}/${cartId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(cartUpdate)
-      });
-  
-      console.log(
-        `Cart ${cartId} updated: ${totalQty} items, $${totalPrice.toFixed(2)}`
-      );
-    } catch (err) {
-      console.error("Failed to update cart totals:", err);
-    }
+  try {
+    const res = await fetch(`${cartItemApi}/cart/${cartId}`);
+    if (!res.ok) throw new Error(`CartItem HTTP ${res.status}`);
+
+    const items = await res.json();
+
+    let totalQty = 0;
+    let totalPrice = 0;
+
+    items.forEach(item => {
+      totalQty += item.itemqty ?? 0;
+      totalPrice += item.itemtotals ?? 0;
+    });
+
+    let description = "";
+    if (totalQty === 1) description = "Single Item";
+    else if (totalQty === 2) description = "Two Items";
+    else description = "Multiple Items";
+
+    const cartUpdate = {
+      totalcartitems: totalQty,
+      transactiontotal: totalPrice,
+      itemDescription: description
+    };
+
+    await fetch(`${cartApi}/${cartId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(cartUpdate)
+    });
+
+    console.log(
+      `Cart ${cartId} updated: ${totalQty} items, $${totalPrice.toFixed(2)}`
+    );
+  } catch (err) {
+    console.error("Failed to update cart totals:", err);
   }
-  
-  // -----------------------------
-  // Optional: product options modal
-  // -----------------------------
-  function openProductOptionsModal() {
-    const modal = document.getElementById("productOptionsModal");
-    if (!modal) return;
-    modal.style.display = "flex";
-  }
-  
-  function closeProductOptionsModal() {
-    const modal = document.getElementById("productOptionsModal");
-    if (!modal) return;
-    modal.style.display = "none";
-  }
-  
-  function submitProductOptions() {
-    const qtyInput = document.getElementById("modalQuantity");
-    const qty = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
-  
-    const globalQty = document.getElementById("globalQuantity");
-    if (globalQty) globalQty.value = qty;
-  
-    closeProductOptionsModal();
-  }
-  
-  // -----------------------------
-  // Initialization
-  // -----------------------------
-  document.addEventListener("DOMContentLoaded", async () => {
-    await ensureCartMasterExists();
-    await displayCartMaster();
-    await loadCatalogue();
-  });
-  
+}
+
+// -----------------------------
+// Optional: product options modal
+// -----------------------------
+function openProductOptionsModal() {
+  const modal = document.getElementById("productOptionsModal");
+  if (!modal) return;
+  modal.style.display = "flex";
+}
+
+function closeProductOptionsModal() {
+  const modal = document.getElementById("productOptionsModal");
+  if (!modal) return;
+  modal.style.display = "none";
+}
+
+function submitProductOptions() {
+  const qtyInput = document.getElementById("modalQuantity");
+  const qty = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
+
+  const globalQty = document.getElementById("globalQuantity");
+  if (globalQty) globalQty.value = qty;
+
+  closeProductOptionsModal();
+}
+
+// -----------------------------
+// Initialization
+// -----------------------------
+document.addEventListener("DOMContentLoaded", async () => {
+  await ensureCartMasterExists();
+  await displayCartMaster();
+  await loadCatalogue();
+});

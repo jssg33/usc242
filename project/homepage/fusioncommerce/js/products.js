@@ -1,23 +1,11 @@
-
-const params = new URLSearchParams(window.location.search);
-const urlTenant = params.get("tenantId");
-/*if (urlTenant) 
-{
-  localStorage.setItem("tenant", urlTenant);
-}
-else
-{
-   localStorage.setItem("tenant", "GACOM");
-}
-*/
-  // ===============================
+// ===============================
 // products.js (Multi-tenant UI + Product Loader)
 // ===============================
 
 const API_ROOT = "https://api242.onrender.com";
 
 // -----------------------------
-// Get tenant (fallback to GACOM)
+// Get tenant (fallback to GACOM, but DO NOT overwrite SSO tenant)
 // -----------------------------
 function getTenant() {
   let tenant = localStorage.getItem("tenant");
@@ -68,11 +56,17 @@ async function loadCompanyDetails() {
 }
 
 // -----------------------------
-// Read ProductId from URL
+// Read SKUID from URL or localStorage
 // -----------------------------
 function getUrlProductId() {
   const params = new URLSearchParams(window.location.search);
-  return params.get("ProductId");
+
+  // URL takes priority
+  const sku = params.get("SKUID");
+  if (sku) return sku;
+
+  // fallback if stored earlier
+  return localStorage.getItem("selectedSku");
 }
 
 // -----------------------------
@@ -99,13 +93,20 @@ async function loadProductSummary() {
       selector.appendChild(opt);
     });
 
-    // Auto-select from URL
+    // Auto-select from URL and auto-add to Selected table
     if (urlProductId) {
       const match = products.find(p => p.SKEWID === urlProductId);
       if (match) {
         selector.value = urlProductId;
         window.selectedProduct = match;
         changeProduct(true, products);
+
+        // Auto-add SKU to Selected table
+        setTimeout(() => {
+          if (typeof autoAddSkuToSelected === "function") {
+            autoAddSkuToSelected(match);
+          }
+        }, 300);
       }
     }
   } catch (err) {
