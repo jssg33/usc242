@@ -84,7 +84,7 @@ function logoutUser(event) {
 
 function clearUserSession() {
   let sometoken = localStorage.getItem('token');
-  let logoutApiUrl = "https://cockyapiv3-bugudue8akcsbacz.westus3-01.azurewebsites.net/api/Users/logout/" + sometoken;
+  let logoutApiUrl = "https://api242.onrender.com/api/Users/logout/" + sometoken;
 
   $.post(logoutApiUrl)
     .done(function () {
@@ -147,7 +147,8 @@ function fetchUser() {
     function fetchProfilePicture() {
       const uid = localStorage.getItem("uid");
       $.get(
-        "https://gemroot-d3h6hybke9c4f0fr.centralus-01.azurewebsites.net/api/Userprofile"
+        "https://api242.onrender.com/api/Userlog"
+        /api/Userprofile"
       )
         .done(function (profiles) {
           const profile = profiles.find((p) => p.userid == uid);
@@ -162,28 +163,28 @@ function fetchUser() {
 
     function fetchSyslog() {
       $.get(
-        "https://gridactions3b.capitoltechnology.net/api/Userlog"
+        "https://api242.onrender.com/api/Userlog"
       )
         .done((data) => $("#syslogDisplay").text(JSON.stringify(data, null, 2)))
         .fail(() => $("#syslogDisplay").text("Error fetching syslog"));
     }
     function fetchSessionlog() {
       $.get(
-        "https://gridactions3b.capitoltechnology.net/api/Usersession"
+        "https://api242.onrender.com/api/Usersession"
       )
         .done((data) => $("#sessionlogDisplay").text(JSON.stringify(data, null, 2)))
         .fail(() => $("#sessionlogDisplay").text("Error fetching syslog"));
     }
     function fetchApilog() {
       $.get(
-        "https://gridactions3b.capitoltechnology.net/api/Useraction"
+        "https://api242.onrender.com/api/Useraction"
       )
         .done((data) => $("#apilogDisplay").text(JSON.stringify(data, null, 2)))
         .fail(() => $("#apilogDisplay").text("Error fetching apilog"));
     }
     function fetchLearnlog() {
       $.get(
-        "https://gridactions3b.capitoltechnology.net/api/Learndetail"
+        "https://api242.onrender.com/api/Learndetail"
       )
         .done((data) =>
           $("#learnlogDisplay").text(JSON.stringify(data, null, 2))

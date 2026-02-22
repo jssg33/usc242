@@ -1,8 +1,8 @@
-const baseUrl = "https://parksapi-h8btdjefb3gpdxaf.westus3-01.azurewebsites.net";
+const baseUrl = "https://api242.onrender.com";
 const cardApi = `${baseUrl}/api/Card`;
 const paymentApi = `${baseUrl}/api/Payments`;
 const cartApi = `${baseUrl}/api/Cart`;
-const API_ROOT = 'https://parksapi-h8btdjefb3gpdxaf.westus3-01.azurewebsites.net';
+const API_ROOT = 'https://api242.onrender.com';
 const uid = localStorage.getItem('uid');
 const urlParams = new URLSearchParams(window.location.search);
 let parkId = parseInt(urlParams.get('parkId')) || 0;

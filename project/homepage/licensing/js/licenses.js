@@ -84,7 +84,7 @@ function logoutUser(event) {
 
 function clearUserSession() {
   let sometoken = localStorage.getItem('token');
-  let logoutApiUrl = "https://cockyapiv3-bugudue8akcsbacz.westus3-01.azurewebsites.net/api/Users/logout/" + sometoken;
+  let logoutApiUrl = "api242.onrender.com/api/Users/logout/" + sometoken;
 
   $.post(logoutApiUrl)
     .done(function () {
