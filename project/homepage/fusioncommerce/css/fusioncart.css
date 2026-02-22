@@ -1,209 +1,485 @@
 /* ===========================
    GLOBAL COLORS
    =========================== */
-:root {
-  --kelly-green: #4CBB17;
-  --kelly-green-dark: #3a9e12;
-  --kelly-green-light: #6fe640;
-  --kelly-green-pale: #d9f7c7;
-  --text-dark: #111;
-  --text-light: #fff;
-  --panel-gray: #e6e6e6;
+   :root {
+    --kelly-green: #4CBB17;
+    --kelly-green-dark: #3a9e12;
+    --kelly-green-light: #6fe640;
+    --kelly-green-pale: #d9f7c7;
+    --text-dark: #111;
+    --text-light: #fff;
+    --panel-gray: #e6e6e6;
+  }
+  
+  /* ===========================
+     RESET / BASE
+     =========================== */
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background: var(--kelly-green-pale);
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  main {
+    flex: 1;
+  }
+  
+  /* ===========================
+     NAVIGATION BAR
+     =========================== */
+  .navbar {
+    background: #000;
+    color: var(--text-light);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar .nav-left,
+  .navbar .nav-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar a {
+    color: var(--text-light);
+    text-decoration: none;
+    margin-left: 15px;
+  }
+  
+  .navbar a:hover {
+    text-decoration: underline;
+  }
+  
+  .navbar .nav-right img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+  }
+  
+  /* Login/Logout Buttons */
+  #loginBtn, #logoutBtn {
+    background-color: var(--kelly-green-dark);
+    color: #fff;
+    border: 1px solid var(--kelly-green);
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #loginBtn:hover, #logoutBtn:hover {
+    background-color: var(--kelly-green);
+  }
+  
+  /* ===========================
+     DROPDOWN MENU (MERGED)
+     =========================== */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .jsmenu {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .jsmenu img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #000;
+    border: 1px solid var(--kelly-green);
+    min-width: 160px;
+    z-index: 10;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown-content a {
+    color: var(--text-light);
+    padding: 10px 14px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: var(--kelly-green-dark);
+  }
+  
+  /* ===========================
+     FOOTER
+     =========================== */
+  footer, .footer {
+    background: #000;
+    color: var(--text-light);
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: auto;
+  }
+  
+  /* ===========================
+     PANELS & LAYOUT
+     =========================== */
+  .panel-container2 {
+    display: flex;
+    gap: 15px;
+    margin: 20px;
+  }
+  
+  .left-panel {
+    width: 20%;
+    background: #fff;
+    border: 2px solid var(--kelly-green-dark);
+    padding: 10px;
+    overflow-y: auto;
+  }
+  
+  .right-panel {
+    width: 80%;
+    padding: 10px;
+    min-height: 800px;
+    background: var(--panel-gray);
+    border: 2px solid var(--kelly-green-dark);
+  }
+  
+  /* ===========================
+     FEATURE BOXES
+     =========================== */
+  .features {
+    padding: 40px 15px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .features .container2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  .feature, .feature2, .feature3, .feature4 {
+    width: 250px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    font-size: 9pt;
+  }
+  
+  .feature { background: var(--kelly-green-light); }
+  .feature2 { background: var(--kelly-green); }
+  .feature3 { background: var(--kelly-green-dark); color: #fff; }
+  .feature4 { background: var(--kelly-green-pale); }
+  
+  .feature:hover,
+  .feature2:hover,
+  .feature3:hover,
+  .feature4:hover {
+    background: var(--kelly-green-dark);
+    color: #fff;
+  }
+  
+  .feature a,
+  .feature2 a,
+  .feature3 a,
+  .feature4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  /* ===========================
+     TABLES
+     =========================== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table th {
+    background: var(--kelly-green-dark);
+    color: #fff;
+    padding: 6px;
+  }
+  
+  table td {
+    border: 1px solid var(--kelly-green-dark);
+    padding: 6px;
+    background: #fff;
+  }
+  
+  /* ===========================
+     INPUTS & SELECTS
+     =========================== */
+  select,
+  input[type="date"],
+  input[type="number"] {
+    border: 2px solid var(--kelly-green-dark);
+    border-radius: 4px;
+    padding: 4px;
+    background: #fff;
+  }
+  
+  select:focus,
+  input:focus {
+    outline: none;
+    border-color: var(--kelly-green);
+  }
+  
+  /* ===========================
+     BUTTONS
+     =========================== */
+  button {
+    background: var(--kelly-green);
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  button:hover {
+    background: var(--kelly-green-dark);
+  }
+  
+  /* Special Buttons */
+  #reviewreservations {
+    width: 250px;
+    height: 60px;
+    font-size: 13px;
+  }
+  
+  #add-card-button {
+    width: 90px;
+    height: 40px;
+    font-size: 13px;
+  }
+  
+  /* ===========================
+     MODAL
+     =========================== */
+  #reservationModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: var(--kelly-green-light);
+    border: 3px solid var(--kelly-green-dark);
+    padding: 20px;
+    border-radius: 8px;
+    width: 350px;
+  }
+  
+  /* ===========================
+     HERO SECTION
+     =========================== */
+  .hero {
+    position: relative;
+    height: 200px;
+    background: url('https://source.unsplash.com/1600x800/?nature,green') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
+  
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* ===========================
+     SCROLLABLE FEATURE LIST
+     =========================== */
+  .features-scroll {
+    max-height: 600px;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+
+  //SOME BOOTSTRAP GRID FORMATTING FOR GREEN AND BLACK
+
+/* GREENVILLE SPECIFIC BOOTSTRAP STUFF */
+
+    /* Black header with green text */
+    .table-header-green {
+        background-color: #000 !important;
+        color: #00c853 !important; /* bright green */
+    }
+
+    /* Table hover row highlight */
+    .review-table tbody tr:hover {
+        background-color: #e8f5e9 !important; /* pale green */
+    }
+
+    /* Add Review button styling */
+    .custom-add-btn {
+        background-color: #00c853 !important;
+        border-color: #00c853 !important;
+        color: #000 !important;
+        font-weight: 600;
+    }
+
+    .custom-add-btn:hover {
+        background-color: #009624 !important;
+        border-color: #009624 !important;
+        color: white !important;
+    }
+
+    /* Make table truly full width */
+    #reviewTable {
+        width: 100% !important;
+    }
+
+    /* Black header with bright green text */
+    .table-header-green {
+        background-color: #000 !important;
+        color: #00c853 !important;
+        font-weight: 600;
+    }
+
+    /* Table hover highlight */
+    #licenseTable tbody tr:hover {
+        background-color: #e8f5e9 !important;
+    }
+
+    /* Add License button */
+    .custom-add-btn {
+        background-color: #00c853 !important;
+        border-color: #00c853 !important;
+        color: #000 !important;
+        font-weight: 600;
+        margin-right: 8px;
+    }
+
+    .custom-add-btn:hover {
+        background-color: #009624 !important;
+        border-color: #009624 !important;
+        color: white !important;
+    }
+
+    /* Update button (yellow replaced with green/black theme) */
+    .custom-update-btn {
+        background-color: #1b5e20 !important; /* dark green */
+        border-color: #1b5e20 !important;
+        color: #00e676 !important; /* neon green text */
+        font-weight: 600;
+    }
+
+    .custom-update-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .custom-update-btn:hover:not(:disabled) {
+        background-color: #2e7d32 !important;
+        border-color: #2e7d32 !important;
+        color: white !important;
+    }
+
+    /* Refresh button */
+    .custom-refresh-btn {
+        background-color: #004d40 !important;
+        border-color: #004d40 !important;
+        color: #00e676 !important;
+        font-weight: 600;
+    }
+
+    .custom-refresh-btn:hover {
+        background-color: #00695c !important;
+        border-color: #00695c !important;
+        color: white !important;
+    }
+
+//RECOMMENDED STYLING OF MATERIAL UI ICONS - BASE IS TO SIZE FOR TEXT
+     md-text-button.icon-only { 
+        --md-text-button-container-height: 32px; 
+        --md-text-button-container-shape: 4px; 
+        padding: 0; min-width: 32px; 
+    } 
+    
+    md-text-button.icon-only .material-icons 
+    { 
+        font-size: 15px; 
+        line-height: 1; 
+        padding: 5px;
+    }
+
+/* ================================
+   RIGHT‑SIDE MATERIAL ICON BUTTONS
+   ================================ */
+.right-links {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
-/* ===========================
-   RESET / BASE
-   =========================== */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: var(--kelly-green-pale);
-  color: var(--text-dark);
+/* Force Material Web Components to use white */
+.right-links md-text-button {
+    --md-sys-color-primary: #ffffff;
+    color: #ffffff;
 }
 
-h1, h2, h3, h4, h5 {
-  color: var(--kelly-green-dark);
+/* Material Icons: white + 18px */
+.right-links .material-icons {
+    color: #ffffff;
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+    line-height: 18px;
 }
 
-/* ===========================
-   NAVIGATION BAR
-   =========================== */
-.navbar {
-  background: #000;
-  color: var(--text-light);
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.main-content
+{
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 60px;
+    max-width: 1580px;
 }
 
-.navbar a {
-  color: var(--text-light);
-  text-decoration: none;
-  margin-left: 15px;
-}
 
-.navbar a:hover {
-  text-decoration: underline;
-}
-
-.dropdown-content {
-  background: #000;
-  border: 1px solid var(--kelly-green);
-}
-
-.dropdown-content a {
-  color: var(--text-light);
-}
-
-.dropdown-content a:hover {
-  background: var(--kelly-green-dark);
-}
-
-/* ===========================
-   FOOTER
-   =========================== */
-.footer {
-  background: #000;
-  color: var(--text-light);
-  text-align: center;
-  padding: 20px;
-  margin-top: 40px;
-}
-
-.footer a {
-  color: var(--kelly-green-light);
-}
-
-/* ===========================
-   PANELS & BOXES
-   =========================== */
-.parkinfo,
-.cartinfo,
-.columnproducts,
-.columnactions,
-.columnselected {
-  background: var(--panel-gray);
-  border: 2px solid var(--kelly-green-dark);
-  border-radius: 6px;
-  padding: 10px;
-}
-
-#interiorpanel {
-  background: var(--kelly-green-light);
-  border: 2px solid var(--kelly-green-dark);
-  padding: 15px;
-  border-radius: 6px;
-}
-
-/* ===========================
-   BUTTONS
-   =========================== */
-button,
-.btn {
-  background: var(--kelly-green);
-  color: #fff;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-button:hover,
-.btn:hover {
-  background: var(--kelly-green-dark);
-}
-
-/* Secondary buttons (login/logout) */
-.secondary-btn {
-  background: var(--kelly-green-dark);
-}
-
-.secondary-btn:hover {
-  background: var(--kelly-green);
-}
-
-/* ===========================
-   TABLES
-   =========================== */
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-table th {
-  background: var(--kelly-green-dark);
-  color: #fff;
-  padding: 6px;
-}
-
-table td {
-  border: 1px solid var(--kelly-green-dark);
-  padding: 6px;
-  background: #fff;
-}
-
-/* ===========================
-   SELECTS & INPUTS
-   =========================== */
-select,
-input[type="date"],
-input[type="number"] {
-  border: 2px solid var(--kelly-green-dark);
-  border-radius: 4px;
-  padding: 4px;
-  background: #fff;
-}
-
-select:focus,
-input:focus {
-  outline: none;
-  border-color: var(--kelly-green);
-}
-
-/* ===========================
-   MODAL
-   =========================== */
-#reservationModal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background: var(--kelly-green-light);
-  border: 3px solid var(--kelly-green-dark);
-  padding: 20px;
-  border-radius: 8px;
-  width: 350px;
-  color: var(--text-dark);
-}
-
-.modal-content button {
-  width: 120px;
-}
-
-/* ===========================
-   MISC
-   =========================== */
-#banner {
-  background: var(--kelly-green-dark);
-  color: #fff;
-  padding: 10px;
-  font-size: 1.2rem;
-  border-bottom: 3px solid var(--kelly-green);
-}
-
-#park-details {
-  background: #fff;
-  border: 2px solid var(--kelly-green-dark);
-  padding: 10px;
-  border-radius: 6px;
-}
