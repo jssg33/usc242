@@ -146,10 +146,7 @@ function fetchUser() {
 
     function fetchProfilePicture() {
       const uid = localStorage.getItem("uid");
-      $.get(
-        "https://api242.onrender.com/api/Userlog"
-        /api/Userprofile"
-      )
+      $.get("https://api242.onrender.com/api/Userprofile")
         .done(function (profiles) {
           const profile = profiles.find((p) => p.userid == uid);
           if (profile && profile.activepictureurl) {

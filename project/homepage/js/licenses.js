@@ -146,9 +146,7 @@ function fetchUser() {
 
     function fetchProfilePicture() {
       const uid = localStorage.getItem("uid");
-      $.get(
-        "https://gemroot-d3h6hybke9c4f0fr.centralus-01.azurewebsites.net/api/Userprofile"
-      )
+      $.get("https://gemroot-d3h6hybke9c4f0fr.centralus-01.azurewebsites.net/api/Userprofile")
         .done(function (profiles) {
           const profile = profiles.find((p) => p.userid == uid);
           if (profile && profile.activepictureurl) {
