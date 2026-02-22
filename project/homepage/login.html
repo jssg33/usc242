@@ -135,6 +135,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 			localStorage.setItem("jid", user.id);
 			localStorage.setItem("username", user.username);
 			localStorage.setItem("role", user.role);
+            localStorage.setItem("tenant", "GACOM");
             window.location.href = "mylicenses.html";
         } else {
             errorBox.textContent = "Invalid username or password.";
