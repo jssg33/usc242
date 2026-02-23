@@ -84,7 +84,7 @@ footer {
 }
 #sales{ position: relative; margin: 0 auto; width: 85%; background-color: darkgreen;}
 .gacontainer2{position: relative; margin: 0 auto; max-width: 1600px; min-width: 90%;  border-radius: 5px; line-height: 1.6; text-align: center; background-color:#f4f7f5;}
-.container2{position: relative; margin: 0 auto; height: 100%; max-width: 1600px; min-width:90%;  border-radius: 5px; background-color: #f4f7f5; border: 2px solid darkgreen;}
+.container2{position: relative; margin: 0 auto; height: 100%; max-width: 1600px; min-height: 1000px; min-width:90%;  border-radius: 5px; background-color: #f4f7f5; border: 2px solid darkgreen;}
 nav { background: #000000; border-bottom: 1px solid #1f3b2d; padding: 0; } 
 nav .menu { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; } 
 nav .menu > li { position: relative; } 
