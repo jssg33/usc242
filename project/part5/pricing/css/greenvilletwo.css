@@ -333,7 +333,7 @@ left:20px;
         align-items: center;
       }
   .navbar .nav-left a {
-    background-color: #3E5BA8; /* Slightly lighter blue than navbar */
+    background-color: black; /* Slightly lighter blue than navbar */
     color: white;
     text-decoration: none;
     font-weight: bold;

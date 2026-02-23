@@ -84,7 +84,7 @@ function logoutUser(event) {
 
 function clearUserSession() {
   let sometoken = localStorage.getItem('token');
-  let logoutApiUrl = "https://cockyapiv3-bugudue8akcsbacz.westus3-01.azurewebsites.net/api/Users/logout/" + sometoken;
+  let logoutApiUrl = "api242.onrender.com/api/Users/logout/" + sometoken;
 
   $.post(logoutApiUrl)
     .done(function () {
@@ -146,9 +146,7 @@ function fetchUser() {
 
     function fetchProfilePicture() {
       const uid = localStorage.getItem("uid");
-      $.get(
-        "https://gemroot-d3h6hybke9c4f0fr.centralus-01.azurewebsites.net/api/Userprofile"
-      )
+      $.get("https://gemroot-d3h6hybke9c4f0fr.centralus-01.azurewebsites.net/api/Userprofile")
         .done(function (profiles) {
           const profile = profiles.find((p) => p.userid == uid);
           if (profile && profile.activepictureurl) {

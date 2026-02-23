@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>FusionCommerce – Cancel Reservation / Invoice</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Material Web -->
+  <script type="module" src="https://esm.run/@material/web/all.js"></script>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <link rel="stylesheet" href="./css/fusioncart.css" />
+  <!-- Your new JS files -->
+  <script src="./js/products.js"></script>
+  <script src="./js/cart.js"></script>
+
+
+  <style>
+    /* Kelly Green Theme */
+    #banner {
+      background-color: #198754;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+    .fc-header {
+      background-color: #198754 !important;
+      color: white !important;
+      font-weight: bold;
+    }
+    #cancelBtn {
+      width: 100%;
+      background-color: #b30000;
+      border-color: #b30000;
+    }
+    #cancelBtn:hover {
+      background-color: #800000;
+      border-color: #800000;
+    }
+  </style>
+</head>
+
+<body onload="checkpll(); checkUserStatus(); displayProfilePicture(); initializeCancelPage();">
+
+<!-- NAVIGATION BAR -->
+<div class="navbar">
+  <div class="nav-left">
+    <div class="dropdown">
+      <button class="jsmenu"><img src="./images/greenmenu5.png"></button>
+      <div class="dropdown-content">
+              <a href="index.html">Home</a>
+              <a href="login.html">Login</a>
+              <a href="logout.html">Logout</a>
+              <a href="welcome.html">Welcome</a>
+              <a href="licenses6.html">BuyNow</a>
+              <a href="reviews.html">AllReviews</a>
+              <a href="mylicenselogs.html">MyLicenseLogs</a>
+              <a href="mylicenses.html">MyLicenses</a>
+              <a href="./pricing/wizard.html">PricingWizard</a>
+              <a href="mycart.html?uid=1">MyCart</a>
+              <a href="myprofile.html">MyProfile</a>
+              <a href="testimonials.html">AdminTestimonials</a>
+              <a href="products.html">AdminProducts</a>
+              <a href="licensetypes.html">AdminLicenseTypes</a>
+              <a href="template.html">AdminPageTemplate</a>
+      </div>
+      <div class="logo">&nbsp;&nbsp;FusionCommerce – Cancel Reservation / Invoice</div>
+    </div>
+  </div>
+
+  <div class="nav-right">
+    <img src="./images/blackcircle.png" id="profilephototarget" alt="User" onclick="window.location.href='myprofile.html'" />
+    <span id="H3UserBanner"></span>
+    <div class="right-links" style="display:flex; gap:6px; align-items:center; color: white;">
+
+      <md-text-button class="icon-only" href="index.html" aria-label="Home" title="Home">
+        <span class="material-icons" style="color:white;">home</span>
+      </md-text-button>
+    
+      <md-text-button class="icon-only" href="userhelp.html" aria-label="Help" title="Help">
+        <span class="material-icons" style="color:white;">help_outline</span>
+      </md-text-button>
+    
+      <md-text-button class="icon-only" href="usernotices.html" aria-label="Notifications" title="Notifications">
+        <span class="material-icons" style="color:white;">notifications</span>
+      </md-text-button>
+    
+      <md-text-button class="icon-only" href="login.html" aria-label="Login" title="Login">
+        <span class="material-icons" style="color:white;">login</span>
+      </md-text-button>
+    
+      <md-text-button class="icon-only" href="logout.html" aria-label="Logout" title="Logout">
+        <span class="material-icons" style="color:white;">logout</span>
+      </md-text-button>
+    
+       <md-text-button class="icon-only" href="myprofile.html" aria-label="My Profile" title="My Profile">
+        <span class="material-icons" style="color:white;">person</span>
+      </md-text-button>
+    
+       <md-text-button class="icon-only" href="mycart.html" aria-label="My Cart" title="My Cart">
+        <span class="material-icons" style="color:white;">shopping_cart</span>
+      </md-text-button>
+    </div>
+  </div>
+</div>
+
+<div id="banner"><span id="userGreeting">Welcome Guest</span></div>
+
+<!-- MAIN CONTENT -->
+<div class="container py-5">
+
+  <h3 class="text-center mb-4">Cancellation Details</h3>
+
+  <div class="card mx-auto shadow" style="max-width: 700px;">
+    <div class="card-header fc-header">Reservation / Invoice Summary</div>
+
+    <div class="card-body">
+
+      <p><strong>Cart ID:</strong> <span id="cartId"></span></p>
+      <p><strong>User ID:</strong> <span id="uid"></span></p>
+      <p><strong>Total Items:</strong> <span id="totalItems"></span></p>
+      <p><strong>Total Price:</strong> $<span id="totalPrice"></span></p>
+      <p><strong>Date Added:</strong> <span id="dateAdded"></span></p>
+      <p><strong>Status:</strong> <span id="status"></span></p>
+      <p><strong>Payment ID:</strong> <span id="paymentId"></span></p>
+
+      <hr>
+
+      <p class="text-danger fw-bold text-center" id="CustomerAlert">
+        Are you sure you want to cancel this reservation/invoice?
+      </p>
+
+      <button id="cancelBtn" class="btn btn-danger mb-3" onclick="confirmCancellation()">
+        Confirm Cancellation
+      </button>
+
+      <button class="btn btn-secondary w-100" onclick="window.location.href='mybookings5.html'">
+        Go Back
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  &copy; Cocky Consulting 2025.<br>
+  All rights reserved.<br>
+  <a href="sitemap.html" class="sitelink">SiteMap</a>
+</footer>
+
+<!-- ========================================================= -->
+<!-- FINAL FUSIONCOMMERCE CANCELLATION SCRIPT -->
+<!-- ========================================================= -->
+<script>
+const API = "https://api242.onrender.com";
+
+/* ---------------------------------------------------------
+   Generate Reverse Transaction ID (AAA123456)
+--------------------------------------------------------- */
+function generateReverseTransactionId() {
+  const alpha = Array.from({ length: 3 }, () =>
+    String.fromCharCode(65 + Math.floor(Math.random() * 26))
+  ).join("");
+  const numeric = Math.floor(100000 + Math.random() * 900000);
+  return alpha + numeric;
+}
+
+/* ---------------------------------------------------------
+   Determine Record Type (reservation or invoice)
+--------------------------------------------------------- */
+function getRecordType() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("bookingid")) return "reservation";
+  if (params.get("invoiceId")) return "invoice";
+  return null;
+}
+
+function getRecordId() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("bookingid") || params.get("invoiceId");
+}
+
+function getCartId() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("cartid") || null;
+}
+
+/* ---------------------------------------------------------
+   Load Reservation or Invoice
+--------------------------------------------------------- */
+async function loadRecord() {
+  const type = getRecordType();
+  const id = getRecordId();
+
+  const endpoint =
+    type === "reservation"
+      ? `${API}/reservations/${id}`
+      : `${API}/invoices/${id}`;
+
+  const res = await fetch(endpoint);
+  if (!res.ok) throw new Error("Record not found");
+
+  return res.json();
+}
+
+/* ---------------------------------------------------------
+   Initialize Page
+--------------------------------------------------------- */
+async function initializeCancelPage() {
+  try {
+    const record = await loadRecord();
+    if (!record) return;
+
+    const cartid = getCartId();
+
+    $("#cartId").text(cartid || "N/A");
+    $("#uid").text(record.uid || record.customerId || "N/A");
+    $("#totalItems").text(record.totalcartitems || "N/A");
+    $("#totalPrice").text((record.totalAmount || record.grandTotal || 0).toFixed(2));
+    $("#dateAdded").text(record.createdAt || "N/A");
+    $("#status").text(record.reservationstatus || record.status || "Pending");
+    $("#paymentId").text(record.transactionId || "N/A");
+
+    if (
+      record.reservationstatus === "cancelled" ||
+      record.status === "cancelled" ||
+      record.reversetransactionid
+    ) {
+      $("#CustomerAlert").text("This reservation/invoice has already been cancelled.");
+      $("#cancelBtn").prop("disabled", true).text("Already Cancelled");
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert("Failed to load reservation/invoice.");
+  }
+}
+
+/* ---------------------------------------------------------
+   Confirm Cancellation
+--------------------------------------------------------- */
+async function confirmCancellation() {
+  const type = getRecordType();
+  const id = getRecordId();
+  const cartid = getCartId();
+
+  if (!confirm("Are you sure you want to cancel this reservation/invoice?")) return;
+
+  try {
+    const record = await loadRecord();
+    const refundAmount =
+      parseFloat(record.totalAmount || record.grandTotal || 0) || 0;
+
+    const reverseId = generateReverseTransactionId();
+
+    /* -----------------------------------------------------
+       1. Reverse Payment
+    ----------------------------------------------------- */
+    const reversePayment = {
+      paymentId: 0,
+      cartid: cartid,
+      bookingId: record.bookingId || record.invoiceId,
+      paymentMethod: record.creditCardType || "Card",
+      cardType: record.creditCardType || "Card",
+      cardLast4: record.creditCardLast4 || "0000",
+      cardExpDate: record.creditCardExpDate || "",
+      amountPaid: refundAmount * -1,
+      amountRefunded: refundAmount,
+      paymentDate: new Date().toISOString(),
+      transactionId: record.transactionId,
+      refundTransactionid: reverseId,
+      useridasstring: (record.uid || record.customerId || "").toString(),
+      transtype: "Reversal",
+      fullname: record.customerBillingName || ""
+    };
+
+    await fetch(`${API}/payments`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(reversePayment)
+    });
+
+    /* -----------------------------------------------------
+       2. Create Refund Record
+    ----------------------------------------------------- */
+    const refund = {
+      refundId: 0,
+      bookingId: record.bookingId || record.invoiceId,
+      paymentMethod: record.creditCardType || "Card",
+      cardType: record.creditCardType || "Card",
+      cardLast4: record.creditCardLast4 || "0000",
+      cardExpDate: record.creditCardExpDate || "",
+      amountPaid: refundAmount,
+      amountRefunded: refundAmount,
+      paymentDate: new Date().toISOString(),
+      transactionId: record.transactionId,
+      refundTransactionid: reverseId,
+      useridasstring: (record.uid || record.customerId || "").toString(),
+      transtype: "Refund",
+      fullname: record.customerBillingName || ""
+    };
+
+    await fetch(`${API}/refunds`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(refund)
+    });
+
+    /* -----------------------------------------------------
+       3. Update Reservation or Invoice Status
+    ----------------------------------------------------- */
+    const updateEndpoint =
+      type === "reservation"
+        ? `${API}/reservations/${id}`
+        : `${API}/invoices/${id}`;
+
+    const updatePayload =
+      type === "reservation"
+        ? {
+            reservationstatus: "cancelled",
+            reversetransactionid: reverseId,
+            cancellationrefund: refundAmount
+          }
+        : {
+            status: "cancelled",
+            reverseTransactionId: reverseId,
+            refundAmount: refundAmount
+          };
+
+    await fetch(updateEndpoint, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatePayload)
+    });
+
+    /* -----------------------------------------------------
+       4. Redirect
+    ----------------------------------------------------- */
+    if (type === "reservation") {
+      alert("Reservation cancelled successfully.");
+      window.location.href = "mybookings5.html";
+    } else {
+      alert("Invoice cancelled successfully.");
+      window.location.href = "myinvoices.html";
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert("Cancellation failed.");
+  }
+}
+</script>
+
+</body>
+</html>

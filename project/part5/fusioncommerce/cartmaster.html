@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script type="module" src="https://esm.run/@material/web/all.js"></script>
+
+<link rel="stylesheet" href="./css/fusioncart.css" />
+<!-- Your new JS files -->
+<script src="./js/products.js"></script>
+<script src="./js/cart.js"></script>
+
+
+<title>FusionCommerce – CartMaster Summary</title>
+
+<style>
+#userGreeting {
+  text-align: center;
+  color: white;
+}
+#banner {
+  background-color: lightgrey;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-header {
+  background-color: #198754;
+  color: white;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body onload="checkpll(); checkUserStatus(); displayProfilePicture();">
+
+<!-- NAVIGATION BAR -->
+<div class="navbar">
+  <div class="nav-left">
+    <div class="dropdown">
+      <button class="jsmenu"><img src="./images/greenmenu5.png"></button>
+      <div class="dropdown-content">
+            <a href="index.html">Home</a>
+			      <a href="login.html">Login</a>
+            <a href="logout.html">Logout</a>
+            <a href="welcome.html">Welcome</a>
+            <a href="licenses6.html">BuyNow</a>
+            <a href="reviews.html">AllReviews</a>
+            <a href="mylicenselogs.html">MyLicenseLogs</a>
+            <a href="mylicenses.html">MyLicenses</a>
+            <a href="./pricing/wizard.html">PricingWizard</a>
+            <a href="mycart.html?uid=1">MyCart</a>
+            <a href="myprofile.html">MyProfile</a>
+            <a href="testimonials.html">AdminTestimonials</a>
+            <a href="products.html">AdminProducts</a>
+            <a href="licensetypes.html">AdminLicenseTypes</a>
+	         <a href="template.html">AdminPageTemplate</a>
+      </div>
+      <div class="logo">&nbsp;&nbsp;FusionCommerce – CartMaster</div>
+    </div>
+  </div>
+
+  <div class="nav-right">
+    <img src="./images/blackcircle.png" id="profilephototarget" alt="User" onclick="window.location.href='myprofile.html'" />
+    <span id="H3UserBanner"></span>
+    <div class="right-links" style="display:flex; gap:6px; align-items:center; color: white;">
+
+      <md-text-button class="icon-only" href="index.html" aria-label="Home" title="Home">
+        <span class="material-icons" style="color:white;">home</span>
+      </md-text-button>
+    
+      <md-text-button class="icon-only" href="userhelp.html" aria-label="Help" title="Help">
+        <span class="material-icons" style="color:white;">help_outline</span>
+      </md-text-button>
+    
+      <md-text-button class="icon-only" href="usernotices.html" aria-label="Notifications" title="Notifications">
+        <span class="material-icons" style="color:white;">notifications</span>
+      </md-text-button>
+    
+      <md-text-button class="icon-only" href="login.html" aria-label="Login" title="Login">
+        <span class="material-icons" style="color:white;">login</span>
+      </md-text-button>
+    
+      <md-text-button class="icon-only" href="logout.html" aria-label="Logout" title="Logout">
+        <span class="material-icons" style="color:white;">logout</span>
+      </md-text-button>
+    
+       <md-text-button class="icon-only" href="myprofile.html" aria-label="My Profile" title="My Profile">
+        <span class="material-icons" style="color:white;">person</span>
+      </md-text-button>
+    
+       <md-text-button class="icon-only" href="mycart.html" aria-label="My Cart" title="My Cart">
+        <span class="material-icons" style="color:white;">shopping_cart</span>
+      </md-text-button>
+    </div>
+  </div>
+</div>
+
+<div id="banner"><span id="userGreeting">Welcome Guest</span></div>
+
+<!-- MAIN CONTENT -->
+<div class="container my-5">
+  <h1 class="mb-4">CartMaster Summary</h1>
+
+  <div id="cartMasterSummary" class="mb-5"></div>
+
+  <h2>Active Carts</h2>
+  <ul class="list-group" id="activeCartsList"></ul>
+</div>
+
+<script>
+async function loadCartMasters() {
+  const uid = localStorage.getItem("uid");
+  const fullname = localStorage.getItem("fullname") || "";
+
+  if (!uid) {
+    document.getElementById("cartMasterSummary").innerHTML =
+      '<div class="alert alert-danger">No user logged in.</div>';
+    return;
+  }
+
+  try {
+    const res = await fetch("https://api242.onrender.com/cartmaster");
+    if (!res.ok) throw new Error("Failed to fetch CartMaster list");
+
+    const allCartMasters = await res.json();
+    const userMaster = allCartMasters.find(cm => cm.userId == uid);
+
+    const summaryDiv = document.getElementById("cartMasterSummary");
+    const list = document.getElementById("activeCartsList");
+
+    summaryDiv.innerHTML = "";
+    list.innerHTML = "";
+
+    if (!userMaster) {
+      summaryDiv.innerHTML =
+        '<div class="alert alert-warning">No CartMaster record found for this user.</div>';
+      return;
+    }
+
+    summaryDiv.innerHTML = `
+      <div class="card mb-4">
+        <div class="card-header">
+          User: ${userMaster.userId} ${fullname ? `- ${fullname}` : ""}
+        </div>
+        <div class="card-body">
+          <table class="table table-sm">
+            <tr><th>Total Carts</th><td>${userMaster.cartsCount}</td></tr>
+            <tr><th>Active Carts</th><td>${userMaster.cartsActive}</td></tr>
+            <tr><th>Cancelled Carts</th><td>${userMaster.cartsCancelled}</td></tr>
+            <tr><th>Loyalty ID</th><td>${userMaster.loyaltyid || ""}</td></tr>
+            <tr><th>Loyalty Vendor</th><td>${userMaster.loyaltyvendor || ""}</td></tr>
+          </table>
+        </div>
+      </div>
+    `;
+
+    if (userMaster.cartsActiveList) {
+      const cartIds = userMaster.cartsActiveList
+        .split(",")
+        .filter(id => id.trim() !== "");
+
+      cartIds.forEach(id => {
+        const li = document.createElement("li");
+        li.className = "list-group-item";
+        li.innerHTML = `<a href="cartreview.html?cartId=${id}" class="text-decoration-none">Cart #${id}</a>`;
+        list.appendChild(li);
+      });
+    }
+
+  } catch (err) {
+    document.getElementById("cartMasterSummary").innerHTML =
+      `<div class="alert alert-danger">Error: ${err.message}</div>`;
+  }
+}
+
+loadCartMasters();
+</script>
+
+<footer class="footer">
+  &copy; Cocky Consulting 2025.<br>
+  All rights reserved.<br>
+  <a href="sitemap.html" class="sitelink">SiteMap</a>
+</footer>
+
+</body>
+</html>
+

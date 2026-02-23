@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>FusionCommerce – My Purchases</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script type="module" src="https://esm.run/@material/web/all.js"></script>
+
+  <!-- DataTables -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+  <link rel="stylesheet" href="./css/fusioncart.css" />
+  <!-- Your new JS files -->
+  <script src="./js/products.js"></script>
+  <script src="./js/cart.js"></script>
+
+
+  <style>
+    #banner {
+      background-color: #198754;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+    .table thead {
+      background-color: #198754;
+      color: white;
+    }
+  </style>
+</head>
+
+<body onload="checkpll(); checkUserStatus(); displayProfilePicture();">
+
+<!-- NAVIGATION BAR -->
+<div class="navbar">
+  <div class="nav-left">
+    <div class="dropdown">
+      <button class="jsmenu"><img src="./images/greenmenu5.png"></button>
+      <div class="dropdown-content">
+              <a href="index.html">Home</a>
+              <a href="login.html">Login</a>
+              <a href="logout.html">Logout</a>
+              <a href="welcome.html">Welcome</a>
+              <a href="licenses6.html">BuyNow</a>
+              <a href="reviews.html">AllReviews</a>
+              <a href="mylicenselogs.html">MyLicenseLogs</a>
+              <a href="mylicenses.html">MyLicenses</a>
+              <a href="./pricing/wizard.html">PricingWizard</a>
+              <a href="mycart.html?uid=1">MyCart</a>
+              <a href="myprofile.html">MyProfile</a>
+              <a href="testimonials.html">AdminTestimonials</a>
+              <a href="products.html">AdminProducts</a>
+              <a href="licensetypes.html">AdminLicenseTypes</a>
+              <a href="template.html">AdminPageTemplate</a>
+      </div>
+      <div class="logo">&nbsp;&nbsp;FusionCommerce – My Purchases</div>
+    </div>
+  </div>
+
+  <div class="nav-right">
+    <img src="./images/blackcircle.png" id="profilephototarget" alt="User" onclick="window.location.href='myprofile.html'" />
+    <span id="H3UserBanner"></span>
+    <div class="right-links" style="display:flex; gap:6px; align-items:center; color: white;">
+
+      <md-text-button class="icon-only" href="index.html" aria-label="Home" title="Home">
+        <span class="material-icons" style="color:white;">home</span>
+      </md-text-button>
+    
+      <md-text-button class="icon-only" href="userhelp.html" aria-label="Help" title="Help">
+        <span class="material-icons" style="color:white;">help_outline</span>
+      </md-text-button>
+    
+      <md-text-button class="icon-only" href="usernotices.html" aria-label="Notifications" title="Notifications">
+        <span class="material-icons" style="color:white;">notifications</span>
+      </md-text-button>
+    
+      <md-text-button class="icon-only" href="login.html" aria-label="Login" title="Login">
+        <span class="material-icons" style="color:white;">login</span>
+      </md-text-button>
+    
+      <md-text-button class="icon-only" href="logout.html" aria-label="Logout" title="Logout">
+        <span class="material-icons" style="color:white;">logout</span>
+      </md-text-button>
+    
+       <md-text-button class="icon-only" href="myprofile.html" aria-label="My Profile" title="My Profile">
+        <span class="material-icons" style="color:white;">person</span>
+      </md-text-button>
+    
+       <md-text-button class="icon-only" href="mycart.html" aria-label="My Cart" title="My Cart">
+        <span class="material-icons" style="color:white;">shopping_cart</span>
+      </md-text-button>
+    </div>
+  </div>
+</div>
+
+<div id="banner"><span id="userGreeting">Welcome Guest</span></div>
+
+<!-- MAIN CONTENT -->
+<div class="container-fluid mt-4" style="width: 95%;">
+
+  <h3 class="mb-3">Active Reservations</h3>
+
+  <div class="table-responsive mb-5">
+    <table id="active-table" class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Booking ID</th>
+          <th>User ID</th>
+          <th>Cart ID</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>Total ($)</th>
+          <th>Transaction ID</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="active-body"></tbody>
+    </table>
+  </div>
+
+  <h3 class="mb-3">Cancelled Reservations</h3>
+
+  <div class="table-responsive mb-5">
+    <table id="cancelled-table" class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Booking ID</th>
+          <th>User ID</th>
+          <th>Cart ID</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>Total ($)</th>
+          <th>Transaction ID</th>
+          <th>Reverse Txn</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="cancelled-body"></tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+const API = "https://api242.onrender.com";
+
+$(document).ready(function () {
+  const uid = localStorage.getItem("uid");
+  if (!uid) {
+    alert("You must be logged in to view purchases.");
+    return;
+  }
+
+  const activeBody = $("#active-body");
+  const cancelledBody = $("#cancelled-body");
+
+  $.ajax({
+    url: `${API}/reservations`,
+    method: "GET",
+    success: function (reservations) {
+      const userReservations = reservations.filter(r => r.uid == uid);
+
+      userReservations.forEach(res => {
+        const row = `
+          <tr>
+            <td>${res.bookingId}</td>
+            <td>${res.uid}</td>
+            <td>${res.cartid}</td>
+            <td>${res.resStart ? res.resStart.split("T")[0] : ""}</td>
+            <td>${res.resEnd ? res.resEnd.split("T")[0] : ""}</td>
+            <td>${Number(res.totalAmount).toFixed(2)}</td>
+            <td>${res.transactionId}</td>
+            <td>${res.reservationstatus}</td>
+            <td>
+              <button class="btn btn-sm btn-dark"
+                onclick="window.location.href='cartdetail.html?cartid=${res.cartid}&bookingid=${res.bookingId}'">
+                Review Cart
+              </button>
+              <br>
+              <button class="btn btn-sm btn-danger mt-1"
+                onclick="window.location.href='cartcancel.html?bookingid=${res.bookingId}&cartid=${res.cartid}'">
+                Cancel
+              </button>
+            </td>
+          </tr>
+        `;
+
+        if (res.reservationstatus.toLowerCase() === "cancelled") {
+          cancelledBody.append(row);
+        } else {
+          activeBody.append(row);
+        }
+      });
+
+      $("#active-table").DataTable({ order: [[0, "desc"]] });
+      $("#cancelled-table").DataTable({ order: [[0, "desc"]] });
+    },
+    error: function () {
+      alert("Failed to load reservations.");
+    }
+  });
+});
+</script>
+
+<footer class="footer text-center mt-5">
+  &copy; Cocky Consulting 2025.<br>
+  All rights reserved.<br>
+  <a href="sitemap.html" class="sitelink">SiteMap</a>
+</footer>
+
+</body>
+</html>
