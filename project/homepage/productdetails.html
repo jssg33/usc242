@@ -358,6 +358,8 @@ font-size: 10pt;
 
       document.getElementById("product-title").textContent = p.description;
       document.getElementById("product-sku").textContent = p.SKEWID;
+      document.getElementById("product-sku").style.fontSize = "12pt";
+
       document.getElementById("product-price").textContent = `$${p.listprice.toFixed(2)}`;
       document.getElementById("product-qty").textContent = p.qtyonhand;
 
