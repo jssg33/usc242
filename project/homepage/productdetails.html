@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Greenville / Fusioncart Theme -->
+  <link rel="stylesheet" href="../css/fusioncart.css">
+
+  <style>
+    /* Optional: Page-specific tweaks */
+    #loading {
+      text-align: center;
+      padding: 20px;
+      font-size: 1.2rem;
+      color: var(--green-dark);
+    }
+    #error {
+      text-align: center;
+      padding: 20px;
+      font-size: 1.2rem;
+      color: red;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR (Optional) -->
+  <div class="navbar">
+    <div class="nav-left">
+      <span class="logo">Product Details</span>
+    </div>
+    <div class="nav-right">
+      <a href="../index.html">Home</a>
+      <a href="../products.html">Products</a>
+    </div>
+  </div>
+
+  <main class="main-content">
+
+    <div id="loading">Loading product…</div>
+    <div id="error">Product not found.</div>
+
+    <!-- PRODUCT DETAILS PANEL -->
+    <div id="interiorpanel" style="display:none;">
+      <h2 id="product-title"></h2>
+
+      <div class="master-row">
+
+        <div class="left-column">
+          <p><strong>SKU:</strong> <span id="product-sku"></span></p>
+          <p><strong>Price:</strong> <span id="product-price"></span></p>
+          <p><strong>Qty On Hand:</strong> <span id="product-qty"></span></p>
+        </div>
+
+        <div class="right-column">
+          <p><strong>Vendor:</strong> <span id="product-vendor"></span></p>
+          <p><strong>Warehouse:</strong> <span id="product-warehouse"></span></p>
+
+          <h3>Discounts</h3>
+          <p>VP Discount: <span id="discount-vp"></span></p>
+          <p>Direct Discount: <span id="discount-dir"></span></p>
+          <p>Manager Discount: <span id="discount-mgr"></span></p>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    © 2026 Greenville Retail System
+  </footer>
+
+  <!-- PRODUCT DETAILS SCRIPT -->
+  <script>
+    async function loadProduct() {
+      const params = new URLSearchParams(window.location.search);
+      const skewid = params.get("skewid");
+
+      if (!skewid) {
+        document.getElementById("loading").textContent = "No SKEWID provided.";
+        return;
+      }
+
+      try {
+        const response = await fetch("https://api242.onrender.com/products");
+        const products = await response.json();
+
+        const product = products.find(p => p.SKEWID === skewid);
+
+        if (!product) {
+          document.getElementById("loading").style.display = "none";
+          document.getElementById("error").style.display = "block";
+          return;
+        }
+
+        renderProduct(product);
+
+      } catch (err) {
+        console.error("API error:", err);
+        document.getElementById("loading").textContent = "Error loading product.";
+      }
+    }
+
+    function renderProduct(p) {
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("interiorpanel").style.display = "block";
+
+      document.getElementById("product-title").textContent = p.description;
+      document.getElementById("product-sku").textContent = p.SKEWID;
+      document.getElementById("product-price").textContent = `$${p.listprice.toFixed(2)}`;
+      document.getElementById("product-qty").textContent = p.qtyonhand;
+
+      document.getElementById("product-vendor").textContent =
+        `${p.vendorname} (${p.vendorid})`;
+
+      document.getElementById("product-warehouse").textContent = p.warehouseid;
+
+      document.getElementById("discount-vp").textContent = `${p.vpdiscount}%`;
+      document.getElementById("discount-dir").textContent = `${p.dirdiscount}%`;
+      document.getElementById("discount-mgr").textContent = `${p.managerdiscount}%`;
+    }
+
+    loadProduct();
+  </script>
+
+</body>
+</html>
