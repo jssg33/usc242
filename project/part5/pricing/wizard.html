@@ -13,40 +13,33 @@
 <title>Greenville Associates Enterprise Software | Enterprise Licensing</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        th { cursor: pointer; }
-  body { font-family: Arial, sans-serif; padding: 20px; }
-  label { display: block; margin-top: 15px; font-weight: bold; }
-  select { width: 300px; padding: 6px; margin-top: 5px; }
-  .result-card {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-top: 15px;
-    border-radius: 6px;
-  }
-  .buy-btn {
-    background: #0078ff;
-    color: white;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
+/* Container for all cards */
+#results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Individual pricing card */
 .result-card {
+  width: 400px;
+  min-height: 200px;
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 20px;
-  margin: 20px 0;
   background: #fff;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
   transition: transform .2s ease, box-shadow .2s ease;
 }
 
+/* Hover effect */
 .result-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
+/* Header row: name + price */
 .pricing-card-header {
   display: flex;
   justify-content: space-between;
@@ -59,12 +52,14 @@
   font-size: 1.25rem;
 }
 
+/* Price styling */
 .price {
   font-size: 1.4rem;
   font-weight: bold;
   color: #0078ff;
 }
 
+/* Feature list */
 .feature-list {
   list-style: none;
   padding: 0;
@@ -78,12 +73,14 @@
   font-size: 0.95rem;
 }
 
+/* Checkmark icon */
 .feature-list .check {
   font-size: 18px;
   color: #28a745;
   margin-right: 8px;
 }
 
+/* Buy button */
 .buy-btn {
   width: 100%;
   padding: 10px;
@@ -98,6 +95,7 @@
 .buy-btn:hover {
   background: #005fcc;
 }
+
        
     </style>
 </head>
