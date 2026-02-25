@@ -1,0 +1,487 @@
+/* ===========================
+   GLOBAL TYPOGRAPHY & LAYOUT
+   =========================== */
+
+h1, h2, h3 {
+    margin-left: 30px;
+    text-align: left;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1a1a1a;
+    background-color: black;
+    width: 100%;
+}
+
+p, li {
+    text-align: left;
+}
+
+span {
+    text-align: center;
+}
+
+/* ===========================
+   HEADER
+   =========================== */
+
+header {
+    background: #0a2f1f;
+    color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* ===========================
+   NAVIGATION
+   =========================== */
+
+nav {
+    background: #000000;
+    border-bottom: 1px solid #1f3b2d;
+    padding: 0;
+    text-align: center;
+}
+
+nav .menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav .menu > li {
+    position: relative;
+}
+
+nav a {
+    display: block;
+    padding: 14px 20px;
+    text-decoration: none;
+    color: #4ade80;
+    font-weight: bold;
+}
+
+nav a:hover {
+    background: #0a2f1f;
+    color: #ffffff;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: #000000;
+    border: 1px solid #1f3b2d;
+    min-width: 180px;
+    z-index: 1000;
+}
+
+.dropdown-content li a {
+    padding: 12px 16px;
+    color: #4ade80;
+}
+
+.dropdown-content li a:hover {
+    background: #0a2f1f;
+    color: #ffffff;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* ===========================
+   CONTAINERS
+   =========================== */
+
+.gacontainer2,
+.container2 {
+    position: relative;
+    margin: 0 auto;
+    max-width: 1600px;
+    min-width: 90%;
+    border-radius: 5px;
+    background-color: #f4f7f5;
+}
+
+.container2 {
+    min-height: 1000px;
+    border: 2px solid darkgreen;
+}
+
+#sales {
+    position: relative;
+    margin: 0 auto;
+    width: 85%;
+    background-color: darkgreen;
+}
+
+.main-content {
+    margin: 0 50px 60px 50px;
+    max-width: 1580px;
+}
+
+/* ===========================
+   HERO SECTION
+   =========================== */
+
+.hero {
+    background: #0a2f1f;
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.hero h2 {
+    margin: 0;
+    font-size: 2.2rem;
+}
+
+.hero p {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #d1e7d9;
+}
+
+/* ===========================
+   THREE-COLUMN WELCOME
+   =========================== */
+
+.welcome-columns {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 85%;
+    margin: 40px auto;
+}
+
+.welcome-card {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid #d1e7d9;
+    border-radius: 6px;
+    padding: 25px;
+}
+
+.welcome-images img {
+    width: 48%;
+    border-radius: 5px;
+}
+
+/* ===========================
+   PRODUCT CARDS
+   =========================== */
+
+.product-card {
+    background: #ffffff;
+    border: 1px solid #d1e7d9;
+    border-radius: 6px;
+    padding: 25px;
+}
+
+.product-card h3 {
+    margin-top: 0;
+    color: #0a2f1f;
+}
+
+/* ===========================
+   CALL TO ACTION
+   =========================== */
+
+.cta {
+    background: darkgreen;
+    color: #ffffff;
+    text-align: center;
+    padding: 50px 20px;
+    margin-top: 60px;
+}
+
+.cta a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: #4ade80;
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+/* ===========================
+   FOOTER
+   =========================== */
+
+footer {
+    background: black;
+    border-top: 1px solid #d1e7d9;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #4b5563;
+    height: 50px;
+    margin-bottom: 0;
+    position: relative;
+}
+
+/* ===========================
+   TABLES & BUTTONS
+   =========================== */
+
+.table-header-green {
+    background-color: #000 !important;
+    color: #00c853 !important;
+    font-weight: 600;
+}
+
+.review-table tbody tr:hover,
+#licenseTable tbody tr:hover {
+    background-color: #e8f5e9 !important;
+}
+
+.custom-add-btn {
+    background-color: #00c853 !important;
+    border-color: #00c853 !important;
+    color: #000 !important;
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+.custom-add-btn:hover {
+    background-color: #009624 !important;
+    border-color: #009624 !important;
+    color: white !important;
+}
+
+.custom-update-btn {
+    background-color: #1b5e20 !important;
+    border-color: #1b5e20 !important;
+    color: #00e676 !important;
+    font-weight: 600;
+}
+
+.custom-update-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.custom-update-btn:hover:not(:disabled) {
+    background-color: #2e7d32 !important;
+    border-color: #2e7d32 !important;
+    color: white !important;
+}
+
+.custom-refresh-btn {
+    background-color: #004d40 !important;
+    border-color: #004d40 !important;
+    color: #00e676 !important;
+    font-weight: 600;
+}
+
+.custom-refresh-btn:hover {
+    background-color: #00695c !important;
+    border-color: #00695c !important;
+    color: white !important;
+}
+
+/* ===========================
+   MATERIAL ICON BUTTONS
+   =========================== */
+
+.right-links {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: white;
+}
+
+.right-links md-text-button {
+    --md-sys-color-primary: #ffffff;
+    color: #ffffff;
+}
+
+.right-links .material-icons {
+    color: #ffffff !important;
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+    line-height: 18px;
+}
+
+md-text-button.icon-only { 
+    --md-text-button-container-height: 32px; 
+    --md-text-button-container-shape: 4px; 
+    padding: 0; 
+    min-width: 32px; 
+}
+
+md-text-button.icon-only .material-icons { 
+    font-size: 15px; 
+    line-height: 1; 
+    padding: 5px;
+}
+
+/* ===========================
+   FEATURE GRID (from greenvillemiddle.css)
+   =========================== */
+
+.features h2 {
+    color: #0a2f1f;
+    margin-bottom: 20px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.feature-card {
+    display: block;
+    background: #ffffff;
+    border: 1px solid #d1e7d9;
+    border-radius: 6px;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #1a1a1a;
+    transition: 0.2s ease-in-out;
+}
+
+.feature-card:hover {
+    border-color: #4ade80;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transform: translateY(-3px);
+    background-color: #00e673;
+}
+
+.feature-card img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    margin: 10px 0;
+    color: #0a2f1f;
+}
+
+.feature-card p {
+    color: #4b5563;
+    font-size: 0.95rem;
+}
+
+/* ===========================
+   GRIDDATA SECTION
+   =========================== */
+
+.griddata {
+    margin-bottom: 40px;
+}
+
+.griddata h2 {
+    color: #0a2f1f;
+    margin-bottom: 15px;
+}
+
+.griddata-table {
+    background: #ffffff;
+    border: 1px solid #d1e7d9;
+    border-radius: 6px;
+    padding: 15px;
+}
+
+.grid-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 10px 0;
+    border-bottom: 1px solid #d1e7d9;
+}
+
+.grid-row:last-child {
+    border-bottom: none;
+}
+
+.grid-row span {
+    color: #1a1a1a;
+}
+
+/* ===========================
+   SALES SLIDER
+   =========================== */
+
+.sales-slider {
+  position: relative;
+  max-width: 900px;
+  margin: 20px auto 0 auto;
+  padding: 10px 40px;
+  background: #000;
+  border-radius: 8px;
+  box-shadow: 0 0 18px rgba(0,0,0,0.6);
+}
+
+.slider-window {
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  gap: 8px;
+  transition: transform 0.4s ease;
+}
+
+.slide {
+  min-width: 180px;
+  height: 100px;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 4px;
+  overflow: hidden;
+  opacity: 0.6;
+  transform: scale(0.96);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: scale(1.02);
+  outline: 2px solid #00e676;
+}
+
+.sales-slider .prev,
+.sales-slider .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.7);
+  color: #00e676;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 50%;
+}
+
+.sales-slider .prev { left: 8px; }
+.sales-slider .next { right: 8px; }
+
+@media (max-width: 700px) {
+  .sales-slider {
+    max-width: 100%;
+    padding: 10px 30px;
+  }
+  .slide {
+    min-width: 140px;
+    height: 80px;
+  }
+}
