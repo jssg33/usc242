@@ -25,8 +25,9 @@
 }
 
 .feature-card:hover {
-    border-color: #00b33c; /* Old color base #4ade80*/
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-color: #00b33c; 
+    /* Old color base #4ade80
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);*/
     transform: translateY(-3px);
 }
 
