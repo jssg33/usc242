@@ -1,1 +1,177 @@
-Classes.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Player</title>
+
+    <!-- W3CSS Stylesheet -->
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/site.css">
+    <link rel="stylesheet" href="./css/greenville.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
+    <style>
+        body {
+            font-family: "Roboto", sans-serif;
+        }
+
+        .song-card {
+            width: 250px;
+            margin: 15px;
+            cursor: pointer;
+        }
+
+        .song-cover {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .song-title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .song-artist {
+            font-size: 14px;
+            color: gray;
+        }
+
+        #gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .modal-cover {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body class="w3-light-grey">
+
+    <header class="w3-container w3-blue w3-center">
+        <h1>My Music Player</h1>
+    </header>
+
+    <div id="gallery" class="w3-padding"></div>
+
+    <!-- Modal -->
+    <div id="songModal" class="w3-modal">
+        <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+            <header class="w3-container w3-blue">
+                <span onclick="document.getElementById('songModal').style.display='none'"
+                      class="w3-button w3-display-topright">&times;</span>
+                <h2 id="modalTitle"></h2>
+            </header>
+
+            <div class="w3-container">
+                <img id="modalCover" class="modal-cover" src="">
+                <p><b>Artist:</b> <span id="modalArtist"></span></p>
+                <p><b>Album:</b> <span id="modalAlbum"></span></p>
+                <p><b>Year:</b> <span id="modalYear"></span></p>
+                <p><b>Genre:</b> <span id="modalGenre"></span></p>
+
+                <div class="w3-center w3-margin">
+                    <iframe id="modalYoutube" width="100%" height="315" src="" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <footer class="w3-container w3-blue w3-center">
+                <p>Music Player</p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        class Song {
+            constructor(title, artist, album, year, genre, cover, youtube) {
+                this.title = title;
+                this.artist = artist;
+                this.album = album;
+                this.year = year;
+                this.genre = genre;
+                this.cover = cover;
+                this.youtube = youtube;
+            }
+
+            getCard(index) {
+                return `
+                    <div class="w3-card w3-white song-card" onclick="showSong(${index})">
+                        <img src="images/${this.cover}" class="song-cover">
+                        <div class="w3-container">
+                            <p class="song-title">${this.title}</p>
+                            <p class="song-artist">${this.artist}</p>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Base songs already in your program
+        let songs = [
+            new Song("Blinding Lights", "The Weeknd", "After Hours", 2020, "Synthwave", "blindinglights.jpg", "4NRXx6U8ABQ"),
+            new Song("Viva La Vida", "Coldplay", "Viva La Vida", 2008, "Alternative Rock", "vivalavida.jpg", "dvgZkm1xWPE"),
+            new Song("Bad Guy", "Billie Eilish", "When We All Fall Asleep", 2019, "Electropop", "badguy.jpg", "DyDfgMOUjCI"),
+            new Song("Believer", "Imagine Dragons", "Evolve", 2017, "Rock", "believer.jpg", "7wtfhZwyrcc")
+        ];
+
+        // Load JSON and append to songs[]
+        async function loadJSON() {
+            try {
+                const response = await fetch("hardrocksongs.json");
+                const data = await response.json();
+
+                data.forEach(songObj => {
+                    songs.push(new Song(
+                        songObj.title,
+                        songObj.artist,
+                        songObj.album,
+                        songObj.year,
+                        songObj.genre,
+                        songObj.cover,
+                        songObj.youtube
+                    ));
+                });
+
+                loadGallery();
+            } catch (error) {
+                console.error("Error loading JSON:", error);
+            }
+        }
+
+        // Load cards into DOM
+        function loadGallery() {
+            let gallery = document.getElementById("gallery");
+            gallery.innerHTML = ""; // clear before adding
+
+            songs.forEach((song, index) => {
+                gallery.innerHTML += song.getCard(index);
+            });
+        }
+
+        // Show modal with song info
+        function showSong(index) {
+            const s = songs[index];
+
+            document.getElementById("modalTitle").innerText = s.title;
+            document.getElementById("modalArtist").innerText = s.artist;
+            document.getElementById("modalAlbum").innerText = s.album;
+            document.getElementById("modalYear").innerText = s.year;
+            document.getElementById("modalGenre").innerText = s.genre;
+            document.getElementById("modalCover").src = "images/" + s.cover;
+            document.getElementById("modalYoutube").src = "https://www.youtube.com/embed/" + s.youtube;
+
+            document.getElementById("songModal").style.display = "block";
+        }
+
+        // Start by loading JSON
+        loadJSON();
+    </script>
+
+</body>
+</html>
