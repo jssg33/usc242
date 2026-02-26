@@ -4,55 +4,25 @@
     <title>Music Player</title>
 
     <!-- W3CSS Stylesheet -->
-    <link rel="stylesheet" href="./css/layout.css">
-    <link rel="stylesheet" href="./css/site.css">
-    <link rel="stylesheet" href="./css/greenville.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
     <style>
-        body {
-            font-family: "Roboto", sans-serif;
-        }
-
-        .song-card {
-            width: 250px;
-            margin: 15px;
-            cursor: pointer;
-        }
-
-        .song-cover {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .song-title {
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        .song-artist {
-            font-size: 14px;
-            color: gray;
-        }
-
-        #gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .modal-cover {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
+        body { font-family: "Roboto", sans-serif; }
+        .song-card { width: 250px; margin: 15px; cursor: pointer; }
+        .song-cover { width: 100%; height: 250px; object-fit: cover; }
+        #gallery { display: flex; flex-wrap: wrap; justify-content: center; }
     </style>
 </head>
 
 <body class="w3-light-grey">
+
+    <!-- NAV BAR -->
+    <div class="w3-bar w3-blue">
+        <a href="musicplayer.html" class="w3-bar-item w3-button w3-white">Home</a>
+        <a href="genres.html" class="w3-bar-item w3-button">Browse by Genre</a>
+    </div>
 
     <header class="w3-container w3-blue w3-center">
         <h1>My Music Player</h1>
@@ -70,7 +40,7 @@
             </header>
 
             <div class="w3-container">
-                <img id="modalCover" class="modal-cover" src="">
+                <img id="modalCover" style="width:100%;height:300px;object-fit:cover;">
                 <p><b>Artist:</b> <span id="modalArtist"></span></p>
                 <p><b>Album:</b> <span id="modalAlbum"></span></p>
                 <p><b>Year:</b> <span id="modalYear"></span></p>
@@ -104,15 +74,14 @@
                     <div class="w3-card w3-white song-card" onclick="showSong(${index})">
                         <img src="images/${this.cover}" class="song-cover">
                         <div class="w3-container">
-                            <p class="song-title">${this.title}</p>
-                            <p class="song-artist">${this.artist}</p>
+                            <p><b>${this.title}</b></p>
+                            <p>${this.artist}</p>
                         </div>
                     </div>
                 `;
             }
         }
 
-        // Base songs already in your program
         let songs = [
             new Song("Blinding Lights", "The Weeknd", "After Hours", 2020, "Synthwave", "blindinglights.jpg", "4NRXx6U8ABQ"),
             new Song("Viva La Vida", "Coldplay", "Viva La Vida", 2008, "Alternative Rock", "vivalavida.jpg", "dvgZkm1xWPE"),
@@ -120,41 +89,26 @@
             new Song("Believer", "Imagine Dragons", "Evolve", 2017, "Rock", "believer.jpg", "7wtfhZwyrcc")
         ];
 
-        // Load JSON and append to songs[]
         async function loadJSON() {
-            try {
-                const response = await fetch("hardrocksongs.json");
-                const data = await response.json();
+            const response = await fetch("hardrocksongs.json");
+            const data = await response.json();
 
-                data.forEach(songObj => {
-                    songs.push(new Song(
-                        songObj.title,
-                        songObj.artist,
-                        songObj.album,
-                        songObj.year,
-                        songObj.genre,
-                        songObj.cover,
-                        songObj.youtube
-                    ));
-                });
+            data.forEach(s => songs.push(new Song(
+                s.title, s.artist, s.album, s.year, s.genre, s.cover, s.youtube
+            )));
 
-                loadGallery();
-            } catch (error) {
-                console.error("Error loading JSON:", error);
-            }
+            loadGallery();
         }
 
-        // Load cards into DOM
         function loadGallery() {
             let gallery = document.getElementById("gallery");
-            gallery.innerHTML = ""; // clear before adding
+            gallery.innerHTML = "";
 
             songs.forEach((song, index) => {
                 gallery.innerHTML += song.getCard(index);
             });
         }
 
-        // Show modal with song info
         function showSong(index) {
             const s = songs[index];
 
@@ -169,7 +123,6 @@
             document.getElementById("songModal").style.display = "block";
         }
 
-        // Start by loading JSON
         loadJSON();
     </script>
 
