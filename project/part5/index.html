@@ -257,11 +257,17 @@ font-size: 10pt;
       <div class="slides">
 
         <div class="slide"
+             data-url="https://youtu.be/dX3KU2eaixY"
+             data-link="https://youtu.be/dX3KU2eaixY">
+          <img src="https://youtu.be/dX3KU2eaixY" alt="Slide 1">
+        </div>
+
+		<div class="slide"
              data-url="./images/slide1.png"
              data-link="https://youtu.be/dX3KU2eaixY">
           <img src="./images/slide1.png" alt="Slide 1">
         </div>
-
+		  
         <div class="slide"
              data-url="./images/slide2.png"
              data-link="https://example.com/page2">
@@ -655,6 +661,8 @@ theme.spacing(2); // `${4 * 2}px` = '8px'
 
       // Load first image into iframe
       iframe.src = slideItems[0].dataset.url;
+	  iframe.src.width = 100%;
+	  iframe.src.height = 100%;
 
       // Clicking the iframe goes to the website for the current slide
       iframe.addEventListener('click', () => {
