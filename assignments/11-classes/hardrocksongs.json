@@ -1,0 +1,56 @@
+[
+    {
+        "title": "Immigrant Song",
+        "artist": "Led Zeppelin",
+        "album": "Led Zeppelin III",
+        "year": 1970,
+        "genre": "Hard Rock",
+        "cover": "immigrant.jpg",
+        "youtube": "RlNhD0oS5pk"
+    },
+    {
+        "title": "Panama",
+        "artist": "Van Halen",
+        "album": "1984",
+        "year": 1984,
+        "genre": "Hard Rock",
+        "cover": "panama.jpg",
+        "youtube": "fuKDBPw8wQA"
+    },
+    {
+        "title": "Paint It Black",
+        "artist": "The Rolling Stones",
+        "album": "Aftermath",
+        "year": 1966,
+        "genre": "Rock",
+        "cover": "paintitblack.jpg",
+        "youtube": "O4irXQhgMqg"
+    },
+    {
+        "title": "Slam",
+        "artist": "Onyx",
+        "album": "Bacdafucup",
+        "year": 1993,
+        "genre": "Rap Rock",
+        "cover": "slam.jpg",
+        "youtube": "1vPl2P7lG7A"
+    },
+    {
+        "title": "Interstate Love Song",
+        "artist": "Stone Temple Pilots",
+        "album": "Purple",
+        "year": 1994,
+        "genre": "Alternative Rock",
+        "cover": "interstate.jpg",
+        "youtube": "yjJL9DGU7Gg"
+    },
+    {
+        "title": "Higher",
+        "artist": "Creed",
+        "album": "Human Clay",
+        "year": 1999,
+        "genre": "Post-Grunge",
+        "cover": "higher.jpg",
+        "youtube": "Qx0h92QFvXc"
+    }
+]
