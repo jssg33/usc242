@@ -169,3 +169,10 @@ function loadAlbumGallery() {
         });
     }
 }
+
+// MODAL CLOSE FUNCTION
+function closeModal() {
+    document.getElementById("songModal").style.display = "none";
+    document.getElementById("modalYoutube").src = "";
+}
+
