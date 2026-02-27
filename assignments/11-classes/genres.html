@@ -32,71 +32,41 @@
         <h1>Browse by Genre</h1>
     </header>
 
+    <div class="container2">
     <div id="gallery" class="w3-padding"></div>
+    
+    <!-- MODAL PLAYER -->
+    <div id="songModal" class="w3-modal">
+        <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+            <header class="w3-container w3-blue">
+                <span onclick="document.getElementById('songModal').style.display='none'"
+                      class="w3-button w3-display-topright">&times;</span>
+                <h2 id="modalTitle"></h2>
+            </header>
 
+            <div class="w3-container">
+                <img id="modalCover" style="width:100%;height:300px;object-fit:cover;">
+                <p><b>Artist:</b> <span id="modalArtist"></span></p>
+                <p><b>Album:</b> <span id="modalAlbum"></span></p>
+                <p><b>Year:</b> <span id="modalYear"></span></p>
+                <p><b>Genre:</b> <span id="modalGenre"></span></p>
+
+                <div class="w3-center w3-margin">
+                    <iframe id="modalYoutube" width="100%" height="315" src="" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <footer class="w3-container w3-blue w3-center">
+                <p>Music Player</p>
+            </footer>
+        </div>
+    </div>
+</div>
+    <script src="./js/a11.js"></script>
     <script>
-        /*class Song {
-            constructor(title, artist, album, year, genre, cover, youtube) {
-                this.title = title;
-                this.artist = artist;
-                this.album = album;
-                this.year = year;
-                this.genre = genre;
-                this.cover = cover;
-                this.youtube = youtube;
-            }
-
-            getCard() {
-                return `
-                    <div class="w3-card w3-white song-card">
-                        <img src="images/${this.cover}" class="song-cover">
-                        <div class="w3-container">
-                            <p><b>${this.title}</b></p>
-                            <p>${this.artist}</p>
-                        </div>
-                    </div>
-                `;
-            }
-        }
-
-        let songs = [];
-
-        async function loadJSON() {
-            const response = await fetch("hardrocksongs.json");
-            const data = await response.json();
-
-            data.forEach(s => songs.push(new Song(
-                s.title, s.artist, s.album, s.year, s.genre, s.cover, s.youtube
-            )));
-
-            loadGallery();
-        }
-
-        function loadGallery() {
-            let gallery = document.getElementById("gallery");
-            gallery.innerHTML = "";
-
-            let genres = {};
-
-            songs.forEach(song => {
-                if (!genres[song.genre]) genres[song.genre] = [];
-                genres[song.genre].push(song);
-            });
-
-            for (let genre in genres) {
-                gallery.innerHTML += `<div class="genre-title">${genre}</div>`;
-                gallery.innerHTML += `<div class="genre-row" id="row-${genre.replace(/\s+/g,'')}"></div>`;
-
-                let row = document.getElementById(`row-${genre.replace(/\s+/g,'')}`);
-
-                genres[genre].forEach(song => {
-                    row.innerHTML += song.getCard();
-                });
-            }
-        }
-
-        loadJSON();*/
+        loadJSON(loadGenreGallery);
     </script>
 
 </body>
 </html>
+
