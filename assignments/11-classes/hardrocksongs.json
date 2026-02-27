@@ -52,5 +52,51 @@
         "genre": "Post-Grunge",
         "cover": "higher.jpg",
         "youtube": "Qx0h92QFvXc"
+    },
+
+    {
+        "title": "Runnin' with the Devil",
+        "artist": "Van Halen",
+        "album": "Van Halen",
+        "year": 1978,
+        "genre": "Hard Rock",
+        "cover": "vanhalen1.jpg",
+        "youtube": "f02M_OX1q2k"
+    },
+    {
+        "title": "Dance the Night Away",
+        "artist": "Van Halen",
+        "album": "Van Halen II",
+        "year": 1979,
+        "genre": "Hard Rock",
+        "cover": "vanhalen2.jpg",
+        "youtube": "fZq8ZJ8A5d0"
+    },
+    {
+        "title": "Gimme Shelter",
+        "artist": "The Rolling Stones",
+        "album": "Let It Bleed",
+        "year": 1969,
+        "genre": "Rock",
+        "cover": "letitbleed.jpg",
+        "youtube": "R3rnxQBizoU"
+    },
+    {
+        "title": "Sympathy for the Devil",
+        "artist": "The Rolling Stones",
+        "album": "Beggars Banquet",
+        "year": 1968,
+        "genre": "Rock",
+        "cover": "beggarsbanquet.jpg",
+        "youtube": "Jwtyn-L-2gQ"
+    },
+    {
+        "title": "Black Dog",
+        "artist": "Led Zeppelin",
+        "album": "Led Zeppelin IV",
+        "year": 1971,
+        "genre": "Hard Rock",
+        "cover": "ledzep4.jpg",
+        "youtube": "6tlSx0jkuLM"
     }
 ]
