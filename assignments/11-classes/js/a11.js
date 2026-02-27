@@ -112,3 +112,60 @@ function showSong(index) {
 
     document.getElementById("songModal").style.display = "block";
 }
+// =========================
+// Artist Page Gallery
+// =========================
+function loadArtistGallery() {
+    let gallery = document.getElementById("gallery");
+    gallery.innerHTML = "";
+
+    let artists = {};
+
+    songs.forEach(song => {
+        if (!artists[song.artist]) artists[song.artist] = [];
+        artists[song.artist].push(song);
+    });
+
+    for (let artist in artists) {
+        const safeId = artist.replace(/[^a-z0-9]/gi, "");
+
+        gallery.innerHTML += `<div class="genre-title">${artist}</div>`;
+        gallery.innerHTML += `<div class="genre-row" id="row-${safeId}"></div>`;
+
+        let row = document.getElementById(`row-${safeId}`);
+
+        artists[artist].forEach(song => {
+            const globalIndex = songs.indexOf(song);
+            row.innerHTML += song.getCard(globalIndex);
+        });
+    }
+}
+
+// =========================
+// Album Page Gallery
+// =========================
+function loadAlbumGallery() {
+    let gallery = document.getElementById("gallery");
+    gallery.innerHTML = "";
+
+    let albums = {};
+
+    songs.forEach(song => {
+        if (!albums[song.album]) albums[song.album] = [];
+        albums[song.album].push(song);
+    });
+
+    for (let album in albums) {
+        const safeId = album.replace(/[^a-z0-9]/gi, "");
+
+        gallery.innerHTML += `<div class="genre-title">${album}</div>`;
+        gallery.innerHTML += `<div class="genre-row" id="row-${safeId}"></div>`;
+
+        let row = document.getElementById(`row-${safeId}`);
+
+        albums[album].forEach(song => {
+            const globalIndex = songs.indexOf(song);
+            row.innerHTML += song.getCard(globalIndex);
+        });
+    }
+}
