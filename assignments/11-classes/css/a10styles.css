@@ -1,0 +1,394 @@
+/* ------------------------------------------------------ */
+/* GLOBAL LAYOUT CLEANUP                                  */
+/* ------------------------------------------------------ */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+topnavbar { color: white; }
+topnavbar:visited {color: white;}
+a {color: white; text-decoration: none;}
+a:visited{ color: white; font-size: 12pt; text-decoration: none;}
+mobilemenu:visited {color: white; font-size: 12pt; text-decoration: none;}
+
+
+/* ------------------------------------------------------ */
+/* HEADER                                                 */
+/* ------------------------------------------------------ */
+
+header {
+    background: #4a6fa5;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* ------------------------------------------------------ */
+/* NAVIGATION                                             */
+/* ------------------------------------------------------ */
+
+nav.main-nav {
+    background: #2d4b73;
+}
+
+nav.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+nav.main-nav a {
+    display: block;
+    padding: 15px 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav.main-nav a:hover {
+    background: #1e3550;
+}
+
+/* ------------------------------------------------------ */
+/* TOP SECTION (30% + 70%)                                */
+/* ------------------------------------------------------ */
+
+.top-section {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.important-text {
+    flex: 0 0 30%;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.tasks {
+    flex: 0 0 65%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.task-item {
+    width: 23%;
+    background: #e8e8e8;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* ------------------------------------------------------ */
+/* MIDDLE 3-COLUMN SECTION                                */
+/* ------------------------------------------------------ */
+
+.middle-columns {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.mid-col {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* ------------------------------------------------------ */
+/* IDEA SECTIONS                                          */
+/* ------------------------------------------------------ */
+
+.ideas {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.idea {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    gap: 20px;
+}
+
+.idea-text {
+    flex: 1;
+    max-width: 70%;
+}
+
+.idea img {
+    max-width: 20%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.idea.left { flex-direction: row-reverse; }
+.idea.right { flex-direction: row; }
+
+/* ------------------------------------------------------ */
+/* ASSIGNMENT 9 — FLEXBOX LAYOUT (OVERRIDES FLOATS)       */
+/* ------------------------------------------------------ */
+
+.assign9 .row {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Override old float system from site.css */
+.assign9 .column {
+    float: none !important;
+    width: auto !important;
+    flex: 1;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.assign9 img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* ------------------------------------------------------ */
+/* FOOTER                                                 */
+/* ------------------------------------------------------ */
+
+footer {
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+#mood-select {
+    margin: 20px 0;
+}
+
+#mood-select select {
+    padding: 10px;
+    font-size: 18px;
+}
+
+#song-list {
+    margin-top: 20px;
+    display: none; /* hidden until mood selected */
+}
+
+#song-list a {
+    display: block;
+    margin: 8px 0;
+    font-size: 20px;
+    color: #0077cc;
+    text-decoration: none;
+}
+
+#song-list a:hover {
+    text-decoration: underline;
+}
+
+#video-container {
+    margin-top: 20px;
+    display: none; /* hidden until song selected */
+}
+    .container {
+display: grid;
+grid-template-columns: 1fr 2fr; /* First column is half the width of the second */
+height: 100vh; /* Full viewport height */
+gap: 10px; /* Optional spacing between columns */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column11 {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 700px; 
+  text-align: center;
+  vertical-align: middle;
+}
+.column12 {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 700px; 
+  text-align: center;
+  vertical-align: middle;
+}
+
+    
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.pagecontainer
+{
+height: 1000px;
+min-height: 1000px;
+max-height: auto;
+max-width: 1600px;
+margin: 0 auto;
+position: relative;
+font-size: 12pt;
+text-align: center;
+}
+footer
+{
+max-width: 1600px;
+margin: 0 auto;
+}
+body
+{
+background-color: scarlet;
+}
+iframe
+{
+width: 90%;
+min-width: 450px;
+max-width: 750px;
+margin: 0 auto;
+max-height: 500px;
+height: 500px;
+}
+
+
+/* ------------------------------------------------------ */
+/* MOBILE LAYOUT (≤ 1000px)                               */
+/* ------------------------------------------------------ */
+
+@media (max-width: 1000px) {
+  
+    html, body { height: 100%; } 
+    nav.main-nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .top-section {
+        flex-direction: column;
+        max-width: 950px;
+        margin: 0 auto;
+    }
+
+    .tasks {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .task-item {
+        width: 45%;
+        max-width: 350px;
+    }
+
+    .middle-columns {
+        flex-direction: column;
+    }
+
+    .idea {
+        flex-direction: column;
+        text-align: left;
+        max-width: 980px;
+        margin: 0 auto;
+    }
+
+    .idea-text {
+        max-width: 100%;
+    }
+
+    .idea img {
+        max-width: 60%;
+        height: auto;
+        order: 2;
+    }
+
+    /* Assignment 9 mobile stacking */
+    .assign9 .row {
+        flex-direction: column !important;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .assign9 .column {
+        width: 100% !important;
+        padding: 15px;
+    }
+
+    .assign9 img {
+        max-width: 80%;
+    }
+    .assign10 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .column11,
+    .column12 {
+        width: 100% !important;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+    
+      .pagecontainer { 
+                        max-height: 90%; 
+                      overflow-y: auto; 
+                      display: flex; 
+                      flex-direction: column; } 
+    footer { margin-top: auto; }
+}
+
+/* ------------------------------------------------------ */
+/* LARGE LAYOUT (≥ 1200px)                                */
+/* ------------------------------------------------------ */
+
+@media (min-width: 1200px) {
+    body{width: 100%;}
+    nav.main-nav ul { flex-direction: row; }
+    .pagecontainer { 
+                        max-height: 90%; 
+                      overflow-y: auto; 
+                      display: flex; 
+                      flex-direction: row; } 
+    .top-section { flex-direction: row; }
+    .middle-columns { flex-direction: row; }
+    footer {margin-top: auto;}
+}
