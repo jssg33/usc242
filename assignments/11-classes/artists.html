@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Browse by Artist</title>
+    <title>Browse Music by Artist</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue.css">
@@ -15,13 +17,15 @@
         body { font-family: "Roboto", sans-serif; }
         .song-card { width: 250px; margin: 15px; cursor: pointer; }
         .song-cover { width: 100%; height: 250px; object-fit: cover; }
-        .genre-title { font-size: 28px; font-weight: bold; margin-left: 20px; margin-top: 40px; }
+        .genre-title { font-size: 28px; font-weight: bold; margin-left: 20px; margin-top: 20px; }
         .genre-row { display: flex; flex-wrap: wrap; margin-left: 20px; }
+        .genre-block { width: 100%; display: block; margin-bottom: 40px; }
     </style>
 </head>
 
 <body class="w3-light-grey">
 
+    <!-- NAV BAR -->
     <div class="w3-bar w3-blue">
         <a href="index.html" class="w3-bar-item w3-button">Home</a>
         <a href="genres.html" class="w3-bar-item w3-button">Genres</a>
@@ -36,7 +40,7 @@
     <div class="container2">
         <div id="gallery" class="w3-padding"></div>
 
-        <!-- Modal (same as your other pages) -->
+        <!-- MODAL PLAYER -->
         <div id="songModal" class="w3-modal">
             <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
                 <header class="w3-container w3-blue">
@@ -63,7 +67,7 @@
         </div>
 
         <footer>
-            <p>&copy; 2026 - Cocky Consulting - CircusFrame Music Player</p>
+            <p class="bottomcredits">&copy; 2026 - Cocky Consulting - CircusFrame Music Player</p>
         </footer>
     </div>
 
