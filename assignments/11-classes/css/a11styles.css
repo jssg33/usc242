@@ -3,3 +3,6 @@
         .song-cover { width: 100%; height: 250px; object-fit: cover; }
         #gallery { display: flex; flex-wrap: wrap; justify-content: center; }
         .header {background-color: green;}
+        .container2 {max-width: 1600px; width: 1600px;}
+        bottomcredits footer { background-color: black; color: white;}
+
