@@ -60,7 +60,7 @@
         "album": "Van Halen",
         "year": 1978,
         "genre": "Hard Rock",
-        "cover": "vanhalen1.jpg",
+        "cover": "running.jpg",
         "youtube": "f02M_OX1q2k"
     },
     {
@@ -69,7 +69,7 @@
         "album": "Van Halen II",
         "year": 1979,
         "genre": "Hard Rock",
-        "cover": "vanhalen2.jpg",
+        "cover": "dance.jpg",
         "youtube": "fZq8ZJ8A5d0"
     },
     {
@@ -78,7 +78,7 @@
         "album": "Let It Bleed",
         "year": 1969,
         "genre": "Rock",
-        "cover": "letitbleed.jpg",
+        "cover": "givemeshelter.jpg",
         "youtube": "R3rnxQBizoU"
     },
     {
@@ -87,7 +87,7 @@
         "album": "Beggars Banquet",
         "year": 1968,
         "genre": "Rock",
-        "cover": "beggarsbanquet.jpg",
+        "cover": "sympathy.jpg",
         "youtube": "Jwtyn-L-2gQ"
     },
     {
@@ -96,7 +96,7 @@
         "album": "Led Zeppelin IV",
         "year": 1971,
         "genre": "Hard Rock",
-        "cover": "ledzep4.jpg",
+        "cover": "blackdog.jpg",
         "youtube": "6tlSx0jkuLM"
     }
 ]
