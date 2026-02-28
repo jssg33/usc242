@@ -103,7 +103,7 @@
 
 /* Mobile / Tablet Layout Under 1000px */
 @media screen and (max-width: 1000px) {
-
+     body {max-width: 1000px; text-align: left;}
     /* Ensure header stays at the top */
     header {
         position: relative;
@@ -126,7 +126,7 @@
     .album-songs {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: left;
         gap: 15px;
     }
 
