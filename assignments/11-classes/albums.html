@@ -1,207 +1,87 @@
-// =========================
-// Shared Song Class
-// =========================
-class Song {
-    constructor(title, artist, album, year, genre, cover, youtube) {
-        this.title = title;
-        this.artist = artist;
-        this.album = album;
-        this.year = year;
-        this.genre = genre;
-        this.cover = cover;
-        this.youtube = youtube;
-    }
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Browse Music by Album</title>
 
-    getCard(index) {
-        return `
-            <div class="w3-card w3-white song-card" onclick="showSong(${index})">
-                <img src="images/${this.cover}" class="song-cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="./css/a9styles.css"> 
+    <link rel="stylesheet" href="./css/a10styles.css"> 
+    <link rel="stylesheet" href="./css/a11styles.css">
+    <script src="./js/a11.js" defer></script>
+
+    <style>
+        body { font-family: "Roboto", sans-serif; }
+        .song-card { width: 250px; margin: 15px; cursor: pointer; }
+        .song-cover { width: 100%; height: 250px; object-fit: cover; }
+        .genre-title { font-size: 28px; font-weight: bold; margin-left: 20px; margin-top: 20px; }
+        .genre-row { display: flex; flex-wrap: wrap; margin-left: 20px; }
+        .genre-block { width: 100%; display: block; margin-bottom: 40px; }
+    </style>
+</head>
+
+<body class="w3-light-grey">
+
+    <header class="w3-container w3-black w3-center">
+        <h1>Browse by Album</h1>
+    </header>
+
+    <!-- NAV BAR -->
+    <div class="w3-bar w3-blue" style="text-align: center;" align="center">
+        <a href="index.html" class="w3-bar-item w3-button">Home</a>
+        <a href="genres.html" class="w3-bar-item w3-button">Genres</a>
+        <a href="artists.html" class="w3-bar-item w3-button">Artists</a>
+        <a href="albums.html" class="w3-bar-item w3-button w3-white">Albums</a>
+    </div>
+
+    <div class="container2">
+
+        <!-- ALBUM GALLERY -->
+        <div id="albumContainer" class="w3-padding"></div>
+
+        <!-- MODAL PLAYER -->
+        <div id="songModal" class="w3-modal">
+            <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+                
+                <header class="w3-container w3-blue">
+                    <span onclick="closeModal()" class="w3-button w3-display-topright">&times;</span>
+                    <h2 id="modalTitle"></h2>
+                </header>
+
                 <div class="w3-container">
-                    <p><b>${this.title}</b></p>
-                    <p>${this.artist}</p>
+                    <img id="modalCover" style="width:100%;height:300px;object-fit:cover;">
+                    <p><b>Artist:</b> <span id="modalArtist"></span></p>
+                    <p><b>Album:</b> <span id="modalAlbum"></span></p>
+                    <p><b>Year:</b> <span id="modalYear"></span></p>
+                    <p><b>Genre:</b> <span id="modalGenre"></span></p>
+
+                    <div class="w3-center w3-margin">
+                        <iframe id="modalYoutube" width="100%" height="315" src="" allowfullscreen></iframe>
+                    </div>
                 </div>
+
+                <footer class="w3-container w3-blue w3-center">
+                    <p>&copy; 2026 - Cocky Consulting - CircusFrame Music Player</p>
+                </footer>
+
             </div>
-        `;
-    }
-}
+        </div>
 
-// =========================
-// Shared Song List (Fallback)
-// =========================
-let songs = [
-    new Song("Blinding Lights", "The Weeknd", "After Hours", 2020, "Synthwave", "blindinglights.jpg", "4NRXx6U8ABQ"),
-    new Song("Viva La Vida", "Coldplay", "Viva La Vida", 2008, "Alternative Rock", "vivalavida.jpg", "dvgZkm1xWPE"),
-    new Song("Bad Guy", "Billie Eilish", "When We All Fall Asleep", 2019, "Electropop", "badguy.jpg", "DyDfgMOUjCI"),
-    new Song("Believer", "Imagine Dragons", "Evolve", 2017, "Rock", "believer.jpg", "7wtfhZwyrcc")
-];
+        <footer>
+            <p class="bottomcredits">&copy; 2026 - Cocky Consulting - CircusFrame Music Player</p>
+        </footer>
 
-// =========================
-// JSON Loader (Shared)
-// =========================
-async function loadJSON(callback) {
-    try {
-        const response = await fetch("hardrocksongs.json");
-        if (!response.ok) throw new Error("Network error");
+    </div>
 
-        const data = await response.json();
-        data.forEach(s => songs.push(new Song(
-            s.title, s.artist, s.album, s.year, s.genre, s.cover, s.youtube
-        )));
-
-        // ⭐ SORT AFTER CONCATENATION ⭐
-        songs.sort((a, b) => {
-            const artistCompare = a.artist.localeCompare(b.artist);
-            return artistCompare !== 0 ? artistCompare : a.album.localeCompare(b.album);
+    <!-- CORRECT CALLBACK -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            loadJSON(loadAlbumGallery);
         });
+    </script>
 
-        console.log("Loaded JSON successfully.");
-    } catch (error) {
-        console.warn("Failed to load JSON, using fallback songs.", error);
-    }
-
-    callback(); // Run the page-specific gallery function
-}
-
-// =========================
-// Home Page Gallery
-// =========================
-function loadHomeGallery() {
-    let gallery = document.getElementById("gallery");
-    gallery.innerHTML = "";
-
-    songs.forEach((song, index) => {
-        gallery.innerHTML += song.getCard(index);
-    });
-}
-
-// =========================
-// Genre Page Gallery
-// =========================
-function loadGenreGallery() {
-    let container = document.getElementById("genreContainer");
-    container.innerHTML = "";
-
-    let genres = {};
-
-    songs.forEach(song => {
-        if (!genres[song.genre]) genres[song.genre] = [];
-        genres[song.genre].push(song);
-    });
-
-    for (let genre in genres) {
-        const safeId = genre.replace(/[^a-z0-9]/gi, "");
-
-        container.innerHTML += `
-            <div class="genre-row">
-                <span class="genre-label">${genre}</span>
-                <div class="genre-songs" id="genre-${safeId}"></div>
-            </div>
-        `;
-
-        let row = document.getElementById(`genre-${safeId}`);
-
-        genres[genre].forEach(song => {
-            const globalIndex = songs.indexOf(song);
-            row.innerHTML += song.getCard(globalIndex);
-        });
-    }
-}
-
-// ===============================
-// Load Artists (Alphabetically)
-// ===============================
-function loadArtistsGallery() {
-    fetch("artists.json")
-        .then(response => response.json())
-        .then(artists => {
-
-            // Sort artists alphabetically
-            artists.sort((a, b) => a.name.localeCompare(b.name));
-
-            const container = document.getElementById("artistContainer");
-            container.innerHTML = "";
-
-            artists.forEach(artist => {
-                const card = document.createElement("div");
-                card.classList.add("artist-card");
-                card.dataset.name = artist.name;
-
-                card.innerHTML = `
-                    <img src="${artist.image}" alt="${artist.name}">
-                    <h3>${artist.name}</h3>
-                `;
-
-                card.addEventListener("click", () => {
-                    loadAlbumGallery(artist.id, artist.name);
-                });
-
-                container.appendChild(card);
-            });
-        })
-        .catch(error => console.error("Error loading artists:", error));
-}
-
-// ===============================
-// Load Albums for Selected Artist
-// (Sorted Alphabetically)
-// ===============================
-function loadAlbumGallery(artistId, artistName) {
-    fetch("albums.json")
-        .then(response => response.json())
-        .then(albums => {
-
-            // Filter albums for this artist
-            let artistAlbums = albums.filter(album => album.artistId === artistId);
-
-            // Sort albums alphabetically
-            artistAlbums.sort((a, b) => a.title.localeCompare(b.title));
-
-            const container = document.getElementById("albumContainer");
-            container.innerHTML = "";
-
-            document.getElementById("albumHeader")?.innerText = `${artistName} — Albums`;
-
-            artistAlbums.forEach(album => {
-                const card = document.createElement("div");
-                card.classList.add("album-card");
-                card.dataset.name = album.title;
-
-                card.innerHTML = `
-                    <img src="${album.cover}" alt="${album.title}">
-                    <h3>${album.title}</h3>
-                `;
-
-                card.addEventListener("click", () => {
-                    loadAlbumSongs(album.id, album.title);
-                });
-
-                container.appendChild(card);
-            });
-        })
-        .catch(error => console.error("Error loading albums:", error));
-}
-
-// =========================
-// Modal Player (Shared)
-// =========================
-function showSong(index) {
-    const s = songs[index];
-
-    document.getElementById("modalTitle").innerText = s.title;
-    document.getElementById("modalArtist").innerText = s.artist;
-    document.getElementById("modalAlbum").innerText = s.album;
-    document.getElementById("modalYear").innerText = s.year;
-    document.getElementById("modalGenre").innerText = s.genre;
-    document.getElementById("modalCover").src = "images/" + s.cover;
-    document.getElementById("modalYoutube").src = "https://www.youtube.com/embed/" + s.youtube;
-
-    document.getElementById("songModal").style.display = "block";
-}
-
-// =========================
-// Close Modal
-// =========================
-function closeModal() {
-    document.getElementById("songModal").style.display = "none";
-    document.getElementById("modalYoutube").src = "";
-}
+</body>
+</html>
