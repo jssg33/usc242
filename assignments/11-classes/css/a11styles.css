@@ -6,3 +6,46 @@
         .container2 {max-width: 1600px; width: 1600px;}
         bottomcredits footer { background-color: black; color: white;}
 
+/* Mobile / Tablet Layout Under 1000px */
+@media screen and (max-width: 1000px) {
+
+    /* Ensure header stays at the top */
+    header {
+        position: relative;
+        width: 100%;
+        top: 0;
+        z-index: 10;
+    }
+
+    /* Ensure footer stays at the bottom */
+    footer {
+        position: relative;
+        width: 100%;
+        bottom: 0;
+        margin-top: 20px;
+    }
+
+    /* Gallery container layout */
+    #gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    /* Music cards: 2 per row */
+    .music-card, 
+    .song-card, 
+    .album-card {
+        width: calc(50% - 20px); /* two per row */
+        box-sizing: border-box;
+    }
+
+    /* Make modal responsive */
+    #songModal .w3-modal-content {
+        width: 95% !important;
+        max-width: 500px;
+    }
+}
+
+
