@@ -133,8 +133,9 @@ function loadArtistsGallery() {
                     <h3>${artist.name}</h3>
                 `;
 
+                // Use your existing albums function name
                 card.addEventListener("click", () => {
-                    loadArtistAlbums(artist.id, artist.name);
+                    loadArtistGallery(artist.id, artist.name);
                 });
 
                 container.appendChild(card);
