@@ -134,8 +134,14 @@
   "genre": "Hard Rock",
   "cover": "rockandroll.jpg",
   "youtube": "0WzG64syKHA"
+}, 
+    {
+  "title": "Dance the Night Away",
+  "artist": "Van Halen",
+  "album": "Van Halen II",
+  "year": 1979,
+  "genre": "Hard Rock",
+  "cover": "dancethenightaway.jpg",
+  "youtube": "fG2seugAgnU"
 }
-
-
-
 ]
