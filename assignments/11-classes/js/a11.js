@@ -1,4 +1,4 @@
-  // =========================
+// =========================
 // Shared Song Class
 // =========================
 class Song {
@@ -72,8 +72,8 @@ function loadHomeGallery() {
 // Genre Page Gallery
 // =========================
 function loadGenreGallery() {
-    let gallery = document.getElementById("gallery");
-    gallery.innerHTML = "";
+    let container = document.getElementById("genreContainer");
+    container.innerHTML = "";
 
     let genres = {};
 
@@ -85,13 +85,84 @@ function loadGenreGallery() {
     for (let genre in genres) {
         const safeId = genre.replace(/[^a-z0-9]/gi, "");
 
-        gallery.innerHTML += `<div class="genre-title">${genre}</div>`;
-        gallery.innerHTML += `<div class="genre-row" id="row-${safeId}"></div>`;
+        container.innerHTML += `
+            <div class="genre-row">
+                <span class="genre-label">${genre}</span>
+                <div class="genre-songs" id="genre-${safeId}"></div>
+            </div>
+        `;
 
-        let row = document.getElementById(`row-${safeId}`);
+        let row = document.getElementById(`genre-${safeId}`);
 
-        genres[genre].forEach((song, index) => {
-            row.innerHTML += song.getCard(index);
+        genres[genre].forEach(song => {
+            const globalIndex = songs.indexOf(song);
+            row.innerHTML += song.getCard(globalIndex);
+        });
+    }
+}
+
+// =========================
+// Artist Page Gallery
+// =========================
+function loadArtistGallery() {
+    let container = document.getElementById("artistContainer");
+    container.innerHTML = "";
+
+    let artists = {};
+
+    songs.forEach(song => {
+        if (!artists[song.artist]) artists[song.artist] = [];
+        artists[song.artist].push(song);
+    });
+
+    for (let artist in artists) {
+        const safeId = artist.replace(/[^a-z0-9]/gi, "");
+
+        container.innerHTML += `
+            <div class="artist-row">
+                <span class="artist-label">${artist}</span>
+                <div class="artist-songs" id="artist-${safeId}"></div>
+            </div>
+        `;
+
+        let row = document.getElementById(`artist-${safeId}`);
+
+        artists[artist].forEach(song => {
+            const globalIndex = songs.indexOf(song);
+            row.innerHTML += song.getCard(globalIndex);
+        });
+    }
+}
+
+// =========================
+// Album Page Gallery
+// =========================
+function loadAlbumGallery() {
+    let container = document.getElementById("albumContainer");
+    container.innerHTML = "";
+
+    let albums = {};
+
+    songs.forEach(song => {
+        if (!albums[song.album]) albums[song.album] = [];
+        albums[song.album].push(song);
+    });
+
+    for (let album in albums) {
+        const safeId = album.replace(/[^a-z0-9]/gi, "");
+
+        container.innerHTML += `
+            <div class="album-row">
+                <span class="album-label">${album}</span>
+                <div class="album-songs" id="album-${safeId}"></div>
+            </div>
+        `;
+
+        let row = document.getElementById(`album-${safeId}`);
+
+        albums[album].forEach(song => {
+            const globalIndex = songs.indexOf(song);
+            row.innerHTML += song.getCard(globalIndex);
         });
     }
 }
@@ -112,67 +183,11 @@ function showSong(index) {
 
     document.getElementById("songModal").style.display = "block";
 }
-// =========================
-// Artist Page Gallery
-// =========================
-function loadArtistGallery() {
-    let gallery = document.getElementById("gallery");
-    gallery.innerHTML = "";
-
-    let artists = {};
-
-    songs.forEach(song => {
-        if (!artists[song.artist]) artists[song.artist] = [];
-        artists[song.artist].push(song);
-    });
-
-    for (let artist in artists) {
-        const safeId = artist.replace(/[^a-z0-9]/gi, "");
-
-        gallery.innerHTML += `<div class="genre-title">${artist}</div>`;
-        gallery.innerHTML += `<div class="genre-row" id="row-${safeId}"></div>`;
-
-        let row = document.getElementById(`row-${safeId}`);
-
-        artists[artist].forEach(song => {
-            const globalIndex = songs.indexOf(song);
-            row.innerHTML += song.getCard(globalIndex);
-        });
-    }
-}
 
 // =========================
-// Album Page Gallery
+// Close Modal
 // =========================
-function loadAlbumGallery() {
-    let gallery = document.getElementById("gallery");
-    gallery.innerHTML = "";
-
-    let albums = {};
-
-    songs.forEach(song => {
-        if (!albums[song.album]) albums[song.album] = [];
-        albums[song.album].push(song);
-    });
-
-    for (let album in albums) {
-        const safeId = album.replace(/[^a-z0-9]/gi, "");
-
-        gallery.innerHTML += `<div class="genre-title">${album}</div>`;
-        gallery.innerHTML += `<div class="genre-row" id="row-${safeId}"></div>`;
-
-        let row = document.getElementById(`row-${safeId}`);
-
-        albums[album].forEach(song => {
-            const globalIndex = songs.indexOf(song);
-            row.innerHTML += song.getCard(globalIndex);
-        });
-    }
-}
-
-// MODAL CLOSE FUNCTION
 function closeModal() {
     document.getElementById("songModal").style.display = "none";
     document.getElementById("modalYoutube").src = "";
 }
-
