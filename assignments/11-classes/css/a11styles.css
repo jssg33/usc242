@@ -49,12 +49,13 @@
     gap: 15px;
 }
 
-/* Song card sizing */
 .song-card {
     width: 250px;
-    margin: 10px;
     cursor: pointer;
+    display: inline-flex !important;   /* FIX */
+    flex-direction: column;            /* keeps image + text stacked */
 }
+
 
 .song-cover {
     width: 100%;
@@ -119,20 +120,22 @@
         margin-top: 20px;
     }
 
-    /* Gallery container layout */
-    #gallery {
+    /* Flex containers for all pages */
+    .genre-songs,
+    .artist-songs,
+    .album-songs {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 15px;
     }
 
-    /* Music cards: 2 per row */
-    .music-card, 
-    .song-card, 
-    .album-card {
-        width: calc(50% - 20px); /* two per row */
+    /* Cards: force 2 per row */
+    .song-card {
+        width: calc(50% - 20px);
         box-sizing: border-box;
+        display: flex !important;
+        flex-direction: column;
     }
 
     /* Make modal responsive */
