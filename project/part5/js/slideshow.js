@@ -1,3 +1,9 @@
+  import { createTheme } from "https://cdn.jsdelivr.net/npm/@mui/material@latest/+esm";
+
+  const theme = createTheme({
+    spacing: 2
+  });
+
 // Inject CSS variables into :root
 theme.spacing(2); // `${4 * 2}px` = '8px'
 
