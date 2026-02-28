@@ -187,6 +187,42 @@ function loadArtistGallery(artistId, artistName) {
         .catch(error => console.error("Error loading albums:", error));
 }
 
+function loadAlbumGallery(artistId, artistName) {
+    fetch("albums.json")
+        .then(response => response.json())
+        .then(albums => {
+
+            // Filter albums for this artist
+            let artistAlbums = albums.filter(album => album.artistId === artistId);
+
+            // ⭐ SORT ALPHABETICALLY BY ALBUM NAME ⭐
+            artistAlbums.sort((a, b) => a.title.localeCompare(b.title));
+
+            const container = document.getElementById("albumGallery");
+            container.innerHTML = "";
+
+            document.getElementById("albumHeader").innerText = `${artistName} — Albums`;
+
+            artistAlbums.forEach(album => {
+                const card = document.createElement("div");
+                card.classList.add("album-card");
+                card.dataset.name = album.title;
+
+                card.innerHTML = `
+                    <img src="${album.cover}" alt="${album.title}">
+                    <h3>${album.title}</h3>
+                `;
+
+                card.addEventListener("click", () => {
+                    loadAlbumSongs(album.id, album.title);
+                });
+
+                container.appendChild(card);
+            });
+        })
+        .catch(error => console.error("Error loading albums:", error));
+}
+
 // =========================
 // Modal Player (Shared)
 // =========================
