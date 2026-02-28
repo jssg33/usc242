@@ -103,7 +103,7 @@
 
 /* Mobile / Tablet Layout Under 1000px */
 @media screen and (max-width: 1000px) {
-     body, #gallery, .wrapper { width: 999px; max-width: 100%; text-align: left;}
+     body, #gallery, .wrapper { max-width: 999px; text-align: left;}
     /* Ensure header stays at the top */
     header {
         position: relative;
