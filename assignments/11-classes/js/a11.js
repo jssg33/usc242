@@ -101,80 +101,83 @@ function loadGenreGallery() {
     }
 }
 
-// =========================
-// Artist Page Gallery
-// =========================
-function loadArtistGallery() {
-    let container = document.getElementById("artistContainer");
-    container.innerHTML = "";
+// ===============================
+// Load Artists (Alphabetically)
+// ===============================
 
-    let artists = {};
+function loadArtists() {
+    fetch("artists.json")
+        .then(response => response.json())
+        .then(artists => {
 
-    songs.forEach(song => {
-        if (!artists[song.artist]) artists[song.artist] = [];
-        artists[song.artist].push(song);
-    });
+            // Sort artists alphabetically by name
+            artists.sort((a, b) => a.name.localeCompare(b.name));
 
-    for (let artist in artists) {
-        const safeId = artist.replace(/[^a-z0-9]/gi, "");
+            const container = document.getElementById("artistGallery");
+            container.innerHTML = "";
 
-        container.innerHTML += `
-            <div class="artist-row">
-                <span class="artist-label">${artist}</span>
-                <div class="artist-songs" id="artist-${safeId}"></div>
-            </div>
-        `;
+            artists.forEach(artist => {
+                const card = document.createElement("div");
+                card.classList.add("artist-card");
+                card.dataset.name = artist.name;
 
-        let row = document.getElementById(`artist-${safeId}`);
+                card.innerHTML = `
+                    <img src="${artist.image}" alt="${artist.name}">
+                    <h3>${artist.name}</h3>
+                `;
 
-        artists[artist].forEach(song => {
-            const globalIndex = songs.indexOf(song);
-            row.innerHTML += song.getCard(globalIndex);
-        });
-    }
+                card.addEventListener("click", () => {
+                    loadArtistAlbums(artist.id, artist.name);
+                });
+
+                container.appendChild(card);
+            });
+        })
+        .catch(error => console.error("Error loading artists:", error));
 }
 
-// =========================
-// Album Page Gallery (albums.html)
-// Uses: <div id="albumContainer">
-// =========================
-function loadAlbumGallery() {
-    const container = document.getElementById("albumContainer");
-    if (!container) return;
 
-    container.innerHTML = "";
 
-    const albums = {};
+// ===============================
+// Load Albums for Selected Artist
+// (Sorted Alphabetically)
+// ===============================
 
-    // Group songs by album
-    songs.forEach(song => {
-        if (!albums[song.album]) albums[song.album] = [];
-        albums[song.album].push(song);
-    });
+function loadArtistAlbums(artistId, artistName) {
+    fetch("albums.json")
+        .then(response => response.json())
+        .then(albums => {
 
-    // Sort album names alphabetically
-    Object.keys(albums).sort().forEach(album => {
-        const safeId = album.replace(/[^a-z0-9]/gi, "");
+            // Filter albums for this artist
+            let artistAlbums = albums.filter(album => album.artistId === artistId);
 
-        // Create album row
-        container.innerHTML += `
-            <div class="album-row">
-                <span class="album-label">${album}</span>
-                <div class="album-songs" id="album-${safeId}"></div>
-            </div>
-        `;
+            // Sort albums alphabetically by title
+            artistAlbums.sort((a, b) => a.title.localeCompare(b.title));
 
-        const row = document.getElementById(`album-${safeId}`);
-        if (!row) return;
+            const container = document.getElementById("albumGallery");
+            container.innerHTML = "";
 
-        // Add song cards under this album
-        albums[album].forEach(song => {
-            const globalIndex = songs.indexOf(song);
-            row.innerHTML += song.getCard(globalIndex);
-        });
-    });
+            document.getElementById("albumHeader").innerText = `${artistName} — Albums`;
+
+            artistAlbums.forEach(album => {
+                const card = document.createElement("div");
+                card.classList.add("album-card");
+                card.dataset.name = album.title;
+
+                card.innerHTML = `
+                    <img src="${album.cover}" alt="${album.title}">
+                    <h3>${album.title}</h3>
+                `;
+
+                card.addEventListener("click", () => {
+                    loadAlbumSongs(album.id, album.title);
+                });
+
+                container.appendChild(card);
+            });
+        })
+        .catch(error => console.error("Error loading albums:", error));
 }
-
 
 // =========================
 // Modal Player (Shared)
