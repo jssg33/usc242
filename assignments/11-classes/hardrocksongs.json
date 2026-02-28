@@ -98,5 +98,44 @@
         "genre": "Hard Rock",
         "cover": "blackdog.jpg",
         "youtube": "6tlSx0jkuLM"
-    }
+    },
+    {
+  "title": "Adventure of a Lifetime",
+  "artist": "Coldplay",
+  "album": "A Head Full of Dreams",
+  "year": 2015,
+  "genre": "Alternative Rock",
+  "cover": "adventureofalifetime.jpg",
+  "youtube": "QtXby3twMmI"
+},
+   {
+  "title": "Save Your Tears",
+  "artist": "The Weeknd",
+  "album": "After Hours",
+  "year": 2020,
+  "genre": "Synthwave",
+  "cover": "saveyourtears.jpg",
+  "youtube": "XXYlFuWEuKI"
+},
+{
+  "title": "Paradise",
+  "artist": "Coldplay",
+  "album": "Mylo Xyloto",
+  "year": 2011,
+  "genre": "Alternative Rock",
+  "cover": "paradise.jpg",
+  "youtube": "1G4isv_Fylg"
+},
+{
+  "title": "Rock and Roll",
+  "artist": "Led Zeppelin",
+  "album": "Led Zeppelin IV",
+  "year": 1971,
+  "genre": "Hard Rock",
+  "cover": "rockandroll.jpg",
+  "youtube": "0WzG64syKHA"
+}
+
+
+
 ]
