@@ -135,22 +135,28 @@ function loadArtistGallery() {
 }
 
 // =========================
-// Album Page Gallery
+// Album Page Gallery (albums.html)
+// Uses: <div id="albumContainer">
 // =========================
 function loadAlbumGallery() {
-    let container = document.getElementById("albumContainer");
+    const container = document.getElementById("albumContainer");
+    if (!container) return;
+
     container.innerHTML = "";
 
-    let albums = {};
+    const albums = {};
 
+    // Group songs by album
     songs.forEach(song => {
         if (!albums[song.album]) albums[song.album] = [];
         albums[song.album].push(song);
     });
 
-    for (let album in albums) {
+    // Sort album names alphabetically
+    Object.keys(albums).sort().forEach(album => {
         const safeId = album.replace(/[^a-z0-9]/gi, "");
 
+        // Create album row
         container.innerHTML += `
             <div class="album-row">
                 <span class="album-label">${album}</span>
@@ -158,14 +164,17 @@ function loadAlbumGallery() {
             </div>
         `;
 
-        let row = document.getElementById(`album-${safeId}`);
+        const row = document.getElementById(`album-${safeId}`);
+        if (!row) return;
 
+        // Add song cards under this album
         albums[album].forEach(song => {
             const globalIndex = songs.indexOf(song);
             row.innerHTML += song.getCard(globalIndex);
         });
-    }
+    });
 }
+
 
 // =========================
 // Modal Player (Shared)
