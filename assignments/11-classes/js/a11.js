@@ -48,12 +48,6 @@ async function loadJSON(callback) {
             s.title, s.artist, s.album, s.year, s.genre, s.cover, s.youtube
         )));
 
-        // ⭐ SORT AFTER CONCATENATION ⭐
-        songs.sort((a, b) => {
-            const artistCompare = a.artist.localeCompare(b.artist);
-            return artistCompare !== 0 ? artistCompare : a.album.localeCompare(b.album);
-        });
-
         console.log("Loaded JSON successfully.");
     } catch (error) {
         console.warn("Failed to load JSON, using fallback songs.", error);
@@ -63,10 +57,13 @@ async function loadJSON(callback) {
 }
 
 // =========================
-// Home Page Gallery
+// Home Page Gallery (musicplayer.html)
+// Uses: <div id="gallery">
 // =========================
 function loadHomeGallery() {
-    let gallery = document.getElementById("gallery");
+    const gallery = document.getElementById("gallery");
+    if (!gallery) return;
+
     gallery.innerHTML = "";
 
     songs.forEach((song, index) => {
@@ -75,20 +72,23 @@ function loadHomeGallery() {
 }
 
 // =========================
-// Genre Page Gallery
+// Genre Page Gallery (genres.html)
+// Uses: <div id="genreContainer">
 // =========================
 function loadGenreGallery() {
-    let container = document.getElementById("genreContainer");
+    const container = document.getElementById("genreContainer");
+    if (!container) return;
+
     container.innerHTML = "";
 
-    let genres = {};
+    const genres = {};
 
     songs.forEach(song => {
         if (!genres[song.genre]) genres[song.genre] = [];
         genres[song.genre].push(song);
     });
 
-    for (let genre in genres) {
+    for (const genre in genres) {
         const safeId = genre.replace(/[^a-z0-9]/gi, "");
 
         container.innerHTML += `
@@ -98,7 +98,8 @@ function loadGenreGallery() {
             </div>
         `;
 
-        let row = document.getElementById(`genre-${safeId}`);
+        const row = document.getElementById(`genre-${safeId}`);
+        if (!row) continue;
 
         genres[genre].forEach(song => {
             const globalIndex = songs.indexOf(song);
@@ -107,78 +108,78 @@ function loadGenreGallery() {
     }
 }
 
-// ===============================
-// Load Artists (Alphabetically)
-// ===============================
-function loadArtistsGallery() {
-    fetch("artists.json")
-        .then(response => response.json())
-        .then(artists => {
+// =========================
+// Artist Page Gallery (artists.html)
+// Uses: <div id="artistContainer">
+// =========================
+function loadArtistGallery() {
+    const container = document.getElementById("artistContainer");
+    if (!container) return;
 
-            // Sort artists alphabetically
-            artists.sort((a, b) => a.name.localeCompare(b.name));
+    container.innerHTML = "";
 
-            const container = document.getElementById("artistContainer");
-            container.innerHTML = "";
+    const artists = {};
 
-            artists.forEach(artist => {
-                const card = document.createElement("div");
-                card.classList.add("artist-card");
-                card.dataset.name = artist.name;
+    songs.forEach(song => {
+        if (!artists[song.artist]) artists[song.artist] = [];
+        artists[song.artist].push(song);
+    });
 
-                card.innerHTML = `
-                    <img src="${artist.image}" alt="${artist.name}">
-                    <h3>${artist.name}</h3>
-                `;
+    for (const artist in artists) {
+        const safeId = artist.replace(/[^a-z0-9]/gi, "");
 
-                card.addEventListener("click", () => {
-                    loadAlbumGallery(artist.id, artist.name);
-                });
+        container.innerHTML += `
+            <div class="artist-row">
+                <span class="artist-label">${artist}</span>
+                <div class="artist-songs" id="artist-${safeId}"></div>
+            </div>
+        `;
 
-                container.appendChild(card);
-            });
-        })
-        .catch(error => console.error("Error loading artists:", error));
+        const row = document.getElementById(`artist-${safeId}`);
+        if (!row) continue;
+
+        artists[artist].forEach(song => {
+            const globalIndex = songs.indexOf(song);
+            row.innerHTML += song.getCard(globalIndex);
+        });
+    }
 }
 
-// ===============================
-// Load Albums for Selected Artist
-// (Sorted Alphabetically)
-// ===============================
-function loadAlbumGallery(artistId, artistName) {
-    fetch("albums.json")
-        .then(response => response.json())
-        .then(albums => {
+// =========================
+// Album Page Gallery (albums.html)
+// Uses: <div id="albumContainer">
+// =========================
+function loadAlbumGallery() {
+    const container = document.getElementById("albumContainer");
+    if (!container) return;
 
-            // Filter albums for this artist
-            let artistAlbums = albums.filter(album => album.artistId === artistId);
+    container.innerHTML = "";
 
-            // Sort albums alphabetically
-            artistAlbums.sort((a, b) => a.title.localeCompare(b.title));
+    const albums = {};
 
-            const container = document.getElementById("albumContainer");
-            container.innerHTML = "";
+    songs.forEach(song => {
+        if (!albums[song.album]) albums[song.album] = [];
+        albums[song.album].push(song);
+    });
 
-            document.getElementById("albumHeader")?.innerText = `${artistName} — Albums`;
+    for (const album in albums) {
+        const safeId = album.replace(/[^a-z0-9]/gi, "");
 
-            artistAlbums.forEach(album => {
-                const card = document.createElement("div");
-                card.classList.add("album-card");
-                card.dataset.name = album.title;
+        container.innerHTML += `
+            <div class="album-row">
+                <span class="album-label">${album}</span>
+                <div class="album-songs" id="album-${safeId}"></div>
+            </div>
+        `;
 
-                card.innerHTML = `
-                    <img src="${album.cover}" alt="${album.title}">
-                    <h3>${album.title}</h3>
-                `;
+        const row = document.getElementById(`album-${safeId}`);
+        if (!row) continue;
 
-                card.addEventListener("click", () => {
-                    loadAlbumSongs(album.id, album.title);
-                });
-
-                container.appendChild(card);
-            });
-        })
-        .catch(error => console.error("Error loading albums:", error));
+        albums[album].forEach(song => {
+            const globalIndex = songs.indexOf(song);
+            row.innerHTML += song.getCard(globalIndex);
+        });
+    }
 }
 
 // =========================
@@ -186,6 +187,7 @@ function loadAlbumGallery(artistId, artistName) {
 // =========================
 function showSong(index) {
     const s = songs[index];
+    if (!s) return;
 
     document.getElementById("modalTitle").innerText = s.title;
     document.getElementById("modalArtist").innerText = s.artist;
