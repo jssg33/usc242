@@ -1,9 +1,9 @@
-        body { font-family: "Roboto", sans-serif; background-color: lightgrey; width: max-width: 1600px; }
+        body { font-family: "Roboto", sans-serif; background-color: lightgrey; width: border: 2px solid darkgreen; }
         .song-card { width: 250px; margin: 15px; cursor: pointer; }
         .song-cover { width: 100%; height: 250px; object-fit: cover; }
         #gallery { display: flex; flex-wrap: wrap; justify-content: center; }
         .header {background-color: green;}
-        .container2 {max-width: 1600px; width: 1600px;}
+        .container2 {}
         bottomcredits footer { background-color: black; color: white;}
 
 /* SORT SPECIFIC CSS */
