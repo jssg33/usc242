@@ -28,8 +28,9 @@
     <header class="w3-container w3-black w3-center">
         <h1>Browse by Artist</h1>
     </header>
- <!-- NAV BAR -->
-      <div class="w3-bar w3-blue" style="text-align: center;" align="center">
+
+    <!-- NAV BAR -->
+    <div class="w3-bar w3-blue" style="text-align: center;" align="center">
         <a href="index.html" class="w3-bar-item w3-button">Home</a>
         <a href="genres.html" class="w3-bar-item w3-button">Genres</a>
         <a href="artists.html" class="w3-bar-item w3-button w3-white">Artists</a>
@@ -37,8 +38,8 @@
     </div>
     
     <div class="container2">
+        <!-- ARTIST GALLERY -->
         <div id="artistContainer" class="w3-padding"></div>
-
 
         <!-- MODAL PLAYER -->
         <div id="songModal" class="w3-modal">
@@ -70,12 +71,12 @@
             <p class="bottomcredits">&copy; 2026 - Cocky Consulting - CircusFrame Music Player</p>
         </footer>
     </div>
-     <script>
-     document.addEventListener("DOMContentLoaded", () => {
-        loadJSON(loadArtistGallery);
-    });
-        
-       
+
+    <!-- CORRECT CALLBACK -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            loadJSON(loadArtistsGallery);
+        });
     </script>
 
 </body>
