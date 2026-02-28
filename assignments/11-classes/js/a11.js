@@ -48,6 +48,12 @@ async function loadJSON(callback) {
             s.title, s.artist, s.album, s.year, s.genre, s.cover, s.youtube
         )));
 
+        // ⭐ SORT AFTER CONCATENATION ⭐
+        songs.sort((a, b) => {
+            const artistCompare = a.artist.localeCompare(b.artist);
+            return artistCompare !== 0 ? artistCompare : a.album.localeCompare(b.album);
+        });
+
         console.log("Loaded JSON successfully.");
     } catch (error) {
         console.warn("Failed to load JSON, using fallback songs.", error);
@@ -55,6 +61,7 @@ async function loadJSON(callback) {
 
     callback(); // Run the page-specific gallery function
 }
+
 
 // =========================
 // Home Page Gallery
@@ -105,7 +112,7 @@ function loadGenreGallery() {
 // Load Artists (Alphabetically)
 // ===============================
 
-function loadArtists() {
+function loadArtistsGallery() {
     fetch("artists.json")
         .then(response => response.json())
         .then(artists => {
@@ -143,7 +150,7 @@ function loadArtists() {
 // (Sorted Alphabetically)
 // ===============================
 
-function loadArtistAlbums(artistId, artistName) {
+function loadArtistGallery(artistId, artistName) {
     fetch("albums.json")
         .then(response => response.json())
         .then(albums => {
