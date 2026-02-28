@@ -11,27 +11,25 @@
     <link rel="stylesheet" href="./css/a9styles.css"> 
     <link rel="stylesheet" href="./css/a10styles.css"> 
     <link rel="stylesheet" href="./css/a11styles.css">
+
+    <!-- Load JS once, correctly -->
     <script src="./js/a11.js" defer></script>
 
     <style>
         body { font-family: "Roboto", sans-serif; }
-        .song-card { width: 250px; margin: 15px; cursor: pointer; }
+        .song-card { width: 250px; cursor: pointer; }
         .song-cover { width: 100%; height: 250px; object-fit: cover; }
-        .genre-title { font-size: 28px; font-weight: bold; margin-left: 20px; margin-top: 20px; }
-        .genre-row { display: flex; flex-wrap: wrap; margin-left: 20px; }
-        .genre-block { width: 100%; display: block; margin-bottom: 40px; }
     </style>
 </head>
 
 <body class="w3-light-grey">
 
-
-
     <header class="w3-container w3-black w3-center">
         <h1>Browse by Genre</h1>
     </header>
-        <!-- NAV BAR -->
-    <div class="w3-bar w3-blue" style="text-align: center;" align="center">
+
+    <!-- NAV BAR -->
+    <div class="w3-bar w3-blue" style="text-align: center;">
         <a href="index.html" class="w3-bar-item w3-button">Home</a>
         <a href="genres.html" class="w3-bar-item w3-button w3-white">Genres</a>
         <a href="artists.html" class="w3-bar-item w3-button">Artists</a>
@@ -39,9 +37,9 @@
     </div>
 
     <div class="container2">
-            <div id="genreContainer" class="w3-padding"></div>
+        <!-- Correct container for genres -->
+        <div id="genreContainer" class="w3-padding"></div>
 
-    
         <!-- MODAL PLAYER -->
         <div id="songModal" class="w3-modal">
             <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
@@ -73,12 +71,12 @@
         </footer>
     </div>
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-      loadJSON(loadGenreGallery);
-    });
-</script>
-  
+    <!-- Safe, correct call to load the gallery -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            loadJSON(loadGenreGallery);
+        });
+    </script>
 
 </body>
 </html>
