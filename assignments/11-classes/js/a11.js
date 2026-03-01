@@ -218,3 +218,54 @@ function closeModal() {
     document.getElementById("songModal").style.display = "none";
     document.getElementById("modalYoutube").src = "";
 }
+
+// LOAD ADDITIONAL SONGS FROM THE API JUST FOR TEST (THIS IS A RENDER TEST - WE ADDED U2 ONLY - SINGLE FULL ALBUM ON THE API).
+// =========================
+// Load Songs from All Sources
+// Order: fallback → local JSON → remote API
+// =========================
+async function loadAllSongs(callback) {
+
+    // 1. Fallback songs already exist in songs[]
+
+    // 2. Load local JSON
+    try {
+        const localResponse = await fetch("hardrocksongs.json");
+        if (localResponse.ok) {
+            const localData = await localResponse.json();
+            localData.forEach(s => songs.push(new Song(
+                s.title,
+                s.artist,
+                s.album,
+                s.year,
+                s.genre,
+                s.cover,
+                s.youtube
+            )));
+        }
+    } catch (err) {
+        console.warn("Local JSON failed to load:", err);
+    }
+
+    // 3. Load remote API songs
+    try {
+        const apiResponse = await fetch("https://api242.onrender.com/api/songs");
+        if (apiResponse.ok) {
+            const apiData = await apiResponse.json();
+            apiData.forEach(s => songs.push(new Song(
+                s.title,
+                s.artist,
+                s.album,
+                s.year,
+                s.genre,
+                s.cover,
+                s.youtube
+            )));
+        }
+    } catch (err) {
+        console.warn("API songs failed to load:", err);
+    }
+
+    // 4. Run the page-specific callback (gallery loader)
+    if (callback) callback();
+}
