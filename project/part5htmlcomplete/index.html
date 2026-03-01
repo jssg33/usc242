@@ -7,20 +7,150 @@
 <script type="module" src="https://esm.run/@material/web/button/text-button.js"></script>
 <link rel="stylesheet" href="./css/site.css"> 
 <link rel="stylesheet" href="./css/layout.css"> 
-<link rel="stylesheet" href="./css/greenville.css">  
+<link rel="stylesheet" href="./css/greenvillemiddle.css">  
+<link rel="stylesheet" href="./css/greenville.css">
+<script src="./js/slideshow.js"></script>
 <title>Greenville Associates Enterprise Software | Enterprise Licensing</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-   
+   .right-links { padding: var(--space-1); /* becomes 4px */ 
+				 margin-bottom: var(--space-2); /* becomes 16px */ 
+				gap: 4px;
+				}
+  /* Thumbnail slider */
+  .sales-slider {
+    position: relative;
+    width: 999px;
+    height: 133px;
+    margin: 10px auto;
+    overflow: hidden;
+  }
+
+  .slider-window {
+    width: 999px;
+    height: 133px;
+    overflow: hidden;
+  }
+
+  .slides {
+    display: flex;
+    transition: transform 0.4s ease;
+  }
+
+
+.slide {
+  min-width: 200px;      /* smaller, cleaner */
+  height: 120px;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 4px;
+  overflow: hidden;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* keeps aspect ratio while filling */
+  border-radius: 4px;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: scale(1.05);
+  outline: 2px solid #00e676;
+}
+
+H4{ color: darkgreen;}
+	
+  .prev, .next {
+    position: absolute;
+    top: 40%;
+    background: rgba(0,0,0,0.4);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  .prev { left: 0; }
+  .next { right: 0; }
+
+.product-card {
+    width: 300px;
+    min-height: 200px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.products { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.product-features { columns: 2; column-gap: 20px; padding-left: 20px; }
+button { vertical-align: middle; text-align: center; color: white; background-color: black; width: 150px; margin: 0 auto; }
+	.emphasis {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.emphasis-inner {
+  background: #000;              /* black background */
+  color: #b8ff4f;                /* kelly‑green text */
+  padding: 40px 50px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+.emphasis-inner h3 {
+  margin-bottom: 8px;
+  font-size: 1.4rem;
+  color: #7CFC00;                /* brighter kelly green for headers */
+}
+
+.emphasis-inner p {
+  margin-bottom: 24px;
+  font-size: 1rem;
+  color: #d9ffd9;                /* softer green for readability */
+}
+
+.emphasis-inner p:last-child {
+  margin-bottom: 0;
+}
+
+#centercourt {
+  width: 1000px;
+  height: 300px;
+  display: block;
+  margin: 0 auto;        /* centers it */
+  border: 0;
+  background: #000;      /* optional: prevents white flash */
+}
+
+a
+{
+font-size: 10pt;
+}
+
+.feature-card: hover;
+{
+background-color: #00cc44;
+}
 </style>
+
 </head>
 <body>
-<div class="container2">
 <div class="topnav">
     <div class="dropdown">
         <button class="dropbtn">Menu ▼</button>
         <div class="dropdown-content">
-            <a href="login.html">Login</a>
+			      <a href="index.html">Home</a>
+			      <a href="login.html">Login</a>
             <a href="logout.html">Logout</a>
             <a href="welcome.html">Welcome</a>
             <a href="licenses6.html">BuyNow</a>
@@ -33,7 +163,7 @@
             <a href="testimonials.html">AdminTestimonials</a>
             <a href="products.html">AdminProducts</a>
             <a href="licensetypes.html">AdminLicenseTypes</a>
-	   <a href="template.html">AdminPageTemplate</a>
+	          <a href="template.html">AdminPageTemplate</a>
         </div>
     </div>
 <div class="right-links" style="display:flex; gap:6px; align-items:center; color: white;">
@@ -67,13 +197,6 @@
   </md-text-button>
 </div>
     
-    <!--<div class="right-links">
-        <a href="index.html">Home</a>
-        <a href="userhelp.html">UserHelp</a>
-        <a href="usernotices.html">UserNotices</a>
-        <a href="login.html">Login</a>
-        <a href="logout.html">Logout</a>
-    </div>-->
 </div>
 <header>
     <h1>Greenville Enterprise Software</h1>
@@ -82,37 +205,33 @@
 
 <nav>
     <ul class="menu">
-        <li><a href="licenses6.html">Products</a></li>
-
         <li class="dropdown">
-            <a href="#deployment">Deployment ▾</a>
+		  <a href="licenses6.html">Products ▾</a>
             <ul class="dropdown-content">
-                <li><a href="#onprem">On‑Premise</a></li>
-                <li><a href="#cloud">Cloud</a></li>
-                <li><a href="#hybrid">Hybrid</a></li>
+                <li><a href="./products/fusion.html">Current Fusion Releases</a></li>
+            </ul>
+		</li>
+		
+		<li class="dropdown">
+            <a href="./deployments/deployments.html">Deployment ▾</a>
+            <ul class="dropdown-content">
+                <li><a href="./deployments/deployments.html">Deployment Options</a></li>
             </ul>
         </li>
 
         <li class="dropdown">
-            <a href="#licensing">Licensing ▾</a>
+            <a href="./licensing/licensing.html">Licensing ▾</a>
             <ul class="dropdown-content">
-                <li><a href="#utility">Utility Hours</a></li>
-                <li><a href="#namedusers">Named Users</a></li>
-                <li><a href="#buel">Business Unit Enterprise</a></li>
-                <li><a href="#enterprise">Enterprise License Types</a></li>
+                <li><a href="./licensing/licensing.html">Licensing Portal Pages</a></li>
             </ul>
         </li>
 
         <!-- ⭐ NEW PRICING MENU -->
         <li class="dropdown">
-            <a href="#pricing">Pricing ▾</a>
+            <a href="./pricing/wizard.html">Pricing ▾</a>
             <ul class="dropdown-content">
-                <li><a href="#pricing">All Licenses</a></li>
+                <li><a href="./pricing/wizard.html">All Licenses</a></li>
                 <li><a href="./pricing/wizard.html">Wizard</a></li>
-                <li><a href="#pricing-enterprise">Enterprise</a></li>
-                <li><a href="#pricing-cloud">Cloud</a></li>
-                <li><a href="#pricing-onprem">On‑Premise</a></li>
-                <li><a href="#pricing-utility">Utility Model</a></li>
             </ul>
         </li>
 
@@ -120,309 +239,141 @@
     </ul>
 </nav>
 
+<!-- ========================= -->
+<!--     MIDDLE CONTENT        -->
+<!-- ========================= -->
+<section class="main-content" style="vertical-align: center; margin: 0 auto;">
 
+<!-- FIRST FEATURES SECTION -->
+	<div id="features" class="features">
+	<HR>
+	<h4>Consider</h4><BR>
+	  <!-- Big display -->
+  <iframe id="centercourt" width="999" height="300" style="border:0;"></iframe>
+		<BR><BR>
+	<section class="sales-slider">
+  	<!-- Thumbnails -->
+      <div class="slider-window">
+      <div class="slides">
 
-<section id="products">
-    <h2>Product Families</h2>
-
-    <div class="products">
-        <div class="product-card">
-            <h3>Core Platform Suite</h3>
-            <p>Foundational tools designed to power large‑scale enterprise operations.</p>
-            <ul>
-                <li>Workflow automation</li>
-                <li>Identity and access management</li>
-                <li>Centralized administration</li>
-            </ul>
+        <div class="slide"
+             data-url="https://www.youtube.com/embed/dX3KU2eaixY?si=siIhuALGldG9Z0n9"
+             data-link="https://example.com/page1">
+          <img src="./images/fusionoverview.png" alt="Slide 1">
         </div>
 
-        <div class="product-card">
-            <h3>Data & Analytics</h3>
-            <p>Advanced analytics products for data‑driven decision making.</p>
-            <ul>
-                <li>Enterprise reporting</li>
-                <li>Real‑time dashboards</li>
-                <li>Data governance tools</li>
-            </ul>
+		<div class="slide"
+             data-url="./images/slide1.png"
+             data-link="https://www.greenvilleassociates.com">
+          <img src="./images/slide1.png" alt="Slide 1">
+        </div>
+		  
+        <div class="slide"
+             data-url="./images/slide2.png"
+             data-link="https://example.com/page2">
+          <img src="./images/slide2.png" alt="Slide 2">
         </div>
 
-        <div class="product-card">
-            <h3>Security & Compliance</h3>
-            <p>Protect critical systems and meet regulatory requirements.</p>
-            <ul>
-                <li>Threat detection</li>
-                <li>Compliance monitoring</li>
-                <li>Audit and logging</li>
-            </ul>
+        <div class="slide"
+             data-url="./images/slide3.png"
+             data-link="https://example.com/page3">
+          <img src="./images/slide3.png" alt="Slide 3">
         </div>
 
-        <div class="product-card">
-            <h3>Developer Enablement</h3>
-            <p>Tools that accelerate application development and integration.</p>
-            <ul>
-                <li>API management</li>
-                <li>DevOps automation</li>
-                <li>Integration services</li>
-            </ul>
+        <div class="slide"
+             data-url="./images/slide4.png"
+             data-link="https://example.com/page4">
+          <img src="./images/slide4.png" alt="Slide 4">
         </div>
+
+        <div class="slide"
+             data-url="./images/slide5.png"
+             data-link="https://example.com/page5">
+          <img src="./images/slide5.png" alt="Slide 5">
+        </div>
+
+        <div class="slide"
+             data-url="./images/slide6.png"
+             data-link="https://example.com/page6">
+          <img src="./images/slide6.png" alt="Slide 6">
+        </div>
+
+      </div>
     </div>
+
+    <button class="prev">❮</button>
+    <button class="next">❯</button>
 </section>
+	<HR>
+	</div>
+<!-- SECOND FEATURES SECTION -->
+	    <div id="features" class="features">
+        <h4>Explore</h4><BR>
 
-<section id="deployment">
-    <h2>Deployment Models</h2>
+        <div class="feature-grid">
 
-    <div class="products">
-        <div class="product-card">
-            <h3>Software On‑Premise</h3>
-            <p>Installed and operated within your own data centers for maximum control.</p>
+            <a href="https://fusion.greenvilleassociates.com" target="_blank" class="feature-card">
+                <img src="./images/image1.png" width="100px" height="100px" alt="Feature Icon">
+                <h5 style="text-align: center;">FusionBasics</h5>
+                <p>Review Containerized Application Types, Site Licenses, Extranet, Intranet Portal Technologies.</p>
+            </a>
+
+            <a href="./deployments/deployments.html" class="feature-card">
+                <img src="./images/image2.png" width="100px" height="100px" alt="Feature Icon">
+                <h5 style="text-align: center;">Deployment Options</h5>
+                <p>Review Premise, ILEC, Cloud, Grid and Hybrid Deployment Options.</p>
+            </a>
+
+            <a href="licensetypes.html" class="feature-card">
+                <img src="./images/image3.png" width="100px" height="100px" alt="Feature Icon">
+                <h5 style="text-align: center;">LicenseTypes</h5>
+                <p>Review License Types, Trial Delivery and Service Options.</p>
+            </a>
+
+            <a href="./pricing/wizard.html" class="feature-card">
+                <img src="./images/image4.png" width="100px" height="100px" alt="Feature Icon">
+                <h5 style="text-align: center;">Pricing Wizard</h5>
+                <p>Develop Pricing for Utility Usage, Site Licenses, and Cloud/Hybrid Options.</p>
+            </a>
+		</div>
         </div>
-
-        <div class="product-card">
-            <h3>Software in the Cloud</h3>
-            <p>Fully managed cloud‑based solutions with elastic scalability.</p>
+		<BR><BR>
+	<HR>	
+		<!-- SECOND FEATURES SECTION -->
+    	<div id="features" class="features">
+        <h4>Manage</h4><BR>
+		<div class="feature-grid">
+    
+				<a href="mylicenses.html" class="feature-card">
+                <img src="./images/image1.png" width="100px" height="100px" alt="Feature Icon">
+                <h5 style="text-align: center;">MyLicenses</h5>
+                <p>Manage and secure your personal licenses, and monitor real time stats.</p>
+            </a>
+				<a href="mylicenselogs.html" class="feature-card">
+                <img src="./images/image1.png" width="100px" height="100px" alt="Feature Icon">
+                <h5 style="text-align: center;">MyLicenseLogs</h5>
+                <p>Manage and review your Usage and Security Profile.</p>
+            </a>
+				<a href="mylicenses.html" class="feature-card">
+                <img src="./images/image1.png" width="100px" height="100px" alt="Feature Icon">
+                <h5 style="text-align: center;">CorporateLicenses</h5>
+                <p>Manage and Monitor your Enterprise Licenses across the world.</p>
+            </a>
+				<a href="mylicenselogs.html" class="feature-card">
+                <img src="./images/image1.png" width="100px" height="100px" alt="Feature Icon">
+                <h5 style="text-align: center;">CorporateActions</h5>
+                <p>Manage and Monitor Enterprise Actions, and Security.</p>
+            </a>
+			
         </div>
-
-        <div class="product-card">
-            <h3>Hybrid Software</h3>
-            <p>Combine on‑premise infrastructure with cloud‑based services for flexible deployment.</p>
-        </div>
-    </div>
+    	</div>
+	<HR>
+	<br><br>
+	
 </section>
-
-<section id="licensing">
-    <h2>Enterprise Licensing</h2>
-    <p>Greenville Associates offers flexible enterprise licensing models designed to support organizations of all sizes and structures.</p>
-
-    <div class="products">
-        <div class="product-card">
-            <h3>Software Based on Utility Hours</h3>
-            <p>Pay only for the compute or usage hours consumed by your organization.</p>
-        </div>
-
-        <div class="product-card">
-            <h3>Named Users</h3>
-            <p>Licenses assigned to individual users for predictable cost and access control.</p>
-        </div>
-
-        <div class="product-card">
-            <h3>Business Unit Enterprise Licenses</h3>
-            <p>Licensing tailored to specific divisions or departments within your organization.</p>
-        </div>
-
-        <div class="product-card">
-            <h3>Enterprise License Types</h3>
-            <p>Organization‑wide licensing with unlimited usage across all business units.</p>
-        </div>
-    </div>
-</section>
-
-<section id="pricing">
-    <span align="center"><font color="green"><h2>License Store</h2></font></span>
-    <span align="center"><p>Choose the perfect license for your needs.</p></span>
-
-    <!-- ENTERPRISE LICENSES -->
-    <HR>
-    <h3 id="nopricing-enterprise">Enterprise Licenses</h3>
-    <HR>
-    <div class="products">
-
-        <div class="product-card">
-            <h3>Enterprise Site License – Unlimited</h3>
-            <p><strong>$49,999</strong></p>
-            <ul>
-                <li>Unlimited users</li>
-                <li>All features included</li>
-                <li>24/7 Priority support</li>
-                <li>Dedicated account manager</li>
-                <li>Custom integrations</li>
-                <li>SLA guarantee</li>
-                <li>On-site training available</li>
-            </ul>
-            <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-            <h3>Enterprise Site License – 500 Users</h3>
-            <p><strong>$29,999</strong></p>
-            <ul>
-                <li>Up to 500 users</li>
-                <li>All features included</li>
-                <li>24/7 Priority support</li>
-                <li>Dedicated account manager</li>
-                <li>Custom integrations</li>
-                <li>SLA guarantee</li>
-            </ul>
-            <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-            <h3>Enterprise Site License – 100 Users</h3>
-            <p><strong>$14,999</strong></p>
-            <ul>
-                <li>Up to 100 users</li>
-                <li>All features included</li>
-                <li>Priority support</li>
-                <li>Account manager</li>
-                <li>Standard integrations</li>
-            </ul>
-            <button>Add to Cart</button>
-        </div>
-
-    </div>
-
-    <!-- CLOUD LICENSES -->
-    <h3 id="pricing-cloud">Cloud Licenses</h3>
-    <div class="products">
-
-        <div class="product-card">
-            <h3>Cloud Premium – Business</h3>
-            <p><strong>$199</strong> per month</p>
-            <ul>
-                <li>Up to 50 users</li>
-                <li>Cloud infrastructure</li>
-                <li>Automatic updates</li>
-                <li>99.9% uptime SLA</li>
-                <li>Advanced analytics</li>
-                <li>API access</li>
-                <li>Email support</li>
-            </ul>
-            <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-            <h3>Cloud Standard – Team</h3>
-            <p><strong>$99</strong> per month</p>
-            <ul>
-                <li>Up to 20 users</li>
-                <li>Cloud infrastructure</li>
-                <li>Automatic updates</li>
-                <li>99.5% uptime SLA</li>
-                <li>Basic analytics</li>
-                <li>Email support</li>
-            </ul>
-            <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-            <h3>Cloud Starter – Individual</h3>
-            <p><strong>$29</strong> per month</p>
-            <ul>
-                <li>Up to 5 users</li>
-                <li>Cloud infrastructure</li>
-                <li>Automatic updates</li>
-                <li>Basic features</li>
-                <li>Community support</li>
-            </ul>
-            <button>Add to Cart</button>
-        </div>
-
-    </div>
-
-    <!-- ON-PREMISE LICENSES -->
-    <h3 id="pricing-onprem">On‑Premise Licenses</h3>
-    <div class="products">
-
-        <div class="product-card">
-            <h3>On‑Premise Enterprise</h3>
-            <p><strong>$24,999</strong> perpetual</p>
-            <ul>
-                <li>Unlimited users</li>
-                <li>Self-hosted solution</li>
-                <li>Complete data control</li>
-                <li>Custom configuration</li>
-                <li>Priority support</li>
-                <li>1 year of updates</li>
-                <li>Installation assistance</li>
-            </ul>
-            <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-            <h3>On‑Premise Business</h3>
-            <p><strong>$9,999</strong> perpetual</p>
-            <ul>
-                <li>Up to 100 users</li>
-                <li>Self-hosted solution</li>
-                <li>Complete data control</li>
-                <li>Standard configuration</li>
-                <li>Email support</li>
-                <li>1 year of updates</li>
-            </ul>
-            <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-            <h3>On‑Premise Team</h3>
-            <p><strong>$4,999</strong> perpetual</p>
-            <ul>
-                <li>Up to 25 users</li>
-                <li>Self-hosted solution</li>
-                <li>Data control</li>
-                <li>Basic support</li>
-                <li>6 months of updates</li>
-            </ul>
-            <button>Add to Cart</button>
-        </div>
-
-    </div>
-
-    <!-- UTILITY MODEL -->
-    <h3 id="pricing-utility">Utility Model</h3>
-    <div class="products">
-
-        <div class="product-card">
-            <h3>100 Hours / Month</h3>
-            <p><strong>$300</strong> per month</p>
-            <ul>
-                <li>100 compute hours</li>
-                <li>$3 per hour</li>
-                <li>Roll over unused hours</li>
-                <li>Priority processing</li>
-                <li>Advanced features</li>
-                <li>Email support</li>
-            </ul>
-            <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-            <h3>50 Hours / Month</h3>
-            <p><strong>$150</strong> per month</p>
-            <ul>
-                <li>50 compute hours</li>
-                <li>$3 per hour</li>
-                <li>Standard processing</li>
-                <li>Core features</li>
-                <li>Email support</li>
-            </ul>
-            <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-            <h3>20 Hours / Month</h3>
-            <p><strong>$60</strong> per month</p>
-            <ul>
-                <li>20 compute hours</li>
-                <li>$3 per hour</li>
-                <li>Standard processing</li>
-                <li>Core features</li>
-                <li>Community support</li>
-            </ul>
-            <button>Add to Cart</button>
-        </div>
-
-    </div>
-
-    <div class="product-card" style="margin-top:40px;">
-        <h3>Secure & Compliant</h3>
-        <p>Enterprise‑grade security with SOC 2 Type II certification</p>
-        <h3>Expert Support</h3>
-        <p>Dedicated support team available 24/7 for enterprise customers</p>
-        <h3>Instant Activation</h3>
-        <p>Get started immediately with instant license activation</p>
-    </div>
-
-</section>
-<section class="middle-columns">
+<div class="bottom-sections">
+	
+<section class="middle-columns" style="background-color: lightgrey;">
 
     <!-- CENTER COLUMN: MIAMI IMAGES -->
     <div class="mid-col">
@@ -467,46 +418,5 @@
 <footer>
     © 2026 Greenville Associates Enterprise Software. All rights reserved.
 </footer>
-</div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

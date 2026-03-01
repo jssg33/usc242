@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script type="module" src="https://esm.run/@material/web/all.js"></script>
+<link rel="stylesheet" href="./css/site.css">
+<link rel="stylesheet" href="./css/layout.css">
+<link rel="stylesheet" href="./css/greenville.css">   
+<title>Greenville Associates Enterprise Software | Enterprise Licensing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      ticketForm { height: 400px; max-height: 600px; }
+    </style>
+</head>
+<body>
+<div class="containerNEVER">
+<div class="topnav">
+    <div class="dropdown">
+        <button class="dropbtn">Menu ▼</button>
+        <div class="dropdown-content">
+            <a href="index.html">Home</a>
+			<a href="login.html">Login</a>
+            <a href="logout.html">Logout</a>
+            <a href="welcome.html">Welcome</a>
+            <a href="licenses6.html">BuyNow</a>
+            <a href="reviews.html">AllReviews</a>
+            <a href="mylicenselogs.html">MyLicenseLogs</a>
+            <a href="mylicenses.html">MyLicenses</a>
+            <a href="./pricing/wizard.html">PricingWizard</a>
+            <a href="mycart.html?uid=1">MyCart</a>
+            <a href="myprofile.html">MyProfile</a>
+            <a href="testimonials.html">AdminTestimonials</a>
+            <a href="products.html">AdminProducts</a>
+            <a href="licensetypes.html">AdminLicenseTypes</a>
+	   		<a href="template.html">AdminPageTemplate</a>
+        </div>
+        </div>
+    </div>
+
+    <div class="right-links" style="display:flex; gap:6px; align-items:center; color: white;">
+
+  <md-text-button class="icon-only" href="index.html" aria-label="Home" title="Home">
+    <span class="material-icons" style="color:white;">home</span>
+  </md-text-button>
+
+  <md-text-button class="icon-only" href="userhelp.html" aria-label="Help" title="Help">
+    <span class="material-icons" style="color:white;">help_outline</span>
+  </md-text-button>
+
+  <md-text-button class="icon-only" href="usernotices.html" aria-label="Notifications" title="Notifications">
+    <span class="material-icons" style="color:white;">notifications</span>
+  </md-text-button>
+
+  <md-text-button class="icon-only" href="login.html" aria-label="Login" title="Login">
+    <span class="material-icons" style="color:white;">login</span>
+  </md-text-button>
+
+  <md-text-button class="icon-only" href="logout.html" aria-label="Logout" title="Logout">
+    <span class="material-icons" style="color:white;">logout</span>
+  </md-text-button>
+
+   <md-text-button class="icon-only" href="myprofile.html" aria-label="My Profile" title="My Profile">
+    <span class="material-icons" style="color:white;">person</span>
+  </md-text-button>
+
+   <md-text-button class="icon-only" href="mycart.html" aria-label="My Cart" title="My Cart">
+    <span class="material-icons" style="color:white;">shopping_cart</span>
+  </md-text-button>
+</div>
+<header>
+    <h1>Greenville Enterprise Software</h1>
+    <span>Enterprise‑grade software solutions with flexible deployment and licensing for global organizations.</span>
+</header>
+<nav>
+
+    <ul class="menu">
+        <li><a href="licenses6.html">Products</a></li>
+
+        <li class="dropdown">
+            <a href="./deployments/deployments.html">Deployment ▾</a>
+            <ul class="dropdown-content">
+                <li><a href="#onprem">On‑Premise</a></li>
+                <li><a href="#cloud">Cloud</a></li>
+                <li><a href="#hybrid">Hybrid</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="./licensing/licensing.html">Licensing ▾</a>
+            <ul class="dropdown-content">
+                <li><a href="#utility">Utility Hours</a></li>
+                <li><a href="#namedusers">Named Users</a></li>
+                <li><a href="#buel">Business Unit Enterprise</a></li>
+                <li><a href="#enterprise">Enterprise License Types</a></li>
+            </ul>
+        </li>
+
+        <!-- ⭐ NEW PRICING MENU -->
+        <li class="dropdown">
+            <a href="./pricing/pricing.html">Pricing ▾</a>
+            <ul class="dropdown-content">
+                <li><a href="./pricing/pricing.html">All Licenses</a></li>
+                <li><a href="./pricing/pricing.html-enterprise">Enterprise</a></li>
+                <li><a href="./pricing/pricing.html-cloud">Cloud</a></li>
+                <li><a href="./pricing/pricing.html-onprem">On‑Premise</a></li>
+                <li><a href="./pricing/pricing.html-utility">Utility Model</a></li>
+            </ul>
+        </li>
+
+        <li><a href="contacts.html">Contact Sales</a></li>
+    </ul>
+</nav>
+
+
+    <div class="pageheader">
+        <hr>
+        <span align="center"><h4>Care Tickets</h4></span>
+        <hr>
+    </div>
+    
+<section class="top-section py-4">
+    <div class="container form-wrapper">
+
+        <form id="ticketForm" class="p-4 rounded shadow">
+
+            <div class="row g-3">
+                <div class="col-lg-4 col-md-6">
+                    <label>Ticket ID</label>
+                    <input type="text" class="form-control" name="ticketid" required>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <label>Employee ID</label>
+                    <input type="number" class="form-control" name="emplid" required>
+                </div>
+
+                <div class="col-lg-4 col-md-12">
+                    <label>Severity (1–5)</label>
+                    <input type="number" class="form-control" name="severity" min="1" max="5" required>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <label>User ID</label>
+                    <input type="number" class="form-control" name="userid" required>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <label>Email</label>
+                    <input type="email" class="form-control" name="email" required>
+                </div>
+
+                <div class="col-lg-4 col-md-12">
+                    <label>Full Name</label>
+                    <input type="text" class="form-control" name="fullname" required>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <label>Best Contact Number</label>
+                    <input type="text" class="form-control" name="bestcontactnumber" required>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <label>Replied?</label>
+                    <select class="form-control" name="replied">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <label>Manager ID</label>
+                    <input type="text" class="form-control" name="repliedmanagerid">
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <label>Manager Phone</label>
+                    <input type="text" class="form-control" name="repliedmanagerphone">
+                </div>
+
+                <div class="col-lg-4 col-md-12">
+                    <label>Manager Email</label>
+                    <input type="email" class="form-control" name="repliedmanageremail">
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <label>Ticket Date</label>
+                    <input type="datetime-local" class="form-control" name="ticketdate" required>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <label>Response Date</label>
+                    <input type="datetime-local" class="form-control" name="responsedate">
+                </div>
+
+                <div class="col-lg-4 col-md-12">
+                    <label>Ticket Status</label>
+                    <select class="form-control" name="ticketstatus">
+                        <option value="Open">Open</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Closed">Closed</option>
+                    </select>
+                </div>
+
+                <div class="col-12">
+                    <label>Description</label>
+                    <textarea class="form-control" name="descr" rows="3" required></textarea>
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-custom w-100">Submit Ticket</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>
+
+
+
+<section class="middle-columns">
+
+    <!-- CENTER COLUMN: MIAMI IMAGES -->
+    <div class="mid-col">
+        <img src="./images/miami1.jpg" style="width:48%; border-radius:5px;">
+        <img src="./images/miami3.jpg" style="width:48%; border-radius:5px;">
+    </div>
+    <!-- LEFT COLUMN: QUICK LINKS -->
+    <div class="mid-col">
+        <h3>Quick Links</h3>
+        <hr>
+        <ul class="quick-links">
+            <li><a href="https://www.sc.edu" target="_blank">SC Home Page</a></li>
+            <li><a href="https://sc.edu/athletics/" target="_blank">SC Athletics</a></li>
+            <li><a href="https://www.reuters.com" target="_blank">Reuters</a></li>
+            <li><a href="https://www.bbc.com" target="_blank">BBC</a></li>
+            <li><a href="https://www.espn.com" target="_blank">ESPN</a></li>
+            <li><a href="https://gamecocksonline.com/sports/mbball/cumestats/">Team Stats</a></li>
+        </ul>
+    </div>
+    <!-- RIGHT COLUMN: SITEMAP TABLE -->
+    <div class="mid-col">
+        <h3>Site Map</h3>
+        <hr>
+        <table class="sitemap-table">
+            <tr><th>Site Information</th><th>Page Link</th><th>Date Updated</th></tr>
+            <tr><td>Licenses</td><td><a href="mylicenses.html">MyLicenses</a></td><td>01/15/2026</td></tr>
+            <tr><td>Usage</td><td><a href="mylicenselogs.html">MyLicenseLogs</a></td><td>01/15/2026</td></tr>
+            <tr><td>Types</td><td><a href="licenseinfo.html">LicenseInfo</a></td><td>01/15/2026</td></tr>
+            <tr><td>Cart</td><td><a href="mycart.html?uid=1">MyCart</a></td><td>01/15/2026</td></tr>
+            <tr><td>TypeReviews</td><td><a href="reviews.html">Reviews</a></td><td>01/15/2026</td></tr>
+        </table>
+    </div>
+
+</section>
+<section class="sales">
+<div class="cta" id="contact">
+    <h2>Talk to Sales</h2>
+    <span>Contact our enterprise sales team to discuss licensing, pricing, and deployment options.</span><BR>
+    <a href="contacts.html">Contact Sales</a>
+</div>
+</section>
+<footer>
+    © 2026 Greenville Associates Enterprise Software. All rights reserved.
+</footer>
+</div>
+
+    
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.getElementById("ticketForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const formData = Object.fromEntries(new FormData(e.target).entries());
+
+    // Convert datetime-local to ISO format
+    if (formData.ticketdate) {
+        formData.ticketdate = new Date(formData.ticketdate).toISOString();
+    }
+    if (formData.responsedate) {
+        formData.responsedate = new Date(formData.responsedate).toISOString();
+    }
+
+    console.log("Submitting ticket:", formData);
+
+    try {
+        const response = await fetch("https://api242.onrender.com/userhelp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+        console.log("Server response:", result);
+        alert("Ticket submitted successfully!");
+    } catch (error) {
+        console.error("Error submitting ticket:", error);
+        alert("There was an error submitting the ticket.");
+    }
+});
+</script>
+
+</body>
+</html>

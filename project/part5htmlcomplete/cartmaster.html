@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script type="module" src="https://esm.run/@material/web/all.js"></script>
+<link rel="stylesheet" href="./css/site.css">
+<link rel="stylesheet" href="./css/layout.css">
+<link rel="stylesheet" href="./css/greenville.css">
+<script src="./js/bikes.js"></script>
+<title>Parks - User Master Summary</title>
+
+<style>
+#userGreeting
+{
+text-align: center;
+vertical-align: middle;
+color: white;
+}
+#banner
+{
+background-color: lightgrey;
+height: 60px;
+vertical-align: middle;
+width: 100%;
+}
+
+#cancelBtn
+{
+width: 400px;
+}
+
+#splash
+{
+font-size: 12pt;
+}
+</style>
+</head>
+<body onload="checkpll(); checkUserStatus(); displayProfilePicture();">
+    <!-- Navigation Bar -->
+    <div class="navbar">
+      <div class="nav-left">
+            <div class="dropdown">
+                  <button class="jsmenu"><img src="./images/jsmenu4.png"></button> 
+                  <div class="dropdown-content">
+            <a href="login.html">Login</a>
+            <a href="logout.html">Logout</a>
+            <a href="welcome.html">Welcome</a>
+            <a href="products.html">All Products</a>
+            <a href="licensetypes.html">LicenseTypes</a>
+            <a href="mylicenselogs.html">LicenseLogs</a>
+            <a href="mylicenses.html">MyLicenses</a>
+            <a href="mycart.html?uid=1">MyCart</a>
+            <a href="reviews.html">AllReviews</a>
+            <a href="help.html">Help</a>
+             </div>
+    </div> 
+      <div class="logo">&nbsp&nbsp<H5>MyLinkv25 - Review Parks</H5></div>
+      </div>
+      <div class="nav-right">
+        <img src="./images/bluecircle.png" id="profilephototarget" alt="User" style="cursor:pointer;" onclick="window.location.href='profile.html'" />
+        <span id="H3UserBanner"></span>
+        <a href="index.html" id="loginBtn" class="btn secondary-btn">Home</a>
+        <a href="userhelp.html" id="loginBtn" class="btn secondary-btn">UserHelp</a>
+        <a href="usernotices.html" id="loginBtn" class="btn secondary-btn">UserNotices</a>
+        <a href="login.html" id="loginBtn" class="btn secondary-btn" onclick="loginUser(event)">Login</a>
+        <a href="login.html" id="logoutBtn" class="btn secondary-btn" onclick="logoutUser(event)">Logout</a>
+                <a href="cartreview.html" id="cartBtn3"><img src="./images/cart4.png" width="40px" height="40px"></a>
+      </div>
+    </div>
+<div align="center" id="banner"><span id="userGreeting">Welcome Guest</span></div>
+
+<div class="containerNEVER my-5">
+  <h1 class="mb-4">CartMaster Summary</h1>
+  <div id="cartMasterSummary" class="mb-5"></div>
+
+  <h2>Active Carts</h2>
+  <ul class="list-group" id="activeCartsList"></ul>
+</div>
+
+<script>
+async function loadCartMasters() {
+  const uid = localStorage.getItem("uid");        // your userId
+  const fullname = localStorage.getItem("fullname") || ""; // user's full name
+
+  if (!uid) {
+    document.getElementById("cartMasterSummary").innerHTML =
+      '<div class="alert alert-danger">No uid found in localStorage</div>';
+    return;
+  }
+
+  try {
+    // Fetch ALL CartMaster records (array)
+    const res = await fetch("https://api242.onrender.com/CartMaster");
+    if (!res.ok) throw new Error("Failed to fetch CartMaster list");
+    const allCartMasters = await res.json();
+
+    // Filter for the current userId
+    const filtered = allCartMasters.filter(cm => cm.userId == uid);
+
+    // Render summaries
+    const summaryDiv = document.getElementById("cartMasterSummary");
+    summaryDiv.innerHTML = "";
+
+    filtered.forEach(cartMaster => {
+      // Build card header with userId + fullname
+      summaryDiv.innerHTML += `
+        <div class="card mb-4">
+          <div class="card-header">
+            CartMaster User: ${cartMaster.userId} ${fullname ? `- ${fullname}` : ""}
+          </div>
+          <div class="card-body">
+            <table class="table table-sm">
+              <tr><th>Total Carts</th><td>${cartMaster.cartsCount}</td></tr>
+              <tr><th>Active Carts</th><td>${cartMaster.cartsActive}</td></tr>
+              <tr><th>Cancelled Carts</th><td>${cartMaster.cartsCancelled}</td></tr>
+              <tr><th>Loyalty ID</th><td>${cartMaster.loyaltyid || ""}</td></tr>
+              <tr><th>Loyalty Vendor</th><td>${cartMaster.loyaltyvendor || ""}</td></tr>
+            </table>
+          </div>
+        </div>
+      `;
+
+      // Build active carts list with links
+      if (cartMaster.cartsActiveList) {
+        const cartIds = cartMaster.cartsActiveList.split(",").filter(id => !isNaN(id));
+        const list = document.getElementById("activeCartsList");
+        list.innerHTML = "";
+
+        cartIds.forEach(id => {
+          const li = document.createElement("li");
+          li.className = "list-group-item";
+          li.innerHTML = `<a href="cartdetail.html?cartid=${id}" class="text-decoration-none">Cart #${id}</a>`;
+          list.appendChild(li);
+        });
+      }
+    });
+
+    if (filtered.length === 0) {
+      summaryDiv.innerHTML =
+        '<div class="alert alert-warning">No CartMaster records found for this user</div>';
+    }
+
+  } catch (err) {
+    document.getElementById("cartMasterSummary").innerHTML =
+      `<div class="alert alert-danger">Error: ${err.message}</div>`;
+  }
+}
+
+// Run on page load
+loadCartMasters();
+</script>
+
+
+</body>
+   <!-- Footer -->
+  <footer class="footer"> &copy; Cocky Consulting 2025. <br> All rights reserved.<br>  <span align="center"><a href="sitemap.html" class="sitelink">SiteMap</a></span></footer>
+
+</html>
