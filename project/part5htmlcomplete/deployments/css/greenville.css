@@ -9,8 +9,8 @@ body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     color: #1a1a1a; /* near-black text */
-    /*background-color: black; */
-    background-color: #f4f7f5;  /*soft gray-green background */
+    /* background-color: #f4f7f5;  soft gray-green background */
+    background-color: black; 
     width: 100%;
 }
 
@@ -84,13 +84,8 @@ footer {
     position: relative;
 }
 #sales{ position: relative; margin: 0 auto; width: 85%; background-color: darkgreen;}
-<<<<<<< Updated upstream
-.gacontainer{position: relative; margin: 0 auto; width: 90%;  border-radius: 5px; line-height: 1.6; text-align: center; background-color: #f4f7f5;}
-.container2{position: relative; margin: 0 auto; width: 90%;  border-radius: 5px; ,max-width: 1600px; background-color: #f4f7f5; border: 2px solid darkgreen;}
-=======
 .gacontainer2{position: relative; margin: 0 auto; max-width: 1600px; min-width: 90%;  border-radius: 5px; line-height: 1.6; text-align: center; background-color:#f4f7f5;}
 .container2{position: relative; margin: 0 auto; height: 100%; min-height: 1000px; max-width: 1600px; min-width:90%;  border-radius: 5px; background-color: #f4f7f5; border: 2px solid darkgreen;}
->>>>>>> Stashed changes
 nav { background: #000000; border-bottom: 1px solid #1f3b2d; padding: 0; } 
 nav .menu { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; } 
 nav .menu > li { position: relative; } 
@@ -164,137 +159,6 @@ text-align: center;
     text-align: left;
 }
 
-
-
-/*The Features are below the griddata */
-.features h2 {
-    color: #0a2f1f;
-    margin-bottom: 20px;
-}
-
-/* Grid layout for feature cards */
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 25px;
-}
-
-/* Feature card styling */
-.feature-card {
-    display: block;
-    background: #ffffff;
-    border: 1px solid #d1e7d9;
-    border-radius: 6px;
-    padding: 20px;
-    text-align: center;
-    text-decoration: none;
-    color: #1a1a1a;
-    transition: 0.2s ease-in-out;
-}
-
-.feature-card:hover {
-    border-color: #4ade80;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    transform: translateY(-3px);
-}
-
-/* Feature card image */
-.feature-card img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 15px;
-}
-
-/* Feature card title */
-.feature-card h3 {
-    margin: 10px 0;
-    color: #0a2f1f;
-}
-
-/* Feature card description */
-.feature-card p {
-    color: #4b5563;
-    font-size: 0.95rem;
-}
-
-/*THE GRIDDATA SECTION IS SLATED FOR THE MIDDLE PART OF THE PAGE ABOVE THE FEATURES*/
-
-.griddata {
-    margin-bottom: 40px;
-}
-
-.griddata h2 {
-    color: #0a2f1f;
-    margin-bottom: 15px;
-}
-
-.griddata-table {
-    background: #ffffff;
-    border: 1px solid #d1e7d9;
-    border-radius: 6px;
-    padding: 15px;
-}
-
-.grid-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 10px 0;
-    border-bottom: 1px solid #d1e7d9;
-}
-
-.grid-row:last-child {
-    border-bottom: none;
-}
-
-.grid-row span {
-    color: #1a1a1a;
-}
-
-
-/* ================================
-   TOP NAV BAR
-   ================================ */
-.topnav {
-    width: 100%;
-    background-color: #000;   /* Black bar */
-    display: flex;
-    justify-content: space-between; /* Left menu + right icons */
-    align-items: center;
-    padding: 8px 12px;
-    box-sizing: border-box;
-}
-
-/* ================================
-   DROPDOWN MENU
-   ================================ */
-.dropdown .dropbtn {
-    color: white;
-    background-color: black;
-    border: none;
-    padding: 10px 14px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #222;
-    min-width: 160px;
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: white;
-    padding: 10px 14px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
 /* ================================
    RIGHT‑SIDE MATERIAL ICON BUTTONS
    ================================ */
@@ -302,6 +166,7 @@ text-align: center;
     display: flex;
     gap: 10px;
     align-items: center;
+    color: white;
 }
 
 /* Force Material Web Components to use white */
@@ -327,8 +192,6 @@ text-align: center;
     max-width: 1580px;
 }
 
-<<<<<<< Updated upstream
-=======
 .material-icons { color: white !important; }
 
 //SOME BOOTSTRAP GRID FORMATTING FOR GREEN AND BLACK
@@ -471,5 +334,4 @@ text-align: center;
     max-width: 1580px;
 }
 
->>>>>>> Stashed changes
 
