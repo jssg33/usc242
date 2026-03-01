@@ -151,5 +151,14 @@
   "genre": "Hard Rock",
   "cover": "icecreamman.jpg",
   "youtube": "sL9ZwmkooBA?si=grQCDv8VsBvsY_Kr"
+}, 
+    {
+    "title": "Plush",
+    "artist": "Stone Temple Pilots",
+    "album": "Core",
+    "year": 1992,
+    "genre": "Alternative Rock",
+    "cover": "plush.jpg",
+    "youtube": "e8X3ACToii0"
 }
 ]
