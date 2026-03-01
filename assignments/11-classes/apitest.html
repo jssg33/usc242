@@ -1,1 +1,89 @@
-apitest.html
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+    Assignment 11
+    Mobile Layout from Portias FlexBox Assignment
+-->
+
+    <head>
+    <title>Music Player</title>
+
+    <!-- W3CSS Stylesheet -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="./css/a11styles.css">
+    <script src="./js/a11.js" defer></script>
+<style>
+
+    </style>
+</head>
+
+<body class="w3-light-grey">
+
+    <header class="w3-container w3-black w3-center">
+        <span align="center"><h1>My Music Player</h1></span>
+    </header>
+    <!-- NAV BAR -->
+    <div class="w3-bar w3-blue" style="text-align: center;" align="center">
+        <a href="index.html" class="w3-bar-item w3-button w3-white">Home</a>
+        <a href="genres.html" class="w3-bar-item w3-button">Browse by Genre</a>
+        <a href="artists.html" class="w3-bar-item w3-button">Browse By Artists</a>
+        <a href="albums.html" class="w3-bar-item w3-button">Browse By Albums</a>
+    </div>
+    
+    <div class="container2">
+    <div id="gallery" class="w3-padding"></div>
+
+<!--Modal Updated Left/Right Design as per Spec -->
+  <div id="songModal" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:800px">
+        <header class="w3-container w3-blue">
+            <span onclick="document.getElementById('songModal').style.display='none'"
+                  class="w3-button w3-display-topright">&times;</span>
+            <h2 id="modalTitle"></h2>
+        </header>
+
+        <div class="w3-container" style="display:flex; gap:20px; padding:20px;">
+
+            <!-- LEFT COLUMN: YouTube Player -->
+            <div style="flex:1; min-width:0;">
+                <iframe id="modalYoutube"
+                        width="100%"
+                        height="315"
+                        src=""
+                        allowfullscreen
+                        style="border:0;">
+                </iframe>
+            </div>
+
+            <!-- RIGHT COLUMN: Song Info -->
+            <div style="flex:1; min-width:0;">
+                <img id="modalCover"
+                     style="max-width:200px; max-height:200px; width:auto; height:auto; object-fit:cover; display:block; margin-bottom:10px;">
+
+                <p><b>Artist:</b> <span id="modalArtist"></span></p>
+                <p><b>Album:</b> <span id="modalAlbum"></span></p>
+                <p><b>Year:</b> <span id="modalYear"></span></p>
+                <p><b>Genre:</b> <span id="modalGenre"></span></p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+    <footer style="background-color: black; color: white; text-align: center;">
+        &copy 2026 - Cocky Consulting - CircusFrame Music Player
+    </footer>
+</div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        loadJSON(loadHomeGallery);
+    });
+</script>
+
+</body>
+</html>
