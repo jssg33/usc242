@@ -103,43 +103,42 @@
 
 /* Mobile / Tablet Layout Under 1000px */
 @media screen and (max-width: 1000px) {
-     body, #gallery, .wrapper { max-width: 999px; text-align: left;}
-    /* Ensure header stays at the top */
-    header {
-        position: relative;
-        width: 999px;
-        top: 0;
-        z-index: 10;
-    }
 
-    /* Ensure footer stays at the bottom */
-    footer {
-        position: relative;
-        width: 999px;
+    /* Center the whole layout */
+    body, #gallery, .wrapper {
+        max-width: 999px;
+        margin: 0 auto;
         text-align: center;
-        bottom: 0;
-        margin-top: 20px;
     }
 
-    /* Flex containers for all pages */
+    /* Header + footer centered */
+    header, footer {
+        width: 100%;
+        text-align: center;
+        position: relative;
+    }
+
+    /* Flex containers for genre/artist/album pages */
     .genre-songs,
     .artist-songs,
-    .album-songs {
+    .album-songs,
+    #gallery {
         display: flex;
         flex-wrap: wrap;
-        justify-content: left;
+        justify-content: center;   /* <-- centers the cards */
         gap: 15px;
     }
 
-    /* Cards: force 2 per row */
+    /* Force 2 cards per row */
     .song-card {
-        width: calc(50% - 20px);
+        width: calc(50% - 20px);   /* <-- exactly 2 per row */
         box-sizing: border-box;
-        display: flex !important;
+        display: flex;
         flex-direction: column;
+        margin: 0;                 /* remove conflicting margins */
     }
 
-    /* Make modal responsive */
+    /* Modal stays responsive */
     #songModal .w3-modal-content {
         width: 95% !important;
         max-width: 500px;
