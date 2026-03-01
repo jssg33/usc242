@@ -1,0 +1,789 @@
+/* ============================================================
+   GLOBAL TYPOGRAPHY & BASE LAYOUT
+   ============================================================ */
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1a1a1a;
+    background-color: black;
+}
+
+h1, h2, h3 {
+    margin-left: 30px;
+    text-align: left;
+}
+
+p, li {
+    text-align: left;
+    font-size: 10pt;
+}
+
+span {
+    text-align: center;
+}
+
+/* ============================================================
+   HEADER (Greenville Theme)
+   ============================================================ */
+
+header {
+    background: #0a2f1f;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* ============================================================
+   GREENVILLE NAVIGATION (dominant)
+   ============================================================ */
+
+nav {
+    background: #000;
+    border-bottom: 1px solid #1f3b2d;
+    padding: 0;
+    text-align: center;
+}
+
+nav .menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav .menu > li {
+    position: relative;
+}
+
+nav a {
+    display: block;
+    padding: 14px 20px;
+    text-decoration: none;
+    color: #4ade80;
+    font-weight: bold;
+}
+
+nav a:hover {
+    background: #0a2f1f;
+    color: white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: #000;
+    border: 1px solid #1f3b2d;
+    min-width: 180px;
+    z-index: 1000;
+}
+
+.dropdown-content li a {
+    padding: 12px 16px;
+    color: #4ade80;
+}
+
+.dropdown-content li a:hover {
+    background: #0a2f1f;
+    color: white;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* ============================================================
+   CONTAINERS
+   ============================================================ */
+
+.container2,
+.gacontainer2 {
+    position: relative;
+    margin: 0 auto;
+    max-width: 1600px;
+    min-width: 90%;
+    background-color: #f4f7f5;
+    border-radius: 5px;
+}
+
+.container2 {
+    min-height: 1000px;
+    border: 2px solid darkgreen;
+    display: flex;
+    flex-direction: column;
+}
+
+.mastercontainer2 {
+    max-width: 98%;
+    margin: 0 auto;
+}
+
+.bottom-sections {
+    margin-top: auto;
+}
+
+.main-content {
+    margin: 0 50px 60px 50px;
+    max-width: 1580px;
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+
+.hero {
+    background: #0a2f1f;
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.hero h2 {
+    margin: 0;
+    font-size: 2.2rem;
+}
+
+.hero p {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #d1e7d9;
+}
+
+/* ============================================================
+   TOP SECTION (from layout.css, recolored to Greenville)
+   ============================================================ */
+
+.top-section {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1570px;
+    min-height: 400px;
+    background: white;
+    border-radius: 5px;
+    margin: 0 auto 80px auto;
+    overflow-y: auto;
+}
+
+.important-text {
+    flex: 0 0 30%;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    overflow-y: auto;
+}
+
+.tasks {
+    flex: 0 0 65%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.task-item {
+    width: 23%;
+    background: #e8e8e8;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.task-item h3 {
+    margin-bottom: 10px;
+}
+
+.task-item a img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* ============================================================
+   MIDDLE COLUMNS (layout.css merged)
+   ============================================================ */
+
+.middle-columns {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.mid-col {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.quick-links {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+/* ============================================================
+   PRODUCT CARDS
+   ============================================================ */
+
+.product-card {
+    background: white;
+    border: 1px solid #d1e7d9;
+    border-radius: 6px;
+    padding: 25px;
+}
+
+.product-card h3 {
+    margin-top: 0;
+    color: #0a2f1f;
+}
+
+/* ============================================================
+   FEATURE GRID (from greenvillemiddle.css)
+   ============================================================ */
+
+.features h2 {
+    color: #0a2f1f;
+    margin-bottom: 20px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.feature-card {
+    background: white;
+    border: 1px solid #d1e7d9;
+    border-radius: 6px;
+    padding: 20px;
+    text-align: center;
+    transition: 0.2s ease-in-out;
+}
+
+.feature-card:hover {
+    border-color: #4ade80;
+    background-color: #00e673;
+    transform: translateY(-3px);
+}
+
+.feature-card img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    margin: 10px 0;
+    color: #0a2f1f;
+}
+
+.feature-card p {
+    color: #4b5563;
+    font-size: 0.95rem;
+}
+
+/* ============================================================
+   GRIDDATA SECTION
+   ============================================================ */
+
+.griddata {
+    margin-bottom: 40px;
+}
+
+.griddata h2 {
+    color: #0a2f1f;
+    margin-bottom: 15px;
+}
+
+.griddata-table {
+    background: white;
+    border: 1px solid #d1e7d9;
+    border-radius: 6px;
+    padding: 15px;
+}
+
+.grid-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 10px 0;
+    border-bottom: 1px solid #d1e7d9;
+}
+
+.grid-row:last-child {
+    border-bottom: none;
+}
+
+/* ============================================================
+   SALES SLIDER
+   ============================================================ */
+
+.sales-slider {
+  position: relative;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 10px 40px;
+  background: #000;
+  border-radius: 8px;
+  box-shadow: 0 0 18px rgba(0,0,0,0.6);
+}
+
+.slider-window {
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  gap: 8px;
+  transition: transform 0.4s ease;
+}
+
+.slide {
+  min-width: 180px;
+  height: 100px;
+  opacity: 0.6;
+  transform: scale(0.96);
+  transition: 0.2s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: scale(1.02);
+  outline: 2px solid #00e676;
+}
+
+/* ============================================================
+   TABLES & BUTTONS (Greenville theme)
+   ============================================================ */
+
+.table-header-green {
+    background: #000 !important;
+    color: #00c853 !important;
+    font-weight: 600;
+}
+
+.review-table tbody tr:hover,
+#licenseTable tbody tr:hover {
+    background: #e8f5e9 !important;
+}
+
+.custom-add-btn {
+    background: #00c853 !important;
+    border-color: #00c853 !important;
+    color: #000 !important;
+    font-weight: 600;
+}
+
+.custom-update-btn {
+    background: #1b5e20 !important;
+    border-color: #1b5e20 !important;
+    color: #00e676 !important;
+}
+
+.custom-refresh-btn {
+    background: #004d40 !important;
+    border-color: #004d40 !important;
+    color: #00e676 !important;
+}
+
+/* ============================================================
+   TOPNAV BAR (from site.css, Greenville-themed)
+   ============================================================ */
+
+.topnav {
+    background-color: #000;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    color: white;
+}
+
+/* Dropdown inside topnav */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #000;
+    color: white;
+    padding: 10px 12px;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #0a2f1f; /* Greenville green */
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #4ade80;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #145c3c;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Right-side links in topnav */
+.right-links {
+    margin-left: auto;
+}
+
+.right-links a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.right-links a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================================
+   GENERIC UTILITY STYLES FROM site.css
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+img {
+    padding: 15px;
+    border: 2px solid lightgrey;
+    margin: 5px;
+}
+
+/* Two-column layout helpers */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    text-align: left;
+}
+
+.column1 {
+    float: left;
+    width: 33%;
+    padding: 20px;
+    text-align: left;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Link styling (Greenville colors applied) */
+a {
+    color: #b3b3b3;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #f2f2f2;
+}
+
+a:visited {
+    color: #b3b3b3;
+}
+
+/* ============================================================
+   LOGIN CARD (from site.css)
+   ============================================================ */
+
+.login-container2 {
+    width: 100%;
+    max-width: 450px;
+    margin: 60px auto;
+    background: #ffffff;
+    border: 1px solid #d1e7d9;
+    border-radius: 8px;
+    padding: 35px;
+    text-align: center;
+}
+
+.login-container2 img {
+    width: 140px;
+    margin-bottom: 20px;
+}
+
+.login-container2 label {
+    font-weight: bold;
+    color: #0a2f1f;
+    display: block;
+    text-align: left;
+    margin-bottom: 6px;
+}
+
+.login-container2 input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 18px;
+    border: 1px solid #bcd5c8;
+    border-radius: 4px;
+}
+
+.login-container2 button {
+    width: 100%;
+    padding: 12px;
+    background: #0a2f1f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-container2 button:hover {
+    background: #145c3c;
+}
+
+#error {
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* ============================================================
+   SITEMAP TABLE (already similar but ensuring full coverage)
+   ============================================================ */
+
+.sitemap-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.sitemap-table th,
+.sitemap-table td {
+    padding: 8px;
+    border-bottom: 1px solid #d1e7d9;
+    text-align: left;
+}
+
+
+/* OTHER INDEX.HTML PARAMETERS*/
+.right-links { padding: var(--space-1); /* becomes 4px */ 
+				 margin-bottom: var(--space-2); /* becomes 16px */ 
+				gap: 4px;
+				}
+  /* Thumbnail slider */
+  .sales-slider {
+    position: relative;
+    width: 999px;
+    height: 133px;
+    margin: 10px auto;
+    overflow: hidden;
+  }
+
+  .slider-window {
+    width: 999px;
+    height: 133px;
+    overflow: hidden;
+  }
+
+  .slides {
+    display: flex;
+    transition: transform 0.4s ease;
+  }
+
+
+.slide {
+  min-width: 200px;      /* smaller, cleaner */
+  height: 120px;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 4px;
+  overflow: hidden;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* keeps aspect ratio while filling */
+  border-radius: 4px;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: scale(1.05);
+  outline: 2px solid #00e676;
+}
+
+H4{ color: darkgreen;}
+	
+  .prev, .next {
+    position: absolute;
+    top: 40%;
+    background: rgba(0,0,0,0.4);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  .prev { left: 0; }
+  .next { right: 0; }
+
+.product-card {
+    width: 300px;
+    min-height: 200px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.products { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.product-features { columns: 2; column-gap: 20px; padding-left: 20px; }
+button { vertical-align: middle; text-align: center; color: white; background-color: black; width: 150px; margin: 0 auto; }
+	.emphasis {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.emphasis-inner {
+  background: #000;              /* black background */
+  color: #b8ff4f;                /* kelly‑green text */
+  padding: 40px 50px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+.emphasis-inner h3 {
+  margin-bottom: 8px;
+  font-size: 1.4rem;
+  color: #7CFC00;                /* brighter kelly green for headers */
+}
+
+.emphasis-inner p {
+  margin-bottom: 24px;
+  font-size: 1rem;
+  color: #d9ffd9;                /* softer green for readability */
+}
+
+.emphasis-inner p:last-child {
+  margin-bottom: 0;
+}
+
+#centercourt {
+  width: 1000px;
+  height: 300px;
+  display: block;
+  margin: 0 auto;        /* centers it */
+  border: 0;
+  background: #000;      /* optional: prevents white flash */
+}
+
+a
+{
+font-size: 10pt;
+}
+
+.topsection
+{
+	max-width: 1580px;
+	width: 1580px;
+	margin: 0 auto;
+	position: relative;
+	text-align: center;
+}
+.bottom-sections
+{
+	max-width: 1580px;
+	width: 1580px;
+	margin: 0 auto;
+	position: relative;
+	margin-top: 20px;
+	text-align: center;
+	vertical-align: middle;
+}
+.main-content
+{
+	max-width: 1580px;
+	margin: 0 auto;
+	margin: 0 auto;
+	position: relative;
+	text-align: center;
+	vertical-align: middle;
+}
+	.container2
+{
+	max-width: 1580px;
+	margin: 0 auto;
+	margin: 0 auto;
+	position: relative;
+	text-align: center;
+	vertical-align: middle;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+footer {
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+/* ============================================================
+   RESPONSIVE LAYOUT
+   ============================================================ */
+
+@media (max-width: 1000px) {
+
+    .top-section {
+        flex-direction: column;
+    }
+
+    .tasks {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .task-item {
+        width: 45%;
+    }
+
+    .middle-columns {
+        flex-direction: column;
+    }
+
+    .idea {
+        flex-direction: column;
+        background-color: #e6e6ff;
+    }
+}
+
+@media (min-width: 1200px) {
+    .middle-columns {
+        flex-direction: row;
+    }
+}
