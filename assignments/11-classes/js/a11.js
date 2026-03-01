@@ -13,16 +13,27 @@ class Song {
     }
 
     getCard(index) {
-        return `
-            <div class="w3-card w3-white song-card" onclick="showSong(${index})">
-                <img src="images/${this.cover}" class="song-cover">
-                <div class="w3-container">
-                    <p><b>${this.title}</b></p>
-                    <p>${this.artist}</p>
-                </div>
+    return `
+        <div class="w3-card w3-white song-card" onclick="showSong(${index})" style="overflow:hidden;">
+            
+            <!-- TOP BAR WITH TITLE + ARTIST -->
+            <div style="
+                background:#2196F3;
+                color:white;
+                text-align:center;
+                padding:10px;
+                font-weight:bold;
+            ">
+                ${this.title}<br>
+                <span style="font-size:14px; font-weight:normal;">${this.artist}</span>
             </div>
-        `;
+
+            <!-- IMAGE BELOW -->
+            <img src="images/${this.cover}" class="song-cover" style="width:100%; height:200px; object-fit:cover;">
+        </div>
+    `;
     }
+
 }
 
 // =========================
