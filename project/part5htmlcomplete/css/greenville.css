@@ -175,7 +175,7 @@ text-align: center;
 .feature-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 25px;
+    gap: 15px;
 }
 
 /* Feature card styling */
@@ -184,7 +184,7 @@ text-align: center;
     background: #ffffff;
     border: 1px solid #d1e7d9;
     border-radius: 6px;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
     text-decoration: none;
     color: #1a1a1a;
@@ -199,8 +199,8 @@ text-align: center;
 
 /* Feature card image */
 .feature-card img {
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 90px;
     margin-bottom: 15px;
 }
 
