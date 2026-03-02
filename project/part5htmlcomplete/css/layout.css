@@ -394,6 +394,23 @@ max-height: 200px;
         order: 2;
     }
 
+   .features {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 900px;
+    }
+
+    .feature {
+        width: 45%;
+        max-width: 350px;
+    }
+
+    .feature a img {
+        width: 100%;
+        height: auto;
+    }
+
     li
     {
     margin-top: 20px;
