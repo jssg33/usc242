@@ -339,7 +339,8 @@ max-height: 200px;
         flex-direction: column;
         text-align: center;
     }
-
+    iframe { max-width: 900px; text-align:center; vertical-align: center; margin: 0 auto;}
+    #centercourt { max-width: 900px; text-align:center; vertical-align: center; margin: 0 auto;}
     .top-section {
         flex-direction: column;
         max-width: 950px;
@@ -398,7 +399,7 @@ max-height: 200px;
    SLIDER AREA — COMPRESS TO 1000px
    ============================ */
 .sales-slider {
-    max-width: 1000px;     /* compress entire slider */
+    max-width: 900px;     /* compress entire slider */
     margin: 0 auto;        /* center it */
 }
 
@@ -449,10 +450,16 @@ max-height: 200px;
     {
     max-width: 42%;
     margin: 0 auto;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
     }
     #miami3
     {
     max-width: 42%;
+    margin: 0 auto;
+    width: 300px;
+    height: 300px;
     margin: 0 auto;
     }
     #firstimage

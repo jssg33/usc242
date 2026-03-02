@@ -27,26 +27,17 @@
 }
 
 .feature-card:hover {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     border-color: #4ade80;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-=======
     border-color: #00b33c; 
     /* Old color base #4ade80
     box-shadow: 0 0 10px rgba(0,0,0,0.1);*/
->>>>>>> Stashed changes
-=======
     border-color: #00b33c; 
     /* Old color base #4ade80
     box-shadow: 0 0 10px rgba(0,0,0,0.1);*/
->>>>>>> Stashed changes
-=======
     border-color: #00b33c; 
     /* Old color base #4ade80
     box-shadow: 0 0 10px rgba(0,0,0,0.1);*/
->>>>>>> Stashed changes
     transform: translateY(-3px);
 }
 
@@ -101,14 +92,6 @@
 .grid-row span {
     color: #1a1a1a;
 }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 
 /* Thumbnail slider – cleaner layout */
 .sales-slider {
@@ -184,10 +167,3 @@
   }
 }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
