@@ -435,7 +435,7 @@ max-height: 200px;
     color: black;
     box-shadow: 0 0 5px rgba(83, 68, 68, 0.2);
 }
-.features{max-width: 999px;}
+.features{max-width: none;}
 
     li
     {
