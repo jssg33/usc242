@@ -9,138 +9,12 @@
 <link rel="stylesheet" href="./css/layout.css"> 
 <link rel="stylesheet" href="./css/greenvillemiddle.css">  
 <link rel="stylesheet" href="./css/greenville.css">
+<link rel="stylesheet" href="./css/homepage.css">
 <script src="./js/slideshow.js"></script>
 <title>Greenville Associates Enterprise Software | Enterprise Licensing</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-   .right-links { padding: var(--space-1); /* becomes 4px */ 
-				 margin-bottom: var(--space-2); /* becomes 16px */ 
-				gap: 4px;
-				}
-  /* Thumbnail slider */
-  .sales-slider {
-    position: relative;
-    width: 999px;
-    height: 133px;
-    margin: 10px auto;
-    overflow: hidden;
-  }
-
-  .slider-window {
-    width: 999px;
-    height: 133px;
-    overflow: hidden;
-  }
-
-  .slides {
-    display: flex;
-    transition: transform 0.4s ease;
-  }
-
-
-.slide {
-  min-width: 200px;      /* smaller, cleaner */
-  height: 120px;
-  cursor: pointer;
-  padding: 2px;
-  border-radius: 4px;
-  overflow: hidden;
-  opacity: 0.7;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;     /* keeps aspect ratio while filling */
-  border-radius: 4px;
-}
-
-.slide.active {
-  opacity: 1;
-  transform: scale(1.05);
-  outline: 2px solid #00e676;
-}
-
-H4{ color: darkgreen;}
-	
-  .prev, .next {
-    position: absolute;
-    top: 40%;
-    background: rgba(0,0,0,0.4);
-    color: white;
-    border: none;
-    padding: 6px 10px;
-    cursor: pointer;
-    font-size: 18px;
-  }
-
-  .prev { left: 0; }
-  .next { right: 0; }
-
-.product-card {
-    width: 300px;
-    min-height: 200px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-.products { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
-.product-features { columns: 2; column-gap: 20px; padding-left: 20px; }
-button { vertical-align: middle; text-align: center; color: white; background-color: black; width: 150px; margin: 0 auto; }
-	.emphasis {
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-
-.emphasis-inner {
-  background: #000;              /* black background */
-  color: #b8ff4f;                /* kelly‑green text */
-  padding: 40px 50px;
-  border-radius: 12px;
-  max-width: 600px;
-  width: 100%;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
-}
-
-.emphasis-inner h3 {
-  margin-bottom: 8px;
-  font-size: 1.4rem;
-  color: #7CFC00;                /* brighter kelly green for headers */
-}
-
-.emphasis-inner p {
-  margin-bottom: 24px;
-  font-size: 1rem;
-  color: #d9ffd9;                /* softer green for readability */
-}
-
-.emphasis-inner p:last-child {
-  margin-bottom: 0;
-}
-
-#centercourt {
-  width: 1000px;
-  height: 300px;
-  display: block;
-  margin: 0 auto;        /* centers it */
-  border: 0;
-  background: #000;      /* optional: prevents white flash */
-}
-
-a
-{
-font-size: 10pt;
-}
-
-.feature-card:hover
-{
-background-color: #00cc44;
-}
+   
 </style>
 
 </head>
@@ -247,10 +121,10 @@ background-color: #00cc44;
 <!-- FIRST FEATURES SECTION -->
 	<div id="features" class="features">
 	<HR>
-	<span style="margin-left: 30px;"><h4>Consider</h4></span><BR>
+	<div style="margin-left: 30px;"><h4>Consider</h4></div><BR>
 		  <!-- Big display -->
   <iframe id="centercourt" width="999" height="300" style="border:0;"></iframe>
-		<BR><BR>
+		<BR>
 	<section class="sales-slider" style="max-width: 80%;">
   	<!-- Thumbnails -->
       <div class="slider-window">
@@ -282,11 +156,11 @@ background-color: #00cc44;
 	<HR>
 	</div>
 <!-- SECOND FEATURES SECTION -->
-	    <div id="features" class="features" style="background-color: black; height: 500px;">
-        <span style="margin-left: 30px;"><h4>Explore</h4></span><BR>
+	    <div id="features" class="features" style="background-color: lightgrey; height: 500px;">
+        <div style="margin-left: 30px;"><h4>Explore</h4></div><BR>
 
         <div class="feature-grid">
-          <BR><BR>
+          <BR>
             <a href="https://fusion.greenvilleassociates.com" target="_blank" class="feature-card">
                 <img src="./images/image1.png" width="100px" height="100px" alt="Feature Icon">
                 <h5 style="text-align: center;">FusionBasics</h5>
@@ -309,16 +183,16 @@ background-color: #00cc44;
                 <img src="./images/image4.png" width="100px" height="100px" alt="Feature Icon">
                 <h5 style="text-align: center;">Pricing Wizard</h5>
                 <p>Develop Pricing for Utility Usage, Site Licenses, and Cloud/Hybrid Options.</p>
-            </a><BR><BR>
+            </a><BR>
 		</div>
         </div>
 		<BR><BR>
 	<HR>	
 		<!-- SECOND FEATURES SECTION -->
-    	<div id="features" class="features" style="background-color: black; height: 500px;">
-        <span style="margin-left: 30px;"><h4>Manage</h4></span><BR>
+    	<div id="features" class="features" style="background-color: lightgrey; height: 500px;">
+        <div style="margin-left: 30px;"><h4>Manage</h4></div><BR>
 		<div class="feature-grid">
-    <BR><BR>
+    <BR>
 				<a href="mylicenses.html" class="feature-card">
                 <img src="./images/image1.png" width="100px" height="100px" alt="Feature Icon">
                 <h5 style="text-align: center;">MyLicenses</h5>
@@ -339,7 +213,7 @@ background-color: #00cc44;
                 <h5 style="text-align: center;">CorporateActions</h5>
                 <p>Manage and Monitor Enterprise Actions, and Security.</p>
             </a>
-			  <BR><BR>
+			  <BR>
         </div>
     	</div>
 	<HR>
