@@ -540,6 +540,20 @@ height: 200px;
         background-color: #e6e6ff;
     }
    
+.feature-card {
+    display: block;
+    background: #ffffff;
+    border: 1px solid #d1e7d9;
+    border-radius: 6px;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    color: #1a1a1a;
+    transition: 0.2s ease-in-out;
+    max-width: 350px;
+    font-size: 11pt;
+}
+
     #miami1
     {
     max-width: 95%;
