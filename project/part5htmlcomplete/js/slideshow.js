@@ -1,4 +1,3 @@
-  document.addEventListener("DOMContentLoaded", () => {
 
   import { createTheme } from "https://cdn.jsdelivr.net/npm/@mui/material@latest/+esm";
 
@@ -57,4 +56,4 @@
     console.warn('Slider elements not found – check HTML structure and class names.');
   }
 
-});
+
