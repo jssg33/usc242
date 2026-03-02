@@ -340,7 +340,7 @@ max-height: 200px;
         text-align: center;
     }
     iframe { max-width: 900px; text-align:center; vertical-align: center; margin: 0 auto;}
-    #centercourt { max-width: 900px; text-align:center; vertical-align: center; margin: 0 auto;}
+    #centercourt { width: 900px; max-width: 900px; text-align:center; vertical-align: center; margin: 0 auto;}
     .top-section {
         flex-direction: column;
         max-width: 950px;

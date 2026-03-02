@@ -18,9 +18,9 @@
     let currentLink = slideItems[0].dataset.link;
 
     iframe.src = slideItems[0].dataset.url;
-    iframe.setAttribute("width", "100%");
-    iframe.setAttribute("height", "100%");
-
+    iframe.setAttribute("width", "90%");
+    iframe.setAttribute("height", "90%");
+    iframe.setAttribute("max-width", "990px");
     iframe.addEventListener('click', () => {
       window.location.href = currentLink;
     });
