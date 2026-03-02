@@ -334,7 +334,7 @@ max-height: 200px;
 /* ----------------------------- */
 
 @media (max-width: 1000px) {
-
+    .main-content, nav, .topnav, header, .sales-slider, .sales, footer {max-width: 1000px;}
     nav.main-nav ul {
         flex-direction: column;
         text-align: center;
@@ -434,6 +434,7 @@ max-height: 200px;
     font-size: 8pt;
     color: black;
     box-shadow: 0 0 5px rgba(83, 68, 68, 0.2);
+    margin: 0 auto;
 }
 .features{max-width: none;}
 
