@@ -394,22 +394,50 @@ max-height: 200px;
         order: 2;
     }
 
-   .features {
-        width: 100%;
-        flex-wrap: wrap;
-        justify-content: center;
-        max-width: 900px;
-    }
+/* ============================
+   SLIDER AREA — COMPRESS TO 1000px
+   ============================ */
+.sales-slider {
+    max-width: 1000px;     /* compress entire slider */
+    margin: 0 auto;        /* center it */
+}
 
-    .feature-grid {
-        width: 45%;
-        max-width: 350px;
-    }
+.slider-window {
+    width: 100%;
+}
 
-    .feature-grid a img {
-        width: 100%;
-        height: auto;
-    }
+.slides {
+    display: flex;
+    gap: 10px;
+}
+
+.slide img {
+    width: 150px;
+    height: auto;
+}
+
+/* ============================
+   FEATURE GRID — ALWAYS 2 PER ROW
+   ============================ */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  /* 2 per line */
+    gap: 25px;
+    padding: 10px;
+    justify-items: center;
+}
+
+.feature-card {
+    width: 90%;               /* keeps them neat inside each column */
+    max-width: 260px;         /* optional: prevents huge cards */
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: black;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
 
     li
     {
