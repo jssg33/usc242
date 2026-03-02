@@ -422,15 +422,15 @@ max-height: 200px;
    ============================ */
 .feature-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);  /* 2 per line */
-    gap: 25px;
+    grid-template-columns: repeat(4, 1fr);  /* 2 per line */
+    gap: 15px;
     padding: 10px;
     justify-items: center;
 }
 
 .feature-card {
     width: 90%;               /* keeps them neat inside each column */
-    max-width: 260px;         /* optional: prevents huge cards */
+    max-width: 230px;         /* optional: prevents huge cards */
     background: white;
     padding: 15px;
     border-radius: 8px;
