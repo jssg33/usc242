@@ -189,6 +189,8 @@ text-align: center;
     text-decoration: none;
     color: #1a1a1a;
     transition: 0.2s ease-in-out;
+    max-width: 210px;
+    font-size: 9pt;
 }
 
 .feature-card:hover {
