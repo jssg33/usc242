@@ -424,21 +424,22 @@ max-height: 200px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);  /* 2 per line */
     gap: 15px;
-    padding: 10px;
+    padding: 9px;
     justify-items: center;
 }
 
 .feature-card {
     width: 90%;               /* keeps them neat inside each column */
-    max-width: 230px;         /* optional: prevents huge cards */
+    max-width: 220px;         /* optional: prevents huge cards */
     background: white;
-    padding: 15px;
+    padding: 9px;
     border-radius: 8px;
     text-decoration: none;
+    font-size: 8pt;
     color: black;
-    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    box-shadow: 0 0 5px rgba(83, 68, 68, 0.2);
 }
-
+.features{max-width: 999px;}
 
     li
     {
