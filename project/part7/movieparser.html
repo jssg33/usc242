@@ -9,7 +9,8 @@
 <script>
   asynch function getmovies()
   {
-  var result = await fetch("https://jssg33.github.io/usc242/project/part7/data/class.json");
+  var data = await fetch("https://jssg33.github.io/usc242/project/part7/data/class.json");
+  const result = await data.json(); 
   console.log("result", result);
   element = document.getElementById("nowplaying");
   result.movies.forEach(movie) -> 
