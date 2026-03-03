@@ -58,5 +58,41 @@
       "Dalton is underrated": 4,
       "plot felt confusing": 3
     }
+  }, 
+  {
+    "id": "6",
+    "moviename": "Top Gun",
+    "url": "https://jssg33.github.io/usc242/project/part7/images/6.png",
+    "rating": "PG",
+    "runtime": "110mins",
+    "reviews": {
+      "intense aerial action": 5,
+      "Tom Cruise is electric": 4,
+      "story felt thin": 3
+    }
+  },
+  {
+    "id": "7",
+    "moviename": "Pretty Woman",
+    "url": "https://jssg33.github.io/usc242/project/part7/images/7.png",
+    "rating": "R",
+    "runtime": "119mins",
+    "reviews": {
+      "charming and heartfelt": 5,
+      "Julia Roberts shines": 5,
+      "a bit predictable": 3
+    }
+  },
+  {
+    "id": "8",
+    "moviename": "Glory",
+    "url": "https://jssg33.github.io/usc242/project/part7/images/8.png",
+    "rating": "R",
+    "runtime": "122mins",
+    "reviews": {
+      "powerful and emotional": 5,
+      "incredible performances": 4,
+      "heavy but important": 4
+    }
   }
 ]
