@@ -2,7 +2,7 @@
   {
     "id": "1",
     "moviename": "Cheech and Chong's Great Adventue",
-    "url": "https://jssg33.github.io/usc242/project/part7/images/one.png",
+    "url": "https://jssg33.github.io/usc242/project/part7/images/1.png",
     "rating": "R",
     "runtime": "91mins",
     "reviews": {
@@ -14,7 +14,7 @@
   {
     "id": "2",
     "moviename": "Ferris Buellers Day Off",
-    "url": "https://jssg33.github.io/usc242/project/part7/images/two.png",
+    "url": "https://jssg33.github.io/usc242/project/part7/images/2.png",
     "rating": "PG",
     "runtime": "103mins",
     "reviews": {
@@ -26,7 +26,7 @@
   {
     "id": "3",
     "moviename": "Fast Times at Ridgemont High",
-    "url": "https://jssg33.github.io/usc242/project/part7/images/three.png",
+    "url": "https://jssg33.github.io/usc242/project/part7/images/3.png",
     "rating": "R",
     "runtime": "90mins",
     "reviews": {
@@ -38,7 +38,7 @@
   {
     "id": "4",
     "moviename": "The River Runs Through It",
-    "url": "https://jssg33.github.io/usc242/project/part7/images/four.png",
+    "url": "https://jssg33.github.io/usc242/project/part7/images/4.png",
     "rating": "R",
     "runtime": "123mins",
     "reviews": {
@@ -50,7 +50,7 @@
   {
     "id": "5",
     "moviename": "James Bond - Living Daylights",
-    "url": "https://jssg33.github.io/usc242/project/part7/images/five.png",
+    "url": "https://jssg33.github.io/usc242/project/part7/images/5.png",
     "rating": "PG13",
     "runtime": "130mins",
     "reviews": {
