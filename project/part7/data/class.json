@@ -1,7 +1,62 @@
 [
-{"id" : "1", "moviename" : "Cheech and Chong's Great Adventue", "url" : "https://jssg33.github.io/usc242/project/part7/images/one.png", "rating" : "R", "runtime" : "300mins", "reviews" : {"great funny, 5", "awesome, 5", "it offended me, 1"}},
-{"id" : "2", "moviename" : "Ferris Buellers Day Off", "url" : "https://jssg33.github.io/usc242/project/part7/images/two.png", "rating" : "PG", "runtime" : "300mins", "reviews" : {"great funny, 5", "awesome, 5", "it offended me, 1"}},
-{"id" : "3", "moviename" : "Fast Times at Ridgemont High", "url" : "https://jssg33.github.io/usc242/project/part7/images/three.png", "rating" : "R", "runtime" : "300mins", "reviews" : {"great funny, 5", "awesome, 5", "it offended me, 1"}},
-{"id" : "4", "moviename" : "The River Runs Through It", "url" : "https://jssg33.github.io/usc242/project/part7/images/four.png", "rating" : "R", "runtime" : "300mins", "reviews" : {"great funny, 5", "awesome, 5", "it offended me, 1"}},
-{"id" : "5", "moviename" : "James Bond - Living Daylights", "url" : "https://jssg33.github.io/usc242/project/part7/images/five.png", "rating" : "PG13", "runtime" : "300mins", "reviews" : {"great funny, 5", "awesome, 5", "it offended me, 1"}},
+  {
+    "id": "1",
+    "moviename": "Cheech and Chong's Great Adventue",
+    "url": "https://jssg33.github.io/usc242/project/part7/images/one.png",
+    "rating": "R",
+    "runtime": "91mins",
+    "reviews": {
+      "hilarious and chaotic": 5,
+      "classic stoner humor": 4,
+      "not my style": 2
+    }
+  },
+  {
+    "id": "2",
+    "moviename": "Ferris Buellers Day Off",
+    "url": "https://jssg33.github.io/usc242/project/part7/images/two.png",
+    "rating": "PG",
+    "runtime": "103mins",
+    "reviews": {
+      "still a timeless teen comedy": 5,
+      "Ferris is iconic": 5,
+      "a bit overrated": 3
+    }
+  },
+  {
+    "id": "3",
+    "moviename": "Fast Times at Ridgemont High",
+    "url": "https://jssg33.github.io/usc242/project/part7/images/three.png",
+    "rating": "R",
+    "runtime": "90mins",
+    "reviews": {
+      "Spicoli steals the show": 5,
+      "fun but dated": 4,
+      "too chaotic for me": 2
+    }
+  },
+  {
+    "id": "4",
+    "moviename": "The River Runs Through It",
+    "url": "https://jssg33.github.io/usc242/project/part7/images/four.png",
+    "rating": "R",
+    "runtime": "123mins",
+    "reviews": {
+      "beautiful cinematography": 5,
+      "slow but meaningful": 4,
+      "not enough action": 2
+    }
+  },
+  {
+    "id": "5",
+    "moviename": "James Bond - Living Daylights",
+    "url": "https://jssg33.github.io/usc242/project/part7/images/five.png",
+    "rating": "PG13",
+    "runtime": "130mins",
+    "reviews": {
+      "classic Bond energy": 5,
+      "Dalton is underrated": 4,
+      "plot felt confusing": 3
+    }
+  }
 ]
