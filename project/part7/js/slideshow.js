@@ -1,6 +1,4 @@
 
-  import { createTheme } from "https://cdn.jsdelivr.net/npm/@mui/material@latest/+esm";
-
   const theme = createTheme({
     spacing: 2
   });
