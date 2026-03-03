@@ -1,0 +1,25 @@
+<html>
+ <head>
+    <title>Movie Parser</title>
+   
+ </head> 
+<body>
+<div id="movieresults"><ul id="nowplaying"><ul></ul></div><button onclick="getmovies();">GetMovies</button>
+    
+<script>
+  asynch function getmovies()
+  {
+  var result = await fetch("https://jssg33.github.io/usc242/project/part7/data/class.json");
+  console.log("result", result);
+  element = document.getElementById(nowplaying);
+  result.movies.forEach(movie) -> 
+    {
+    const li = document.createElement("li");
+    li.innerHTML = movie.moviename;
+    ul.append(li);
+    }  
+  }
+  
+</script>
+</body>
+</html>
