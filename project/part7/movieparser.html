@@ -18,11 +18,12 @@ async function getmovies() {
         console.log("Loaded data:", data);
 
         const ul = document.getElementById("nowplaying");
-        ul.innerHTML = ""; // clear previous results
+        ul.innerHTML = ""; // clear old results
 
-        data.movies.forEach(movie => {
+        data.forEach(movie => {
             const li = document.createElement("li");
-            li.innerHTML = movie.moviename;
+            li.textContent = movie.moviename;
+            li.style.fontStyle = "normal"; // remove italics if needed
             ul.appendChild(li);
         });
 
@@ -30,6 +31,7 @@ async function getmovies() {
         console.error("Error loading movies:", error);
     }
 }
+
 </script>
 
 </body>
