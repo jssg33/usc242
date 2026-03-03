@@ -130,13 +130,13 @@ async function getmovies() {
 
         data.forEach(movie => {
             const li = document.createElement("li");
-            li.textContent = movie.moviename + "," movie.rating + "," + movie.runtime;
+            li.textContent = movie.moviename + "," + movie.rating + "," + movie.runtime;
             li.style.fontStyle = "normal"; // remove italics if needed
             ul.appendChild(li);
         });
 
         const oneimage = document.getElementById("movieimage");
-        oneimage.src = movie.url;
+        oneimage.src = data[0].url;
         oneimage.width = "500px";
         oneimage.height = "500px";
     } catch (error) {
