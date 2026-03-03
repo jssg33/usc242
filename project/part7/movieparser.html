@@ -22,7 +22,7 @@ async function getmovies() {
 
         data.forEach(movie => {
             const li = document.createElement("li");
-            li.textContent = movie.moviename + "," movie.rating + "," + runtime;
+            li.textContent = movie.moviename + "," movie.rating + "," + movie.runtime;
             li.style.fontStyle = "normal"; // remove italics if needed
             ul.appendChild(li);
         });
