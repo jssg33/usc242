@@ -1,7 +1,7 @@
 [
-{"id" : "1", "moviename" : "Cheech and Chong's Great Adventue", "url" : "https://test.com/images/one.png", "rating" : "R", "runtime" : "300mins", "reviews" : {"great funny, 5", "awesome, 5", "it offended me, 1"}},
-{"id" : "2", "moviename" : "Ferris Buellers Day Off", "url" : "https://test.com/images/two.png", "rating" : "PG", "runtime" : "300mins", "reviews" : {"great funny, 5", "awesome, 5", "it offended me, 1"}},
-{"id" : "3", "moviename" : "Fast Times at Ridgemont High", "url" : "https://test.com/images/three.png", "rating" : "R", "runtime" : "300mins", "reviews" : {"great funny, 5", "awesome, 5", "it offended me, 1"}},
-{"id" : "4", "moviename" : "The River Runs Through It", "url" : "https://test.com/images/four.png", "rating" : "R", "runtime" : "300mins", "reviews" : {"great funny, 5", "awesome, 5", "it offended me, 1"}},
-{"id" : "5", "moviename" : "James Bond - Living Daylights", "url" : "https://test.com/images/five.png", "rating" : "PG13", "runtime" : "300mins", "reviews" : {"great funny, 5", "awesome, 5", "it offended me, 1"}},
+{"id" : "1", "moviename" : "Cheech and Chong's Great Adventue", "url" : "https://jssg33.github.io/usc242/project/part7/images/one.png", "rating" : "R", "runtime" : "300mins", "reviews" : {"great funny, 5", "awesome, 5", "it offended me, 1"}},
+{"id" : "2", "moviename" : "Ferris Buellers Day Off", "url" : "https://jssg33.github.io/usc242/project/part7/images/two.png", "rating" : "PG", "runtime" : "300mins", "reviews" : {"great funny, 5", "awesome, 5", "it offended me, 1"}},
+{"id" : "3", "moviename" : "Fast Times at Ridgemont High", "url" : "https://jssg33.github.io/usc242/project/part7/images/three.png", "rating" : "R", "runtime" : "300mins", "reviews" : {"great funny, 5", "awesome, 5", "it offended me, 1"}},
+{"id" : "4", "moviename" : "The River Runs Through It", "url" : "https://jssg33.github.io/usc242/project/part7/images/four.png", "rating" : "R", "runtime" : "300mins", "reviews" : {"great funny, 5", "awesome, 5", "it offended me, 1"}},
+{"id" : "5", "moviename" : "James Bond - Living Daylights", "url" : "https://jssg33.github.io/usc242/project/part7/images/five.png", "rating" : "PG13", "runtime" : "300mins", "reviews" : {"great funny, 5", "awesome, 5", "it offended me, 1"}},
 ]
