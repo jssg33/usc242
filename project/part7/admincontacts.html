@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Customer Contacts Admin</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+</head>
+
+<body class="bg-light">
+  <div class="container py-5">
+    <h1 class="mb-4">Customer Contacts by State</h1>
+    <div id="contactsContainer" class="accordion"></div>
+  </div>
+
+  <script>
+    async function loadContacts() {
+      const container = document.getElementById("contactsContainer");
+
+      try {
+        const response = await fetch("https://api242.onrender.com/usercontacts");
+        const data = await response.json();
+
+        // Group by state
+        const grouped = data.reduce((acc, contact) => {
+          const state = contact.state || "Unknown";
+          if (!acc[state]) acc[state] = [];
+          acc[state].push(contact);
+          return acc;
+        }, {});
+
+        // Sort states alphabetically
+        const sortedStates = Object.keys(grouped).sort();
+
+        // Render each state section
+        sortedStates.forEach((state, index) => {
+          const contacts = grouped[state];
+
+          const card = document.createElement("div");
+          card.className = "accordion-item";
+
+          card.innerHTML = `
+            <h2 class="accordion-header" id="heading${index}">
+              <button class="accordion-button collapsed" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse${index}">
+                ${state} (${contacts.length})
+              </button>
+            </h2>
+
+            <div id="collapse${index}" class="accordion-collapse collapse"
+              data-bs-parent="#contactsContainer">
+              <div class="accordion-body">
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                      <tr>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>ZIP</th>
+                        <th>Fax</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${contacts
+                        .map(
+                          c => `
+                          <tr>
+                            <td>${c.phone || ""}</td>
+                            <td>${c.email || ""}</td>
+                            <td>${c.address1 || ""} ${c.address2 || ""}</td>
+                            <td>${c.city || ""}</td>
+                            <td>${c.zip || ""}</td>
+                            <td>${c.fax || ""}</td>
+                          </tr>`
+                        )
+                        .join("")}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          `;
+
+          container.appendChild(card);
+        });
+      } catch (err) {
+        container.innerHTML =
+          `<div class="alert alert-danger">Failed to load contacts.</div>`;
+        console.error(err);
+      }
+    }
+
+    loadContacts();
+  </script>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+  </script>
+</body>
+</html>
