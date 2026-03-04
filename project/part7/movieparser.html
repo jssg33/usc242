@@ -135,24 +135,45 @@ async function getmovies() {
         const data = await response.json();
         console.log("Loaded data:", data);
 
-        const ul = document.getElementById("nowplaying");
-        ul.innerHTML = ""; // clear old results
+        const container = document.getElementById("nowplaying");
+        container.innerHTML = ""; // clear old results
 
         data.forEach(movie => {
-            const li = document.createElement("li");
-            li.textContent = movie.moviename + "," + movie.rating + "," + movie.runtime;
-            li.style.fontStyle = "normal"; // remove italics if needed
-            ul.appendChild(li);
+            // Card wrapper
+            const card = document.createElement("div");
+            card.className = "movie-card";
+
+            // Movie image
+            const img = document.createElement("img");
+            img.src = movie.url;
+            img.alt = movie.moviename;
+            img.className = "movie-img";
+
+            // Movie text
+            const title = document.createElement("h3");
+            title.textContent = movie.moviename;
+
+            const rating = document.createElement("p");
+            rating.textContent = "Rating: " + movie.rating;
+
+            const runtime = document.createElement("p");
+            runtime.textContent = "Runtime: " + movie.runtime;
+
+            // Build card
+            card.appendChild(img);
+            card.appendChild(title);
+            card.appendChild(rating);
+            card.appendChild(runtime);
+
+            // Add card to page
+            container.appendChild(card);
         });
 
-        const oneimage = document.getElementById("movieimage");
-        oneimage.src = data[0].url;
-        oneimage.width = "500px";
-        oneimage.height = "500px";
     } catch (error) {
         console.error("Error loading movies:", error);
     }
 }
+
 
 </script>
 
