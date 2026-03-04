@@ -124,6 +124,51 @@
         <div id="contactsContainer" class="accordion"></div>
   </div>
 
+<div class="modal fade" id="updateModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Update Contact</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="updateForm">
+          <input type="hidden" id="contactId">
+
+          <label class="form-label">Phone</label>
+          <input class="form-control" id="contactPhone">
+
+          <label class="form-label mt-2">Email</label>
+          <input class="form-control" id="contactEmail">
+
+          <label class="form-label mt-2">Address 1</label>
+          <input class="form-control" id="contactAddress1">
+
+          <label class="form-label mt-2">Address 2</label>
+          <input class="form-control" id="contactAddress2">
+
+          <label class="form-label mt-2">City</label>
+          <input class="form-control" id="contactCity">
+
+          <label class="form-label mt-2">ZIP</label>
+          <input class="form-control" id="contactZip">
+
+          <label class="form-label mt-2">Fax</label>
+          <input class="form-control" id="contactFax">
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" onclick="submitUpdate()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+	
   <script>
     async function loadContacts() {
       const container = document.getElementById("contactsContainer");
@@ -205,6 +250,47 @@
     }
 
     loadContacts();
+
+function openUpdateModal(contact) {
+  document.getElementById("contactId").value = contact.id;
+  document.getElementById("contactPhone").value = contact.phone || "";
+  document.getElementById("contactEmail").value = contact.email || "";
+  document.getElementById("contactAddress1").value = contact.address1 || "";
+  document.getElementById("contactAddress2").value = contact.address2 || "";
+  document.getElementById("contactCity").value = contact.city || "";
+  document.getElementById("contactZip").value = contact.zip || "";
+  document.getElementById("contactFax").value = contact.fax || "";
+
+  const modal = new bootstrap.Modal(document.getElementById("updateModal"));
+  modal.show();
+}
+
+async function submitUpdate() {
+  const id = document.getElementById("contactId").value;
+
+  const updated = {
+    phone: document.getElementById("contactPhone").value,
+    email: document.getElementById("contactEmail").value,
+    address1: document.getElementById("contactAddress1").value,
+    address2: document.getElementById("contactAddress2").value,
+    city: document.getElementById("contactCity").value,
+    zip: document.getElementById("contactZip").value,
+    fax: document.getElementById("contactFax").value
+  };
+
+  await fetch(`https://api242.onrender.com/usercontacts/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updated)
+  });
+
+  location.reload();
+}
+
+function requestDelete(id) {
+  alert("Delete request for ID " + id + " will be implemented later.");
+}
+  
   </script>
 
   <script
