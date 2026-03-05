@@ -289,7 +289,8 @@ async function submitUpdate() {
     zip: document.getElementById("contactZip").value,
     fax: document.getElementById("contactFax").value
   };
-
+  console.log("updatedjson", updated);
+	
   await fetch(`https://api242.onrender.com/usercontacts/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
