@@ -70,10 +70,23 @@
   object-fit: cover;
 }
 
+	
 #movie-results {width: 90%; min-height: 500px; background-color: lightblue; border: 2px solid black;};
 /* Force exactly 2 cards per row at 1000px+ */
 @media (min-width: 1000px) {
-  #nowplaying {
+   .row {
+    flex-direction: column;
+  }
+
+  .column.right {
+    order: 1; /* Player goes on top */
+  }
+
+  .column.left {
+    order: 2; /* Now Playing goes below */
+  }
+	
+#nowplaying {
     grid-template-columns: repeat(2, 1fr);
   }
 }
