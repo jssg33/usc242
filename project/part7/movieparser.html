@@ -14,7 +14,38 @@
 <title>Greenville Associates Enterprise Software | Enterprise Licensing</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-   
+/* Grid wrapper */
+#nowplaying {
+  display: grid;
+  gap: 20px;
+  padding: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+/* Individual card */
+.movie-card {
+  max-width: 350px;
+  margin: auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  border-radius: 10px;
+}
+
+/* Movie image */
+.movie-img {
+  height: 300px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* Force exactly 2 cards per row at 1000px+ */
+@media (min-width: 1000px) {
+  #nowplaying {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+ 
 </style>
 
 </head>
@@ -122,7 +153,7 @@
     </div>
 
 	
-<div id="movieresults"><img id="movieimage" src="">
+<div id="movieresults">
     <ul id="nowplaying"></ul>
 </div>
 
@@ -130,49 +161,34 @@
 
 <script>
 async function getmovies() {
-    try {
-        const response = await fetch("https://jssg33.github.io/usc242/project/part7/data/class.json");
-        const data = await response.json();
-        console.log("Loaded data:", data);
+  try {
+    const response = await fetch("https://jssg33.github.io/usc242/project/part7/data/class.json");
+    const data = await response.json();
 
-        const container = document.getElementById("nowplaying");
-        container.innerHTML = ""; // clear old results
+    const container = document.getElementById("nowplaying");
+    container.innerHTML = ""; 
 
-        data.forEach(movie => {
-            // Card wrapper
-            const card = document.createElement("div");
-            card.className = "movie-card";
+    data.forEach(movie => {
+      const card = document.createElement("div");
+      card.className = "movie-card card";
 
-            // Movie image
-            const img = document.createElement("img");
-            img.src = movie.url;
-            img.alt = movie.moviename;
-            img.className = "movie-img";
+      card.innerHTML = `
+        <img src="${movie.url}" class="card-img-top movie-img" alt="${movie.moviename}">
+        <div class="card-body">
+          <h5 class="card-title">${movie.moviename}</h5>
+          <p class="card-text"><strong>Rating:</strong> ${movie.rating}</p>
+          <p class="card-text"><strong>Runtime:</strong> ${movie.runtime}</p>
+        </div>
+      `;
 
-            // Movie text
-            const title = document.createElement("h3");
-            title.textContent = movie.moviename;
+      container.appendChild(card);
+    });
 
-            const rating = document.createElement("p");
-            rating.textContent = "Rating: " + movie.rating;
-
-            const runtime = document.createElement("p");
-            runtime.textContent = "Runtime: " + movie.runtime;
-
-            // Build card
-            card.appendChild(img);
-            card.appendChild(title);
-            card.appendChild(rating);
-            card.appendChild(runtime);
-
-            // Add card to page
-            container.appendChild(card);
-        });
-
-    } catch (error) {
-        console.error("Error loading movies:", error);
-    }
+  } catch (error) {
+    console.error("Error loading movies:", error);
+  }
 }
+
 
 
 </script>
