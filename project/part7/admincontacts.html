@@ -167,9 +167,6 @@
   </div>
 </div>
 
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-	
 <script>
 async function loadContacts() {
   const container = document.getElementById("contactsContainer");
@@ -229,23 +226,22 @@ async function loadContacts() {
                 </thead>
                 <tbody>
                   ${contacts
-                    .map(
-                      c => `
-                      <tr>
-                        <td>${c.phone || ""}</td>
-                        <td>${c.email || ""}</td>
-                        <td>${c.address1 || ""} ${c.address2 || ""}</td>
-                        <td>${c.city || ""}</td>
-                        <td>${c.zip || ""}</td>
-                        <td>${c.fax || ""}</td>
-                        <td>
-                          <button class="btn btn-sm btn-primary" onclick='openUpdateModal(${JSON.stringify(
-                            c
-                          )})'>Edit</button>
-                          <button class="btn btn-sm btn-danger" onclick="requestDelete(${c.id})">Delete</button>
-                        </td>
-                      </tr>`
-                    )
+                    .map(c => {
+                      const encoded = encodeURIComponent(JSON.stringify(c));
+                      return `
+                        <tr>
+                          <td>${c.phone || ""}</td>
+                          <td>${c.email || ""}</td>
+                          <td>${c.address1 || ""} ${c.address2 || ""}</td>
+                          <td>${c.city || ""}</td>
+                          <td>${c.zip || ""}</td>
+                          <td>${c.fax || ""}</td>
+                          <td>
+                            <button class="btn btn-sm btn-primary" onclick="openUpdateModal('${encoded}')">Edit</button>
+                            <button class="btn btn-sm btn-danger" onclick="requestDelete(${c.id})">Delete</button>
+                          </td>
+                        </tr>`;
+                    })
                     .join("")}
                 </tbody>
               </table>
@@ -265,7 +261,9 @@ async function loadContacts() {
 
 loadContacts();
 
-function openUpdateModal(contact) {
+function openUpdateModal(encodedContact) {
+  const contact = JSON.parse(decodeURIComponent(encodedContact));
+
   document.getElementById("contactId").value = contact.id;
   document.getElementById("contactPhone").value = contact.phone || "";
   document.getElementById("contactEmail").value = contact.email || "";
@@ -305,6 +303,9 @@ function requestDelete(id) {
   alert("Delete request for ID " + id + " will be implemented later.");
 }
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 
 
 </body>
