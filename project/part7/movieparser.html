@@ -21,7 +21,7 @@
 /* Create two equal columns that floats next to each other */
 .column1 {
   float: left;
-  width: 30%;
+  width: 100%;
   padding: 10px;
   height: 300px; /* Should be removed. Only for demonstration */
 }
@@ -177,12 +177,12 @@
         <span align="center"><h4>Assignment 11 - JSON Tester</h4></span>
         <hr>
     </div>
-
+<div align="center"><button onclick="getmovies()">Get Movies</button></div>
 <div class="row">	
 <div class="column1"><iframe src="https://www.disney.com" width="100%" height="250px" name="bigscreen"></div>
 </div>
 <HR>
-<button onclick="getmovies()">Get Movies</button>
+
 <div id="movieresults">
     <ul id="nowplaying"></ul>
 </div>
