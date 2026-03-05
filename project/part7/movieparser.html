@@ -82,7 +82,7 @@
 </style>
 
 </head>
-<body>
+<body onload="getmovies();">
 <div class="topnav">
     <div class="dropdown">
         <button class="dropbtn">Menu ▼</button>
@@ -184,16 +184,16 @@
         <span align="center"><h4>Assignment 11 - JSON Tester</h4></span>
         <hr>
     </div>
-<div align="center"><button onclick="getmovies()">Get Movies</button></div><BR><HR>
+<div align="center"><button onclick="getmovies()">Refresh Movies</button></div><BR><HR>
 <div class="row">
   <!-- LEFT COLUMN: MOVIES -->
-  <div class="column left">
+  <div class="column left" style="text-align: center;">
       <span align="center"><h3>Now Playing</h3></span>
       <div id="nowplaying"></div>
   </div>
 
   <!-- RIGHT COLUMN: PLAYER -->
-  <div class="column right">
+  <div class="column right" style="text-align: center;">
       <span align="center"><h3>Player</h3></span>
       <iframe 
           src="https://www.disney.com"
