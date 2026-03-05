@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script type="module" src="https://esm.run/@material/web/all.js"></script>
+  <link rel="stylesheet" href="./css/site.css">
+  <link rel="stylesheet" href="./css/layout.css">
+  <link rel="stylesheet" href="./css/greenville.css">
+<script src="./js/bikes.js"></script>
+   <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body onload="checkpll(); checkUserStatus(); displayProfilePicture(); updateCartTotals();">
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="nav-left">
+      <div class="dropdown">
+        <button class="jsmenu"><img src="./images/jsmenu4.png"></button> 
+        <div class="dropdown-content">
+          <a href="index.html">Site Home</a>
+          <a href="cartreview.html">MyCart</a>
+          <a href="mybookings5.html">MyReservations</a>
+          <a href="manager.html">Manager Utilities</a>
+        </div>
+      </div> 
+    <div class="logo">&nbsp&nbsp<H5>MyLinkv25 - Review Parks</H5></div>
+    </div>
+    <div class="nav-right">
+      <img src="./images/bluecircle.png" id="profilephototarget" alt="User" style="cursor:pointer;" onclick="window.location.href='profile.html'" />
+      <span id="H3UserBanner"></span>
+      <a href="login.html" id="loginBtn" class="btn secondary-btn" onclick="loginUser(event)">Login</a>
+      <a href="login.html" id="logoutBtn" class="btn secondary-btn" onclick="logoutUser(event)">Logout</a>
+              <a href="cartreview.html" id="cartBtn3"><img src="./images/cart4.png" width="40px" height="40px"></a>
+    </div>
+  </div>
+
+  <div align="center" id="banner"><span id="userGreeting">Welcome Guest</span></div>
+<div class="containerNEVER">
+  <h2 class="mb-4">Your Cart Summary</h2>
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+      <th>CartID</th>
+      <th>UserID</th>
+      <th>Park Name</th>
+      <th>ParkID</th>
+      <th>Item</th>
+      <th>Description</th>
+      <th>TotalItems</th>
+      <th>Total Price</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Adults</th>
+      <th>Jrs.</th>
+      <th>Bookinginfo</th>
+      </tr>
+    </thead>
+    <tbody id="cart-table-body"></tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4" class="text-end fw-bold">Total Amount:</td>
+        <td id="total-amount" class="fw-bold">$0.00</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <button id="pay-button" class="btn btn-success">Pay Now</button>
+</div>
+
+ <script>
+  const baseUrl = "https://parksapi-h8btdjefb3gpdxaf.westus3-01.azurewebsites.net";
+  const cartApi = `${baseUrl}/api/Cart/user`;
+  const paymentApi = `${baseUrl}/api/Payment`;
+
+  // Get uid from localStorage or default to "1"
+  let uid = localStorage.getItem("uid");
+  if (!uid || uid.trim() === "") {
+    uid = "1";
+  }
+
+  // Extract all cartId values from the URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const cartIds = urlParams.getAll("cartId").map(id => parseInt(id));
+
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+  
+  async function fetchCartItems(uid) {
+    const url = `${cartApi}/${uid}`;
+    console.log("Fetching all cart items for user:", url);
+      const response = await fetch(url);
+    await wait(3000);
+    const items = await response.json();
+    console.log("Full cart items:", items);
+    return items;
+  }
+
+ function renderCart(items) {
+  const tbody = document.getElementById("cart-table-body");
+  let total = 0;
+
+  // Filter items to only those matching cartIds from URL
+  const filteredItems = items.filter(item => cartIds.includes(item.cartId));
+  console.log('filtered_data', filteredItems);
+ 
+  filteredItems.forEach(item => {
+    const unitPrice = parseFloat(item.unitPrice) || 0;
+    const quantity = parseInt(item.quantity) || 0;
+    const totalPrice = parseFloat(item.totalPrice) || unitPrice * quantity;
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${item.cartId || "N/A"}</td>
+      <td>${item.uid || uid}</td>
+      <td>${item.parkname || "N/A"}</td>
+      <td>${item.parkId || 11}</td>
+      <td>${item.itemType || "Day Pass"}</td>
+      <td>${item.itemDescription || "No description"}</td>
+      <td>${item.totalcartitems}</td>
+      <td>$${item.transactiontotal}</td>
+      <td>${item.resStart.split('T')[0] || "N/A"}</td>
+      <td>${item.resEnd.split('T')[0] || "N/A"}</td>
+      <td>${item.adults || 0}</td>
+      <td>${item.children || 0}</td>
+      <td>${item.bookinginfo || 0}</td>
+    `;
+    tbody.appendChild(row);
+    total += item.transactiontotal;
+  });
+
+  if (total === 0) {
+    total = 0.01; // Minimum billing for record keeping
+  }
+
+  document.getElementById("total-amount").textContent = `$${total.toFixed(2)}`;
+
+  document.getElementById("pay-button").onclick = () => {
+    if (confirm(`Your total is $${total.toFixed(2)}. Are you ready to proceed?`)) {
+      const parkIds = filteredItems.map(item => item.parkId || 11);
+      const parkNames = filteredItems.map(item => encodeURIComponent(item.parkname || "N/A"));
+      const resStarts = filteredItems.map(item => item.resStart || "");
+      const resEnds = filteredItems.map(item => item.resEnd || "");
+      const adults = filteredItems.map(item => item.adults ?? 1);
+      const children = filteredItems.map(item => item.children ?? 0);
+
+      const paymentUrl = `paynow2.html?uid=${uid}&amount=${total.toFixed(2)}&cartIds=${cartIds.join(",")}&parkIds=${parkIds.join(",")}&parkNames=${parkNames.join(",")}&startDate=${resStarts.join(",")}&endDate=${resEnds.join(",")}&adults=${adults.join(",")}&children=${children.join(",")}`;
+
+      window.location.href = paymentUrl;
+    }
+  };
+}
+
+
+  fetchCartItems(uid).then(renderCart).catch(err => {
+    console.error("Error fetching cart items:", err);
+    alert("Failed to load cart data.");
+  });
+
+ async function updateCartTotals() {
+    // Get the full query string from the current URL
+    const urlParams = new URLSearchParams(window.location.search);
+
+  // Extract the cartId value
+  const cartId = urlParams.get("cartId");
+   
+      try {
+        const response = await fetch(`${baseUrl}/api/CartItem/cart/${cartId}`);
+        const items = await response.json();
+
+        let totalQty = 0;
+        let totalPrice = 0;
+        let totalAdults = 0;
+        let totalChildren = 0;
+
+        items.forEach(item => {
+          totalQty += item.itemqty ?? 0;
+          totalPrice += item.itemtotals ?? 0;
+          //totalAdults += item.adults ?? 0;
+          //totalChildren += item.children ?? 0;
+        });
+
+        const cartUpdate = {
+          totalcartitems: totalQty,
+          transactiontotal: totalPrice,
+         };
+
+        await fetch(`${baseUrl}/api/Cart/${cartId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(cartUpdate)
+        });
+
+        console.log(`✅ Cart ${cartId} updated: ${totalQty} items, $${totalPrice.toFixed(2)}`);
+        console.log(cartUpdate);
+      } catch (err) {
+        console.error("❌ Failed to update cart totals:", err);
+      }
+    }
+
+   
+</script>
+
+
+</body>
+ <footer class="footer"> &copy; Cocky Consulting 2025. <br> All rights reserved.<br>  <span align="center"><a href="sitemap.html" class="sitelink">SiteMap</a></span></footer>
+</html>

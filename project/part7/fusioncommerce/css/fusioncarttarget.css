@@ -1,0 +1,367 @@
+/* ============================================================
+   GLOBAL COLORS & VARIABLES — UPDATED WITH GREENVILLE PALETTE
+   ============================================================ */
+:root {
+  --kelly-green: #4ade80;          /* bright green accent */
+  --kelly-green-dark: #0a2f1f;     /* deep forest green */
+  --kelly-green-light: #d1e7d9;    /* pale green panel */
+  --kelly-green-pale: #f4f7f5;     /* soft gray‑green background */
+
+  --text-dark: #1a1a1a;            /* near‑black text */
+  --text-light: #ffffff;           /* white text */
+
+  --panel-gray: #d1e7d9;           /* pale green border/panel */
+  --panel-light: #ffffff;          /* white interior */
+}
+
+/* ============================================================
+   BASE / RESET
+   ============================================================ */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background: var(--kelly-green-pale);
+  color: var(--text-dark);
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* ============================================================
+   NAVIGATION BAR
+   ============================================================ */
+.navbar {
+  background: #000;
+  color: var(--text-light);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .nav-left,
+.navbar .nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar a {
+  color: var(--text-light);
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.navbar img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ============================================================
+   DROPDOWN MENU
+   ============================================================ */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.jsmenu {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  width: 50px;
+  height: 50px;
+}
+
+.jsmenu img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #000;
+  border: 1px solid var(--kelly-green);
+  min-width: 160px;
+  z-index: 10;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: var(--text-light);
+  padding: 10px 14px;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background: var(--kelly-green-dark);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer,
+.footer {
+  background: #000;
+  color: var(--text-light);
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: auto;
+}
+
+/* ============================================================
+   TOP PANELS
+   ============================================================ */
+.top-panels {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-panel,
+.cartmaster-panel {
+  flex: 1;
+  background: var(--panel-gray);
+  border: 2px solid var(--kelly-green-dark);
+  border-radius: 6px;
+  padding: 15px;
+}
+
+/* ============================================================
+   PRODUCT OPTIONS PANEL
+   ============================================================ */
+#interiorpanel {
+  background: var(--kelly-green-light);
+  border: 2px solid var(--kelly-green-dark);
+  padding: 15px;
+  border-radius: 6px;
+  margin: 20px;
+}
+
+.master-row {
+  display: flex;
+  gap: 20px;
+}
+
+.left-column,
+.right-column {
+  flex: 1;
+  background: var(--panel-light);
+  border: 2px solid var(--kelly-green-dark);
+  padding: 15px;
+  border-radius: 6px;
+}
+
+/* ============================================================
+   SALES GRID
+   ============================================================ */
+#salesgrid {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.columnproducts,
+.columnactions,
+.columnselected {
+  flex: 1;
+  background: var(--panel-gray);
+  border: 2px solid var(--kelly-green-dark);
+  border-radius: 6px;
+  padding: 15px;
+}
+
+/* ============================================================
+   TABLES
+   ============================================================ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th {
+  background: var(--kelly-green-dark);
+  color: #fff;
+  padding: 6px;
+}
+
+table td {
+  border: 1px solid var(--kelly-green-dark);
+  padding: 6px;
+  background: #fff;
+}
+
+/* ============================================================
+   INPUTS & SELECTS
+   ============================================================ */
+select,
+input[type="date"],
+input[type="number"],
+input[type="text"] {
+  border: 2px solid var(--kelly-green-dark);
+  border-radius: 4px;
+  padding: 4px;
+  background: #fff;
+}
+
+select:focus,
+input:focus {
+  outline: none;
+  border-color: var(--kelly-green);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+button,
+.btn {
+  background: var(--kelly-green);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover,
+.btn:hover {
+  background: var(--kelly-green-dark);
+}
+
+.secondary-btn {
+  background: var(--kelly-green-dark);
+}
+
+.secondary-btn:hover {
+  background: var(--kelly-green);
+}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+#productOptionsModal,
+#reservationModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: var(--kelly-green-light);
+  border: 3px solid var(--kelly-green-dark);
+  padding: 20px;
+  border-radius: 8px;
+  width: 350px;
+}
+
+/* ============================================================
+   FEATURE BOXES
+   ============================================================ */
+.features {
+  padding: 40px 15px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+}
+
+.features .containerNEVER {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.feature { background: var(--kelly-green-light); }
+.feature2 { background: var(--kelly-green); }
+.feature3 { background: var(--kelly-green-dark); color: #fff; }
+.feature4 { background: var(--kelly-green-pale); }
+
+.feature:hover,
+.feature2:hover,
+.feature3:hover,
+.feature4:hover {
+  background: var(--kelly-green-dark);
+  color: #fff;
+}
+
+/* ============================================================
+   SCROLLABLE FEATURE LIST
+   ============================================================ */
+.features-scroll {
+  max-height: 600px;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ============================================================
+   BANNER
+   ============================================================ */
+#banner {
+  background: var(--kelly-green-dark);
+  color: #fff;
+  padding: 10px;
+  font-size: 1.2rem;
+  border-bottom: 3px solid var(--kelly-green);
+}
+
+/* ============================================================
+   MATERIAL ICON BUTTONS
+   ============================================================ */
+.right-links {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.right-links md-text-button {
+  --md-sys-color-primary: #ffffff;
+  color: #ffffff;
+}
+
+.right-links .material-icons {
+  color: #ffffff;
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+  line-height: 18px;
+}
+
+.main-content {
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 60px;
+  max-width: 1580px;
+}

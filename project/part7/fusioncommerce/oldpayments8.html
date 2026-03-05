@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FusionCommerce – Payment</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <!-- FusionCommerce Styles -->
+  <link rel="stylesheet" href="./css/fusioncart.css" />
+  <link rel="stylesheet" href="./css/site.css" />
+  <link rel="stylesheet" href="./css/layout.css" />
+  <link rel="stylesheet" href="./css/greenville.css" />
+
+  <style>
+    #banner {
+      background-color: #198754;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+    .summary-card {
+      max-width: 600px;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body onload="checkpll(); checkUserStatus(); displayProfilePicture(); initializePaymentPage();">
+
+<!-- NAVIGATION BAR -->
+<div class="navbar">
+  <div class="nav-left">
+    <div class="dropdown">
+      <button class="jsmenu"><img src="./images/greenmenu5.png"></button>
+      <div class="dropdown-content">
+        <a href="index.html">Home</a>
+        <a href="purchase555.html">Buy Now</a>
+        <a href="cartreview.html">My Carts</a>
+        <a href="mypurchases5.html">My Purchases</a>
+        <a href="myinvoices.html">My Invoices</a>
+        <a href="myprofile.html">My Profile</a>
+      </div>
+      <div class="logo">&nbsp;&nbsp;FusionCommerce – Payment</div>
+    </div>
+  </div>
+
+  <div class="nav-right">
+    <img src="./images/blackcircle.png" id="profilephototarget" alt="User"
+         onclick="window.location.href='myprofile.html'" />
+    <span id="H3UserBanner"></span>
+    <a href="login.html" id="loginBtn" class="btn secondary-btn">Login</a>
+    <a href="logout.html" id="logoutBtn" class="btn secondary-btn">Logout</a>
+    <a href="cartreview.html" id="cartBtn3">
+      <img src="./images/cart4.png" width="40" height="40">
+    </a>
+  </div>
+</div>
+
+<div id="banner"><span id="userGreeting">Welcome Guest</span></div>
+
+<!-- MAIN CONTENT -->
+<div class="container mt-5">
+
+  <div class="card shadow summary-card">
+    <div class="card-header bg-success text-white fw-bold">
+      Payment Summary
+    </div>
+    <div class="card-body">
+
+      <p><strong>Payment Type:</strong> <span id="paymentType"></span></p>
+      <p><strong>Number of Items:</strong> <span id="itemCount"></span></p>
+      <p><strong>Total Amount:</strong> $<span id="totalAmount"></span></p>
+
+      <button id="payNowBtn" class="btn btn-success w-100 mt-3">
+        Pay Now
+      </button>
+
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer text-center mt-5">
+  &copy; Cocky Consulting 2025.<br>
+  All rights reserved.<br>
+  <a href="sitemap.html" class="sitelink">SiteMap</a>
+</footer>
+
+<script>
+const API = "https://api242.onrender.com";
+
+async function initializePaymentPage() {
+  const params = new URLSearchParams(window.location.search);
+  const cartId = params.get("cartId");
+  const uid = localStorage.getItem("uid");
+
+  if (!cartId || !uid) {
+    alert("Missing cart or user information.");
+    return;
+  }
+
+  // Load cart items
+  const res = await fetch(`${API}/cartitems/cart/${cartId}`);
+  const items = await res.json();
+
+  if (!items || items.length === 0) {
+    alert("No items found in this cart.");
+    return;
+  }
+
+  // Determine payment type
+  const isReservation = items.some(i => i.resStart && i.resEnd);
+
+  const paymentType = isReservation ? "Reservation" : "Invoice";
+  const totalAmount = items.reduce((sum, i) => sum + (i.itemtotals || 0), 0);
+  const itemCount = items.length;
+
+  // Display summary
+  document.getElementById("paymentType").textContent = paymentType;
+  document.getElementById("itemCount").textContent = itemCount;
+  document.getElementById("totalAmount").textContent = totalAmount.toFixed(2);
+
+  // Pay Now handler
+  document.getElementById("payNowBtn").onclick = () =>
+    processPayment(uid, cartId, items, paymentType, totalAmount);
+}
+
+async function processPayment(uid, cartId, items, paymentType, totalAmount) {
+  if (!confirm(`Confirm payment of $${totalAmount.toFixed(2)}?`)) return;
+
+  // 1️⃣ Create Payment
+  const payment = {
+    paymentId: 0,
+    cartid: cartId,
+    bookingId: 0,
+    paymentMethod: "Card",
+    cardType: "Card",
+    cardLast4: "0000",
+    cardExpDate: "",
+    amountPaid: totalAmount,
+    amountRefunded: 0,
+    paymentDate: new Date().toISOString(),
+    transactionId: "TXN" + Math.floor(Math.random() * 999999),
+    refundTransactionid: "",
+    useridasstring: uid.toString(),
+    transtype: "Payment",
+    fullname: ""
+  };
+
+  await fetch(`${API}/payments`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payment)
+  });
+
+  // 2️⃣ Create Reservation or Invoice
+  if (paymentType === "Reservation") {
+    const reservation = {
+      bookingId: 0,
+      uid: uid,
+      totalAmount: totalAmount,
+      transactionId: payment.transactionId,
+      cartid: cartId,
+      reservationtype: "Reservation",
+      reservationstatus: "Completed",
+      resStart: items[0].resStart,
+      resEnd: items[0].resEnd,
+      createdAt: new Date().toISOString()
+    };
+
+    await fetch(`${API}/reservations`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(reservation)
+    });
+
+    alert("Reservation completed successfully.");
+    window.location.href = "mypurchases5.html";
+
+  } else {
+    const invoice = {
+      invoiceId: 0,
+      customerId: uid,
+      subtotal: totalAmount,
+      taxTotal: 0,
+      discountTotal: 0,
+      grandTotal: totalAmount,
+      invoiceDate: new Date().toISOString(),
+      dueDate: new Date().toISOString(),
+      status: "paid",
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      cartId: cartId
+    };
+
+    await fetch(`${API}/invoices`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(invoice)
+    });
+
+    alert("Invoice created successfully.");
+    window.location.href = "myinvoices.html";
+  }
+}
+</script>
+
+</body>
+</html>

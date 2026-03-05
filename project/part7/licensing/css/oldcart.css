@@ -1,0 +1,299 @@
+#userGreeting
+{
+text-align: center;
+vertical-align: middle;
+color: yellow;
+}
+#banner
+{
+background-color: lightgrey;
+height: 60px;
+vertical-align: middle;
+width: 100%;
+}
+
+
+* { box-sizing: border-box; }
+
+.columnproducts { float: left; width: 30%; padding: 10px; height: 450px; }
+.columnselected { float: left; width: 52%; padding: 10px; height: 450px; }
+.columnactions { float: left; width: 13%; padding: 10px; height: 450px; background-color: blue; font: white; text-align: center; margin: 0 auto; }
+.column3 { float: left; width: 15%; padding: 10px; height: 300px; }
+.parkinfo { float: left; width: 49%; padding: 10px; height: 500px; overflow-y: auto;}
+.cartinfo { float: left; width: 49%; padding: 10px; height: 500px; overflow-y: auto;}
+
+licenses6.htmltuff { background-color: #aaa; height: 640px; width: 95%; }
+#interiorpanel { margin-left: 50px; height: 150px; width: 95%;   margin-bottom: 5px;
+  padding-bottom: 5px;}
+
+#salesgrid
+{
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  float: left;
+  margin-left: 50px;
+  width: 95%;
+  height: 450px;
+}  
+
+button { width: 150px; height: 60px; }
+
+.row:after { content: ""; display: table; clear: both; height: 10px; }
+.row2:after { content: ""; display: table; clear: both; height: 10px; }
+
+body { font-family: Arial, sans-serif; padding: 20px; }
+h1 { text-align: center; }
+.container2 { width: 1500px; }
+  
+#catalogue { min-width: 80%; max-width: 30%; font-size: 9pt; height: 300px; }
+#someselected { min-width: 80%; max-width: 450px; font-size: 9pt;  height: 300px;}
+
+#selected {
+  width: 450px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+#selected th, 
+#selected td {
+  border: 1px solid #999;
+  padding: 6px 10px;
+  text-align: left;
+}
+
+#selected th {
+  background-color: #e0e0e0;
+  font-weight: bold;
+  width: 80px;
+}
+
+#selected tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Column widths */
+#selected th:nth-child(1),
+#selected td:nth-child(1) {
+  width: 35%;   /* Item column */
+}
+
+#selected th:nth-child(2),
+#selected td:nth-child(2) {
+  width: 15%;   /* Price column */
+}
+
+#selected th:nth-child(3),
+#selected td:nth-child(3),
+#selected th:nth-child(4),
+#selected td:nth-child(4) {
+  width: 10%;   /* Adults & Children columns */
+  text-align: center;
+}
+/* Master container2 spans full width */
+/* Master container2 spans full width and centers content */
+.master-row {
+  display: flex;
+  /*justify-content: center;   center horizontally */
+  /*align-items: flex-start;   align at the top */
+  gap: 30px;                 /* space between date block and radios */
+  width: 95%;
+  margin: 20px auto;         /* center with margin */
+  box-sizing: border-box;
+  float: left;
+  background-color: #75BFEC;
+}
+
+/* Date block styling */
+.date-block {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+/* Interests block styling */
+.interests-block {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 0.8rem;          /* smaller print */
+}
+
+#park-details
+{
+font-size: 10pt;
+margin-top: 3px;
+margin-bottom: 3px;
+left:20px;
+}
+
+ /* Modal background */
+    #reservationModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Modal box */
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 450px;
+      text-align: center;
+      background-color: peachpuff;
+    }
+
+    /* Modal inputs (full width for usability) */
+    .modal-content input {
+      width: 80%;
+      padding: 6px;
+      margin-top: 8px;
+    }
+
+    /* Result window fields (your request: 50px wide) */
+    .result-field {
+      width: 150px;
+      padding: 4px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 8px 16px;
+    }
+
+#modalStartDate
+  {
+  width: 190px;
+  }
+#modalEndDate
+  {
+  width: 190px;
+  }
+
+  
+ .number-row {
+  width: 100%;
+  overflow: hidden; /* keeps the row height correct */
+  margin-bottom: 8px;
+}
+
+.number-row label,
+.number-row input,
+.number-row button {
+  float: left;
+  margin-right: 6px;
+}
+
+#leftblock input[type="date"],
+#leftblock input[type="number"] {
+  border: 1px solid #ccc;   /* or your preferred border */
+  outline: none;
+  box-shadow: none;
+}
+
+#reservationModal button {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  margin: 2px;
+  font-size: 16px;
+  line-height: 30px;
+  text-align: center;
+  display: inline-block;
+}
+
+/* Make modal inputs consistent */
+#reservationModal input[type="number"],
+#reservationModal input[type="date"] {
+  width: 100px;          /* ✅ fixed width */
+  height: 28px;
+  font-size: 14px;
+  padding: 2px 4px;
+  box-sizing: border-box;
+}
+
+/* Make + / – buttons small and neat */
+#reservationModal .number-row button {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  margin-left: 4px;
+  font-size: 18px;
+  line-height: 28px;
+  text-align: center;
+}
+
+/* Left-align the number rows */
+#reservationModal .number-row {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+#reservationModal .number-row label,
+#reservationModal .number-row input,
+#reservationModal .number-row button {
+  float: left;
+  margin-right: 6px;
+}
+
+/* --- MASTER LAYOUT --- */
+.master-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  width: 95%
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  max-height: 100px;
+}
+
+/* --- LEFT COLUMN --- */
+.left-column {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  border-bottom: none;  
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+.date-block,
+.shell-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+/* --- RIGHT COLUMN --- */
+.right-column {
+  display: flex;
+  flex-direction: row;   /* puts h5 and interests on same line */
+  align-items: center;
+  gap: 20px;
+  flex-wrap: nowrap;
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+/* --- INTERESTS BLOCK --- */
+.interests-block {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;     /* keeps all checkboxes on one line */
+  gap: 15px;
+  align-items: center;
+}
+
+
+

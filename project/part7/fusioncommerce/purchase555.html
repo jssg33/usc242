@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>FusionCommerce – Product Review</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script type="module" src="https://esm.run/@material/web/all.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="stylesheet" href="./css/licenses.css" />
+  <link rel="stylesheet" href="./css/fusioncart.css" />
+  <!-- Your new JS files -->
+  <script src="./js/products.js"></script>
+  <script src="./js/cart.js"></script>
+</head>
+
+<body onload="
+  loadCompanyDetails();
+  loadProductSummary();
+  loadCartMaster();
+  checkpll();
+  checkUserStatus();
+  displayProfilePicture();
+">
+
+  <!-- ========================= -->
+  <!-- NAVIGATION BAR -->
+  <!-- ========================= -->
+  <div class="navbar">
+    <div class="nav-left">
+      <div class="dropdown">
+        <button class="jsmenu"><img src="./images/greenmenu5.png"></button>
+        <div class="dropdown-content">
+             <a href="../index.html">Home</a>
+            <a href="../login.html">Login</a>
+            <a href="../logout.html">Logout</a>
+            <a href="../welcome.html">Welcome</a>
+            <a href="../licenses.html">Licenses</a>
+            <a href="../deployments.html">Deployments</a>
+            <a href="../reviews.html">AllReviews</a>
+            <a href="../mylicenselogs.html">MyLicenseLogs</a>
+            <a href="../mylicenses.html">MyLicenses</a>
+            <a href="../pricing/wizard.html">PricingWizard</a>
+            <a href="../mycart.html?uid=1">MyCart</a>
+            <a href="../myprofile.html">MyProfile</a>
+            <a href="../testimonials.html">AdminTestimonials</a>
+            <a href="../products.html">AdminProducts</a>
+            <a href="../licensetypes.html">AdminLicenseTypes</a>
+            <a href="../template.html">AdminPageTemplate</a>
+        </div>
+        <div class="logo">&nbsp;&nbsp;FusionCommerce – Product Review</div>
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <img src="./images/blackcircle.png" id="profilephototarget" alt="User" onclick="window.location.href='myprofile.html'" />
+      <span id="H3UserBanner"></span>
+      <div class="right-links" style="display:flex; gap:6px; align-items:center; color: white;">
+
+        <md-text-button class="icon-only" href="../index.html" aria-label="Home" title="Home">
+          <span class="material-icons" style="color:white;">home</span>
+        </md-text-button>
+      
+        <md-text-button class="icon-only" href="../userhelp.html" aria-label="Help" title="Help">
+          <span class="material-icons" style="color:white;">help_outline</span>
+        </md-text-button>
+      
+        <md-text-button class="icon-only" href="../usernotices.html" aria-label="Notifications" title="Notifications">
+          <span class="material-icons" style="color:white;">notifications</span>
+        </md-text-button>
+      
+        <md-text-button class="icon-only" href="../login.html" aria-label="Login" title="Login">
+          <span class="material-icons" style="color:white;">login</span>
+        </md-text-button>
+      
+        <md-text-button class="icon-only" href="../logout.html" aria-label="Logout" title="Logout">
+          <span class="material-icons" style="color:white;">logout</span>
+        </md-text-button>
+      
+         <md-text-button class="icon-only" href="../myprofile.html" aria-label="My Profile" title="My Profile">
+          <span class="material-icons" style="color:white;">person</span>
+        </md-text-button>
+      
+         <md-text-button class="icon-only" href="../mycart.html" aria-label="My Cart" title="My Cart">
+          <span class="material-icons" style="color:white;">shopping_cart</span>
+        </md-text-button>
+      </div>
+    </div>
+  </div>
+
+  <div align="center" id="banner"><span id="userGreeting">Welcome Guest</span></div>
+  <br><br>
+
+  <!-- ========================= -->
+  <!-- TOP PANELS: COMPANY + CARTMASTER -->
+  <!-- ========================= -->
+  <div class="top-panels">
+
+    <!-- LEFT PANEL: COMPANY (TENANT) SUMMARY -->
+    <div class="product-panel">
+      <h3>Company (Tenant) Summary</h3>
+      <hr>
+      <div id="company-details">
+        <!-- Filled by loadCompanyDetails() -->
+      </div>
+
+      <hr>
+      <h3>Product Info</h3>
+
+      <label><strong>Current Product:</strong></label>
+      <span id="currentProductId"></span> -
+      <span id="currentProductName"></span>
+
+      <br><br>
+
+      <label for="productSelector">Select Product:</label>
+      <select id="productSelector" onchange="changeProduct()">
+        <option value="">Choose a Product</option>
+      </select>
+
+      <hr>
+      <div id="product-details"></div>
+    </div>
+
+    <!-- RIGHT PANEL: CARTMASTER -->
+    <div class="cartmaster-panel">
+      <h3>User CartMaster Summary</h3>
+      <hr>
+
+      <div id="cartMasterCard">
+        <p><strong>User ID:</strong> <span id="cmUserId"></span></p>
+        <p><strong>Loyalty ID:</strong> <span id="cmLoyaltyId"></span></p>
+        <p><strong>Vendor:</strong> <span id="cmVendor"></span></p>
+        <p><strong>Carts Count:</strong> <span id="cmCartsCount"></span></p>
+        <p><strong>Active Carts:</strong> <span id="cmCartsActive"></span></p>
+        <p><strong>Cancelled Carts:</strong> <span id="cmCartsCancelled"></span></p>
+        <p><strong>Active List:</strong> <span id="cmCartsActiveList"></span></p>
+
+        <button onclick="createNewCart()">Add New Cart</button>
+      </div>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <!-- ========================= -->
+  <!-- PRODUCT OPTIONS + SALES GRID -->
+  <!-- ========================= -->
+  <div id="productstuff">
+
+    <div id="interiorpanel">
+      <h4>Product Options</h4>
+
+      <div class="master-row">
+
+        <!-- LEFT COLUMN -->
+        <div class="left-column">
+          <h5>Order Basics</h5>
+
+          <label>Quantity:</label>
+          <input type="number" id="globalQuantity" min="1" value="1" style="width:60px;">
+
+          <br><br>
+
+          <label>Start Date (optional):</label>
+          <input type="date" id="globalStartDate">
+
+          <br><br>
+
+          <label>End Date (optional):</label>
+          <input type="date" id="globalEndDate">
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="right-column">
+          <h5>Preferences</h5>
+          <div class="interests-block">
+            <label><input type="checkbox" value="giftwrap"> Gift Wrap</label>
+            <label><input type="checkbox" value="express"> Express Shipping</label>
+            <label><input type="checkbox" value="insurance"> Add Insurance</label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row" id="salesgrid">
+
+      <!-- PRODUCT CATALOG -->
+      <div class="columnproducts">
+        <h3>Products</h3>
+        <hr>
+        <select id="catalogue" multiple></select>
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="columnactions">
+        <h3>Actions</h3>
+        <hr>
+        <button onclick="moveToSelected()">Add Item(s)</button><br><br>
+        <button onclick="moveToCatalogue()">Remove Item(s)</button><br><br>
+        <button onclick="addSelectedToCart()">Save Item(s)</button>
+      </div>
+
+      <!-- SELECTED ITEMS -->
+      <div class="columnselected">
+        <h3>Selected</h3>
+        <hr>
+        <table id="selected">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Qty</th>
+              <th>Subtotal</th>
+              <th>State Tax (6%)</th>
+              <th>Local Tax (1.5%)</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ========================= -->
+  <!-- PRODUCT OPTIONS MODAL -->
+  <!-- ========================= -->
+  <div id="productOptionsModal">
+    <div class="modal-content">
+      <h3>Product Options</h3>
+
+      <label>Quantity:</label>
+      <input type="number" id="modalQuantity" value="1" min="1">
+
+      <br><br>
+      <button onclick="submitProductOptions()">Submit</button>
+      <button onclick="closeProductOptionsModal()">Close</button>
+    </div>
+  </div>
+  <script>
+ document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const urlTenant = params.get("tenantId");
+    const currentTenant = localStorage.getItem("tenant");
+
+    // If SSO already set a tenant, DO NOT overwrite it
+    if (!currentTenant || currentTenant.trim() === "") {
+      if (urlTenant) {
+        localStorage.setItem("tenant", urlTenant);
+      } else {
+        localStorage.setItem("tenant", "GACOM"); // fallback
+      }
+    }
+
+    // Store SKUID if present
+    const urlSku = params.get("SKUID");
+    if (urlSku) {
+      localStorage.setItem("selectedSku", urlSku);
+    }
+  });
+
+  </script>
+
+</body>
+
+<footer class="footer">
+  &copy; Greenville Associates Consulting, Inc.<br>
+  All rights reserved.<br>
+  <a href="sitemap.html" class="sitelink">SiteMap</a>
+</footer>
+
+</html>
