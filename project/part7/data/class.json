@@ -1,8 +1,9 @@
 [
   {
     "id": "1",
-    "moviename": "Cheech and Chong's Great Adventue",
+    "moviename": "Cheech and Chong's Up In Smoke",
     "url": "https://jssg33.github.io/usc242/project/part7/images/1.png",
+    "youtube": "https://youtu.be/FAaTp_WCREw?si=0Xt-2Lm2bHZFLS5u",
     "rating": "R",
     "runtime": "91mins",
     "reviews": {
@@ -15,6 +16,7 @@
     "id": "2",
     "moviename": "Ferris Buellers Day Off",
     "url": "https://jssg33.github.io/usc242/project/part7/images/2.png",
+    "youtube": "https://youtu.be/LOMO_eSGcU4?si=I2VdV_IPd6AgvOmz",
     "rating": "PG",
     "runtime": "103mins",
     "reviews": {
@@ -27,6 +29,7 @@
     "id": "3",
     "moviename": "Fast Times at Ridgemont High",
     "url": "https://jssg33.github.io/usc242/project/part7/images/3.png",
+    "youtube": "https://youtu.be/sW1S4f9tyF8?si=_cXkEh82KXTqt6o6",
     "rating": "R",
     "runtime": "90mins",
     "reviews": {
@@ -39,6 +42,7 @@
     "id": "4",
     "moviename": "The River Runs Through It",
     "url": "https://jssg33.github.io/usc242/project/part7/images/4.png",
+    "youtube": "https://youtu.be/OsIolBViUmc?si=E-jabchCILQmeyLo",
     "rating": "R",
     "runtime": "123mins",
     "reviews": {
@@ -51,6 +55,7 @@
     "id": "5",
     "moviename": "James Bond - Living Daylights",
     "url": "https://jssg33.github.io/usc242/project/part7/images/5.png",
+    "youtube": "https://youtu.be/EztlQ7N-kpo?si=5Vk6Gv8UC0OcqtW2",
     "rating": "PG13",
     "runtime": "130mins",
     "reviews": {
@@ -63,6 +68,7 @@
     "id": "6",
     "moviename": "Top Gun",
     "url": "https://jssg33.github.io/usc242/project/part7/images/6.png",
+    "youtube": "https://youtu.be/XbgJIZlJyow?si=ymPmnE3Bg6DQzFc_",
     "rating": "PG",
     "runtime": "110mins",
     "reviews": {
@@ -75,6 +81,7 @@
     "id": "7",
     "moviename": "Pretty Woman",
     "url": "https://jssg33.github.io/usc242/project/part7/images/7.png",
+    "youtube": "https://youtu.be/jvd3TjJaf3c?si=KmJzrPRatHY02E9a",
     "rating": "R",
     "runtime": "119mins",
     "reviews": {
@@ -87,6 +94,7 @@
     "id": "8",
     "moviename": "Glory",
     "url": "https://jssg33.github.io/usc242/project/part7/images/8.png",
+    "youtube": "https://youtu.be/fTzyurjomws?si=aH5kSn6y_vCil-IJ",
     "rating": "R",
     "runtime": "122mins",
     "reviews": {
