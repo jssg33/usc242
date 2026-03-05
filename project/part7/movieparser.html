@@ -14,6 +14,32 @@
 <title>Greenville Associates Enterprise Software | Enterprise Licensing</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column1 {
+  float: left;
+  width: 30%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+.column2 {
+  float: left;
+  width: 70%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+	
 /* Grid wrapper */
 #nowplaying {
   display: grid;
@@ -152,9 +178,11 @@
         <hr>
     </div>
 
-	
-<div id="movieresults">
+<div class="row">	
+<div class="column1"><iframe src="https://youtube.com" width="300px" height="700px" name="bigscreen"></div>
+<div class="column2" id="movieresults">
     <ul id="nowplaying"></ul>
+</div>
 </div>
 
 <button onclick="getmovies()">Get Movies</button>
