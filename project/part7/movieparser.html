@@ -32,37 +32,44 @@
   height: 300px; /* Should be removed. Only for demonstration */
 }
 
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
+/* Two-column layout */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
-	
-/* Grid wrapper */
+.column {
+  padding: 10px;
+}
+
+.left {
+  flex: 50%;
+}
+
+.right {
+  flex: 50%;
+}
+
+/* Movie grid inside left column */
 #nowplaying {
   display: grid;
   gap: 20px;
-  padding: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 
-/* Individual card */
 .movie-card {
-  max-width: 350px;
-  margin: auto;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   border-radius: 10px;
+  overflow: hidden;
 }
 
-/* Movie image */
 .movie-img {
-  height: 300px;
+  width: 100%;
+  height: 250px;
   object-fit: cover;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
 }
+
 #movie-results {width: 90%; min-height: 500px; background-color: lightblue; border: 2px solid black;};
 /* Force exactly 2 cards per row at 1000px+ */
 @media (min-width: 1000px) {
@@ -177,22 +184,26 @@
         <span align="center"><h4>Assignment 11 - JSON Tester</h4></span>
         <hr>
     </div>
-<div align="center"><button onclick="getmovies()">Get Movies</button></div>
-<div id="movieresults">
-    <div id="nowplaying"></div>
+<div align="center"><button onclick="getmovies()">Get Movies</button></div><BR><HR>
+<div class="row">
+  <!-- LEFT COLUMN: MOVIES -->
+  <div class="column left">
+      <h3>Now Playing</h3>
+      <div id="nowplaying"></div>
+  </div>
+
+  <!-- RIGHT COLUMN: PLAYER -->
+  <div class="column right">
+      <h3>Player</h3>
+      <iframe 
+          src="https://www.disney.com"
+          name="bigscreen"
+          width="100%"
+          height="500px"
+          style="max-height:500px; overflow:auto; border:1px solid #ccc;">
+      </iframe>
+  </div>
 </div>
-<HR>
-<div class="row">	
-<div class="column1"><iframe 
-    src="https://www.disney.com" 
-    width="100%" 
-    height="500px" 
-    style="max-height:500px; overflow:auto;" 
-    scrolling="yes"
-    name="bigscreen">
-</iframe></div>
-</div>
-<HR>
 
 
 <script>
@@ -202,19 +213,28 @@ async function getmovies() {
     const data = await response.json();
 
     const container = document.getElementById("nowplaying");
-    container.innerHTML = ""; 
+    container.innerHTML = "";
 
     data.forEach(movie => {
       const card = document.createElement("div");
-      card.className = "movie-card card";
+      card.className = "movie-card";
+
+      // If YouTube URL exists, wrap card in a link
+      const clickable = movie.youtube
+        ? `<a href="${movie.youtube}" target="bigscreen">`
+        : "";
+
+      const clickableEnd = movie.youtube ? "</a>" : "";
 
       card.innerHTML = `
-        <img src="${movie.url}" class="card-img-top movie-img" alt="${movie.moviename}">
-        <div class="card-body">
-          <h5 class="card-title">${movie.moviename}</h5>
-          <p class="card-text"><strong>Rating:</strong> ${movie.rating}</p>
-          <p class="card-text"><strong>Runtime:</strong> ${movie.runtime}</p>
+        ${clickable}
+        <img src="${movie.url}" class="movie-img" alt="${movie.moviename}">
+        <div class="card-body" style="padding:10px;">
+          <h5>${movie.moviename}</h5>
+          <p><strong>Rating:</strong> ${movie.rating}</p>
+          <p><strong>Runtime:</strong> ${movie.runtime}</p>
         </div>
+        ${clickableEnd}
       `;
 
       container.appendChild(card);
@@ -224,6 +244,7 @@ async function getmovies() {
     console.error("Error loading movies:", error);
   }
 }
+
 
 
 
