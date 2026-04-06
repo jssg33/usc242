@@ -304,9 +304,17 @@ document.querySelectorAll("th[data-col]").forEach(th => {
 // Add review
 async function addReview() {
     const form = document.querySelector("#addForm");
-    const data = Object.fromEntries(new FormData(form));
+    const formData = new FormData(form);
 
-    data.verifiedPurchase = data.verifiedPurchase === "true";
+    const data = {
+        productId: formData.get("productId") || null,
+        userId: formData.get("userId") || null,
+        rating: Number(formData.get("rating")),
+        title: formData.get("title") || null,
+        review: formData.get("review") || null,
+        verifiedPurchase: formData.get("verifiedPurchase") === "true",
+        uid: formData.get("uid") ? Number(formData.get("uid")) : null
+    };
 
     await fetch(API, {
         method: "POST",
