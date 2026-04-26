@@ -32,7 +32,9 @@ async function loadHomes() {
           <p class="card-text">
             <strong>Price:</strong> $${home.price.toLocaleString()}<br>
             <strong>Bedrooms:</strong> ${home.floorPlan.bedrooms}<br>
-            <strong>Bathrooms:</strong> ${home.floorPlan.bathrooms}
+            <strong>Bathrooms:</strong> ${home.floorPlan.bathrooms}<br>
+            <strong>SqFt:</strong>${home.floorPlan.squareFeet}<br>
+            <strong>Descr:</strong>${home.floorPlan.layoutDescription}
           </p>
         </div>
       </div>
@@ -60,8 +62,9 @@ async function loadAdminTable() {
       <td>${home.status}</td>
       <td>${home.floorPlan.bedrooms}</td>
       <td>${home.floorPlan.bathrooms}</td>
-      <td>
-        <button class="btn btn-warning btn-sm" onclick="updateHome('${home._id}')">Update</button>
+       <td>
+        <button class="btn btn-warning btn-sm" onclick="updateHome('${home._id}')">Update Realtor Info</button>
+        <button class="btn btn-warning btn-sm" onclick="updateHome('${home._id}')">Update Property Info</button>
         <button class="btn btn-danger btn-sm" onclick="deleteHome('${home._id}')">Delete</button>
       </td>
     `;
