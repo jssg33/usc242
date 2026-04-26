@@ -34,7 +34,6 @@
   border-radius: 6px;             /* optional: soft corners */
   display: inline-block;          /* keeps background tight around text */
   width: 100%;
-  min-width: 900px;
   margin: 0 auto;
   margin-bottom: 20px;
   margin-top: 20px;
