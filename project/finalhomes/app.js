@@ -169,6 +169,67 @@ async function deleteHome(id) {
   loadAdminTable();
 }
 
+async function showDetails(id) {
+  const res = await fetch(`${API_ROOT}/${id}`);
+  const home = await res.json();
+
+  const html = `
+    <h4>${home.address.street}, ${home.address.city}, ${home.address.state}</h4>
+    <hr>
+
+    <h5>Realtor Info</h5>
+    <p>
+      <strong>Username:</strong> ${home.username || "N/A"}<br>
+      <strong>Reseller:</strong> ${home.resellerName}<br>
+      <strong>Email:</strong> ${home.contactEmail}<br>
+      <strong>Phone:</strong> ${home.contactPhone || "N/A"}
+    </p>
+
+    <h5>Property Info</h5>
+    <p>
+      <strong>Price:</strong> $${home.price.toLocaleString()}<br>
+      <strong>Status:</strong> ${home.status}<br>
+      <strong>Type:</strong> ${home.propertyType}<br>
+      <strong>Year Built:</strong> ${home.yearBuilt || "N/A"}<br>
+      <strong>Lot Size:</strong> ${home.lotSizeSqFt || "N/A"} sq ft<br>
+      <strong>Description:</strong> ${home.description || "N/A"}
+    </p>
+
+    <h5>Floor Plan</h5>
+    <p>
+      <strong>Bedrooms:</strong> ${home.floorPlan.bedrooms}<br>
+      <strong>Bathrooms:</strong> ${home.floorPlan.bathrooms}<br>
+      <strong>Square Feet:</strong> ${home.floorPlan.squareFeet}<br>
+      <strong>Layout:</strong> ${home.floorPlan.layoutDescription || "N/A"}
+    </p>
+
+    <h5>Address Details</h5>
+    <p>
+      <strong>Street:</strong> ${home.address.street}<br>
+      <strong>Unit:</strong> ${home.address.unit || "N/A"}<br>
+      <strong>City:</strong> ${home.address.city}<br>
+      <strong>State:</strong> ${home.address.state}<br>
+      <strong>Zip:</strong> ${home.address.zipCode}<br>
+      <strong>Address ID:</strong> ${home.address.Id}<br>
+      <strong>Coordinates:</strong> ${home.address.coordinates.lat}, ${home.address.coordinates.lng}
+    </p>
+
+    <h5>Images</h5>
+    <div class="row">
+      ${home.images.map(img => `
+        <div class="col-md-4 mb-3">
+          <img src="${img}" class="img-fluid rounded border" />
+        </div>
+      `).join("")}
+    </div>
+  `;
+
+  document.getElementById("detailsContent").innerHTML = html;
+
+  new bootstrap.Modal(document.getElementById("detailsModal")).show();
+}
+
+
 /* -------------------------------
    INITIAL LOAD
 --------------------------------*/
