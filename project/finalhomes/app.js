@@ -20,8 +20,10 @@ function showAdminPage() {
 async function loadHomes() {
   const res = await fetch(API_ROOT);
   const homes = await res.json();
+  console.log("Homes returned from API:", homes);
 
   const container = document.getElementById("homesContainer");
+  console.log("homesContainer element:", container);
   container.innerHTML = "";
 
   homes.forEach((home) => {
