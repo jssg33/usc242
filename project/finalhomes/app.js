@@ -38,7 +38,7 @@ async function loadHomes() {
             <strong>Bedrooms:</strong> ${home.floorPlan.bedrooms}<br>
             <strong>Bathrooms:</strong> ${home.floorPlan.bathrooms}<br>
             <strong>SqFt:</strong> ${home.floorPlan.squareFeet}<br>
-            <strong>Descr:</strong> ${home.floorPlan.layoutDescription}
+            <strong>Description:</strong><br> ${home.floorPlan.layoutDescription}
           </p>
         </div>
       </div>
