@@ -37,13 +37,15 @@
     #adminPage {
       display: none;
     }
-.pageheader
-    {
-      color: #BFE9CF;
-      font-size: 32pt;
-      text-align: center;
-    }
-
+.pageheader {
+  color: #BFE9CF;
+  font-size: 32pt;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5); /* black @ 50% opacity */
+  padding: 10px 20px;             /* adds breathing room */
+  border-radius: 6px;             /* optional: soft corners */
+  display: inline-block;          /* keeps background tight around text */
+}
 .modal-dialog {
   margin-top: 80px !important; /* pushes modal below your navbar */
 }
