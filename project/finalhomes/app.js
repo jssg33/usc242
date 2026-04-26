@@ -28,23 +28,22 @@ async function loadHomes() {
     const card = document.createElement("div");
     card.className = "col-md-4";
 
+    card.innerHTML = `
+      <div class="card home-card shadow-sm" onclick="showDetails('${home._id}')">
+        <img src="${home.images?.[0] || 'https://via.placeholder.com/400'}" class="card-img-top" />
+        <div class="card-body">
+          <h5 class="card-title">${home.address.street}, ${home.address.city}</h5>
+          <p class="card-text">
+            <strong>Price:</strong> $${home.price.toLocaleString()}<br>
+            <strong>Bedrooms:</strong> ${home.floorPlan.bedrooms}<br>
+            <strong>Bathrooms:</strong> ${home.floorPlan.bathrooms}<br>
+            <strong>SqFt:</strong> ${home.floorPlan.squareFeet}<br>
+            <strong>Description:</strong><br> ${home.floorPlan.layoutDescription}
+          </p>
+        </div>
+      </div>
+    `;
 
-card.innerHTML = `
-  <div class="card home-card shadow-sm" onclick="showDetails('${home._id}')">
-    <img src="${home.images?.[0] || 'https://via.placeholder.com/400'}" class="card-img-top" />
-    <div class="card-body">
-      <h5 class="card-title">${home.address.street}, ${home.address.city}</h5>
-      <p class="card-text">
-        <strong>Price:</strong> $${home.price.toLocaleString()}<br>
-        <strong>Bedrooms:</strong> ${home.floorPlan.bedrooms}<br>
-        <strong>Bathrooms:</strong> ${home.floorPlan.bathrooms}<br>
-        <strong>SqFt:</strong> ${home.floorPlan.squareFeet}<br>
-        <strong>Description:</strong><br> ${home.floorPlan.layoutDescription}
-      </p>
-    </div>
-  </div>
-`;
-  
     container.appendChild(card);
   });
 }
@@ -170,6 +169,9 @@ async function deleteHome(id) {
   loadAdminTable();
 }
 
+/* -------------------------------
+   DETAILS MODAL
+--------------------------------*/
 async function showDetails(id) {
   const res = await fetch(`${API_ROOT}/${id}`);
   const home = await res.json();
@@ -229,6 +231,12 @@ async function showDetails(id) {
 
   new bootstrap.Modal(document.getElementById("detailsModal")).show();
 }
+
+/* -------------------------------
+   INITIAL LOAD
+--------------------------------*/
+loadHomes();
+
 
 
 /* -------------------------------
