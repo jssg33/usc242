@@ -235,12 +235,5 @@ async function showDetails(id) {
 /* -------------------------------
    INITIAL LOAD
 --------------------------------*/
-loadHomes();
-
-
-
-/* -------------------------------
-   INITIAL LOAD
---------------------------------*/
-loadHomes();
+document.addEventListener("DOMContentLoaded", loadHomes);
 
