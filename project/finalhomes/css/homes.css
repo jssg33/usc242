@@ -6,6 +6,8 @@
       background-position: center;
       min-height: 900px; 
     }
+  footer{ background-color: black; color: white; text-align: center; height: 50px;}
+
     .home-card {
   height: 400px;
   overflow: hidden;
@@ -36,7 +38,7 @@
   margin: 0 auto;
   margin-bottom: 20px;
   margin-top: 20px;
-}
+ }
 .modal-dialog {
   margin-top: 80px !important; /* pushes modal below your navbar */
 }
