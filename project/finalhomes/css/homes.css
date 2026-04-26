@@ -31,6 +31,10 @@
   padding: 10px 20px;             /* adds breathing room */
   border-radius: 6px;             /* optional: soft corners */
   display: inline-block;          /* keeps background tight around text */
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 .modal-dialog {
   margin-top: 80px !important; /* pushes modal below your navbar */
