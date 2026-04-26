@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin – Manage Homes</title>
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">RealtorMock Admin</a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarMenu"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">User View</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ADMIN PAGE -->
+  <section class="container mt-4">
+    <h2 class="text-center mb-4">Admin Panel – Manage Homes</h2>
+
+    <table class="table table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Address</th>
+          <th>Price</th>
+          <th>Status</th>
+          <th>Beds</th>
+          <th>Baths</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="adminTableBody"></tbody>
+    </table>
+  </section>
+
+  <!-- UPDATE MODAL -->
+  <div class="modal fade" id="updateModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Update Home</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <form id="updateForm">
+            <input type="hidden" id="updateId">
+
+            <div class="mb-3">
+              <label class="form-label">Price</label>
+              <input type="number" id="updatePrice" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Status</label>
+              <select id="updateStatus" class="form-select">
+                <option value="available">Available</option>
+                <option value="pending">Pending</option>
+                <option value="sold">Sold</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Admin Logic -->
+  <script>
+    const API_ROOT = "https://api242.onrender.com/api/homes";
+
+    // Load admin table
+    async function loadAdminTable() {
+      const res = await fetch(API_ROOT);
+      const homes = await res.json();
+
+      const table = document.getElementById("adminTableBody");
+      table.innerHTML = "";
+
+      homes.forEach((home) => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${home._id || "N/A"}</td>
+          <td>${home.address.street}, ${home.address.city}</td>
+          <td>$${home.price.toLocaleString()}</td>
+          <td>${home.status}</td>
+          <td>${home.floorPlan.bedrooms}</td>
+          <td>${home.floorPlan.bathrooms}</td>
+          <td>
+            <button class="btn btn-warning btn-sm" onclick="openUpdateModal('${home._id}', ${home.price}, '${home.status}')">Update</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteHome('${home._id}')">Delete</button>
+          </td>
+        `;
+
+        table.appendChild(row);
+      });
+    }
+
+    // Open modal with data
+    function openUpdateModal(id, price, status) {
+      document.getElementById("updateId").value = id;
+      document.getElementById("updatePrice").value = price;
+      document.getElementById("updateStatus").value = status;
+
+      const modal = new bootstrap.Modal(document.getElementById("updateModal"));
+      modal.show();
+    }
+
+    // Handle update form
+    document.getElementById("updateForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const id = document.getElementById("updateId").value;
+      const price = Number(document.getElementById("updatePrice").value);
+      const status = document.getElementById("updateStatus").value;
+
+      await fetch(`${API_ROOT}/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ price, status })
+      });
+
+      alert("Home updated!");
+      loadAdminTable();
+
+      bootstrap.Modal.getInstance(document.getElementById("updateModal")).hide();
+    });
+
+    // Delete home
+    async function deleteHome(id) {
+      if (!confirm("Are you sure you want to delete this home?")) return;
+
+      await fetch(`${API_ROOT}/${id}`, { method: "DELETE" });
+
+      alert("Home deleted!");
+      loadAdminTable();
+    }
+
+    // Initial load
+    loadAdminTable();
+  </script>
+
+</body>
+</html>
