@@ -212,6 +212,7 @@ async function deleteHome(id) {
    DETAILS MODAL
 --------------------------------*/
 async function showDetails(id) {
+  console.log("showDetailsCall", id);
   const res = await fetch(`${API_ROOT}/${id}`);
   const home = await res.json();
 
