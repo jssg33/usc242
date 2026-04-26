@@ -25,7 +25,7 @@
     #adminPage {
       display: none;
     }
-.pageheader {
+.pageheader, adminheader {
   color: #BFE9CF;
   font-size: 32pt;
   text-align: center;
