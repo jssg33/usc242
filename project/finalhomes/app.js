@@ -18,36 +18,73 @@ function showAdminPage() {
    USER VIEW – LOAD HOMES
 --------------------------------*/
 async function loadHomes() {
-  const res = await fetch(API_ROOT);
-  const homes = await res.json();
-  console.log("Homes returned from API:", homes);
+  try {
+    const res = await fetch(API_ROOT);
+    
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
 
-  const container = document.getElementById("homesContainer");
-  console.log("homesContainer element:", container);
-  container.innerHTML = "";
+    const homes = await res.json();
+    console.log("Homes returned from API:", homes);
 
-  homes.forEach((home) => {
-    const card = document.createElement("div");
-    card.className = "col-md-4";
+    const container = document.getElementById("homesContainer");
+    console.log("homesContainer element:", container);
 
-    card.innerHTML = `
-      <div class="card home-card shadow-sm" onclick="showDetails('${home._id}')">
-        <img src="${home.images?.[0] || 'https://via.placeholder.com/400'}" class="card-img-top" />
-        <div class="card-body">
-          <h5 class="card-title">${home.address.street}, ${home.address.city}</h5>
-          <p class="card-text">
-            <strong>Price:</strong> $${home.price.toLocaleString()}<br>
-            <strong>Bedrooms:</strong> ${home.floorPlan.bedrooms}<br>
-            <strong>Bathrooms:</strong> ${home.floorPlan.bathrooms}<br>
-            <strong>SqFt:</strong> ${home.floorPlan.squareFeet}<br>
-            <strong>Description:</strong><br> ${home.floorPlan.layoutDescription}
-          </p>
+    if (!container) {
+      console.error("homesContainer element not found!");
+      return;
+    }
+
+    container.innerHTML = "";
+
+    homes.forEach((home) => {
+      const card = document.createElement("div");
+      card.className = "col-md-4";
+
+      // Safer way: avoid inline onclick with template string
+      card.innerHTML = `
+        <div class="card home-card shadow-sm">
+          <img src="${home.images?.[0] || 'https://via.placeholder.com/400'}" 
+               class="card-img-top" 
+               alt="${home.address.street || 'Home'}">
+          <div class="card-body">
+            <h5 class="card-title">${home.address.street}, ${home.address.city}</h5>
+            <p class="card-text">
+              <strong>Price:</strong> $${(home.price || 0).toLocaleString()}<br>
+              <strong>Bedrooms:</strong> ${home.floorPlan?.bedrooms || 'N/A'}<br>
+              <strong>Bathrooms:</strong> ${home.floorPlan?.bathrooms || 'N/A'}<br>
+              <strong>SqFt:</strong> ${home.floorPlan?.squareFeet || 'N/A'}<br>
+              <strong>Description:</strong><br> ${home.floorPlan?.layoutDescription || 'No description available'}
+            </p>
+          </div>
         </div>
-      </div>
-    `;
+      `;
 
-    container.appendChild(card);
-  });
+      // Add click handler safely (this is the best practice)
+      const homeCard = card.querySelector('.home-card');
+      if (homeCard) {
+        homeCard.style.cursor = "pointer";   // visual feedback
+        homeCard.addEventListener('click', () => {
+          showDetails(home._id);
+        });
+      }
+
+      container.appendChild(card);
+    });
+
+  } catch (error) {
+    console.error("Error loading homes:", error);
+    const container = document.getElementById("homesContainer");
+    if (container) {
+      container.innerHTML = `
+        <div class="alert alert-danger">
+          Failed to load homes. Please try again later.<br>
+          <small>${error.message}</small>
+        </div>
+      `;
+    }
+  }
 }
 
 /* -------------------------------
