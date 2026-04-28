@@ -300,8 +300,9 @@ document.getElementById("newHomeForm").addEventListener("submit", async (e) => {
   contactPhone: document.getElementById("newPhone").value || "string",
 
   address: {
+    Id: Date.now(), // REQUIRED by schema
     street: document.getElementById("newStreet").value || "string",
-    unit: document.getElementById("newUnit").value || "string",
+    unit: document.getElementById("newUnit").value || "",
     city: document.getElementById("newCity").value || "string",
     state: document.getElementById("newState").value || "string",
     zipCode: document.getElementById("newZip").value || "string",
@@ -315,22 +316,21 @@ document.getElementById("newHomeForm").addEventListener("submit", async (e) => {
     bedrooms: Number(document.getElementById("newBedrooms").value) || 0,
     bathrooms: Number(document.getElementById("newBathrooms").value) || 0,
     squareFeet: Number(document.getElementById("newSqft").value) || 0,
-    layoutDescription: document.getElementById("newLayout").value || "string",
-    images: [
-      "https://bt-photos.global.ssl.fastly.net/hhimls/1280_boomver_1_507916-78.jpg"
-    ]
+    layoutDescription: document.getElementById("newLayout").value || "",
+    images: document.getElementById("newFloorImages").value
+      .split(",")
+      .map(i => i.trim())
+      .filter(i => i.length > 0)
   },
 
   yearBuilt: Number(document.getElementById("newYear").value) || 0,
   lotSizeSqFt: Number(document.getElementById("newLot").value) || 0,
-  propertyType: document.getElementById("newType").value || "single-family",
+  propertyType: document.getElementById("newType").value, // must match enum
   price: Number(document.getElementById("newPrice").value) || 0,
-  status: document.getElementById("newStatus").value || "available",
-  description: document.getElementById("newDescription").value || "string",
+  status: document.getElementById("newStatus").value,
+  description: document.getElementById("newDescription").value || "",
 
-  images: [
-    "https://bt-photos.global.ssl.fastly.net/hhimls/1280_boomver_1_507916-78.jpg"
-  ],
+  images: propertyImages, // validated earlier
 
   createdAt: new Date().toISOString()
 };
