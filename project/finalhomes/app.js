@@ -339,6 +339,7 @@ document.getElementById("newHomeForm").addEventListener("submit", async (e) => {
     createdAt: new Date().toISOString()
   };
 
+  console.log("addhousepost", body)
   const res = await fetch(API_ROOT, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
