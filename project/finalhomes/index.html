@@ -137,16 +137,19 @@
       <div class="modal-body">
         <form id="newHomeForm">
 
+          <!-- Hidden Address ID (required by schema) -->
+          <input type="hidden" id="newAddressId" value="">
+
           <h5 class="mb-3">Realtor Info</h5>
 
           <label class="form-label">Username</label>
           <input class="form-control mb-2" id="newUsername">
 
-          <label class="form-label">Reseller Name</label>
-          <input class="form-control mb-2" id="newReseller">
+          <label class="form-label">Reseller Name <span class="text-danger">*</span></label>
+          <input class="form-control mb-2" id="newReseller" required>
 
-          <label class="form-label">Email</label>
-          <input class="form-control mb-2" id="newEmail">
+          <label class="form-label">Email <span class="text-danger">*</span></label>
+          <input class="form-control mb-2" id="newEmail" required>
 
           <label class="form-label">Phone</label>
           <input class="form-control mb-2" id="newPhone">
@@ -154,20 +157,20 @@
 
           <h5 class="mt-4 mb-3">Address</h5>
 
-          <label class="form-label">Street</label>
-          <input class="form-control mb-2" id="newStreet">
+          <label class="form-label">Street <span class="text-danger">*</span></label>
+          <input class="form-control mb-2" id="newStreet" required>
 
           <label class="form-label">Unit</label>
           <input class="form-control mb-2" id="newUnit">
 
-          <label class="form-label">City</label>
-          <input class="form-control mb-2" id="newCity">
+          <label class="form-label">City <span class="text-danger">*</span></label>
+          <input class="form-control mb-2" id="newCity" required>
 
-          <label class="form-label">State</label>
-          <input class="form-control mb-2" id="newState">
+          <label class="form-label">State <span class="text-danger">*</span></label>
+          <input class="form-control mb-2" id="newState" required>
 
-          <label class="form-label">Zip Code</label>
-          <input class="form-control mb-2" id="newZip">
+          <label class="form-label">Zip Code <span class="text-danger">*</span></label>
+          <input class="form-control mb-2" id="newZip" required>
 
           <div class="row">
             <div class="col">
@@ -183,8 +186,8 @@
 
           <h5 class="mt-4 mb-3">Property Info</h5>
 
-          <label class="form-label">Price</label>
-          <input class="form-control mb-2" id="newPrice" type="number">
+          <label class="form-label">Price <span class="text-danger">*</span></label>
+          <input class="form-control mb-2" id="newPrice" type="number" required>
 
           <label class="form-label">Status</label>
           <select class="form-select mb-2" id="newStatus">
@@ -193,8 +196,13 @@
             <option value="sold">Sold</option>
           </select>
 
-          <label class="form-label">Property Type</label>
-          <input class="form-control mb-2" id="newType">
+          <label class="form-label">Property Type <span class="text-danger">*</span></label>
+          <select class="form-select mb-2" id="newType" required>
+            <option value="single-family">Single Family</option>
+            <option value="townhome">Townhome</option>
+            <option value="condo">Condo</option>
+            <option value="multi-family">Multi-Family</option>
+          </select>
 
           <label class="form-label">Year Built</label>
           <input class="form-control mb-2" id="newYear" type="number">
@@ -208,14 +216,14 @@
 
           <h5 class="mt-4 mb-3">Floor Plan</h5>
 
-          <label class="form-label">Bedrooms</label>
-          <input class="form-control mb-2" id="newBedrooms" type="number">
+          <label class="form-label">Bedrooms <span class="text-danger">*</span></label>
+          <input class="form-control mb-2" id="newBedrooms" type="number" required>
 
-          <label class="form-label">Bathrooms</label>
-          <input class="form-control mb-2" id="newBathrooms" type="number">
+          <label class="form-label">Bathrooms <span class="text-danger">*</span></label>
+          <input class="form-control mb-2" id="newBathrooms" type="number" required>
 
-          <label class="form-label">Square Feet</label>
-          <input class="form-control mb-2" id="newSqft" type="number">
+          <label class="form-label">Square Feet <span class="text-danger">*</span></label>
+          <input class="form-control mb-2" id="newSqft" type="number" required>
 
           <label class="form-label">Layout Description</label>
           <textarea class="form-control mb-2" id="newLayout"></textarea>
@@ -226,8 +234,8 @@
 
           <h5 class="mt-4 mb-3">Property Images</h5>
 
-          <label class="form-label">Image URL 1</label>
-          <input class="form-control mb-2" id="img1">
+          <label class="form-label">Image URL 1 <span class="text-danger">*</span></label>
+          <input class="form-control mb-2" id="img1" required>
 
           <label class="form-label">Image URL 2</label>
           <input class="form-control mb-2" id="img2">
@@ -243,6 +251,7 @@
     </div>
   </div>
 </div>
+
 
 
 <!-- NAVBAR -->
