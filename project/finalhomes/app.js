@@ -330,7 +330,7 @@ document.getElementById("newHomeForm").addEventListener("submit", async (e) => {
   status: document.getElementById("newStatus").value,
   description: document.getElementById("newDescription").value || "",
 
-  images: propertyImages || "./images/defaulthome.jpg", // validated earlier
+  images: document.getElementById("img1").value || "./images/defaulthome.jpg", // validated earlier
   createdAt: new Date().toISOString()
 };
 
