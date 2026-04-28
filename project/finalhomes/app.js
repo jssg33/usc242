@@ -293,51 +293,47 @@ document.getElementById("newHomeForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const body = {
-    userid: "string",  // placeholder until you add auth
-    username: document.getElementById("newUsername").value || "string",
-    resellerName: document.getElementById("newReseller").value || "string",
-    contactEmail: document.getElementById("newEmail").value || "string",
-    contactPhone: document.getElementById("newPhone").value || "string",
+  userid: "string",
+  username: document.getElementById("newUsername").value || "string",
+  resellerName: document.getElementById("newReseller").value || "string",
+  contactEmail: document.getElementById("newEmail").value || "string",
+  contactPhone: document.getElementById("newPhone").value || "string",
 
-    address: {
-      street: document.getElementById("newStreet").value,
-      unit: document.getElementById("newUnit").value,
-      city: document.getElementById("newCity").value,
-      state: document.getElementById("newState").value,
-      zipCode: document.getElementById("newZip").value,
-      coordinates: {
-        lat: Number(document.getElementById("newLat").value || 0),
-        lng: Number(document.getElementById("newLng").value || 0)
-      }
-    },
+  address: {
+    street: document.getElementById("newStreet").value || "string",
+    unit: document.getElementById("newUnit").value || "string",
+    city: document.getElementById("newCity").value || "string",
+    state: document.getElementById("newState").value || "string",
+    zipCode: document.getElementById("newZip").value || "string",
+    coordinates: {
+      lat: Number(document.getElementById("newLat").value) || 0,
+      lng: Number(document.getElementById("newLng").value) || 0
+    }
+  },
 
-    floorPlan: {
-      bedrooms: Number(document.getElementById("newBedrooms").value),
-      bathrooms: Number(document.getElementById("newBathrooms").value),
-      squareFeet: Number(document.getElementById("newSqft").value),
-      layoutDescription: document.getElementById("newLayout").value,
-      images: document.getElementById("newFloorImages").value
-        .split(",")
-        .map(i => i.trim())
-        .filter(i => i.length > 0)
-    },
-
-    yearBuilt: Number(document.getElementById("newYear").value),
-    lotSizeSqFt: Number(document.getElementById("newLot").value),
-    propertyType: document.getElementById("newType").value,
-    price: Number(document.getElementById("newPrice").value),
-    status: document.getElementById("newStatus").value,
-    description: document.getElementById("newDescription").value,
-
-    // ⭐ 3 separate image URL fields
+  floorPlan: {
+    bedrooms: Number(document.getElementById("newBedrooms").value) || 0,
+    bathrooms: Number(document.getElementById("newBathrooms").value) || 0,
+    squareFeet: Number(document.getElementById("newSqft").value) || 0,
+    layoutDescription: document.getElementById("newLayout").value || "string",
     images: [
-      document.getElementById("img1").value.trim(),
-      document.getElementById("img2").value.trim(),
-      document.getElementById("img3").value.trim()
-    ].filter(url => url.length > 0),
+      "https://bt-photos.global.ssl.fastly.net/hhimls/1280_boomver_1_507916-78.jpg"
+    ]
+  },
 
-    createdAt: new Date().toISOString()
-  };
+  yearBuilt: Number(document.getElementById("newYear").value) || 0,
+  lotSizeSqFt: Number(document.getElementById("newLot").value) || 0,
+  propertyType: document.getElementById("newType").value || "single-family",
+  price: Number(document.getElementById("newPrice").value) || 0,
+  status: document.getElementById("newStatus").value || "available",
+  description: document.getElementById("newDescription").value || "string",
+
+  images: [
+    "https://bt-photos.global.ssl.fastly.net/hhimls/1280_boomver_1_507916-78.jpg"
+  ],
+
+  createdAt: new Date().toISOString()
+};
 
   console.log("addhousepost", body)
   const res = await fetch(API_ROOT, {
