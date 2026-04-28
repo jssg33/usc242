@@ -20,21 +20,11 @@ function showAdminPage() {
 async function loadHomes() {
   try {
     const res = await fetch(API_ROOT);
-    
-    if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`);
-    }
+    if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
 
     const homes = await res.json();
-    console.log("Homes returned from API:", homes);
-
     const container = document.getElementById("homesContainer");
-    console.log("homesContainer element:", container);
-
-    if (!container) {
-      console.error("homesContainer element not found!");
-      return;
-    }
+    if (!container) return;
 
     container.innerHTML = "";
 
@@ -42,12 +32,12 @@ async function loadHomes() {
       const card = document.createElement("div");
       card.className = "col-md-4";
 
-      // Safer way: avoid inline onclick with template string
       card.innerHTML = `
         <div class="card home-card shadow-sm">
-          <img src="${home.images?.[0] || 'https://via.placeholder.com/400'}" 
-               class="card-img-top" 
+          <img src="${home.images?.[0] || 'https://via.placeholder.com/400'}"
+               class="card-img-top"
                alt="${home.address.street || 'Home'}">
+
           <div class="card-body">
             <h5 class="card-title">${home.address.street}, ${home.address.city}</h5>
             <p class="card-text">
@@ -61,29 +51,15 @@ async function loadHomes() {
         </div>
       `;
 
-      // Add click handler safely (this is the best practice)
-      const homeCard = card.querySelector('.home-card');
-      if (homeCard) {
-        homeCard.style.cursor = "pointer";   // visual feedback
-        homeCard.addEventListener('click', () => {
-          showDetails(home._id);
-        });
-      }
+      const homeCard = card.querySelector(".home-card");
+      homeCard.style.cursor = "pointer";
+      homeCard.addEventListener("click", () => showDetails(home._id));
 
       container.appendChild(card);
     });
 
   } catch (error) {
     console.error("Error loading homes:", error);
-    const container = document.getElementById("homesContainer");
-    if (container) {
-      container.innerHTML = `
-        <div class="alert alert-danger">
-          Failed to load homes. Please try again later.<br>
-          <small>${error.message}</small>
-        </div>
-      `;
-    }
   }
 }
 
@@ -212,7 +188,6 @@ async function deleteHome(id) {
    DETAILS MODAL
 --------------------------------*/
 async function showDetails(id) {
-  console.log("showDetailsCall", id);
   const res = await fetch(`${API_ROOT}/${id}`);
   const home = await res.json();
 
@@ -253,13 +228,12 @@ async function showDetails(id) {
       <strong>City:</strong> ${home.address.city}<br>
       <strong>State:</strong> ${home.address.state}<br>
       <strong>Zip:</strong> ${home.address.zipCode}<br>
-      <strong>Address ID:</strong> ${home.address.Id}<br>
-      <strong>Coordinates:</strong> ${home.address.coordinates.lat}, ${home.address.coordinates.lng}
+      <strong>Coordinates:</strong> ${home.address.coordinates?.lat}, ${home.address.coordinates?.lng}
     </p>
 
     <h5>Images</h5>
     <div class="row">
-      ${home.images.map(img => `
+      ${(home.images || []).map(img => `
         <div class="col-md-4 mb-3">
           <img src="${img}" class="img-fluid rounded border" />
         </div>
@@ -273,7 +247,76 @@ async function showDetails(id) {
 }
 
 /* -------------------------------
+   ADD NEW HOME
+--------------------------------*/
+function openNewHomeModal() {
+  new bootstrap.Modal(document.getElementById("newHomeModal")).show();
+}
+
+document.getElementById("newHomeForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const body = {
+    userid: "string",
+    username: document.getElementById("newUsername")?.value || "string",
+    resellerName: document.getElementById("newReseller")?.value || "string",
+    contactEmail: document.getElementById("newEmail")?.value || "string",
+    contactPhone: document.getElementById("newPhone")?.value || "string",
+
+    address: {
+      street: document.getElementById("newStreet").value,
+      unit: document.getElementById("newUnit")?.value || "",
+      city: document.getElementById("newCity").value,
+      state: document.getElementById("newState").value,
+      zipCode: document.getElementById("newZip").value,
+      coordinates: {
+        lat: Number(document.getElementById("newLat")?.value || 0),
+        lng: Number(document.getElementById("newLng")?.value || 0)
+      }
+    },
+
+    floorPlan: {
+      bedrooms: Number(document.getElementById("newBedrooms").value),
+      bathrooms: Number(document.getElementById("newBathrooms").value),
+      squareFeet: Number(document.getElementById("newSqft").value),
+      layoutDescription: document.getElementById("newLayout").value,
+      images: document.getElementById("newFloorImages").value
+        .split(",")
+        .map(i => i.trim())
+        .filter(i => i.length > 0)
+    },
+
+    yearBuilt: Number(document.getElementById("newYear").value),
+    lotSizeSqFt: Number(document.getElementById("newLot").value),
+    propertyType: document.getElementById("newType").value,
+    price: Number(document.getElementById("newPrice").value),
+    status: document.getElementById("newStatus").value,
+    description: document.getElementById("newDescription").value,
+
+    images: document.getElementById("newImages").value
+      .split(",")
+      .map(i => i.trim())
+      .filter(i => i.length > 0),
+
+    createdAt: new Date().toISOString()
+  };
+
+  const res = await fetch(API_ROOT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  });
+
+  if (!res.ok) {
+    alert("Failed to create home.");
+    return;
+  }
+
+  bootstrap.Modal.getInstance(document.getElementById("newHomeModal")).hide();
+  loadAdminTable();
+});
+
+/* -------------------------------
    INITIAL LOAD
 --------------------------------*/
 document.addEventListener("DOMContentLoaded", loadHomes);
-
