@@ -293,21 +293,21 @@ document.getElementById("newHomeForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const body = {
-    userid: "string",
-    username: document.getElementById("newUsername")?.value || "string",
-    resellerName: document.getElementById("newReseller")?.value || "string",
-    contactEmail: document.getElementById("newEmail")?.value || "string",
-    contactPhone: document.getElementById("newPhone")?.value || "string",
+    userid: "string",  // placeholder until you add auth
+    username: document.getElementById("newUsername").value || "string",
+    resellerName: document.getElementById("newReseller").value || "string",
+    contactEmail: document.getElementById("newEmail").value || "string",
+    contactPhone: document.getElementById("newPhone").value || "string",
 
     address: {
       street: document.getElementById("newStreet").value,
-      unit: document.getElementById("newUnit")?.value || "",
+      unit: document.getElementById("newUnit").value,
       city: document.getElementById("newCity").value,
       state: document.getElementById("newState").value,
       zipCode: document.getElementById("newZip").value,
       coordinates: {
-        lat: Number(document.getElementById("newLat")?.value || 0),
-        lng: Number(document.getElementById("newLng")?.value || 0)
+        lat: Number(document.getElementById("newLat").value || 0),
+        lng: Number(document.getElementById("newLng").value || 0)
       }
     },
 
@@ -329,10 +329,12 @@ document.getElementById("newHomeForm").addEventListener("submit", async (e) => {
     status: document.getElementById("newStatus").value,
     description: document.getElementById("newDescription").value,
 
-    images: document.getElementById("newImages").value
-      .split(",")
-      .map(i => i.trim())
-      .filter(i => i.length > 0),
+    // ⭐ 3 separate image URL fields
+    images: [
+      document.getElementById("img1").value.trim(),
+      document.getElementById("img2").value.trim(),
+      document.getElementById("img3").value.trim()
+    ].filter(url => url.length > 0),
 
     createdAt: new Date().toISOString()
   };
