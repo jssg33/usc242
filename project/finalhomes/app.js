@@ -134,36 +134,49 @@ document.getElementById("realtorForm").addEventListener("submit", async (e) => {
 /* -------------------------------
    PROPERTY INFO MODAL
 --------------------------------*/
-function openPropertyModal(id, homeJson) {
-  const home = JSON.parse(decodeURIComponent(homeJson));
+document.getElementById("propertyForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-  document.getElementById("propertyId").value = id;
+  const id = document.getElementById("propertyId").value;
 
-  // Address
-  document.getElementById("editStreet").value = home.address.street;
-  document.getElementById("editUnit").value = home.address.unit || "";
-  document.getElementById("editCity").value = home.address.city;
-  document.getElementById("editState").value = home.address.state;
-  document.getElementById("editZip").value = home.address.zipCode;
-  document.getElementById("editLat").value = home.address.coordinates?.lat || 0;
-  document.getElementById("editLng").value = home.address.coordinates?.lng || 0;
+  const body = {
+    address: {
+      street: document.getElementById("editStreet").value,
+      unit: document.getElementById("editUnit").value,
+      city: document.getElementById("editCity").value,
+      state: document.getElementById("editState").value,
+      zipCode: document.getElementById("editZip").value,
+      coordinates: {
+        lat: Number(document.getElementById("editLat").value),
+        lng: Number(document.getElementById("editLng").value)
+      }
+    },
 
-  // Property Info
-  document.getElementById("editPrice").value = home.price;
-  document.getElementById("editStatus").value = home.status;
-  document.getElementById("editType").value = home.propertyType;
-  document.getElementById("editYear").value = home.yearBuilt;
-  document.getElementById("editLot").value = home.lotSizeSqFt;
-  document.getElementById("editDescription").value = home.description;
+    price: Number(document.getElementById("editPrice").value),
+    status: document.getElementById("editStatus").value,
+    propertyType: document.getElementById("editType").value,
+    yearBuilt: Number(document.getElementById("editYear").value),
+    lotSizeSqFt: Number(document.getElementById("editLot").value),
+    description: document.getElementById("editDescription").value,
 
-  // Floor Plan
-  document.getElementById("editBedrooms").value = home.floorPlan.bedrooms;
-  document.getElementById("editBathrooms").value = home.floorPlan.bathrooms;
-  document.getElementById("editSqft").value = home.floorPlan.squareFeet;
-  document.getElementById("editLayout").value = home.floorPlan.layoutDescription;
+    floorPlan: {
+      bedrooms: Number(document.getElementById("editBedrooms").value),
+      bathrooms: Number(document.getElementById("editBathrooms").value),
+      squareFeet: Number(document.getElementById("editSqft").value),
+      layoutDescription: document.getElementById("editLayout").value
+    }
+  };
 
-  new bootstrap.Modal(document.getElementById("propertyModal")).show();
-}
+  await fetch(`${API_ROOT}/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  });
+
+  bootstrap.Modal.getInstance(document.getElementById("propertyModal")).hide();
+  loadAdminTable();
+});
+
 
 
 document.getElementById("propertyForm").addEventListener("submit", async (e) => {
