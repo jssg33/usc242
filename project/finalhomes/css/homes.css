@@ -20,7 +20,7 @@
    text-align: center;
   }
 
-   footer{ background-color: black; color: white; text-align: center; height: 50px; position: absolute; bottom: 0px;}
+   gafooter{ background-color: black; color: white; text-align: center; height: 50px; position: absolute; bottom: 0px;}
 
     .home-card {
   height: 400px;
