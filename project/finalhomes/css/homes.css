@@ -5,8 +5,10 @@
       background-repeat: no-repeat;
       background-position: center;
       min-height: 900px; 
+      max-height: 900px;
+      overflow-y: auto;
     }
-  somefooter{ background-color: black; color: white; text-align: center; height: 50px; position: absolute; bottom: 0px;}
+   footer{ background-color: black; color: white; text-align: center; height: 50px; position: absolute; bottom: 0px;}
 
     .home-card {
   height: 400px;
