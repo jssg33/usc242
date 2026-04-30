@@ -9,7 +9,7 @@
       overflow-y: auto;
     }
 
-  .container
+  .gacontainer
   {
    position: relative;
    max-height: 1000px;
