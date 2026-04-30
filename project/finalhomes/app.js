@@ -331,7 +331,11 @@ document.getElementById("newHomeForm").addEventListener("submit", async (e) => {
   status: document.getElementById("newStatus").value,
   description: document.getElementById("newDescription").value || "",
 
-  images: document.getElementById("img1").value || "./images/defaulthome.jpg", // validated earlier
+  images: [
+  document.getElementById("img1").value,
+  document.getElementById("img2").value,
+  document.getElementById("img3").value
+].filter(i => i && i.trim().length > 0) || "['./images/defaulthome.jpg', './images/defaulthome2.jpg']", // validated earlier
   createdAt: new Date().toISOString()
 };
 
