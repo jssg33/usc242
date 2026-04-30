@@ -70,8 +70,9 @@ async function savePictures() {
 
   document.getElementById("picturesNew").value = "";
 
-  // ✅ THIS is the important line
-  bootstrap.Modal.getInstance(document.getElementById("picturesModal")).hide();
+  const modalEl = document.getElementById("picturesModal");
+  const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+  modal.hide();
 
   loadAdminTable();
 }
