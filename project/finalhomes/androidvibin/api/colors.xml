@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- res/values/colors.xml -->
 <resources>
-    <color name="colorPrimary">#212529</color>       <!-- Bootstrap dark, matches navbar -->
+    <!-- Matches Bootstrap dark navbar #212529 -->
+    <color name="colorPrimary">#212529</color>
     <color name="colorPrimaryVariant">#343a40</color>
     <color name="colorOnPrimary">#FFFFFF</color>
-    <color name="colorSecondary">#0d6efd</color>     <!-- Bootstrap blue -->
-    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorSecondary">#0d6efd</color>
+    <!-- Status colours matching Bootstrap badges -->
+    <color name="status_available">#198754</color>
+    <color name="status_pending">#fd7e14</color>
+    <color name="status_sold">#dc3545</color>
 
-    <!-- Status badge colours -->
-    <color name="status_available">#198754</color>   <!-- Bootstrap success green -->
-    <color name="status_pending">#fd7e14</color>     <!-- Bootstrap orange -->
-    <color name="status_sold">#dc3545</color>        <!-- Bootstrap danger red -->
+    <!-- Login dialog tab colours -->
+    <color name="tab_active">#212529</color>
+    <color name="tab_inactive">#6c757d</color>
 </resources>
