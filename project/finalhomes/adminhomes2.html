@@ -267,6 +267,52 @@ function addHousePics(index) {
     alert("Add house pictures for: " + properties[index]._id);
 }
 
+function updateRecord(index) {
+    const p = properties[index];
+
+    document.getElementById("updatePropertyId").value = p._id;
+
+    document.getElementById("updStreet").value = p.address.street;
+    document.getElementById("updCity").value = p.address.city;
+    document.getElementById("updState").value = p.address.state;
+    document.getElementById("updZip").value = p.address.zipCode;
+
+    document.getElementById("updPrice").value = p.price;
+    document.getElementById("updYearBuilt").value = p.yearBuilt;
+
+    document.getElementById("updBedrooms").value = p.floorPlan.bedrooms;
+    document.getElementById("updBathrooms").value = p.floorPlan.bathrooms;
+    document.getElementById("updSqFt").value = p.floorPlan.squareFeet;
+
+    document.getElementById("updDescription").value = p.description;
+
+    const modal = new bootstrap.Modal(document.getElementById("updatePropertyModal"));
+    modal.show();
+}
+
+function saveUpdatedProperty() {
+    const id = document.getElementById("updatePropertyId").value;
+
+    const updated = {
+        street: document.getElementById("updStreet").value,
+        city: document.getElementById("updCity").value,
+        state: document.getElementById("updState").value,
+        zipCode: document.getElementById("updZip").value,
+        price: Number(document.getElementById("updPrice").value),
+        yearBuilt: Number(document.getElementById("updYearBuilt").value),
+        bedrooms: Number(document.getElementById("updBedrooms").value),
+        bathrooms: Number(document.getElementById("updBathrooms").value),
+        squareFeet: Number(document.getElementById("updSqFt").value),
+        description: document.getElementById("updDescription").value
+    };
+
+    console.log("Saving updated property:", id, updated);
+
+    // TODO: Replace with your API call
+    alert("Property updated: " + id);
+}
+    
+
 // Load table on page load
 loadTable();
 </script>
