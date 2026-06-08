@@ -11,7 +11,43 @@
         rel="stylesheet"
     >
 </head>
+<script>
+function addFloorPics(index) {
+    const property = properties[index];
+    document.getElementById("floorPicPropertyId").value = property._id;
 
+    const modal = new bootstrap.Modal(document.getElementById("floorPicModal"));
+    modal.show();
+}
+
+function addHousePics(index) {
+    const property = properties[index];
+    document.getElementById("housePicPropertyId").value = property._id;
+
+    const modal = new bootstrap.Modal(document.getElementById("housePicModal"));
+    modal.show();
+}
+
+function saveFloorPics() {
+    const id = document.getElementById("floorPicPropertyId").value;
+    const files = document.getElementById("floorPicFiles").files;
+
+    console.log("Uploading floor pics for:", id, files);
+
+    // TODO: Replace with your API call
+    alert("Floor pictures uploaded for property " + id);
+}
+
+function saveHousePics() {
+    const id = document.getElementById("housePicPropertyId").value;
+    const files = document.getElementById("housePicFiles").files;
+
+    console.log("Uploading house pics for:", id, files);
+
+    // TODO: Replace with your API call
+    alert("House pictures uploaded for property " + id);
+}
+</script>
 <body class="bg-light">
 
 <div class="container py-5">
