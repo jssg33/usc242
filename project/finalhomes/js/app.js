@@ -370,7 +370,10 @@ document.getElementById("newHomeForm").addEventListener("submit", async (e) => {
    INITIAL LOAD
 --------------------------------*/
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("✅ DOM fully loaded - Initializing app...");
+  
   loadHomes();
+  
   if (document.getElementById("adminTableBody")) {
     loadAdminTable();
   }
