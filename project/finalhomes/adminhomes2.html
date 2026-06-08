@@ -71,6 +71,144 @@ function saveHousePics() {
         </tbody>
     </table>
 </div>
+    <!-- ============================
+     Add Floor Pictures Modal
+============================= -->
+<div class="modal fade" id="floorPicModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Floor Plan Pictures</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <input type="hidden" id="floorPicPropertyId">
+
+        <div class="mb-3">
+          <label class="form-label">Upload Floor Pictures</label>
+          <input type="file" id="floorPicFiles" class="form-control" multiple>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" onclick="saveFloorPics()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================
+     Add House Pictures Modal
+============================= -->
+<div class="modal fade" id="housePicModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add House Pictures</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <input type="hidden" id="housePicPropertyId">
+
+        <div class="mb-3">
+          <label class="form-label">Upload House Pictures</label>
+          <input type="file" id="housePicFiles" class="form-control" multiple>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" onclick="saveHousePics()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================
+     Update Property Modal
+============================= -->
+<div class="modal fade" id="updatePropertyModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Update Property</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <input type="hidden" id="updatePropertyId">
+
+        <div class="row g-3">
+
+          <div class="col-md-6">
+            <label class="form-label">Street</label>
+            <input type="text" id="updStreet" class="form-control">
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">City</label>
+            <input type="text" id="updCity" class="form-control">
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">State</label>
+            <input type="text" id="updState" class="form-control">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Zip Code</label>
+            <input type="text" id="updZip" class="form-control">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Price</label>
+            <input type="number" id="updPrice" class="form-control">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Year Built</label>
+            <input type="number" id="updYearBuilt" class="form-control">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Bedrooms</label>
+            <input type="number" id="updBedrooms" class="form-control">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Bathrooms</label>
+            <input type="number" id="updBathrooms" class="form-control">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Square Feet</label>
+            <input type="number" id="updSqFt" class="form-control">
+          </div>
+
+          <div class="col-12">
+            <label class="form-label">Description</label>
+            <textarea id="updDescription" class="form-control" rows="3"></textarea>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" onclick="saveUpdatedProperty()">Save Changes</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+    
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
