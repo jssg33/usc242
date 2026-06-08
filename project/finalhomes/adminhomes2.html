@@ -217,7 +217,16 @@ function saveHousePics() {
 // ---------------------------
 // Your JSON Data Goes Here
 // ---------------------------
-const properties = YOUR_JSON_DATA_HERE;
+let properties = [];
+
+async function loadProperties() {
+    try {
+        const res = await fetch("https://api242.onrender.com/api/homes");
+        properties = await res.json();
+        loadTable();
+    } catch (err) {
+        console.error("Error loading properties:", err);
+    }    
 
 // ---------------------------
 // Render Table Rows
