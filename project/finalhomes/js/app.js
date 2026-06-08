@@ -80,7 +80,8 @@ async function loadAdminTable() {
         <td>
           <button class="btn btn-warning btn-sm mb-1" onclick="openRealtorModal('${home._id}', '${encoded}')">Realtor</button><br>
           <button class="btn btn-info btn-sm mb-1" onclick="openPropertyModal('${home._id}', '${encoded}')">Property</button><br>
-          <button class="btn btn-secondary btn-sm mb-1" onclick="openPicturesModal('${home._id}', '${encoded}')">Pictures</button><br>
+          <button class="btn btn-secondary btn-sm mb-1" onclick="openPicturesModal('${home._id}', '${encoded}')">SitePics</button><br>
+          <button class="btn btn-secondary btn-sm mb-1" onclick="openFloorPlanPicturesModal('${home._id}', '${encoded}')">FloorPlanPics</button><br>
           <button class="btn btn-danger btn-sm" onclick="deleteHome('${home._id}')">Delete</button>
         </td>
       `;
