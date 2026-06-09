@@ -4,55 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Property Manager</title>
-
     <!-- Bootstrap CSS -->
-    <link 
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
-        rel="stylesheet"
-    >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<script>
-function addFloorPics(index) {
-    const property = properties[index];
-    document.getElementById("floorPicPropertyId").value = property._id;
-
-    const modal = new bootstrap.Modal(document.getElementById("floorPicModal"));
-    modal.show();
-}
-
-function addHousePics(index) {
-    const property = properties[index];
-    document.getElementById("housePicPropertyId").value = property._id;
-
-    const modal = new bootstrap.Modal(document.getElementById("housePicModal"));
-    modal.show();
-}
-
-function saveFloorPics() {
-    const id = document.getElementById("floorPicPropertyId").value;
-    const files = document.getElementById("floorPicFiles").files;
-
-    console.log("Uploading floor pics for:", id, files);
-
-    // TODO: Replace with your API call
-    alert("Floor pictures uploaded for property " + id);
-}
-
-function saveHousePics() {
-    const id = document.getElementById("housePicPropertyId").value;
-    const files = document.getElementById("housePicFiles").files;
-
-    console.log("Uploading house pics for:", id, files);
-
-    // TODO: Replace with your API call
-    alert("House pictures uploaded for property " + id);
-}
-</script>
 <body class="bg-light">
-
 <div class="container py-5">
     <h1 class="mb-4 text-center">Property Management Dashboard</h1>
-
     <table class="table table-striped table-bordered align-middle">
         <thead class="table-dark">
             <tr>
@@ -66,14 +25,11 @@ function saveHousePics() {
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody id="propertyTableBody">
-            <!-- Rows inserted dynamically -->
-        </tbody>
+        <tbody id="propertyTableBody"></tbody>
     </table>
 </div>
-    <!-- ============================
-     Add Floor Pictures Modal
-============================= -->
+
+<!-- Floor pics modal (unchanged) -->
 <div class="modal fade" id="floorPicModal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -81,16 +37,13 @@ function saveHousePics() {
         <h5 class="modal-title">Add Floor Plan Pictures</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
-
       <div class="modal-body">
         <input type="hidden" id="floorPicPropertyId">
-
         <div class="mb-3">
           <label class="form-label">Upload Floor Pictures</label>
           <input type="file" id="floorPicFiles" class="form-control" multiple>
         </div>
       </div>
-
       <div class="modal-footer">
         <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         <button class="btn btn-primary" onclick="saveFloorPics()">Save</button>
@@ -99,10 +52,7 @@ function saveHousePics() {
   </div>
 </div>
 
-
-<!-- ============================
-     Add House Pictures Modal
-============================= -->
+<!-- House pics modal (unchanged) -->
 <div class="modal fade" id="housePicModal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -110,16 +60,13 @@ function saveHousePics() {
         <h5 class="modal-title">Add House Pictures</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
-
       <div class="modal-body">
         <input type="hidden" id="housePicPropertyId">
-
         <div class="mb-3">
           <label class="form-label">Upload House Pictures</label>
           <input type="file" id="housePicFiles" class="form-control" multiple>
         </div>
       </div>
-
       <div class="modal-footer">
         <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         <button class="btn btn-primary" onclick="saveHousePics()">Save</button>
@@ -128,90 +75,66 @@ function saveHousePics() {
   </div>
 </div>
 
-
-<!-- ============================
-     Update Property Modal
-============================= -->
+<!-- Update property modal (unchanged) -->
 <div class="modal fade" id="updatePropertyModal" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-
       <div class="modal-header">
         <h5 class="modal-title">Update Property</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
-
       <div class="modal-body">
         <input type="hidden" id="updatePropertyId">
-
         <div class="row g-3">
-
           <div class="col-md-6">
             <label class="form-label">Street</label>
             <input type="text" id="updStreet" class="form-control">
           </div>
-
           <div class="col-md-3">
             <label class="form-label">City</label>
             <input type="text" id="updCity" class="form-control">
           </div>
-
           <div class="col-md-3">
             <label class="form-label">State</label>
             <input type="text" id="updState" class="form-control">
           </div>
-
           <div class="col-md-4">
             <label class="form-label">Zip Code</label>
             <input type="text" id="updZip" class="form-control">
           </div>
-
           <div class="col-md-4">
             <label class="form-label">Price</label>
             <input type="number" id="updPrice" class="form-control">
           </div>
-
           <div class="col-md-4">
             <label class="form-label">Year Built</label>
             <input type="number" id="updYearBuilt" class="form-control">
           </div>
-
           <div class="col-md-4">
             <label class="form-label">Bedrooms</label>
             <input type="number" id="updBedrooms" class="form-control">
           </div>
-
           <div class="col-md-4">
             <label class="form-label">Bathrooms</label>
             <input type="number" id="updBathrooms" class="form-control">
           </div>
-
           <div class="col-md-4">
             <label class="form-label">Square Feet</label>
             <input type="number" id="updSqFt" class="form-control">
           </div>
-
           <div class="col-12">
             <label class="form-label">Description</label>
             <textarea id="updDescription" class="form-control" rows="3"></textarea>
           </div>
-
         </div>
       </div>
-
       <div class="modal-footer">
         <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         <button class="btn btn-primary" onclick="saveUpdatedProperty()">Save Changes</button>
       </div>
-
     </div>
   </div>
 </div>
-
-    
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
 // ---------------------------
@@ -226,7 +149,9 @@ async function loadProperties() {
         loadTable();
     } catch (err) {
         console.error("Error loading properties:", err);
-    }    
+        loadTable(); // still render empty table
+    }
+}
 
 // ---------------------------
 // Render Table Rows
@@ -234,7 +159,6 @@ async function loadProperties() {
 function loadTable() {
     const tbody = document.getElementById("propertyTableBody");
     tbody.innerHTML = "";
-
     properties.forEach((p, index) => {
         const row = `
             <tr>
@@ -261,47 +185,92 @@ function loadTable() {
 // Action Button Handlers
 // ---------------------------
 function updateRecord(index) {
-    alert("Update record: " + properties[index]._id);
-}
-
-function deleteRecord(index) {
-    alert("Delete record: " + properties[index]._id);
-}
-
-function addFloorPics(index) {
-    alert("Add floor pictures for: " + properties[index]._id);
-}
-
-function addHousePics(index) {
-    alert("Add house pictures for: " + properties[index]._id);
-}
-
-function updateRecord(index) {
     const p = properties[index];
-
     document.getElementById("updatePropertyId").value = p._id;
-
     document.getElementById("updStreet").value = p.address.street;
     document.getElementById("updCity").value = p.address.city;
     document.getElementById("updState").value = p.address.state;
     document.getElementById("updZip").value = p.address.zipCode;
-
     document.getElementById("updPrice").value = p.price;
     document.getElementById("updYearBuilt").value = p.yearBuilt;
-
     document.getElementById("updBedrooms").value = p.floorPlan.bedrooms;
     document.getElementById("updBathrooms").value = p.floorPlan.bathrooms;
     document.getElementById("updSqFt").value = p.floorPlan.squareFeet;
-
     document.getElementById("updDescription").value = p.description;
 
     const modal = new bootstrap.Modal(document.getElementById("updatePropertyModal"));
     modal.show();
 }
 
+function deleteRecord(index) {
+    if (!confirm("Delete property " + properties[index]._id + "?")) return;
+    alert("Delete record: " + properties[index]._id);
+    // TODO: API call
+}
+
+function addFloorPics(index) {
+    const property = properties[index];
+    document.getElementById("floorPicPropertyId").value = property._id;
+    const modal = new bootstrap.Modal(document.getElementById("floorPicModal"));
+    modal.show();
+}
+
+function addHousePics(index) {
+    const property = properties[index];
+    document.getElementById("housePicPropertyId").value = property._id;
+    const modal = new bootstrap.Modal(document.getElementById("housePicModal"));
+    modal.show();
+}
+
+function saveFloorPics() {
+    const id = document.getElementById("floorPicPropertyId").value;
+    const files = document.getElementById("floorPicFiles").files;
+    if (!files.length) return alert("Select at least one file");
+
+    const formData = new FormData();
+    formData.append("propertyId", id);
+    for (let file of files) {
+        formData.append("floorPics", file); // backend expects this key
+    }
+
+    // TODO: Replace with real fetch (example)
+    fetch("https://api242.onrender.com/api/homes/" + id + "/floor-pics", {
+        method: "POST",
+        body: formData
+    })
+    .then(() => {
+        alert("Floor pictures uploaded for property " + id);
+        const modal = bootstrap.Modal.getInstance(document.getElementById("floorPicModal"));
+        if (modal) modal.hide();
+    })
+    .catch(err => alert("Upload failed: " + err));
+}
+
+function saveHousePics() {
+    const id = document.getElementById("housePicPropertyId").value;
+    const files = document.getElementById("housePicFiles").files;
+    if (!files.length) return alert("Select at least one file");
+
+    const formData = new FormData();
+    formData.append("propertyId", id);
+    for (let file of files) {
+        formData.append("housePics", file);
+    }
+
+    fetch("https://api242.onrender.com/api/homes/" + id + "/house-pics", {
+        method: "POST",
+        body: formData
+    })
+    .then(() => {
+        alert("House pictures uploaded for property " + id);
+        const modal = bootstrap.Modal.getInstance(document.getElementById("housePicModal"));
+        if (modal) modal.hide();
+    })
+    .catch(err => alert("Upload failed: " + err));
+}
+
 function saveUpdatedProperty() {
     const id = document.getElementById("updatePropertyId").value;
-
     const updated = {
         street: document.getElementById("updStreet").value,
         city: document.getElementById("updCity").value,
@@ -315,17 +284,21 @@ function saveUpdatedProperty() {
         description: document.getElementById("updDescription").value
     };
 
-    console.log("Saving updated property:", id, updated);
-
-    // TODO: Replace with your API call
-    alert("Property updated: " + id);
+    fetch("https://api242.onrender.com/api/homes/" + id, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updated)
+    })
+    .then(() => {
+        alert("Property updated: " + id);
+        const modal = bootstrap.Modal.getInstance(document.getElementById("updatePropertyModal"));
+        if (modal) modal.hide();
+    })
+    .catch(err => alert("Update failed: " + err));
 }
-    
 
-// Load table on page load
-//loadTable();
+// Call once everything is loaded
 loadProperties();
 </script>
-
 </body>
 </html>
