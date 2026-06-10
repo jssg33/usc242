@@ -7,9 +7,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">   
-  <link href="./css/homes.css" rel="stylesheet"/>
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="bg-light">
 <div class="container py-5">
@@ -30,20 +28,20 @@
         <tbody id="propertyTableBody"></tbody>
     </table>
 </div>
-
-<!-- Floor pics modal (unchanged) -->
+<!-- Floor pics modal (updated to accept URLs) -->
 <div class="modal fade" id="floorPicModal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Add Floor Plan Pictures</h5>
+        <h5 class="modal-title">Add Floor Pictures</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
         <input type="hidden" id="floorPicPropertyId">
         <div class="mb-3">
-          <label class="form-label">Upload Floor Pictures</label>
-          <input type="file" id="floorPicFiles" class="form-control" multiple>
+          <label class="form-label">Enter 5 Floor Picture URLs (one per line)</label>
+          <textarea id="floorPicUrls" class="form-control" rows="5" placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg&#10;https://example.com/image3.jpg&#10;https://example.com/image4.jpg&#10;https://example.com/image5.jpg"></textarea>
+          <div class="form-text">One URL per line. At least 1 is required.</div>
         </div>
       </div>
       <div class="modal-footer">
@@ -53,8 +51,7 @@
     </div>
   </div>
 </div>
-
-<!-- House pics modal (unchanged) -->
+<!-- House pics modal (updated to accept URLs) -->
 <div class="modal fade" id="housePicModal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -65,8 +62,9 @@
       <div class="modal-body">
         <input type="hidden" id="housePicPropertyId">
         <div class="mb-3">
-          <label class="form-label">Upload House Pictures</label>
-          <input type="file" id="housePicFiles" class="form-control" multiple>
+          <label class="form-label">Enter 5 House Picture URLs (one per line)</label>
+          <textarea id="housePicUrls" class="form-control" rows="5" placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg&#10;https://example.com/image3.jpg&#10;https://example.com/image4.jpg&#10;https://example.com/image5.jpg"></textarea>
+          <div class="form-text">One URL per line. At least 1 is required.</div>
         </div>
       </div>
       <div class="modal-footer">
@@ -76,7 +74,6 @@
     </div>
   </div>
 </div>
-
 <!-- Update property modal (unchanged) -->
 <div class="modal fade" id="updatePropertyModal" tabindex="-1">
   <div class="modal-dialog modal-lg">
@@ -137,13 +134,11 @@
     </div>
   </div>
 </div>
-
 <script>
 // ---------------------------
 // Your JSON Data Goes Here
 // ---------------------------
 let properties = [];
-
 async function loadProperties() {
     try {
         const res = await fetch("https://api242.onrender.com/api/homes");
@@ -154,7 +149,6 @@ async function loadProperties() {
         loadTable(); // still render empty table
     }
 }
-
 // ---------------------------
 // Render Table Rows
 // ---------------------------
@@ -182,7 +176,6 @@ function loadTable() {
         tbody.innerHTML += row;
     });
 }
-
 // ---------------------------
 // Action Button Handlers
 // ---------------------------
@@ -199,41 +192,45 @@ function updateRecord(index) {
     document.getElementById("updBathrooms").value = p.floorPlan.bathrooms;
     document.getElementById("updSqFt").value = p.floorPlan.squareFeet;
     document.getElementById("updDescription").value = p.description;
-
     const modal = new bootstrap.Modal(document.getElementById("updatePropertyModal"));
     modal.show();
 }
-
 function deleteRecord(index) {
     if (!confirm("Delete property " + properties[index]._id + "?")) return;
     alert("Delete record: " + properties[index]._id);
     // TODO: API call
 }
-
 function addFloorPics(index) {
     const property = properties[index];
     document.getElementById("floorPicPropertyId").value = property._id;
     const modal = new bootstrap.Modal(document.getElementById("floorPicModal"));
     modal.show();
 }
-
 function addHousePics(index) {
     const property = properties[index];
     document.getElementById("housePicPropertyId").value = property._id;
     const modal = new bootstrap.Modal(document.getElementById("housePicModal"));
     modal.show();
 }
-
 function saveFloorPics() {
     const id = document.getElementById("floorPicPropertyId").value;
-    const files = document.getElementById("floorPicFiles").files;
-    if (!files.length) return alert("Select at least one file");
+    const urlInput = document.getElementById("floorPicUrls").value.trim();
+    if (!urlInput) return alert("Enter at least one floor picture URL");
+
+    // Split on newline (ignore empty lines)
+    const urls = urlInput.split("\n")
+        .map(line => line.trim())
+        .filter(url => url.length > 0);
+
+    if (urls.length === 0 || urls.length > 5) {
+        return alert("You must enter 1 to 5 floor picture URLs (one per line)");
+    }
 
     const formData = new FormData();
     formData.append("propertyId", id);
-    for (let file of files) {
-        formData.append("floorPics", file); // backend expects this key
-    }
+    urls.forEach((url, idx) => {
+        formData.append(`floorPics[${idx}]`, url); // backend expects array-like under floorPics
+    });
 
     // TODO: Replace with real fetch (example)
     fetch("https://api242.onrender.com/api/homes/" + id + "/floor-pics", {
@@ -247,17 +244,25 @@ function saveFloorPics() {
     })
     .catch(err => alert("Upload failed: " + err));
 }
-
 function saveHousePics() {
     const id = document.getElementById("housePicPropertyId").value;
-    const files = document.getElementById("housePicFiles").files;
-    if (!files.length) return alert("Select at least one file");
+    const urlInput = document.getElementById("housePicUrls").value.trim();
+    if (!urlInput) return alert("Enter at least one house picture URL");
+
+    // Split on newline (ignore empty lines)
+    const urls = urlInput.split("\n")
+        .map(line => line.trim())
+        .filter(url => url.length > 0);
+
+    if (urls.length === 0 || urls.length > 5) {
+        return alert("You must enter 1 to 5 house picture URLs (one per line)");
+    }
 
     const formData = new FormData();
     formData.append("propertyId", id);
-    for (let file of files) {
-        formData.append("housePics", file);
-    }
+    urls.forEach((url, idx) => {
+        formData.append(`housePics[${idx}]`, url); // backend expects array-like under housePics
+    });
 
     fetch("https://api242.onrender.com/api/homes/" + id + "/house-pics", {
         method: "POST",
@@ -270,7 +275,6 @@ function saveHousePics() {
     })
     .catch(err => alert("Upload failed: " + err));
 }
-
 function saveUpdatedProperty() {
     const id = document.getElementById("updatePropertyId").value;
     const updated = {
@@ -285,7 +289,6 @@ function saveUpdatedProperty() {
         squareFeet: Number(document.getElementById("updSqFt").value),
         description: document.getElementById("updDescription").value
     };
-
     fetch("https://api242.onrender.com/api/homes/" + id, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -298,7 +301,6 @@ function saveUpdatedProperty() {
     })
     .catch(err => alert("Update failed: " + err));
 }
-
 // Call once everything is loaded
 loadProperties();
 </script>
