@@ -46,6 +46,17 @@
         .table-responsive-wrapper { display: none; }
         #propertyCardGrid          { display: grid; }
     }
+
+    @media (max-width: 699px) {
+    #propertyCardGrid {
+        grid-template-columns: 1fr;
+    }
+    .prop-card {
+        width: 100%;
+        height: auto;
+    }
+   }
+    
 </style>
 </head>
 <body class="bg-light">
