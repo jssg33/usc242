@@ -321,6 +321,58 @@ function addHousePics(index) {
     new bootstrap.Modal(document.getElementById("housePicModal")).show();
 }
 
+function loadTable() {
+    // --- existing table code (unchanged) ---
+    const tbody = document.getElementById("propertyTableBody");
+    tbody.innerHTML = "";
+    properties.forEach((p, index) => {
+        const row = `
+            <tr>
+                <td>${p.address.street}</td>
+                <td>${p.address.city}</td>
+                <td>${p.address.state}</td>
+                <td>$${p.price.toLocaleString()}</td>
+                <td>${p.floorPlan?.bedrooms || ''}</td>
+                <td>${p.floorPlan?.bathrooms || ''}</td>
+                <td>${p.floorPlan?.squareFeet || ''}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm" onclick="updateRecord(${index})">Update</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteRecord(${index})">Delete</button>
+                    <button class="btn btn-warning btn-sm" onclick="addFloorPics(${index})">Add Floor Pics</button>
+                    <button class="btn btn-info btn-sm" onclick="addHousePics(${index})">Add House Pics</button>
+                </td>
+            </tr>`;
+        tbody.innerHTML += row;
+    });
+
+    // --- NEW: card grid ---
+    const grid = document.getElementById("propertyCardGrid");
+    grid.innerHTML = "";
+    properties.forEach((p, index) => {
+        const card = `
+            <div class="prop-card">
+                <div>
+                    <p class="prop-card-addr">${p.address.street}</p>
+                    <p class="prop-card-sub">${p.address.city}, ${p.address.state} ${p.address.zip || ''}</p>
+                    <p class="prop-card-price">$${p.price.toLocaleString()}</p>
+                    <div class="prop-card-stats">
+                        <span>🛏 ${p.floorPlan?.bedrooms || '—'} beds</span>
+                        <span>🚿 ${p.floorPlan?.bathrooms || '—'} baths</span>
+                        <span>📐 ${p.floorPlan?.squareFeet?.toLocaleString() || '—'} sqft</span>
+                    </div>
+                </div>
+                <div class="prop-card-actions">
+                    <button class="btn btn-primary btn-sm" onclick="updateRecord(${index})">Update</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteRecord(${index})">Delete</button>
+                    <button class="btn btn-warning btn-sm" onclick="addFloorPics(${index})">Floor Pics</button>
+                    <button class="btn btn-info btn-sm" onclick="addHousePics(${index})">House Pics</button>
+                </div>
+            </div>`;
+        grid.innerHTML += card;
+    });
+}
+
+    
 // Load on start
 loadProperties();
 </script>
