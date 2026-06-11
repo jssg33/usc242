@@ -60,3 +60,8 @@
   max-height: calc(100vh - 160px);
   overflow-y: auto;
 }
+
+#userView
+{
+min-height: 800px;
+}
